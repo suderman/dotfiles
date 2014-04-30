@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/osx/
+
+OSX="$HOME/.local/osx"
+
+echo ""
+echo "Global Daemons:"
+echo "---------------"
+for path in $OSX/launchctl/global.daemon.*.plist
+do
+  if [ -f $path ]; then
+    plist=$(basename "$path")
+    sudo chown root:staff $path
+    sudo chmod 644 $path
+    echo "Linking & loading: $plist"
+    sudo ln -sf "$path" "/Library/LaunchDaemons/$plist"
+    sudo launchctl load "/Library/LaunchDaemons/$plist"
+  fi
+  echo ""
+done
+               
+echo "Global Agents:"
+echo "--------------"
+for path in $OSX/launchctl/global.agent.*.plist
+do
+  if [ -f $path ]; then
+    plist=$(basename "$path")
+    sudo chown root:staff $path
+    sudo chmod 644 $path
+    echo "Linking & loading: $plist"
+    sudo ln -sf "$path" "/Library/LaunchAgents/$plist"
+    sudo launchctl load "/Library/LaunchAgents/$plist"
+  fi
+  echo ""
+done
+
+echo "User Agents:"
+echo "------------"
+for path in $OSX/launchctl/user.agent.*.plist
+do
+  if [ -f $path ]; then
+    plist=$(basename "$path")
+    chown $USER:staff $path
+    chmod 644 $path
+    echo "Linking & loading: $plist"
+    ln -sf "$path" "$HOME/Library/LaunchAgents/$plist"
+    launchctl load "$HOME/Library/LaunchAgents/$plist"
+  fi
+  echo ""
+done
+

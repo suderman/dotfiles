@@ -1,0 +1,73 @@
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/osx/
+
+# Open a terminal and run this command:
+# curl https://raw.github.com/suderman/osx/master/bin/osx | sh
+
+# What I need to get going on OS X
+# --------------------------------
+
+# Ensure git & git-clone-pull exists
+curl -sS git-clone-pull.suderman.io/install | sh
+
+# Git clone/pull this repo to the home directory
+git clone-pull https://github.com/suderman/local.git ~/.local
+
+# Ask before installing private repo on this computer
+read -p "Do you want to install ~/.local/secret on this computer? (y/[n]) " -n 1 -r
+echo
+[[ $REPLY =~ ^[Yy]$ ]]
+if [ ! $? -ne 0 ]; then
+
+  # Secret repo contains SSH and other sensitive config
+  git clone-pull https://github.com/suderman/secret.git ~/.local/secret
+
+  # Update remote origins to use SSH
+  cd ~/.local && git remote set-url origin git@github.com:suderman/local.git
+  cd ~/.local/secret && git remote set-url origin git@github.com:suderman/secret.git
+fi
+
+# Install rcm to manage the dotfiles
+curl -sS install.suderman.io/rcm | sh
+
+# Ensure the .rcrc file exists before rcup is run at all
+ln -sf ~/.local/dotfiles/rcrc ~/.rcrc
+rcup
+
+# Install antigen
+git clone-pull https://github.com/zsh-users/antigen.git ~/.antigen
+
+# Install oh-my-zsh
+git clone-pull https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+# Verify xcode
+r="$(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 2>/dev/null | grep -v version)"
+if [ "$r" == '' ]; then
+  echo "Xcode Coommand Line Tools needed. Installing now"
+  xcode-select --install
+  exit 1
+fi
+
+# Install gcc and other command line tools
+curl -sS install.suderman.io/osx-gcc | sh
+
+# Install gcc42, which is the older compiler for older rubies
+curl -sS install.suderman.io/osx-gcc | sh
+
+# Install node & npm
+curl -sS install.suderman.io/node | sh
+
+# Install MySQL
+curl -sS install.suderman.io/mysql | sh
+
+# Install tmux
+curl -sS install.suderman.io/tmux | sh
+
+# Install tmuxifier
+git clone-pull https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+
+# Install direnv
+curl -sS install.suderman.io/direnv | sh
+

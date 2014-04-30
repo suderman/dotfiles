@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/linux/
+
+cat | nc -q1 localhost 2224
+

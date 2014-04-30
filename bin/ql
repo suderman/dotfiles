@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local/
+
+port_scp=2222
+port_ql=2223
+
+if [ $# -eq 0 ]; then
+  echo "Usage: ql file ..."
+  exit 1
+fi
+for filepath in "$@"                
+do
+  if [ -r $filepath ] ; then
+
+    # Remote QuickLook
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+
+      # Send the file to local machine
+      filename=$(basename "$filepath")
+      scp -q -P$port_scp $filepath 127.0.0.1:/tmp/$filename
+
+      # netcat on OS X
+      if [ "`uname`"=="Darwin" ]; then
+        echo "/tmp/$filename" | nc localhost $port_ql
+
+      # netcat on Linux
+      else
+        echo "/tmp/$filename" | nc -q1 localhost $port_ql
+      fi
+
+    # Local QuickLook
+    else
+      quicky $filepath
+    fi
+
+  # Bad filename given!
+  else
+    echo File $filepath does not exist.
+  fi
+done
+

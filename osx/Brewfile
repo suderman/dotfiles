@@ -1,0 +1,197 @@
+# brew bundle ~/.local/osx/Brewfile
+update
+upgrade
+
+# homebrew taps
+tap homebrew/dupes
+tap homebrew/versions
+tap homebrew/homebrew-php
+tap thoughtbot/formulae
+tap suderman/suds
+tap phinze/cask 
+tap caskroom/versions 
+tap caskroom/fonts
+
+# homebrew external commands
+install brew-cask
+
+# dependencies
+cask install xquartz
+install ctags-exuberant
+install cscope
+
+# languages
+install ruby
+install chruby
+install ruby-install
+install nginx
+install php55 --with-mysql --with-cgi
+install lua
+install luajit
+install python
+cask install node
+
+# databases
+install redis
+install mongodb
+install sqlite
+install mysql
+cask install sequel-pro  
+
+# git
+install git
+install tig
+install gitsh
+cask install gitbox
+
+# shell
+cask install iterm2-nightly
+install tmux
+install reattach-to-user-namespace
+install wemux
+install rcm
+install direnv
+install mobile-shell
+
+# shell apps
+install ssh-copy-id
+install autojump
+install ranger
+# install highlight
+install wget
+install dockutil
+install sleepwatcher
+install fswatch
+install duti
+# install rsync
+
+# virtual machine
+cask install vmware-fusion
+cask install virtualbox
+cask install vagrant
+install docker
+
+# dev apps
+install vim --with-client-server --with-lua --with-luajit
+install fzf
+install ack
+install the_silver_searcher
+install heroku-toolbelt
+cask install kaleidoscope-beta
+install imagemagick --build-from-source
+install fontforge
+cask install transmit
+
+# browsers
+cask install google-chrome-canary
+cask install firefox-beta
+cask install fluid
+cask install choosy
+cask install glimmerblocker
+cask install flash-player
+cask install flip4mac
+cask install silverlight
+install w3m
+
+# utilities
+cask install dropbox
+cask install onepassword
+cask install bartender
+cask install keyboard-maestro
+cask install hyperdock
+cask install bootchamp
+cask install teleport
+cask install launchrocket
+cask install controlplane
+cask install trim-enabler
+cask install daisydisk
+cask install the-unarchiver
+cask install sequential
+cask install appcleaner
+cask install cleanmymac
+cask install shortcat
+cask install alfred
+cask alfred link
+
+# sound
+cask install audio-hijack-pro
+cask install soundflower
+cask install fission
+
+# text
+cask install scrivener
+
+# downloads
+cask install transmission
+cask install bittorrent-sync
+cask install sabnzbd
+cask install sickbeard
+cask install fourk-youtube-to-mp3
+install youtube-dl
+
+# video
+cask install vlc
+cask install handbrake
+cask install air-video-server
+# cask install plex-media-server
+cask install plex-home-theater
+cask install airparrot
+cask install airserver
+
+# music
+install cmus
+cask install groovesquid
+cask install spotify
+
+# communication
+cask install skype
+cask install google-hangouts
+cask install teamviewer
+cask install slack
+install center-im
+install mutt
+
+# games
+cask install steam
+cask install dolphin
+cask install controllermate
+
+# quicklook plugins
+cask install qlcolorcode
+cask install qlmarkdown
+cask install qlstephen
+cask install quicklook-json
+
+# all done
+cleanup
+cask cleanup
+
+# missing from cask
+#
+# Xcode.app:                             xcode/id497799835
+# MadCatzCyborgRAT.prefPane:             nstn5qgytsrarl2/CyborgRAT.zip
+# Printopia.prefPane:                    srpfdbxx35g35pj/Printopia.zip --open
+# MockSmtp.app:                          mocksmtp/id423535515
+# OpenDNS Updater.app:                   7yg61t559wb7izc/OpenDNS-Updater.zip
+# Touvaly.app:                           tfqfa9tc52lyli3/Touvaly.dmg
+# DragonDrop.app:                        dragondrop/id499148234
+# Launchpad-Control.prefPane:            jyqrk79gdmxpxiu/Launchpad-Control.zip
+# SymbolicLinker.service:                sdk6lbzkygle5jw/SymbolicLinker.dmg
+# KeyBindingsEditor.app:                 bmqpa7r22p3e0om/KeyBindingsEditor.dmg
+# Aeon Timeline.app:                     tjes0nk2fg7ekub/AeonTimeline.dmg
+# Microsoft Word.app:                    ncheogj7u0tqd2u/Office-2011.dmg
+# Adobe Photoshop CS6.app:               tnzs36orgugn1dv/Photoshop-CS6.dmg --open
+# Adobe Fireworks CS6.app:               0pzfhfbik5b6n7k/Fireworks-CS6.dmg --open
+# Adobe Illustrator.app:                 wa8zq9gbfg8wohu/Illustrator-CS6.dmg --open
+# Final Cut Pro.app:                     final-cut-pro/id424389933
+# Lock & Load.fxplug:                    4zvvinm1hzwlrt2/CoreMeltLockAndLoad.dmg
+# Fisheye Removal Plugin.moef:           ns2ax6aavom78wu/Fisheye-Removal-Plugin-Installer.pkg
+# CreateDiskImage.app:                   86099zyohmu7fok/CreateDiskImage.dmg
+# GoPro Studio.app:                      iik1ghu2h1afa3d/GoProStudio.dmg
+# Newshosting.app:                       nbipmpq44f9q8fu/Newshosting.dmg
+# RemoteMapper.app:                      tj82m71xw1btvmk/RemoteMapper.zip
+# SMBUp.app:                             j1098s8i0jofwmd/SMBUp.zip
+# Smutefy.app:                           2qz07v89y2vnk2d/Smutefy.zip
+# YouTube to MP3.app:                    4o5zldmvegornsq/YouTubeToMP3.dmg
+# MediaHuman YouTube Downloader.app:     b5wmkiwhfg3zawm/YouTubeDownloader.dmg
+

@@ -1,0 +1,3 @@
+DOTFILES_DIRS="$HOME/.local/dotfiles $HOME/.local/secret/dotfiles"
+EXCLUDES="README.md zsh tmux pi apache install"
+

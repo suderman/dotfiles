@@ -1,0 +1,17 @@
+#!/bin/zsh
+#
+# 2014 Jon Suderman
+# https://github.com/suderman/dotfiles/
+
+name=VIM
+
+# create new session if needed
+if (! tmux has-session -t $name 2> /dev/null); then
+  TMUX= tmux new -d -s $name "vimserver-window $@"
+
+  # switch to the new session
+  tmux switch-client -t $name
+
+else
+  vimserver-window $@
+fi
