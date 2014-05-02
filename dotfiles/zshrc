@@ -3,8 +3,8 @@ source $HOME/.antigen/antigen.zsh
 # Determine if this is OS X or Ubuntu
 source $HOME/.local/dotfiles/zsh/platform.zsh
 
-# Must be loaded first
-antigen bundle $HOME/.local/dotfiles/zsh/bundles/fzf
+# # Must be loaded first
+# antigen bundle $HOME/.local/dotfiles/zsh/bundles/fzf
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -45,4 +45,9 @@ source $HOME/.local/dotfiles/zsh/path.zsh
 source $HOME/.local/dotfiles/zsh/config.zsh
 source $HOME/.local/dotfiles/zsh/aliases.zsh
 source $HOME/.local/dotfiles/zsh/functions.zsh
+
+# Environment variables
+if [ -f $HOME/.local/secret/dotfiles/zsh/env.zsh ]; then
+  source $HOME/.local/secret/dotfiles/zsh/env.zsh
+fi
 

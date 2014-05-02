@@ -56,14 +56,17 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 }
 
 # chruby
-CHRUBY="/usr/local/share/chruby/chruby.sh"
-if [ -f $CHRUBY ]; then
-  source $CHRUBY
-  # auto-switching
-  source /usr/local/share/chruby/auto.sh
-  # https://github.com/sstephenson/ruby-build/issues/193
-  export CPPFLAGS=-I/opt/X11/include
-fi
+! command -v brew >/dev/null 2>&1 || { 
+  CHRUBY="$(brew --prefix)/share/chruby"
+
+  if [ -f "$CHRUBY/chruby.sh" ]; then
+    source $CHRUBY/chruby.sh
+    # auto-switching
+    source $CHRUBY/auto.sh
+    # https://github.com/sstephenson/ruby-build/issues/193
+    export CPPFLAGS=-I/opt/X11/include
+  fi
+}
 
 # OS X app installer
 if [ -d ~/Dropbox/Installers ]; then
