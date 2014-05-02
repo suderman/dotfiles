@@ -5,25 +5,18 @@
 
 # DNSIMPLE_API_EMAIL="email@example.com"
 # DNSIMPLE_API_TOKEN="foobar123example"
-# DNSIMPLE_DOMAIN_ID="12345"
-# DNSIMPLE_RECORD_ID="9876543"
+# DNSIMPLE_DOMAIN_NAME="home.computer.com"
+# DNSIMPLE_RECORD_ID="1234567"
 
-echo "Getting current external IP"
 IP="`curl -s http://icanhazip.com/`"
-echo "Current external IP is $IP"
 
-echo "Updating external record to $IP"
-curl -H "Accept: application/json" \
-     -H "X-DNSimple-Token: $DNSIMPLE_API_EMAIL:$DNSIMPLE_API_TOKEN" \
-     -H "Content-Type: application/json" \
-     -i -X PUT https://DNSimple.com/domains/$DNSIMPLE_DOMAIN_ID/records/$DNSIMPLE_RECORD_ID.json \
-     -d {\\"record\\":{\\"content\\":\\"$IP\\"}} -s > /dev/null
+curl  -H "X-DNSimple-Token: $DNSIMPLE_API_EMAIL:$DNSIMPLE_API_TOKEN" \
+      -H 'Accept: application/json' \
+      -H 'Content-Type: application/json' \
+      -X PUT \
+      -d "{\"record\":{\"content\":\"$IP\"}}" \
+      https://api.dnsimple.com/v1/domains/$DNSIMPLE_DOMAIN_NAME/records/$DNSIMPLE_RECORD_ID \
+      -s > /dev/null
 
-echo "curl -H \"Accept: application/json\""
-echo "     -H \"X-DNSimple-Token: $DNSIMPLE_API_EMAIL:$DNSIMPLE_API_TOKEN\""
-echo "     -H \"Content-Type: application/json\"" 
-echo "     -i -X PUT https://DNSimple.com/domains/$DNSIMPLE_DOMAIN_ID/records/$DNSIMPLE_RECORD_ID.json "
-echo "     -d {\"record\":{\"content\":\"$IP\"}} -s > /dev/null"
-
-echo "Set record"
+echo "$DNSIMPLE_DOMAIN_NAME -> $IP"
 
