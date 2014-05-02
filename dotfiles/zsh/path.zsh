@@ -1,5 +1,5 @@
 # 2014 Jon Suderman
-# https://github.com/suderman/dotfiles/
+# https://github.com/suderman/local
 
 # Relative bin
 export MYPATH="bin"
@@ -15,12 +15,12 @@ if [ -d $HOME/.local/bin ]; then
 fi
 
 # Local bin for OS X
-if [ $PLATFORM=='osx' ]; then
+if [ $PLATFORM = "osx" ]; then
   export MYPATH="$MYPATH:$HOME/.local/osx/bin"
 fi
 
 # Local bin for Ubuntu
-if [ $PLATFORM=='ubuntu' ]; then
+if [ $PLATFORM = "ubuntu" ]; then
   export MYPATH="$MYPATH:$HOME/.local/ubuntu/bin"
 fi
 

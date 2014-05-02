@@ -99,3 +99,9 @@ getperms() {
   echo $owneroctal$groupoctal$otheroctal
 }
 
+
+# Path on separate lines
+path() {
+  echo $PATH | tr ':' '\n'
+}
+
