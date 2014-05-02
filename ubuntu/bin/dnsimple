@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # 2014 Jon Suderman
 # https://github.com/suderman/local
@@ -7,6 +7,13 @@
 # DNSIMPLE_API_TOKEN="foobar123example"
 # DNSIMPLE_DOMAIN_NAME="home.computer.com"
 # DNSIMPLE_RECORD_ID="1234567"
+# DNSIMPLE_HOST_NAME="ubuntu.local"
+
+# Prevent IP from being updated to something outside home network
+if [[ `hostname` != $DNSIMPLE_HOST_NAME ]]; then
+  echo "Command must be run on $DNSIMPLE_HOST_NAME"
+  exit
+fi
 
 IP="`curl -s http://icanhazip.com/`"
 
