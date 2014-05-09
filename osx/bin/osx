@@ -36,6 +36,10 @@ curl -sS install.suderman.io/rcm | sh
 ln -sf ~/.local/dotfiles/rcrc ~/.rcrc
 rcup
 
+# Install sshconfig to manage ~/.ssh/config
+curl sshconfig.suderman.io/install | sh
+sshconfig
+
 # Install launchup to manage launchd plists
 curl launchup.suderman.io/install | sh
 launchdn && launchup

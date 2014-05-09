@@ -22,7 +22,7 @@
       <key>Listeners</key>
       <dict>
         <key>SockServiceName</key>
-        <string>2223</string>
+        <string>$PORT_QUICKLOOK</string>
         <key>SockNodeName</key>
         <string>127.0.0.1</string>
       </dict>

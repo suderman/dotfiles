@@ -9,11 +9,11 @@
     <key>ProgramArguments</key>
     <array>
       <string>/usr/local/bin/duti</string>
-      <string>~/.local/osx/etc/duti.conf</string>
+      <string>$HOME/.local/osx/etc/duti.conf</string>
     </array>
     <key>WatchPaths</key>
     <array>
-      <string>~/.local/osx/etc/duti.conf</string>
+      <string>$HOME/.local/osx/etc/duti.conf</string>
     </array>
   </dict>
 </plist>

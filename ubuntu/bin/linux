@@ -21,3 +21,6 @@ curl -sS https://raw.github.com/suderman/install/master/oh-my-zsh | sh
 # Install tmux
 curl -sS https://raw.github.com/suderman/install/master/tmux | sh
 
+# Install sshconfig to manage ~/.ssh/config
+curl sshconfig.suderman.io/install | sh
+sshconfig

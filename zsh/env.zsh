@@ -1,5 +1,5 @@
 # 2014 Jon Suderman
-# https://github.com/suderman/local/
+# https://github.com/suderman/local
 
 #---------------------------
 # ZSH Environment Variables
@@ -55,10 +55,45 @@ fi
 
 # https://github.com/suderman/launchup
 if [[ "$PLATFORM" == 'osx' ]]; then
-  export LAUNCHUP_PLISTS=$HOME/.local/osx/launchd
+  export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
 fi
 
+
+
+#----------------------------------
+# Cross-platform port configuration
+#----------------------------------
+
+# osx/bin/copy
+# dotfiles/ssh/config.scp
+export PORT_SCP=2222
+
+# bin/ql
+# dotfiles/ssh/config.quicklook
+# osx/launchd/user.agent.quicky.plist
+export PORT_QUICKLOOK=2223
+
+# ubuntu/bin/pbcopy
+# dotfiles/ssh/config.pasteboard
+# osx/launchd/user.agent.pbcopy.plist
+export PORT_PBCOPY=2224
+
+# ubuntu/bin/pbpaste
+# dotfiles/ssh/config.pasteboard
+# osx/launchd/user.agent.pbpaste.plist
+export PORT_PBPASTE=2225
+  
+# osx/bin/chrome
+# dotfiles/ssh/config.reload-chrome
+# osx/launchd/user.agent.reload-chrome.plist
+export PORT_RELOAD_CHROME=2226
+
+
+
+#-----------------------------
 # Secret environment variables
+#-----------------------------
+
 if [ -f $HOME/.local/secret/zsh/env.zsh ]; then
   source $HOME/.local/secret/zsh/env.zsh
 fi

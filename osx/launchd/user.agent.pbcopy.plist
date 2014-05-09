@@ -18,7 +18,7 @@
       <key>Listeners</key>
       <dict>
         <key>SockServiceName</key>
-        <string>2224</string>
+        <string>$PORT_PBCOPY</string>
         <key>SockNodeName</key>
         <string>127.0.0.1</string>
       </dict>
