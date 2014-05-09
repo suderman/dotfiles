@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # 2014 Jon Suderman
 # https://github.com/suderman/local/
@@ -17,7 +17,7 @@ while read package
 do
   if [[ ! ${package:0:1} == '#' ]]; then
     if [[ "$package" ]]; then
-      apt-get install $package
+      apt-get -y install $package
     fi
   fi
 done < $1

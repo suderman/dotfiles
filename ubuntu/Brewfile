@@ -2,9 +2,9 @@
 update
 upgrade
                                        
-# homebrew taps
 install tmux
 install ranger
 install vim
 install chruby
 install ruby-install
+install ag
