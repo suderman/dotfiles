@@ -1,0 +1,5 @@
+# Run `sshconfig` to include this file in ~/.ssh/config
+
+Host macpro pi tigerblood bam garnet ginaz talisman cnrl handbill
+  RemoteForward $PORT_QUICKLOOK 127.0.0.1:$PORT_QUICKLOOK
+

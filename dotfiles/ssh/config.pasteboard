@@ -1,0 +1,10 @@
+# Run `sshconfig` to include this file in ~/.ssh/config
+
+Host macpro pi tigerblood bam garnet talisman cnrl handbill
+
+  # Remote pbcopy
+  RemoteForward $PORT_PBCOPY 127.0.0.1:$PORT_PBCOPY
+
+  # Remote pbpaste
+  RemoteForward $PORT_PBPASTE 127.0.0.1:$PORT_PBPASTE
+

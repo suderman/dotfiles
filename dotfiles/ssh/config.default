@@ -1,0 +1,8 @@
+# Run `sshconfig` to include this file in ~/.ssh/config
+
+Host *
+  ControlMaster auto
+  ControlPath $HOME/.ssh/ssh-%h_%p_%r
+  ControlPersist 1
+  ForwardAgent yes
+

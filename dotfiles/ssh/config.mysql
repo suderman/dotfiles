@@ -1,0 +1,23 @@
+# Run `sshconfig` to include this file in ~/.ssh/config
+
+Host tigerblood
+  LocalForward 3312 localhost:3306
+
+Host bam
+  LocalForward 3314 localhost:3306
+
+Host garnet
+  LocalForward 3315 localhost:3306
+
+Host ginaz
+  LocalForward 3307 localhost:3306
+
+Host talisman
+  LocalForward 3311 localhost:3306
+
+Host cnrl
+  LocalForward 3316 localhost:3306
+
+Host handbill
+  LocalForward 3317 localhost:3306
+
