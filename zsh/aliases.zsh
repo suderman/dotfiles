@@ -1,5 +1,5 @@
 # 2014 Jon Suderman
-# https://github.com/suderman/dotfiles/
+# https://github.com/suderman/local
 
 # Make these commands ask before clobbering a file
 alias rm="rm -i"
@@ -11,7 +11,7 @@ alias du="du -h"
 alias df="df -h"
 
 # Quick access to dotfiles
-alias dotfiles='cd $HOME/.dotfiles; ls -lh'
+alias dotfiles='cd $HOME/.local/dotfiles; ls -lh'
 
 # bundler laziness
 ! command -v bundle >/dev/null 2>&1 || { 

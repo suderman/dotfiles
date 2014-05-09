@@ -70,6 +70,8 @@ cask install vmware-fusion
 cask install virtualbox
 cask install vagrant
 install docker
+install packer
+install ec2-api-tools
 
 # dev apps
 install vim --with-client-server --with-lua --with-luajit

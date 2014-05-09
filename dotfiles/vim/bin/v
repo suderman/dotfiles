@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # 2014 Jon Suderman
-# https://github.com/suderman/dotfiles/
+# https://github.com/suderman/local
 
 # where vim and tmux should be
 vim="/usr/local/bin/vim"

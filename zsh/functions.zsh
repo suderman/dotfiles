@@ -1,5 +1,5 @@
 # 2014 Jon Suderman
-# https://github.com/suderman/dotfiles/
+# https://github.com/suderman/local
 
 # Change directory using ranger
 function ranger-cd() {

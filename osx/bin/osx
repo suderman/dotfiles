@@ -36,6 +36,10 @@ curl -sS install.suderman.io/rcm | sh
 ln -sf ~/.local/dotfiles/rcrc ~/.rcrc
 rcup
 
+# Install launchup to manage launchd plists
+curl launchup.suderman.io/install | sh
+launchdn && launchup
+
 # Install antigen
 git clone-pull https://github.com/zsh-users/antigen.git ~/.antigen
 
