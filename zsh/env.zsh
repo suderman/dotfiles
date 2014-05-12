@@ -59,10 +59,13 @@ if [[ "$PLATFORM" == 'osx' ]]; then
 fi
 
 
+#----------------------------------
+# Cross-platform host & port configuration
+#----------------------------------
 
-#----------------------------------
-# Cross-platform port configuration
-#----------------------------------
+# dotfiles/ssh/config.*
+# secret/dotfiles/ssh/config.*
+export HOSTS="macpro pi tigerblood bam garnet talisman cnrl handbill"
 
 # osx/bin/copy
 # dotfiles/ssh/config.scp

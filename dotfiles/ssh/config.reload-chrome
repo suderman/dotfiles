@@ -1,5 +1,5 @@
 # Run `sshconfig` to include this file in ~/.ssh/config
 
-Host macpro pi tigerblood bam garnet ginaz talisman cnrl handbill
+Host $HOSTS
   RemoteForward $PORT_RELOAD_CHROME 127.0.0.1:$PORT_RELOAD_CHROME
 
