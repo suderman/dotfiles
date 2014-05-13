@@ -24,7 +24,7 @@ export VISUAL=vim
 
 # https://github.com/jimeh/tmuxifier
 ! command -v tmuxifier >/dev/null 2>&1 || { 
-  export TMUXIFIER_LAYOUT_PATH="$HOME/.local/dotfiles/tmux/layouts"
+  export TMUXIFIER_LAYOUT_PATH="$HOME/.local/tmux/layouts"
   eval "$(tmuxifier init -)"
 }
 

@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+
+# Helper function for pretty messages
+msg() { printf "\e[0;32m=> \e[0;37m$1\e[0m\n"; }
+msg-nl() { printf "\n\e[0;32m=> \e[0;37m$1\e[0m\n"; }
+msg-install() { printf "\n\e[0;32m=> \e[0;37mInstalling \e[0;36m$1\e[0;37m...\e[0m\n"; }
+msg-ask() { 
+  if [ "$answer" == "y" ]; then msg-install $1;
+  else
+    printf "\n\e[0;32m=> \e[0;37mDo you want to install \e[0;36m$1\e[0;37m on this computer?\e[0m" 
+    read -p " y/[n] " -n 1 -r; echo
+    [[ $REPLY =~ ^[Yy]$ ]]
+    if [ ! $? -ne 0 ]; then return 0; else return 1; fi
+  fi
+}
+
+# Don't ask questions, just install/update everything 
+answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
+
+# Run init only if this script is called direct
+if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
+
+
+# What I need to get going on OS X
+# --------------------------------
+
+# Install script starts here!
+msg-nl "Keeping OS X up to snuff..."
+
+# Verify xcode
+msg-install "xcode"
+r="$(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 2>/dev/null | grep -v version)"
+if [ "$r" == '' ]; then
+  echo "Xcode Coommand Line Tools needed. Installing now"
+  xcode-select --install
+  exit 1
+fi
+
+# Install launchup to manage launchd plists
+msg-install "launchdn and launchup"
+curl -sS launchup.suderman.io/install | sh
+msg "Running launchdn and launchup"
+launchdn && launchup
+
+# Install node & npm
+msg-install "nodejs and npm"
+curl -sS install.suderman.io/node | sh
+
+# Install MySQL
+msg-install "mysql"
+curl -sS install.suderman.io/mysql | sh
+
+# Install packages
+if msg-ask "Homebrew, Node, Python and Ruby packages"; then 
+
+  msg "Updating packages in Brewfile"
+  brew bundle ~/.local/osx/Brewfile
+
+  msg-nl "Updating packages in Npmfile"
+  npm-bundle ~/.local/osx/Npmfile
+
+  msg-nl "Updating packages in Pipfile"
+  pip install -r ~/.local/osx/Pipfile
+
+  msg-nl "Updating packages in Gemfile"
+  cd ~/.local/osx && bundle install
+fi
+
+msg-nl "...done!"
+
