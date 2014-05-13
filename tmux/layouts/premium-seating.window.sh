@@ -18,7 +18,7 @@ send_keys ",d" 1
 run_cmd "git status" 2 
 
 # Rails console
-run_cmd "rails console" 3
+run_cmd "script/console" 3
 
 # Web server
 run_cmd "passenger stop -p 5000" 4
