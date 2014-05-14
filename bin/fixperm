@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+
+# Change owner and fix permissions
+sudo chown -R jon: ./*
+sudo chmod -R 775 ./*
+

@@ -4,20 +4,11 @@
 # https://github.com/suderman/local
 
 # Open a terminal and run this command:
-# curl https://raw.github.com/suderman/local/master/bin/init | sh
+# bash <(curl https://raw.github.com/suderman/local/master/bin/init)
 
-msg() { printf "\e[0;32m=> \e[0;37m$1\e[0m\n"; }
-msg-nl() { printf "\n\e[0;32m=> \e[0;37m$1\e[0m\n"; }
-msg-install() { printf "\n\e[0;32m=> \e[0;37mInstalling \e[0;36m$1\e[0;37m...\e[0m\n"; }
-msg-ask() { 
-  if [ "$answer" == "y" ]; then msg-install $1;
-  else
-    printf "\n\e[0;32m=> \e[0;37mDo you want to install \e[0;36m$1\e[0;37m on this computer?\e[0m" 
-    read -p " y/[n] " -n 1 -r; echo
-    [[ $REPLY =~ ^[Yy]$ ]]
-    if [ ! $? -ne 0 ]; then return 0; else return 1; fi
-  fi
-}
+# Helper function for pretty messages
+src="zsh/functions.zsh"
+source <(cat ~/.local/$src || curl https://raw.githubusercontent.com/suderman/local/master/$src)
 
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
@@ -73,9 +64,9 @@ git clone-pull https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 
 # Ensure environment variables are set
 msg "Sourcing environment variables"
-source $HOME/.local/zsh/platform.zsh
-source $HOME/.local/zsh/path.zsh
-source $HOME/.local/zsh/env.zsh
+source-local "zsh/platform.zsh"
+source-local "zsh/path.zsh"
+source-local "zsh/env.zsh"
 
 # Install sshconfig to manage ~/.ssh/config
 msg-install "sshconfig"

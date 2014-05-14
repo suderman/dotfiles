@@ -67,7 +67,8 @@ nnoremap <silent> <space>p :Pmenu<CR>
 " Colors
 " Source https://github.com/bzx/vim-theme-pack
 " Source https://github.com/ndzou/vim-colorschemes
-colorscheme hemisu-dark
+" colorscheme hemisu-dark
+colorscheme solarized
 call s:Pmenu()
 
 
