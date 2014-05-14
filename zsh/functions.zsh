@@ -7,8 +7,7 @@ path() {
 }
 
 # Helper function for pretty messages
-msg() { printf "\e[0;32m=> \e[0;37m$1\e[0m\n"; }
-msg-nl() { printf "\n\e[0;32m=> \e[0;37m$1\e[0m\n"; }
+msg() { printf "\n\e[0;32m=> \e[0;37m$1\e[0m\n"; }
 msg-install() { printf "\n\e[0;32m=> \e[0;37mInstalling \e[0;36m$1\e[0;37m...\e[0m\n"; }
 msg-ask() { 
   if [ "$answer" == "y" ]; then msg-install $1;
@@ -22,6 +21,8 @@ msg-ask() {
 
 # Source from ~/.local or github
 source-local() {
-  source <(cat $HOME/.local/$1 || curl https://raw.githubusercontent.com/suderman/local/master/$1)
+  if [ $# -eq 1 ]; then
+    source <(cat "$HOME/.local/$1" || curl "https://raw.githubusercontent.com/suderman/local/master/$1")
+  fi
 }
 

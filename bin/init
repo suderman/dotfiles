@@ -7,8 +7,8 @@
 # bash <(curl https://raw.githubusercontent.com/suderman/local/master/bin/init)
 
 # Helper function for pretty messages
-src="zsh/functions.zsh"
-source <(cat ~/.local/$src || curl https://raw.githubusercontent.com/suderman/local/master/$src)
+source-local() { source <(cat "$HOME/.local/$1" || curl https://raw.githubusercontent.com/suderman/local/master/$1); }
+source-local "zsh/functions.zsh"
 
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
@@ -18,7 +18,7 @@ answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
 # ------------------------
 
 # Install script starts here!
-msg-nl "Keeping this computer up to snuff..."
+msg "Keeping this computer up to snuff..."
 
 # Ensure git & git-clone-pull exists
 msg-install "git and git-clone-pull"
@@ -74,7 +74,7 @@ curl -sS sshconfig.suderman.io/install | sh
 msg "Running sshconfig"
 sshconfig
 
-msg-nl "...init complete!"
+msg "...init complete!"
 
 # Run update only if this script is called direct
 if [ "$2" != "skip-update" ]; then update "$answer" skip-init; fi

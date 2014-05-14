@@ -7,7 +7,7 @@
 
 # Some of these settings will look here
 brew_prefix="/usr/local"
-! command -v brew >/dev/null 2>&1 || { brew_prefix="$(brew --prefix)" }
+! command -v brew >/dev/null 2>&1 || { brew_prefix="$(brew --prefix)"; }
 
 # Manually set your language environment
 export LANG="en_US.UTF-8"
@@ -97,7 +97,7 @@ export PORT_RELOAD_CHROME=2226
 # Secret environment variables
 #-----------------------------
 
-if [ -f $HOME/.local/secret/zsh/env.zsh ]; then
+if [ -f "$HOME/.local/secret/zsh/env.zsh" ]; then
   source $HOME/.local/secret/zsh/env.zsh
 fi
 

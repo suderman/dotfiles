@@ -18,7 +18,7 @@ if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
 # --------------------------------
 
 # Install script starts here!
-msg-nl "Keeping OS X up to snuff..."
+msg "Keeping OS X up to snuff..."
 
 # Verify xcode
 msg-install "xcode"
@@ -49,15 +49,15 @@ if msg-ask "Homebrew, Node, Python and Ruby packages"; then
   msg "Updating packages in Brewfile"
   brew bundle ~/.local/osx/Brewfile
 
-  msg-nl "Updating packages in Npmfile"
+  msg "Updating packages in Npmfile"
   npm-bundle ~/.local/osx/Npmfile
 
-  msg-nl "Updating packages in Pipfile"
+  msg "Updating packages in Pipfile"
   pip install -r ~/.local/osx/Pipfile
 
-  msg-nl "Updating packages in Gemfile"
+  msg "Updating packages in Gemfile"
   cd ~/.local/osx && bundle install
 fi
 
-msg-nl "...done!"
+msg "...done!"
 

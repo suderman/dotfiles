@@ -18,7 +18,7 @@ if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
 # --------------------------------
 
 # Install script starts here!
-msg-nl "Keeping Ubuntu up to snuff..."
+msg "Keeping Ubuntu up to snuff..."
 
 # Install packages
 if msg-ask "Apt, Homebrew, Node, Python and Ruby packages"; then 
@@ -29,16 +29,15 @@ if msg-ask "Apt, Homebrew, Node, Python and Ruby packages"; then
   msg "Updating packages in Brewfile"
   brew bundle ~/.local/ubuntu/Brewfile
 
-  msg-nl "Updating packages in Npmfile"
+  msg "Updating packages in Npmfile"
   npm-bundle ~/.local/ubuntu/Npmfile
 
-  msg-nl "Updating packages in Pipfile"
+  msg "Updating packages in Pipfile"
   pip install -r ~/.local/ubuntu/Pipfile
 
-  msg-nl "Updating packages in Gemfile"
+  msg "Updating packages in Gemfile"
   cd ~/.local/ubuntu && bundle install
 fi
 
-msg-nl "...done!"
-
+msg "...done!"
 
