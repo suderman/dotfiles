@@ -4,8 +4,8 @@
 # https://github.com/suderman/local
 
 # Helper function for pretty messages
-src="zsh/functions.zsh"
-source <(cat ~/.local/$src || curl https://raw.githubusercontent.com/suderman/local/master/$src)
+source-local() { source <(cat $HOME/.local/$1 || curl https://raw.githubusercontent.com/suderman/local/master/$1); }
+source-local "zsh/functions.zsh"
 
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
