@@ -7,7 +7,7 @@
 # bash <(curl https://raw.githubusercontent.com/suderman/local/master/bin/init)
 
 # Helper function for pretty messages
-source-local() { source <(cat "$HOME/.local/$1" || curl https://raw.githubusercontent.com/suderman/local/master/$1); }
+source-local() { eval "$(cat ~/.local/$1 || curl https://raw.githubusercontent.com/suderman/local/master/$1)"; }
 source-local "zsh/functions.zsh"
 
 # Don't ask questions, just install/update everything 

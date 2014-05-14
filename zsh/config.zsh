@@ -22,6 +22,11 @@ stty -ixon
 # Enable SSH agent forwarding
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
+# http://direnv.net
+! command -v direnv >/dev/null 2>&1 || { 
+  eval "$(direnv hook zsh)" 
+}
+
 
 #------------------
 # ZSH Keybindings

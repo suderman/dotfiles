@@ -31,10 +31,7 @@ export VISUAL=vim
 # chruby
 if [ -f "$brew_prefix/share/chruby/chruby.sh" ]; then
   source $brew_prefix/share/chruby/chruby.sh
-  # auto-switching
   source $brew_prefix/share/chruby/auto.sh
-  # https://github.com/sstephenson/ruby-build/issues/193
-  export CPPFLAGS=-I/opt/X11/include
 fi
 
 # ec2-api-tools
@@ -47,11 +44,6 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 if [ -d ~/Dropbox/Installers ]; then
   export APP_SOURCE=~/Dropbox/Installers
 fi
-
-# http://direnv.net
-! command -v direnv >/dev/null 2>&1 || { 
-  eval "$(direnv hook zsh)" 
-}
 
 # https://github.com/suderman/launchup
 if [[ "$PLATFORM" == 'osx' ]]; then

@@ -8,6 +8,11 @@ source ~/.local/zsh/env.zsh
 source ~/.local/zsh/aliases.zsh
 source ~/.local/zsh/functions.zsh
 
+# http://direnv.net
+! command -v direnv >/dev/null 2>&1 || { 
+  eval "$(direnv hook bash)" 
+}
+
 # umask permissions
 umask 0002
 

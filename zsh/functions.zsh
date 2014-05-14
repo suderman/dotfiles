@@ -20,9 +20,16 @@ msg-ask() {
 }
 
 # Source from ~/.local or github
-source-local() {
+source-local() { 
   if [ $# -eq 1 ]; then
-    source <(cat "$HOME/.local/$1" || curl "https://raw.githubusercontent.com/suderman/local/master/$1")
+    eval "$(cat ~/.local/$1 || curl https://raw.githubusercontent.com/suderman/local/master/$1)" 
   fi
 }
+
+# source-local() {
+#   if [ $# -eq 1 ]; then
+#     [ -f $HOME/.local/$1 ] && source $HOME/.local/$1
+#     [ -f $HOME/.local/$1 ] || source <(cat <(curl https://raw.githubusercontent.com/suderman/local/master/$1))
+#   fi
+# }
 
