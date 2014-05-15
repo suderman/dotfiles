@@ -10,7 +10,7 @@ eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
 
 # Handy template for installing
-installing() { msg "Installing $_cyan_$1$_reset_..."; }
+installing() { msg "Installing $(cyan "$1")..."; }
 
 # Run init only if this script is called direct
 if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
@@ -46,7 +46,7 @@ installing "mysql"
 curl -sS install.suderman.io/mysql | sh
 
 # Install packages
-if ask "Do you want to install$_cyan_ Homebrew, Node, Python and Ruby packages$_white_ on this computer?"; then
+if ask "Do you want to install $(cyan "Homebrew, Node, Python and Ruby packages") on this computer?"; then
 
   msg "Updating packages in Brewfile"
   brew bundle ~/.local/osx/Brewfile

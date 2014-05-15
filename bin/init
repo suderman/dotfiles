@@ -13,7 +13,7 @@ eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
 
 # Handy template for installing
-installing() { msg "Installing $_cyan_$1$_reset_..."; }
+installing() { msg "Installing $(cyan "$1")..."; }
 
 
 # What I need to get going
