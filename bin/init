@@ -63,8 +63,8 @@ git clone-pull https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 
 # Ensure environment variables are set
 msg "Sourcing environment variables"
-source ~/.local/zsh/path.zsh
-source ~/.local/zsh/env.zsh
+source ~/.local/sh/path.sh
+source ~/.local/sh/env.sh
 
 # Install sshconfig to manage ~/.ssh/config
 msg-install "sshconfig"

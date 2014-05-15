@@ -2,7 +2,7 @@
 # https://github.com/suderman/local
 
 #---------------------------
-# ZSH Environment Variables
+# Environment Variables
 #---------------------------
 
 # Some of these settings will look here
@@ -43,9 +43,9 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 (osx) && export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
 
 
-#----------------------------------
+#------------------------------------------
 # Cross-platform host & port configuration
-#----------------------------------
+#--------0---------------------------------
 
 # dotfiles/ssh/config.*
 # secret/dotfiles/ssh/config.*
@@ -76,9 +76,8 @@ export PORT_PBPASTE=2225
 export PORT_RELOAD_CHROME=2226
 
 
-
 #-----------------------------
 # Secret environment variables
 #-----------------------------
-source-existing $HOME/.local/secret/zsh/env.zsh
+source-existing $HOME/.local/secret/zsh/env.sh
 
