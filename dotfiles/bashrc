@@ -1,6 +1,9 @@
 # Sometimes scripts call bash instead of my beloved zsh
 # ...so I have to maintain a little bashrc too I guess
 
+# Helper methods for prettier shell scripting - http://shelper.suderman.io
+eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
+
 # Use what I can
 source ~/.local/zsh/platform.zsh
 source ~/.local/zsh/path.zsh
@@ -9,9 +12,7 @@ source ~/.local/zsh/aliases.zsh
 source ~/.local/zsh/functions.zsh
 
 # http://direnv.net
-! command -v direnv >/dev/null 2>&1 || { 
-  eval "$(direnv hook bash)" 
-}
+(has direnv) && eval "$(direnv hook bash)" 
 
 # umask permissions
 umask 0002

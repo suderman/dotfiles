@@ -1,12 +1,23 @@
 source $HOME/.antigen/antigen.zsh
 
+# Helper methods for prettier shell scripting - http://shelper.suderman.io
+eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
+
 # Determine if this is OS X or Ubuntu
 source $HOME/.local/zsh/platform.zsh
 
-# # Must be loaded first
-# antigen bundle $HOME/.local/zsh/bundles/fzf
+# Local bundles
+(has fzf) && antigen bundle $HOME/.local/zsh/bundles/fzf
+# antigen bundle $HOME/.local/zsh/bundles/vi-visual
+# source $HOME/.local/zsh/bundles/opp/opp.plugin.zsh
 
-# Load the oh-my-zsh's library.
+# Other bundles
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# OMZ bundles
 antigen use oh-my-zsh
 
 antigen bundle osx 
@@ -26,19 +37,12 @@ antigen bundle nyan
 # antigen bundle command-not-found
 # antigen bundle extract 
 
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-
-antigen bundle $HOME/.local/zsh/bundles/vi-visual
-
 # Load the theme.
-antigen theme flazz
+# antigen theme flazz
+antigen theme fwalch
 
 # Tell antigen that you're done.
 antigen apply
-
-# Doesn't work as a bundle for some reason
-source $HOME/.local/zsh/bundles/opp/opp.plugin.zsh
 
 # My configuration
 source $HOME/.local/zsh/path.zsh

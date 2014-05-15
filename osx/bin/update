@@ -3,9 +3,8 @@
 # 2014 Jon Suderman
 # https://github.com/suderman/local
 
-# Helper function for pretty messages
-source-local() { eval "$(cat ~/.local/$1 || curl https://raw.githubusercontent.com/suderman/local/master/$1)"; }
-source-local "zsh/functions.zsh"
+# Helper methods for prettier shell scripting - http://shelper.suderman.io
+eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi

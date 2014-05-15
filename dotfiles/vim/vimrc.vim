@@ -73,8 +73,10 @@ call s:Pmenu()
 
 
 " Directories for undo backup, swp files
-set undofile
-set undodir=~/.vim/backup
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.vim/backup
+endif
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
@@ -555,10 +557,10 @@ nmap <leader>v :EditVimRC<CR>
 command! EditVimRC call s:EditVimRC()
 function! s:EditVimRC()
   let l:title = expand("%:t")
-  if (l:title == '.vimrc')
-    :edit ~/.gvimrc
+  if (l:title == 'vimrc.vim')
+    :edit ~/.vim/gvimrc.vim
   else
-    :edit ~/.vimrc
+    :edit ~/.vim/vimrc.vim
   endif
 endfunction
 

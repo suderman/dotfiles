@@ -14,7 +14,7 @@ alias df="df -h"
 alias dotfiles='cd $HOME/.local/dotfiles; ls -lh'
 
 # bundler laziness
-! command -v bundle >/dev/null 2>&1 || { 
+if has bundle; then
   alias be="bundle exec"
   alias bi="bundle install --path vendor/bundle"
   alias bb="bundle install --binstubs"
@@ -22,7 +22,7 @@ alias dotfiles='cd $HOME/.local/dotfiles; ls -lh'
   alias bs="bundle show"
   alias bu="bundle update"
   alias bp="bundle package"
-}
+fi
 
 # python
 alias server="python -m SimpleHTTPServer"

@@ -7,6 +7,7 @@
 
 # vi mode
 bindkey -v
+bindkey -M vicmd v edit-command-line
 KEYTIMEOUT=1
 
 # Disable autocorrect
@@ -23,9 +24,7 @@ stty -ixon
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # http://direnv.net
-! command -v direnv >/dev/null 2>&1 || { 
-  eval "$(direnv hook zsh)" 
-}
+(has direnv) && eval "$(direnv hook zsh)" 
 
 
 #------------------

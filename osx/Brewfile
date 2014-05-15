@@ -77,8 +77,8 @@ install ec2-api-tools
 install vim --with-client-server --with-lua --with-luajit
 install fzf
 install ack
-install the_silver_searcher
-install heroku-toolbelt
+install ag
+# install heroku-toolbelt
 cask install kaleidoscope-beta
 install imagemagick --build-from-source
 install fontforge

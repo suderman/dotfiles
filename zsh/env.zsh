@@ -7,7 +7,8 @@
 
 # Some of these settings will look here
 brew_prefix="/usr/local"
-! command -v brew >/dev/null 2>&1 || { brew_prefix="$(brew --prefix)"; }
+(has brew) && brew_prefix="$(brew --prefix)"
+
 
 # Manually set your language environment
 export LANG="en_US.UTF-8"
@@ -18,15 +19,13 @@ export EDITOR=vim
 export VISUAL=vim
 
 # https://github.com/georgebrock/1pass
-! command -v 1pass >/dev/null 2>&1 || { 
-  export ONEPASSWORD_KEYCHAIN="$HOME/Dropbox/Library/1Password.agilekeychain"
-}
+(has 1pass) && export ONEPASSWORD_KEYCHAIN="$HOME/Dropbox/Library/1Password.agilekeychain"
 
 # https://github.com/jimeh/tmuxifier
-! command -v tmuxifier >/dev/null 2>&1 || { 
+if has "tmuxifier"; then 
   export TMUXIFIER_LAYOUT_PATH="$HOME/.local/tmux/layouts"
   eval "$(tmuxifier init -)"
-}
+fi
 
 # chruby
 if [ -f "$brew_prefix/share/chruby/chruby.sh" ]; then

@@ -6,9 +6,8 @@
 # Open a terminal and run this command:
 # bash <(curl https://raw.githubusercontent.com/suderman/local/master/bin/init)
 
-# Helper function for pretty messages
-source-local() { eval "$(cat ~/.local/$1 || curl https://raw.githubusercontent.com/suderman/local/master/$1)"; }
-source-local "zsh/functions.zsh"
+# Helper methods for prettier shell scripting - http://shelper.suderman.io
+eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
@@ -64,9 +63,9 @@ git clone-pull https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 
 # Ensure environment variables are set
 msg "Sourcing environment variables"
-source-local "zsh/platform.zsh"
-source-local "zsh/path.zsh"
-source-local "zsh/env.zsh"
+source ~/.local/zsh/platform.zsh
+source ~/.local/zsh/path.zsh
+source ~/.local/zsh/env.zsh
 
 # Install sshconfig to manage ~/.ssh/config
 msg-install "sshconfig"
