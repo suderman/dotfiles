@@ -79,5 +79,5 @@ export PORT_RELOAD_CHROME=2226
 #-----------------------------
 # Secret environment variables
 #-----------------------------
-source-existing $HOME/.local/secret/zsh/env.sh
+source if "$HOME/.local/secret/sh/env.sh"
 
