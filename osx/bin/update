@@ -9,6 +9,9 @@ eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
 
+# Handy template for installing
+installing() { msg "Installing $_cyan_$1$_reset_..."; }
+
 # Run init only if this script is called direct
 if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
 
@@ -20,7 +23,7 @@ if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
 msg "Keeping OS X up to snuff..."
 
 # Verify xcode
-msg-install "xcode"
+installing "xcode"
 r="$(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 2>/dev/null | grep -v version)"
 if [ "$r" == '' ]; then
   echo "Xcode Coommand Line Tools needed. Installing now"
@@ -29,21 +32,21 @@ if [ "$r" == '' ]; then
 fi
 
 # Install launchup to manage launchd plists
-msg-install "launchdn and launchup"
+installing "launchdn and launchup"
 curl -sS launchup.suderman.io/install | sh
 msg "Running launchdn and launchup"
 launchdn && launchup
 
 # Install node & npm
-msg-install "nodejs and npm"
+installing "nodejs and npm"
 curl -sS install.suderman.io/node | sh
 
 # Install MySQL
-msg-install "mysql"
+installing "mysql"
 curl -sS install.suderman.io/mysql | sh
 
 # Install packages
-if msg-ask "Homebrew, Node, Python and Ruby packages"; then 
+if ask "Do you want to install$_cyan_ Homebrew, Node, Python and Ruby packages$_white_ on this computer?"; then
 
   msg "Updating packages in Brewfile"
   brew bundle ~/.local/osx/Brewfile

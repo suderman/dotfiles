@@ -9,6 +9,9 @@ eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
 
+# Handy template for installing
+installing() { msg "Installing $_cyan_$1$_reset_..."; }
+
 # Run init only if this script is called direct
 if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
 
@@ -20,7 +23,7 @@ if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
 msg "Keeping Ubuntu up to snuff..."
 
 # Install packages
-if msg-ask "Apt, Homebrew, Node, Python and Ruby packages"; then 
+if ask "Do you want to install$_cyan_ Apt, Homebrew, Node, Python and Ruby packages$_white_ on this computer?"; then
   
   msg "Updating packages in Aptfile"
   apt-bundle ~/.local/ubuntu/Aptfile

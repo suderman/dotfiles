@@ -21,7 +21,7 @@ export VISUAL=vim
 (has 1pass) && export ONEPASSWORD_KEYCHAIN="$HOME/Dropbox/Library/1Password.agilekeychain"
 
 # https://github.com/jimeh/tmuxifier
-if has "tmuxifier"; then 
+if has tmuxifier; then 
   export TMUXIFIER_LAYOUT_PATH="$HOME/.local/tmux/layouts"
   eval "$(tmuxifier init -)"
 fi
@@ -37,10 +37,10 @@ fi
 export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 # OS X app installer
-(osx) && export APP_SOURCE=~/Dropbox/Installers
+(is osx) && export APP_SOURCE=~/Dropbox/Installers
 
 # https://github.com/suderman/launchup
-(osx) && export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
+(is osx) && export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
 
 
 #------------------------------------------

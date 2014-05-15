@@ -11,11 +11,11 @@ MYPATH="bin"
   MYPATH="$MYPATH:$HOME/bin"
 
 # Local bin for OS X
-(osx) && \
+(is osx) && \
   MYPATH="$MYPATH:$HOME/.local/osx/bin"
 
 # Local bin for Ubuntu
-(ubuntu) && \
+(is ubuntu) && \
   MYPATH="$MYPATH:$HOME/.local/ubuntu/bin"
 
 # Local bin

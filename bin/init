@@ -12,6 +12,9 @@ eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
 
+# Handy template for installing
+installing() { msg "Installing $_cyan_$1$_reset_..."; }
+
 
 # What I need to get going
 # ------------------------
@@ -20,18 +23,18 @@ answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
 msg "Keeping this computer up to snuff..."
 
 # Ensure git & git-clone-pull exists
-msg-install "git and git-clone-pull"
+installing "git and git-clone-pull"
 curl -sS git-clone-pull.suderman.io/install | sh
 
 # Git clone/pull this repo to the home directory
-msg-install "~/.local"
+installing "~/.local"
 git clone-pull https://github.com/suderman/local.git ~/.local
 
 # Don't install this on just any system
-if msg-ask "~/.local/secret"; then 
+if ask "Do you want to install $_cyan_~/.local/secret$_white_ on this computer?"; then
 
   # Secret repo contains SSH and other sensitive config
-  msg-install "~/.local/secret"
+  installing "~/.local/secret"
   git clone-pull https://github.com/suderman/secret.git ~/.local/secret
 
   # Update remote origins to use SSH
@@ -41,7 +44,7 @@ if msg-ask "~/.local/secret"; then
 fi
 
 # Install rcm to manage the dotfiles
-msg-install "rcm"
+installing "rcm"
 curl -sS install.suderman.io/rcm | sh
 
 # Ensure the .rcrc file exists before rcup is run at all
@@ -50,15 +53,15 @@ ln -sf ~/.local/dotfiles/rcrc ~/.rcrc
 rcup
 
 # Install antigen
-msg-install "~/.antigen"
+installing "~/.antigen"
 git clone-pull https://github.com/zsh-users/antigen.git ~/.antigen
 
 # Install oh-my-zsh
-msg-install "~/.oh-my-zsh"
+installing "~/.oh-my-zsh"
 git clone-pull https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 # Install tmuxifier
-msg-install "~/.tmuxifier"
+installing "~/.tmuxifier"
 git clone-pull https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 
 # Ensure environment variables are set
@@ -67,7 +70,7 @@ source ~/.local/sh/path.sh
 source ~/.local/sh/env.sh
 
 # Install sshconfig to manage ~/.ssh/config
-msg-install "sshconfig"
+installing "sshconfig"
 curl -sS sshconfig.suderman.io/install | sh
 msg "Running sshconfig"
 sshconfig

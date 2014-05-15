@@ -5,10 +5,10 @@
 eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 
 # Use what I can
-source ~/.local/sh/path.zsh
-source ~/.local/sh/env.zsh
-source ~/.local/sh/aliases.zsh
-source ~/.local/sh/functions.zsh
+source ~/.local/sh/path.sh
+source ~/.local/sh/env.sh
+source ~/.local/sh/aliases.sh
+source ~/.local/sh/functions.sh
 
 # http://direnv.net
 (has direnv) && eval "$(direnv hook bash)" 
