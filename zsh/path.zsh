@@ -7,32 +7,27 @@
 MYPATH="bin"
 
 # Home bin
-if [ -d $HOME/bin ]; then
+(has ~/bin) && \
   MYPATH="$MYPATH:$HOME/bin"
-fi
 
 # Local bin for OS X
-if [ $PLATFORM = "osx" ]; then
+(osx) && \
   MYPATH="$MYPATH:$HOME/.local/osx/bin"
-fi
 
 # Local bin for Ubuntu
-if [ $PLATFORM = "ubuntu" ]; then
+(ubuntu) && \
   MYPATH="$MYPATH:$HOME/.local/ubuntu/bin"
-fi
 
 # Local bin
-if [ -d $HOME/.local/bin ]; then
+(has ~/.local/bin) && \
   MYPATH="$MYPATH:$HOME/.local/bin"
-fi
 
 # Vim bin
-if [ -d $HOME/.vim/bin ]; then
+(has ~/.vim/bin) && \
   MYPATH="$MYPATH:$HOME/.vim/bin"
-fi
 
 # linuxbrew
-if [ -d ~/.linuxbrew ]; then
+if has ~/.linuxbrew; then
   MYPATH="$MYPATH:$HOME/.linuxbrew/bin"
   export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
 fi
@@ -41,14 +36,12 @@ fi
 MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
 
 # tmuxifier
-if [ -d ~/.tmuxifier ]; then
+(has ~/.tmuxifier) && \
   MYPATH="$MYPATH:$HOME/.tmuxifier/bin"
-fi
 
 # Heroku Toolbelt
-if [ -d /usr/local/heroku/bin ]; then
+(has /usr/local/heroku/bin) && \
   MYPATH="$MYPATH:/usr/local/heroku/bin"
-fi
 
 # Append original path and strip duplicates
 PATH="$MYPATH:$PATH"

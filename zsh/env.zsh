@@ -9,7 +9,6 @@
 brew_prefix="/usr/local"
 (has brew) && brew_prefix="$(brew --prefix)"
 
-
 # Manually set your language environment
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
@@ -28,26 +27,20 @@ if has "tmuxifier"; then
 fi
 
 # chruby
-if [ -f "$brew_prefix/share/chruby/chruby.sh" ]; then
+if has $brew_prefix/share/chruby/chruby.sh; then
   source $brew_prefix/share/chruby/chruby.sh
   source $brew_prefix/share/chruby/auto.sh
 fi
 
 # ec2-api-tools
-if [ -d /usr/libexec/java_home ]; then
-  export JAVA_HOME="$(/usr/libexec/java_home)"
-fi
+(has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 # OS X app installer
-if [ -d ~/Dropbox/Installers ]; then
-  export APP_SOURCE=~/Dropbox/Installers
-fi
+(osx) && export APP_SOURCE=~/Dropbox/Installers
 
 # https://github.com/suderman/launchup
-if [[ "$PLATFORM" == 'osx' ]]; then
-  export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
-fi
+(osx) && export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
 
 
 #----------------------------------
@@ -87,8 +80,5 @@ export PORT_RELOAD_CHROME=2226
 #-----------------------------
 # Secret environment variables
 #-----------------------------
-
-if [ -f "$HOME/.local/secret/zsh/env.zsh" ]; then
-  source $HOME/.local/secret/zsh/env.zsh
-fi
+source-existing $HOME/.local/secret/zsh/env.zsh
 

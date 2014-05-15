@@ -5,7 +5,6 @@
 eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 
 # Use what I can
-source ~/.local/zsh/platform.zsh
 source ~/.local/zsh/path.zsh
 source ~/.local/zsh/env.zsh
 source ~/.local/zsh/aliases.zsh

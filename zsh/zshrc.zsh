@@ -3,9 +3,6 @@ source $HOME/.antigen/antigen.zsh
 # Helper methods for prettier shell scripting - http://shelper.suderman.io
 eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 
-# Determine if this is OS X or Ubuntu
-source $HOME/.local/zsh/platform.zsh
-
 # Local bundles
 (has fzf) && antigen bundle $HOME/.local/zsh/bundles/fzf
 # antigen bundle $HOME/.local/zsh/bundles/vi-visual

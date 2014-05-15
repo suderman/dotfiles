@@ -63,7 +63,6 @@ git clone-pull https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 
 # Ensure environment variables are set
 msg "Sourcing environment variables"
-source ~/.local/zsh/platform.zsh
 source ~/.local/zsh/path.zsh
 source ~/.local/zsh/env.zsh
 

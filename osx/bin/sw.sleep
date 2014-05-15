@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if [[ `hostname` == 'macbook.local' ]]; then
+if [[ `hostname` == 'macbook' ]]; then
   osascript -e 'set volume 0'
 fi
 
-if [[ `hostname` == 'macpro.local' ]]; then
+if [[ `hostname` == 'macpro' ]]; then
   /usr/local/bin/api lcd off
 fi
