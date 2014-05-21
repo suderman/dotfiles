@@ -26,6 +26,7 @@ antigen bundle brew-cask
 antigen bundle tmux 
 antigen bundle autojump 
 antigen bundle nyan 
+antigen bundle docker
 # antigen bundle npm 
 # antigen bundle chruby 
 # antigen bundle gem 

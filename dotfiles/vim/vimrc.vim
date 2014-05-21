@@ -536,6 +536,10 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmarg
 " Python
 au FileType python  set tabstop=4 textwidth=79
 
+" Dockerfile
+Source https://github.com/ekalinin/Dockerfile.vim
+au BufRead,BufNewFile {Dockerfile} set ft=Dockerfile
+
 " Filetype mappings
 nmap _vi :setfiletype vim<CR>
 nmap _js :setfiletype javascript<CR>
