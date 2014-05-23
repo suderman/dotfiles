@@ -36,8 +36,8 @@ antigen bundle docker
 # antigen bundle extract 
 
 # Load the theme.
-# antigen theme flazz
-antigen theme fwalch
+antigen theme flazz
+# antigen theme fwalch
 
 # Tell antigen that you're done.
 antigen apply

@@ -413,7 +413,9 @@ let g:syntastic_check_on_open=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " Highlight matching tags while inside
-Source https://github.com/Valloric/MatchTagAlways.git
+if has('Python')
+  Source https://github.com/Valloric/MatchTagAlways.git
+endif
 
 "============="
 
