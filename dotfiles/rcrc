@@ -1,3 +1,4 @@
 DOTFILES_DIRS="$HOME/.local/dotfiles $HOME/.local/secret/dotfiles"
-EXCLUDES="README.md tmux"
+EXCLUDES="README.md"
+COPY_ALWAYS="ssh/*.pem ssh/*.pub ssh/authorized_keys"
 
