@@ -1,0 +1,82 @@
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local/
+
+# Build a tagged image
+build() {
+  docker build -t="$1" .
+}
+
+# Check if an image is missing and needs to be built
+missing_image() {
+  if [ -z "$(docker images --quiet $1)" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Check if a container is missing and needs to be run
+missing_container() {
+  if [ -z "$(docker inspect --format="1" $1 2>/dev/null)" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Run this iamge
+run() {
+
+  docker run                        \
+    --detach                        \
+    --name plex                     \
+    --net host                      \
+    --volume /data/plex:/config     \
+    --volume /data/media:/media     \
+    $1
+}
+
+if [ $# -eq 0 ]; then
+  echo "Usage: plex start|stop|build|run"
+  exit 1
+fi
+
+image="suderman/plex"
+container="plex"
+
+case $1 in
+
+  "start" )
+    echo "Starting..."
+    if missing_container $container; then
+      missing_image $image && build $image
+      run $image
+    else
+      docker start $container
+    fi
+    ;;
+
+  "stop" )
+    echo "Stopping..."
+    docker stop plex
+    ;;
+
+  "build" )
+    echo "Building $image"
+    build $image
+    ;;
+
+  "run" )
+    echo "Running $image"
+    run $image
+    ;;
+
+esac
+

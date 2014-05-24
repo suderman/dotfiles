@@ -43,6 +43,13 @@ MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
 (has /usr/local/heroku/bin) && \
   MYPATH="$MYPATH:/usr/local/heroku/bin"
 
+# Docker bins
+if is ubuntu; then
+  for dockerbin in $HOME/.local/ubuntu/docker/*/bin; do
+    MYPATH="$MYPATH:$dockerbin"
+  done
+fi
+
 # Append original path and strip duplicates
 PATH="$MYPATH:$PATH"
 export PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
