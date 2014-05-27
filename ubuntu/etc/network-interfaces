@@ -1,0 +1,23 @@
+# Static IP for Ubuntu 14 server nuc
+# 
+# sudo mv /etc/network/interfaces /etc/network/interfaces.backup
+# sudo cp network-interfaces /etc/network/interfaces
+# sudo chmod 644 /etc/network/interfaces
+# sudo service networking restart
+# sudo ifdown em1
+# sudo ifup em1
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto em1
+iface em1 inet static
+  address 10.0.0.2
+  netmask 255.255.255.0
+  network 10.0.0.0
+  broadcast 10.0.0.255
+  gateway 10.0.0.1
+  dns-search suder.man
+  dns-nameservers 10.0.0.2 10.0.0.1 8.8.8.8 8.8.4.4
