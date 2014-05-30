@@ -1,33 +1,28 @@
-all: 
-	echo "---> image config container clean clean-image push pull"
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+all:
+	@echo "image config container"
 
-image:	
+# Build the image from the Dockerfile
+image:
 	docker build --tag suderman/dnsmasq .
 
+# Make host configuration directory
+# - Hardlink config files so changes can be made from this directory
+# - dnsmasq will reload when file changes are detected
 config:
-	mkdir -p /config/dnsmasq
-	ln -f "$(shell pwd)/hosts" /config/dnsmasq/hosts
-	ln -f "$(shell pwd)/ethers" /config/dnsmasq/ethers
-	ln -f "$(shell pwd)/dnsmasq.conf" /config/dnsmasq/dnsmasq.conf
+	mkdir -p /data/config/dnsmasq
+	ln -f "$(shell pwd)/hosts" /data/config/dnsmasq/hosts
+	ln -f "$(shell pwd)/hosts.dhcp" /data/config/dnsmasq/hosts.dhcp
+	ln -f "$(shell pwd)/ethers" /data/config/dnsmasq/ethers
+	ln -f "$(shell pwd)/dnsmasq.conf" /data/config/dnsmasq/dnsmasq.conf
+	ln -f "$(shell pwd)/dnsmasq.block.conf" /data/config/dnsmasq/dnsmasq.block.conf
 
+# Create a new detached container from the image
 container: 
 	docker run                                           \
 	--detach                                             \
 	--name dnsmasq                                       \
-  --net host                                           \
-	--volume /config/dnsmasq:/config                     \
+	--net host                                           \
+	--volume /data/config/dnsmasq:/config                \
 	suderman/dnsmasq
-
-clean:
-	docker stop dnsmasq
-	docker rm dnsmasq
-
-clean-image: 
-	docker rmi suderman/dnsmasq
-
-push:
-	docker push suderman/dnsmasq
-
-pull:
-	docker pull suderman/dnsmasq
-

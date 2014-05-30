@@ -1,21 +1,26 @@
 dnsmasq 
 =======
+### Run all make commands from Makefile directory
+`cd ~/.local/ubuntu/docker/dnsmasq`
 
 ### Build docker image
-`cd ~/.local/ubuntu/docker/dnsmasq && make image`
+`make image`
+
+### Make docker host configuration directory
+`make config`
 
 ### Run docker container
-`cd ~/.local/ubuntu/docker/dnsmasq && make container`
+`make container`
 
 ### Remove docker container
-`cd ~/.local/ubuntu/docker/dnsmasq && make clean`
+`make clean`
 
 ### Remove docker image
-`cd ~/.local/ubuntu/docker/dnsmasq && make clean-image`
+`make clean-image`
 
 ### Pull docker image
-`cd ~/.local/ubuntu/docker/dnsmasq && make pull`
+`make pull`
 
 ### Push docker image
-`cd ~/.local/ubuntu/docker/dnsmasq && make push`
+`make push`
 

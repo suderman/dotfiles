@@ -5,8 +5,7 @@
 10.0.0.1        airport
 
 # Intel NUC
-10.0.0.2        nuc
-10.0.0.2        api plex sab bt music tv movies nzb drone
+10.0.0.2        nuc api
 
 # ISY-994i
 10.0.0.3        isy
@@ -14,8 +13,8 @@
 # iTach
 10.0.0.4        itach
 
-# PlayStation 3
-10.0.0.6        ps3
+# MacBook Air
+10.0.0.6        macbook
 
 # Raspberry Pi
 10.0.0.7        pi
@@ -24,7 +23,7 @@
 10.0.0.8        macpro
 
 # Toshiba Laptop
-10.0.0.9        toshi
+10.0.0.9        toshi nessie
 
 # iPhone 5
 10.0.0.10       iphone5
@@ -35,5 +34,9 @@
 # iPad
 10.0.0.12       ipad
 
+# PlayStation 3
+10.0.0.13       ps3
+
 # Nintendo 3DS
-10.0.0.13       3ds
+10.0.0.14       3ds
+

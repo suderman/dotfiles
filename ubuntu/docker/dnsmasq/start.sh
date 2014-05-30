@@ -1,16 +1,23 @@
 #!/bin/sh
 
-# Copy config file to where it's expected
-rm -f /etc/dnsmasq.conf
-cp /config/dnsmasq.conf /etc/dnsmasq.conf
+# Link config file to where it's expected
+ln -sf /config/dnsmasq.conf /etc/dnsmasq.conf
 
-# Copy ethers file to where it's expected
-rm -f /etc/ethers
-cp /config/ethers /etc/ethers
+# Link ethers file to where it's expected
+ln -sf /config/ethers /etc/ethers
 
-# Copy hosts file to where it's expected
-rm -f /etc/hosts.local
-cp /config/hosts /etc/hosts.local
+# Link hosts file to where it's expected
+ln -sf /config/hosts /etc/hosts.local
+
+# Link dhcp hosts file to where it's expected
+ln -sf /config/hosts.dhcp /etc/hosts.dhcp
+
+# Start incrond to watch for file changes in /config
+/usr/sbin/incrond
 
 # Start it up
-/usr/sbin/dnsmasq --no-daemon
+/usr/sbin/dnsmasq
+
+# Watch the log and keep the container alive
+touch /dnsmasq.log
+tail -f /dnsmasq.log
