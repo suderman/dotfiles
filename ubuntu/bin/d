@@ -1,0 +1,109 @@
+#!/bin/bash
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+
+if [ $# -eq 0 ]; then
+  echo "Usage: d start|stop|logs|ip|clean|clean-image|push|pull|vars"
+  exit 1
+fi
+
+if [ ! -r "./Makefile" ]; then
+  echo "Error: Makefile not found"
+  exit 1
+fi
+
+if [ ! -r "./Dockerfile" ]; then
+  echo "Warning: Dockerfile not found"
+fi
+
+# Todo: a less fragile way to pull the image name from the Makefile
+image=$(sed -n -e 's/--tag//p' Makefile | sed 's/docker build//g' | sed 's/\.//g' | tr -d " \t\n\r")
+if [ -z "$image" ]; then
+  echo "Error: Can't determine image"
+  exit 1
+fi
+
+# Todo: a less fragile way to pull the container name from the Makefile
+container=$(sed -n -e 's/--name//p' Makefile | sed 's/\\//g' | tr -d " \t\n\r")
+if [ -z "$container" ]; then
+  echo "Error: Cannot determine container"
+  exit 1
+fi
+
+# Check if an image is missing and needs to be built
+missing_image() {
+  if [ -z "$(docker images --quiet $1)" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Check if a container is missing and needs to be run
+missing_container() {
+  if [ -z "$(docker inspect --format="1" $1 2>/dev/null)" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+case $1 in
+
+  "start" )
+    echo "Starting..."
+    if missing_container $container; then
+      missing_image $image && make image
+      make container
+    else
+      docker start $container
+    fi
+    ;;
+
+  "stop" )
+    echo "Stopping..."
+    docker stop $container
+    ;;
+
+  # Tail the logs from the container
+  "logs" )
+    echo "Tailing logs..."
+	  docker logs --follow $container
+    ;;
+
+  # Get the IP from the container
+  "ip" )
+    docker inspect --format '{{ .NetworkSettings.IPAddress }}' $container
+    ;;
+
+  # Stop the container and delete it
+  "clean" )
+    echo "Stopping and deleting container..."
+    docker stop $container
+    docker rm $container
+    ;;
+
+  # Delete the image
+  "clean-image" )
+    echo "Deleting image..."
+    docker rmi $image
+    ;;
+
+  # Push the image to index.docker.io
+  "push" )
+	  docker push $image
+    ;;
+
+  # Pull the image from index.docker.io
+  "pull" )
+	  docker pull $image
+    ;;
+
+  # Echo the image and container vars
+  "vars" )
+    echo "Image: $image"
+    echo "Container: $container"
+    ;;
+esac
+

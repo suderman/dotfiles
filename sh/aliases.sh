@@ -70,3 +70,4 @@ alias dkps="docker ps -a";
 # dockers - all images and processes
 alias dks="docker images; docker ps -a"
 
+unalias d

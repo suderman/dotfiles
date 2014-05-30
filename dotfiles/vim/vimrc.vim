@@ -546,6 +546,9 @@ au FileType python  set tabstop=4 textwidth=79
 Source https://github.com/ekalinin/Dockerfile.vim
 au BufRead,BufNewFile {Dockerfile} set ft=Dockerfile
 
+" Makefile
+au BufRead,BufNewFile {Makefile} set ft=make | setlocal noexpandtab
+
 " Filetype mappings
 nmap _vi :setfiletype vim<CR>
 nmap _js :setfiletype javascript<CR>
