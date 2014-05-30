@@ -56,9 +56,8 @@ sudo service docker restart
 
 ### Create docker host volumes
 ```
-sudo mkdir -p /config /data
-sudo chown -R ${USER}:${USER} /config /data
-sudo chmod -R 775 /config /data
+sudo mkdir -p /data/{config,media,downloads}
+sudo chown -R ${USER}:${USER} /data
 ```
 
 ### Start docker container services
