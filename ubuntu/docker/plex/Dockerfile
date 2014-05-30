@@ -1,21 +1,25 @@
-FROM ubuntu:trusty
+FROM suderman/trusty
 
 MAINTAINER Jon Suderman <suderman@gmail.com>
 
-RUN locale-gen en_US en_US.UTF-8
+# Install tools and dependencies
 RUN apt-get update
-
 RUN apt-get install -y curl avahi-daemon avahi-utils
+
+# Download deb and install
 RUN curl http://downloads.plexapp.com/plex-media-server/0.9.9.7.429-f80a8d6/plexmediaserver_0.9.9.7.429-f80a8d6_amd64.deb -o /tmp/plex.deb
 RUN dpkg -i /tmp/plex.deb
 RUN apt-get -yf install
 
-VOLUME /config
-VOLUME /media
+# Define mountable directories.
+VOLUME ["/config", "/media", "/downloads"]
 
+# Start plex media server daemon 
 ADD ./start.sh /start.sh
 RUN chmod u+x  /start.sh
 
-EXPOSE 32400
-
 ENTRYPOINT ["/start.sh"]
+
+# Expose ports.
+EXPOSE 32400/tcp
+EXPOSE 32443/tcp
