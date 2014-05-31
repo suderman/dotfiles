@@ -10,7 +10,7 @@ image:
 # Make host configuration directory
 config:
 	mkdir -p /data/config/nginx
-	ln -f "$(shell pwd)/vhosts" /data/config/nginx/vhosts
+	ln -f "$(shell pwd)/nginx.conf" /data/config/nginx/nginx.conf
 
 # Create a new detached container from the image
 container: 

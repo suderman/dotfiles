@@ -551,7 +551,7 @@ au BufRead,BufNewFile {Makefile} set ft=make | setlocal noexpandtab
 
 " nginx
 Source https://github.com/evanmiller/nginx-vim-syntax
-au BufRead,BufNewFile {vhosts},/etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
+au BufRead,BufNewFile {nginx.conf,/etc/nginx/*,/usr/local/nginx/conf/*} setfiletype nginx 
 
 " Filetype mappings
 nmap _vi :setfiletype vim<CR>

@@ -74,6 +74,22 @@ sudo chown -R ${USER}:${USER} /data
 ####plex
 `cd ~/.local/ubuntu/docker/plex && make image && make container`
 
+#### Others still to set up:
+- dnsmasq
+- openvpn
+- nzbdrone
+- nzbget
+- btsync
+- transmission
+- mpd (Music Player Daemon)
+- NZBmegasearcH
+- kandan
+- MySQL
+- Redis
+- ZNC
+- tmate
+- mosh
+- api
 
 ## Set-up for my router
 
