@@ -549,6 +549,10 @@ au BufRead,BufNewFile {Dockerfile} set ft=Dockerfile
 " Makefile
 au BufRead,BufNewFile {Makefile} set ft=make | setlocal noexpandtab
 
+" nginx
+Source https://github.com/evanmiller/nginx-vim-syntax
+au BufRead,BufNewFile {vhosts},/etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
+
 " Filetype mappings
 nmap _vi :setfiletype vim<CR>
 nmap _js :setfiletype javascript<CR>

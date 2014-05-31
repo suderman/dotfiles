@@ -53,6 +53,7 @@ case $1 in
 
   "start" )
     echo "Starting..."
+    make config
     if missing_container $container; then
       missing_image $image && make image
       make container
