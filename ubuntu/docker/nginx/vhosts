@@ -1,0 +1,45 @@
+gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+#ssl_certificate /etc/nginx/certs/wildcard-demo.pem;
+#ssl_certificate_key /etc/nginx/certs/wildcard-demo.key;
+
+server {
+    listen 8000;
+    server_name 
+        rt 
+        rt.suder.mn;
+
+    location / {
+        proxy_pass $scheme://10.0.0.1:80;
+        include /etc/nginx/proxy_params;
+    }
+}
+
+server {
+    listen 8000;
+    server_name 
+        plex 
+        plex.suder.mn;
+
+    location / {
+
+        # if a request to / comes in, 301 redirect to the main plex page.
+        if ($http_x_plex_device_name = '') {
+          rewrite ^/$ $scheme://$http_host/web/index.html;
+        }
+
+        proxy_pass $scheme://10.0.0.2:32400;
+        include /etc/nginx/proxy_params;
+    }
+}
+
+server {
+    listen 8000;
+    server_name 
+        sab 
+        sab.suder.mn;
+
+    location / {
+        proxy_pass $scheme://10.0.0.2:8080;
+        include /etc/nginx/proxy_params;
+    }
+}

@@ -1,2 +1,1 @@
-/etc/nginx/sites-enabled IN_ALL_EVENTS /usr/sbin/nginx -s reload
-/etc/nginx/sites-available IN_ALL_EVENTS /usr/sbin/nginx -s reload
+/config/vhosts IN_MODIFY /usr/sbin/nginx -s reload

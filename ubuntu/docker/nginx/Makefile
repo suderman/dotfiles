@@ -9,7 +9,8 @@ image:
 
 # Make host configuration directory
 config:
-	mkdir -p /data/config/nginx/{sites-available,sites-enabled}
+	mkdir -p /data/config/nginx
+	ln -f "$(shell pwd)/vhosts" /data/config/nginx/vhosts
 
 # Create a new detached container from the image
 container: 
@@ -19,6 +20,8 @@ container:
 	--publish 80:80                                                         \
 	--publish 8000:8000                                                     \
 	--publish 443:443                                                       \
-	--volume /data/config/nginx/sites-available:/etc/nginx/sites-available  \
-	--volume /data/config/nginx/sites-enabled:/etc/nginx/sites-enabled      \
+	--volume /data/config/nginx:/config                               		  \
 	suderman/nginx
+
+# docker run -it --rm -p 80:80 -p 8000:8000 -p 443:443 -v /data/config/nginx:/config suderman/nginx /bin/bash
+# docker run -it --rm --net host -v /data/config/nginx:/config suderman/nginx /bin/bash
