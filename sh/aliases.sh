@@ -1,9 +1,6 @@
 # 2014 Jon Suderman
 # https://github.com/suderman/local
 
-# sudo allow me to use aliases
-alias sudo='sudo '
-
 # Make these commands ask before clobbering a file
 alias rm="rm -i"
 alias cp="cp -i"
@@ -71,3 +68,4 @@ alias dkps="docker ps -a";
 alias dks="docker images; docker ps -a"
 
 unalias d
+unalias sudo

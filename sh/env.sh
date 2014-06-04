@@ -17,6 +17,9 @@ export LC_CTYPE="en_US.UTF-8"
 export EDITOR=vim
 export VISUAL=vim
 
+# Would be nice if configuration all went in one directory
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # https://github.com/georgebrock/1pass
 (has 1pass) && export ONEPASSWORD_KEYCHAIN="$HOME/Dropbox/Library/1Password.agilekeychain"
 
@@ -41,7 +44,9 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 # https://github.com/suderman/launchup
 (is osx) && export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
-
+ 
+# boot2docker
+(is osx) && export DOCKER_HOST=tcp://localhost:4243
 
 #------------------------------------------
 # Cross-platform host & port configuration
