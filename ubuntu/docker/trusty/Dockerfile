@@ -31,3 +31,9 @@ RUN apt-get install -y                              \
 # Finish up
 RUN dpkg-reconfigure locales
 RUN apt-get clean
+
+# Add data user with specific uid/gid 
+# (don't forget a matching user/group on the host)
+RUN useradd --home-dir / --shell /bin/bash data
+RUN usermod -p data data && usermod -U data
+RUN usermod -u 2000 data && groupmod -g 2000 data

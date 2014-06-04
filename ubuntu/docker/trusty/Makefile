@@ -10,7 +10,8 @@ image:
 # Create a new interactive container from the image
 container: 
 	docker run													\
-	--rm -it													\
+	--rm -it														\
 	--name trusty												\
-	--volume /data:/data										\
+	--net host                          \
+	--volume /data:/data								\
 	suderman/trusty /bin/bash
