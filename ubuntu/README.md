@@ -60,6 +60,34 @@ sudo mkdir -p /data/{config,media,downloads}
 sudo chown -R ${USER}:${USER} /data
 ```
 
+### Create data user on host
+```
+sudo useradd --home-dir /data --shell /bin/bash data
+sudo usermod -p data data && usermod -U data
+sudo usermod -u 2000 data && groupmod -g 2000 data
+sudo gpasswd -a ${USER} data
+```
+
+
+### Partition and mount USB drive
+```
+sudo parted -l
+sudo umount /dev/sdb
+
+sudo fdisk /dev/sdb
+n
+p
+w
+
+sudo mkfs.ext4 -L lacie /dev/sdb1
+sudo mkdir -p /media/lacie
+sudo mount /dev/disk/by-label/lacie /media/lacie
+
+ln -s /media/lacie/data/downloads /data/downloads
+ln -s /media/lacie/data/media/ /data/media
+```
+
+
 ### Start docker container services
 
 ####dnsmasq
