@@ -18,7 +18,7 @@ config:
 
 # Make host user/group for shared volume
 user:
-	sudo useradd --home-dir / --shell /bin/bash data
+	sudo useradd --home-dir /data --shell /bin/bash data
 	sudo usermod -p data data && usermod -U data
 	sudo usermod -u 2000 data && groupmod -g 2000 data
 	sudo gpasswd -a ${USER} data
