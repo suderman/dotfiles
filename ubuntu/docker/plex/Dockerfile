@@ -12,7 +12,7 @@ RUN dpkg -i /tmp/plex.deb
 RUN apt-get -yf install
 
 # Define mountable directories.
-VOLUME ["/config", "/media", "/downloads"]
+VOLUME ["/config", "/movies", "/shows", "/music", "/media", "/personal", "/downloads"]
 
 # Start plex media server daemon 
 ADD ./start.sh /start.sh

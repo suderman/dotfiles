@@ -9,8 +9,8 @@ image:
 
 # Make host configuration directory
 config:
-	mkdir -p /data/config/nginx
-	ln -f "$(shell pwd)/nginx.conf" /data/config/nginx/nginx.conf
+	mkdir -p /config/nginx
+	ln -f "$(shell pwd)/nginx.conf" /config/nginx/nginx.conf
 
 # Create a new detached container from the image
 container: 
@@ -20,7 +20,7 @@ container:
 	--publish 80:80                                                         \
 	--publish 8000:8000                                                     \
 	--publish 443:443                                                       \
-	--volume /data/config/nginx:/config                               		  \
+	--volume /config/nginx:/config        			                       		  \
 	suderman/nginx
 
 # docker run -it --rm -p 80:80 -p 8000:8000 -p 443:443 -v /data/config/nginx:/config suderman/nginx /bin/bash

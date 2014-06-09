@@ -45,24 +45,23 @@ sudo reboot
 sudo parted -l
 sudo umount /dev/sdb
 sudo fdisk /dev/sdb
-(n, p, w)
+(o, n, 1, p, w)
 sudo mkfs.ext4 -L usbdrive /dev/sdb1
 ```
 
 ### Mount USB drive and create structure
 ```
-sudo mkdir -p /media/usbdrive
-sudo mount /dev/disk/by-label/usbdrive /media/usbdrive
-sudo mkdir -p /media/usbdrive/data/downloads /media/usbdrive/data/media
-sudo chown -R data:data /media/usbdrive/data
+sudo mkdir -p /data
+sudo mount /dev/disk/by-label/usbdrive /data
+cd /data && sudo mkdir -p apps audiobooks backup books code documents downloads fonts
+games media movies music personal projects public shows sync
+sudo chown -R data:data /data
+sudo chmod -R 774 /data
 ```
 
 ### Create docker host data volume, symlink USB drive
 ```
-sudo mkdir -p /data/config
-sudo chown -R data:data /data
-ln -s /media/usbdisk/data/downloads /data/downloads
-ln -s /media/usbdisk/data/media /data/media
+sudo mkdir -p /config
 ```
 
 ### Install and configure docker

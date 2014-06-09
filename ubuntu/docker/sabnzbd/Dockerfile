@@ -15,7 +15,7 @@ RUN                                                                      \
           unzip                                                          
 
 # Define mountable directories.
-VOLUME ["/config", "/downloads"]
+VOLUME ["/config", "/downloads", "/movies", "/shows", "/music"]
 
 # Start daemon 
 ADD ./start.sh /start.sh

@@ -12,7 +12,7 @@ RUN                                                                      \
 # echo "\ndaemon off;" >> /etc/nginx/nginx.conf                       && \
 
 # Define mountable directories.
-VOLUME ["/etc/nginx/sites-enabled"]
+VOLUME ["/config"]
 
 # Watch for file changes to reload nginx
 ADD incron.root /var/spool/incron/root

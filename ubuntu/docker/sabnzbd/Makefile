@@ -9,7 +9,7 @@ image:
 
 # Make host configuration directory
 config:
-	mkdir -p /data/config/sabnzbd
+	mkdir -p /config/sabnzbd
 
 # Create a new detached container from the image
 container: 
@@ -20,6 +20,8 @@ container:
 	--publish 8080:8080                                                     \
 	--publish 9090:9090                                                     \
 	--volume /config/sabnzbd:/config                                        \
-	--volume /data/downloads:/downloads                                     \
-	--volume /data/media:/media                                             \
+	--volume /data/downloads/usenet:/downloads                              \
+	--volume /data/movies:/movies                                           \
+	--volume /data/shows:/shows 	                                          \
+	--volume /data/music:/music 	                                          \
 	suderman/sabnzbd

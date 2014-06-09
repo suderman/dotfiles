@@ -11,10 +11,10 @@ image:
 # - Hardlink config files so changes can be made from this directory
 # - daemon will reload when file changes are detected
 config:
-	mkdir -p /data/config/samba
-	ln -f "$(shell pwd)/smb.conf" /data/config/samba/smb.conf
-	ln -f "$(shell pwd)/samba.service" /data/config/samba/samba.service
-	ln -f "$(shell pwd)/avahi-daemon.conf" /data/config/samba/avahi-daemon.conf
+	mkdir -p /config/samba
+	ln -f "$(shell pwd)/smb.conf" /config/samba/smb.conf
+	ln -f "$(shell pwd)/samba.service" /config/samba/samba.service
+	ln -f "$(shell pwd)/avahi-daemon.conf" /config/samba/avahi-daemon.conf
 
 # Make host user/group for shared volume
 user:
@@ -25,13 +25,12 @@ user:
 
 # Create a new detached container from the image
 container: 
-	docker run                                           \
-	--detach                                             \
-	--name samba                                         \
-	--net host                                           \
-	--volume /data/config/samba:/config                  \
-	--volume /data/media:/media                          \
-	--volume /data/downloads:/downloads                  \
+	docker run                                          \
+	--detach                                            \
+	--name samba                                        \
+	--net host																					\
+	--volume /config/samba:/config                      \
+	--volume /data:/data                  							\
 	suderman/samba
 
 # docker run -it --rm --net host -v /data/config/samba:/config -v /data/media:/media -v /data/downloads:/downloads suderman/samba /bin/bash

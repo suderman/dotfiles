@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+
+sudo chown -R data:data /data
+sudo chmod -R 775 /data

@@ -12,7 +12,7 @@ RUN apt-get install -y avahi-daemon avahi-utils libnss-mdns libcups2 samba samba
 RUN (echo data; echo data) | smbpasswd -a data -s
 
 # Define mountable directories
-VOLUME ["/config", "/media", "/downloads"]
+VOLUME ["/config", "/data", "/downloads"]
 
 # Watch for file changes to reload daemon
 ADD incron.root /var/spool/incron/root
