@@ -85,9 +85,9 @@ case $1 in
   "ssh" )
     msg "Connecting to container..."
     if has sshpass; then
-      sshpass -p 'root' ssh root@$(d ip)
+      sshpass -p 'root' ssh -oStrictHostKeyChecking=no root@$(d ip)
     else
-      ssh root@$(d ip)
+      ssh -oStrictHostKeyChecking=no root@$(d ip)
     fi
     ;;
 
