@@ -11,6 +11,13 @@ image:
 config:
 	mkdir -p /config/sabnzbd
 
+# Make host configuration directory
+# - Hardlink config files so changes can be made from this directory
+# - daemon will reload when restart.txt is touched
+config:
+	mkdir -p /config/sabnzbd
+	ln -f "$(shell pwd)/restart.txt" /config/sabnzbd/restart.txt
+
 # Create a new detached container from the image
 container: 
 	docker run                                                              \
@@ -21,7 +28,5 @@ container:
 	--publish 9090:9090                                                     \
 	--volume /config/sabnzbd:/config                                        \
 	--volume /data/downloads/usenet:/downloads                              \
-	--volume /data/movies:/movies                                           \
-	--volume /data/shows:/shows 	                                          \
-	--volume /data/music:/music 	                                          \
+	--volume /data/library:/library                                         \
 	suderman/sabnzbd

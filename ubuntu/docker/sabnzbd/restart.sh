@@ -1,17 +1,6 @@
 #!/bin/sh
 
 # -------------------------------------------
-# Start common services
-# -------------------------------------------
-
-# Start incrond to watch /config/restart.txt
-/usr/sbin/incrond
-
-# Start sshd
-/usr/sbin/sshd
-
-
-# -------------------------------------------
 # Copy config files to where they're expected
 # -------------------------------------------
 
@@ -20,15 +9,15 @@
 
 
 # -------------------------------------------
-# Start this container's services
+# Restart this container's services
 # -------------------------------------------
 
-# Start the service
+# Kill services
+pkill sabnzbdplus
+sleep 1
+
+# Restart services
 /usr/bin/sabnzbdplus        \
   --daemon                  \
   --config-file /config     \
   --server :8080
-
-# Tail the logs and keep the container alive
-sleep 5
-tail -F /config/logs/sabnzbd.*
