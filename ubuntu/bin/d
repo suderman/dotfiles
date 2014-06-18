@@ -3,31 +3,34 @@
 # 2014 Jon Suderman
 # https://github.com/suderman/local
 
+# Helper methods for prettier shell scripting - http://shelper.suderman.io
+eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
+
 if [ $# -eq 0 ]; then
-  echo "Usage: d start|stop|logs|ip|clean|clean-image|push|pull|vars"
+  msg "Usage: d start|stop|logs|ip|ssh|clean|clean-image|push|pull|vars"
   exit 1
 fi
 
 if [ ! -r "./Makefile" ]; then
-  echo "Error: Makefile not found"
+  msg "Error: Makefile not found"
   exit 1
 fi
 
 if [ ! -r "./Dockerfile" ]; then
-  echo "Warning: Dockerfile not found"
+  msg "Warning: Dockerfile not found"
 fi
 
 # Todo: a less fragile way to pull the image name from the Makefile
 image=$(sed -n -e 's/--tag//p' Makefile | sed 's/docker build//g' | sed 's/\.//g' | tr -d " \t\n\r")
 if [ -z "$image" ]; then
-  echo "Error: Can't determine image"
+  msg "Error: Can't determine image"
   exit 1
 fi
 
 # Todo: a less fragile way to pull the container name from the Makefile
 container=$(sed -n -e 's/--name//p' Makefile | sed 's/\\//g' | tr -d " \t\n\r")
 if [ -z "$container" ]; then
-  echo "Error: Cannot determine container"
+  msg "Error: Cannot determine container"
   exit 1
 fi
 
@@ -52,7 +55,7 @@ missing_container() {
 case $1 in
 
   "start" )
-    echo "Starting..."
+    msg "Starting..."
     make config
     if missing_container $container; then
       missing_image $image && make image
@@ -63,13 +66,13 @@ case $1 in
     ;;
 
   "stop" )
-    echo "Stopping..."
+    msg "Stopping..."
     docker stop $container
     ;;
 
   # Tail the logs from the container
   "logs" )
-    echo "Tailing logs..."
+    msg "Tailing logs..."
 	  docker logs --follow $container
     ;;
 
@@ -78,16 +81,26 @@ case $1 in
     docker inspect --format '{{ .NetworkSettings.IPAddress }}' $container
     ;;
 
+  # Get the IP from the container
+  "ssh" )
+    msg "Connecting to container..."
+    if has sshpass; then
+      sshpass -p 'root' ssh root@$(d ip)
+    else
+      ssh root@$(d ip)
+    fi
+    ;;
+
   # Stop the container and delete it
   "clean" )
-    echo "Stopping and deleting container..."
+    msg "Stopping and deleting container..."
     docker stop $container
     docker rm $container
     ;;
 
   # Delete the image
   "clean-image" )
-    echo "Deleting image..."
+    msg "Deleting image..."
     docker rmi $image
     ;;
 
