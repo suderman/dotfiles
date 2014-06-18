@@ -1,3 +1,0 @@
-/config/smb.conf          IN_MODIFY /config.sh && /usr/sbin/service samba restart
-/config/avahi-daemon.conf IN_MODIFY /config.sh && /usr/sbin/service avahi-daemon restart
-/config/samba.service     IN_MODIFY /config.sh && /usr/sbin/service avahi-daemon restart

@@ -9,12 +9,13 @@ image:
 
 # Make host configuration directory
 # - Hardlink config files so changes can be made from this directory
-# - daemon will reload when file changes are detected
+# - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/samba
-	ln -f "$(shell pwd)/smb.conf" /config/samba/smb.conf
-	ln -f "$(shell pwd)/samba.service" /config/samba/samba.service
+	ln -f "$(shell pwd)/smb.conf" 		 		 /config/samba/smb.conf
+	ln -f "$(shell pwd)/samba.service" 		 /config/samba/samba.service
 	ln -f "$(shell pwd)/avahi-daemon.conf" /config/samba/avahi-daemon.conf
+	ln -f "$(shell pwd)/restart.txt" 			 /config/samba/restart.txt
 
 # Make host user/group for shared volume
 user:
