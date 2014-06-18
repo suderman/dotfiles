@@ -8,9 +8,12 @@ image:
 	docker build --tag suderman/nginx .
 
 # Make host configuration directory
+# - Hardlink config files so changes can be made from this directory
+# - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/nginx
-	ln -f "$(shell pwd)/nginx.conf" /config/nginx/nginx.conf
+	ln -f "$(shell pwd)/nginx.conf"  /config/nginx/nginx.conf
+	ln -f "$(shell pwd)/restart.txt" /config/nginx/restart.txt
 
 # Create a new detached container from the image
 container: 

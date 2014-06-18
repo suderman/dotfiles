@@ -1,13 +1,16 @@
 #!/bin/sh
 
-# Link vhosts file to where it's expected
-ln -sf /config/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+# Copy config files to where they're expected
+/config.sh
 
-# Start incrond to watch for file changes
+# Start incrond to watch /config/restart.txt
 /usr/sbin/incrond
 
-# Start it up
+# Start sshd
+/usr/sbin/sshd
+
+# Start the service
 /usr/sbin/nginx
 
-# Watch the log and keep the container alive
+# Tail the logs and keep the container alive
 tail -F /var/log/nginx/*
