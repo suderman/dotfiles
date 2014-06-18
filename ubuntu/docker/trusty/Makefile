@@ -11,7 +11,5 @@ image:
 container: 
 	docker run													\
 	--rm -it														\
-	--name trusty												\
-	--net host                          \
 	--volume /data:/data								\
 	suderman/trusty /bin/bash
