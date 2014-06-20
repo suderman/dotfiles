@@ -15,13 +15,15 @@ RUN                                                                      \
           unzip                                                          
 
 # Define mountable directories.
-VOLUME ["/config", "/downloads", "/movies", "/shows", "/music"]
+VOLUME ["/config", "/downloads", "/library"]
 
-# Start daemon 
-ADD ./start.sh /start.sh
-RUN chmod u+x  /start.sh
+# Add scripts 
+ADD ./start.sh    /start.sh
+ADD ./restart.sh  /restart.sh
+RUN chmod u+x     /*.sh
 
-ENTRYPOINT ["/start.sh"]
+# Start it up
+CMD ["/start.sh"]
 
 # Expose ports.
 EXPOSE 8080/tcp

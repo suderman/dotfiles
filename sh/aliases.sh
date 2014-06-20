@@ -67,5 +67,5 @@ alias dkps="docker ps -a";
 # dockers - all images and processes
 alias dks="docker images; docker ps -a"
 
-unalias d
-unalias sudo
+unalias d 2>/dev/null
+unalias sudo 2>/dev/null

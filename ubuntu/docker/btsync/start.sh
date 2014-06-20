@@ -16,19 +16,15 @@
 # -------------------------------------------
 
 # Copy config files to where they're expected
-cp -f /config/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
-cp -f /config/smb.conf          /etc/samba/smb.conf
-cp -f /config/samba.service     /etc/avahi/services/samba.service
+# (none)
 
 
 # -------------------------------------------
 # Start this container's services
 # -------------------------------------------
 
-# Start the services
-/usr/sbin/service avahi-daemon start
-/usr/sbin/service samba start
-/usr/sbin/service nmbd start
+# Start the service
+/usr/bin/btsync --config /config/btsync.conf
 
 # Tail the logs and keep the container alive
-tail -F /var/log/samba/log.*
+tail -f /config/sync/sync.log

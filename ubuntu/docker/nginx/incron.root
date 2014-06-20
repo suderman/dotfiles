@@ -1,1 +1,0 @@
-/config/vhosts IN_MODIFY /usr/sbin/nginx -s reload
