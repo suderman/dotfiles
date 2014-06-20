@@ -21,3 +21,5 @@ Host cnrl
 Host handbill
   LocalForward 3317 localhost:3306
 
+Host csmysql
+  LocalForward 3318 localhost:3306
