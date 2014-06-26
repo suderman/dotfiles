@@ -4,7 +4,7 @@ MAINTAINER Jon Suderman <suderman@gmail.com>
 
 # Install tools and dependencies
 RUN apt-get update
-RUN apt-get install -y avahi-daemon avahi-utils
+RUN apt-get install -y avahi-daemon avahi-utils unzip
 
 # Download deb and install
 RUN curl http://downloads.plexapp.com/plex-media-server/0.9.9.7.429-f80a8d6/plexmediaserver_0.9.9.7.429-f80a8d6_amd64.deb -o /tmp/plex.deb
