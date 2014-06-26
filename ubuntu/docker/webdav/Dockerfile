@@ -9,19 +9,14 @@ RUN                                                                      \
           apache2                                                        \
           apache2-utils
 
+# Setup Apache
 RUN a2enmod dav dav_fs; a2ensite
+
+# Setup permissions
 RUN mkdir -p /data; chown data:data /data
 RUN mkdir -p /var/lock/apache2; chown data:data /var/lock/apache2
-RUN rm /var/www/html/index.html; touch /var/www/html/index.html
 
-ENV APACHE_RUN_USER data
-ENV APACHE_RUN_GROUP data
-ENV APACHE_LOG_DIR /var/log/apache2
-ENV APACHE_PID_FILE /var/run/apache2.pid
-ENV APACHE_LOCK_DIR /var/lock/apache2
-ENV APACHE_RUN_DIR /var/run/apache2
-
-# Define mountable directories.
+# Define mountable directories
 VOLUME ["/config", "/data"]
 
 # Add scripts 

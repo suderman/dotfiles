@@ -5,7 +5,8 @@
 # -------------------------------------------
 
 # Copy config files to where they're expected
-cp -f /config/webdav.conf /etc/apache2/sites-enabled/000-default.conf
+cp -f /config/webdav.conf /etc/apache2/sites-available/000-default.conf
+sed -i.bak "s/\$WEBDAV_USER/$WEBDAV_USER/g" /etc/apache2/sites-available/000-default.conf
 
 
 # -------------------------------------------

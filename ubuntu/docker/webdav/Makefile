@@ -24,4 +24,5 @@ container:
 	--env WEBDAV_PASS="$(WEBDAV_PASS)"        			 			 		   					  \
 	--publish 8800:80                                                       \
 	--volume /config/webdav:/config        			                       		  \
+	--volume /data:/data        			 			                      		 		  \
 	suderman/webdav

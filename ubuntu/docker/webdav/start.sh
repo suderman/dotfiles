@@ -16,33 +16,27 @@
 # -------------------------------------------
 
 # Copy config files to where they're expected
-cp -f /config/webdav.conf /etc/apache2/sites-enabled/000-default.conf
-
+cp -f /config/webdav.conf /etc/apache2/sites-available/000-default.conf
+sed -i.bak "s/\$WEBDAV_USER/$WEBDAV_USER/g" /etc/apache2/sites-available/000-default.conf
 
 # -------------------------------------------
 # Start this container's services
 # -------------------------------------------
 
-# make sure webdav folder perms are right
+# Make sure webdav folder perms are right
 chown data:data /data
 chown data:data /var/lock/apache2
 
-# # Insert webdav apache conf
-# # conf_file="/etc/apache2/sites-enabled/default-ssl.conf"
-# conf_file="/etc/apache2/sites-enabled/default.conf"
-# str_find="<\/VirtualHost>"
-# str_replace="\x0a  Include \/config\/webdav.conf\x0a<\/VirtualHost>"
-# grep -q 'Include /config/webdav.conf' $conf_file || sed -i.bak "s/$str_find/$str_replace/g" $conf_file
 
-# # Generate a new key and cert                                   
-# openssl req -new -newkey rsa:1024 -days 365 -nodes -x509 \
-#     -subj "/C=XX/ST=XX/L=XX/O=XX/CN=XX" \
-#     -keyout /etc/ssl/private/ssl-cert-snakeoil.key \
-#     -out /etc/ssl/certs/ssl-cert-snakeoil.pem
+# Change apache user from www-data to data
+sed -i.bak "s/www-data/data/g" /etc/apache2/envvars
+
+# Created files 664; Created directors 775
+grep -q 'umask 002' /etc/apache2/envvars || echo 'umask 002' >> /etc/apache2/envvars
 
 # Set a password and permissions on the file
 rm -rf /etc/apache2/webdav.password
-htpasswd -cb /etc/apache2/webdav.password webdav $WEBDAV_PASS
+htpasswd -cb /etc/apache2/webdav.password $WEBDAV_USER $WEBDAV_PASS
 chown data:data /etc/apache2/webdav.password
 chmod 640 /etc/apache2/webdav.password
 
