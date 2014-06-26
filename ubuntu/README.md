@@ -101,11 +101,9 @@ sudo ufw allow 4243/tcp
 
 #### Others still to set up:
 - dnsmasq
-- samba
 - openvpn
 - nzbdrone
 - nzbget
-- btsync
 - transmission
 - mpd (Music Player Daemon)
 - NZBmegasearcH
@@ -116,6 +114,7 @@ sudo ufw allow 4243/tcp
 - tmate
 - mosh
 - api
+- owncloud
 
 ## Set-up for my router
 
