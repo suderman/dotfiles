@@ -34,6 +34,11 @@ if has "$osxvlc"; then
 fi
 alias spycam="vlc http://localhost:9091"
 
+# Add self-signed certificate
+if has security; then
+  alias trust="sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "
+fi
+
 # docker
 alias dk='docker'
 

@@ -1,0 +1,4 @@
+# Run `sshconfig` to include this file in ~/.ssh/config
+
+Host backup
+  LocalForward 9091 localhost:9091

@@ -24,6 +24,7 @@ npm
 # SSH access
 openssh-server
 openssh-client
+sshpass
 
 # How I like things
 zsh

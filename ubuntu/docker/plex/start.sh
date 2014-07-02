@@ -23,6 +23,14 @@
 # Start this container's services
 # -------------------------------------------
 
+# Install UnSupported Appstore
+# rm -f unzip /tmp/master.zip
+# rm -f "/config/Library/Application Support/Plex Media Server/Plug-ins/UnSupportedAppstore.bundle"
+# cd /tmp
+# wget https://github.com/mikedm139/UnSupportedAppstore.bundle/archive/master.zip
+# unzip /tmp/master.zip
+# mv /tmp/UnSupportedAppstore.bundle-master "/config/Library/Application Support/Plex Media Server/Plug-ins/UnSupportedAppstore.bundle"
+
 # Clean-up
 rm -f "/config/Library/Application Support/Plex Media Server/plexmediaserver.pid"
 

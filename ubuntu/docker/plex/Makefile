@@ -21,15 +21,24 @@ container:
 	docker run                                           \
 	--detach                                             \
 	--name plex                                          \
-	--publish 32400:32400                                \
-	--publish 32443:32443                                \
-	--publish 1900:1900/udp                              \
-	--publish 32410:32410/udp                            \
-	--publish 32412:32412/udp                            \
-	--publish 32413:32413/udp                            \
-	--publish 32414:32414/udp                            \
-	--publish 32469:32469                                \
+	--net host																					 \
 	--volume /config/plex:/config  			                 \
 	--volume /data/library:/library                      \
 	--volume /data/media/videos:/videos                  \
 	suderman/plex
+
+# container: 
+# 	docker run                                           \
+# 	--detach                                             \
+# 	--publish 32400:32400                                \
+# 	--publish 32443:32443                                \
+# 	--publish 1900:1900/udp                              \
+# 	--publish 32410:32410/udp                            \
+# 	--publish 32412:32412/udp                            \
+# 	--publish 32413:32413/udp                            \
+# 	--publish 32414:32414/udp                            \
+# 	--publish 32469:32469                                \
+# 	--volume /config/plex:/config  			                 \
+# 	--volume /data/library:/library                      \
+# 	--volume /data/media/videos:/videos                  \
+# 	suderman/plex
