@@ -27,6 +27,13 @@ fi
 # python
 alias server="python -m SimpleHTTPServer"
 
+# vlc
+osxvlc="/opt/homebrew-cask/Caskroom/vlc/2.1.4/VLC.app/Contents/MacOS/VLC"
+if has "$osxvlc"; then
+  alias vlc="$osxvlc"
+fi
+alias spycam="vlc http://localhost:9091"
+
 # Add self-signed certificate
 if has security; then
   alias trust="sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "
