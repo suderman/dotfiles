@@ -7,14 +7,16 @@ RUN                                                                      \
   apt-get update                                                      && \
   apt-get install -y                                                     \
           apache2                                                        \
-          apache2-utils
+          apache2-utils                                                  \
+          php5                                                           \
+          libapache2-mod-php5
 
 # Setup Apache
 RUN a2enmod dav dav_fs; a2ensite
+RUN mkdir -p /var/lock/apache2
 
-# Setup permissions
-RUN mkdir -p /data; chown data:data /data
-RUN mkdir -p /var/lock/apache2; chown data:data /var/lock/apache2
+# Add command `git clone-pull`
+RUN curl git-clone-pull.suderman.io/install | sh
 
 # Define mountable directories
 VOLUME ["/config", "/data"]

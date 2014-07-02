@@ -11,8 +11,11 @@ image:
 # - Hardlink config files so changes can be made from this directory
 # - daemon will reload when restart.txt is touched
 config:
-	mkdir -p /config/webdav
-	ln -f "$(shell pwd)/webdav.conf"  /config/webdav/webdav.conf
+	mkdir -p /config/webdav/theme
+	ln -f "$(shell pwd)/webdav.conf" /config/webdav/webdav.conf
+	ln -f "$(shell pwd)/style.css"   /config/webdav/theme/style.css
+	ln -f "$(shell pwd)/header.html" /config/webdav/theme/header.html
+	ln -f "$(shell pwd)/footer.html" /config/webdav/theme/footer.html
 	ln -f "$(shell pwd)/restart.txt" /config/webdav/restart.txt
 
 # Create a new detached container from the image
