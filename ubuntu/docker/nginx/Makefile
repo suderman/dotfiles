@@ -23,6 +23,7 @@ container:
 	--publish 80:80                                                         \
 	--publish 8000:8000                                                     \
 	--publish 443:443                                                       \
+	--env DOMAIN="$(DOMAIN)"        			 			 		      					  			\
 	--volume /data/public:/public        			                        		  \
 	--volume /config/nginx:/config        			                       		  \
 	suderman/nginx
