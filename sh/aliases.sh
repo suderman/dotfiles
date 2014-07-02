@@ -27,6 +27,12 @@ fi
 # python
 alias server="python -m SimpleHTTPServer"
 
+# vlc
+osxvlc="/opt/homebrew-cask/Caskroom/vlc/2.1.4/VLC.app/Contents/MacOS/VLC"
+if has "$osxvlc"; then
+  alias vlc="$osxvlc"
+fi
+alias spycam="vlc http://localhost:9091"
 
 # docker
 alias dk='docker'
