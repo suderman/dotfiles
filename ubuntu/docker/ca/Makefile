@@ -25,7 +25,10 @@ container:
 	--name ca                                                          			\
 	--env CA_DOMAIN="$(CA_DOMAIN)"   			 			 		      					  			\
 	--env CA_NAME="$(CA_NAME)"   			 			 		      					  					\
-	--publish 8008:8008                                                     \
+	--publish 11443:11443                                                   \
+	--publish 11180:11180                                                   \
+	--publish 11188:11188                                                   \
+	2560
 	--volume /config/ca:/config       			                       		  		\
 	suderman/ca
 
@@ -36,6 +39,8 @@ shell:
 	--env CA_DOMAIN="$(CA_DOMAIN)"  		\
 	--env CA_NAME="$(CA_NAME)"  				\
 	--volume /data:/data								\
-	--publish 8008:8008                 \
+	--publish 11443:11443               \
+	--publish 11180:11180               \
+	--publish 11188:11188               \
 	--volume /config/ca:/config      		\
 	suderman/ca /bin/bash

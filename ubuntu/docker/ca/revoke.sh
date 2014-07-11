@@ -39,8 +39,7 @@ fi
 openssl ca                                                                              \
   -revoke /config/certs/$NAME/$NAME.crt                                                 \
   -keyfile /config/ca/ca.key                                                            \
-  -cert /config/ca/ca.crt                                                               \
-  -config /config/openssl.cnf
+  -cert /config/ca/ca.crt
 
 # Remove all key/cert files
 rm -rf  /config/certs/$NAME
