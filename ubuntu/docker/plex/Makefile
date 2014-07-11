@@ -24,7 +24,7 @@ container:
 	--net host																					 \
 	--volume /config/plex:/config  			                 \
 	--volume /data/library:/library                      \
-	--volume /data/media/videos:/videos                  \
+	--volume /data/media:/media              				     \
 	suderman/plex
 
 # container: 

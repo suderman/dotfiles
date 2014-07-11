@@ -23,6 +23,7 @@ RUN apt-get install -y                              \
   software-properties-common                        \
   build-essential                                   \
   git                                               \
+  zip                                               \
   curl                                              \
   wget                                              \
   nano                                              \
@@ -31,6 +32,10 @@ RUN apt-get install -y                              \
   incron
 RUN dpkg-reconfigure locales
 RUN apt-get clean
+
+# Helper script to source in other scripts
+ADD helper.sh /helper.sh
+RUN chmod u+x  /helper.sh
 
 # Watch for file changes to reload service
 RUN mkdir /config
