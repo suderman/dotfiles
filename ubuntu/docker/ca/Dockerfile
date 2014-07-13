@@ -11,6 +11,13 @@ RUN                                                       \
 # Define mountable directories
 VOLUME ["/config"]
 
+# Add node app
+RUN mkdir /ca
+ADD ./server.js     /ca/server.js
+ADD ./index.ejs     /ca/index.ejs
+ADD ./package.json  /ca/package.json
+RUN cd /ca && npm install
+
 # Add scripts 
 ADD ./start.sh    /start.sh
 ADD ./certify.sh  /certify.sh

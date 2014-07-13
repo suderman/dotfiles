@@ -1,28 +1,35 @@
-#!/bin/sh
+#!/bin/bash
+source /helper.sh
 
 # -------------------------------------------
 # Set environment variables
 # -------------------------------------------
 
-# Write the env variable to disk if set; load from disk; set default if blank
-[ -z "$DOMAIN" ] || echo $DOMAIN > /config/domain.txt
-DOMAIN=$(cat /config/domain.txt)
-[ -z "$DOMAIN" ] && DOMAIN="local"
+DOMAIN=`getenv DOMAIN localhost`
+CA_SERVER=`getenv CA_SERVER localhost`
 
 
 # -------------------------------------------
 # Copy config files to where they're expected
 # -------------------------------------------
 
-# Copy config files to where they're expected
-cp -f /config/nginx.conf          /etc/nginx/sites-enabled/nginx.conf
-sed -i.bak "s/\$DOMAIN/$DOMAIN/g" /etc/nginx/sites-enabled/nginx.conf
-rm /etc/nginx/sites-enabled/nginx.conf.bak
+cp -f /config/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+expenv DOMAIN /etc/nginx/sites-enabled/nginx.conf
 
 
 # -------------------------------------------
 # Restart this container's services
 # -------------------------------------------
+
+# Get the server key & crt, and the ca crt & crl
+curl "$CA_SERVER/*.$DOMAIN.key" > /config/my.key
+curl "$CA_SERVER/*.$DOMAIN.crt" > /config/my.crt
+curl "$CA_SERVER/ca.crt" > /config/ca.crt
+curl "$CA_SERVER/ca.crl" > /config/ca.crl
+
+# Put it together
+cat /config/my.crt /config/my.key > /config/my.pem
+chmod 600 /config/my.key /config/my.pem
 
 # Restart services
 /usr/sbin/nginx -s reload

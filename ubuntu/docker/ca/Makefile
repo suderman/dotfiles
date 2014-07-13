@@ -12,13 +12,6 @@ image:
 # - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/ca/env
-	ln -f "$(shell pwd)/package.json"	/config/ca/package.json
-	ln -f "$(shell pwd)/server.js" 		/config/ca/server.js
-	ln -f "$(shell pwd)/index.ejs" 		/config/ca/index.ejs
-	ln -f "$(shell pwd)/restart.sh" 	/config/ca/restart.sh
-	ln -f "$(shell pwd)/start.sh" 		/config/ca/start.sh
-	ln -f "$(shell pwd)/certify.sh" 	/config/ca/certify.sh
-	ln -f "$(shell pwd)/revoke.sh"  	/config/ca/revoke.sh
 	ln -f "$(shell pwd)/openssl.cnf"	/config/ca/openssl.cnf
 	ln -f "$(shell pwd)/restart.txt" 	/config/ca/restart.txt
 
@@ -32,7 +25,6 @@ container:
 	--publish 11443:11443                                                   \
 	--publish 11180:11180                                                   \
 	--publish 11188:11188                                                   \
-	2560
 	--volume /config/ca:/config       			                       		  		\
 	suderman/ca
 

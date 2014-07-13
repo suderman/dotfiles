@@ -6,10 +6,10 @@ source /helper.sh
 # -------------------------------------------
 
 # Start incrond to watch /config/restart.txt
-# /usr/sbin/incrond
+/usr/sbin/incrond
 
 # Start sshd
-# /usr/sbin/sshd
+/usr/sbin/sshd
 
 
 # -------------------------------------------
@@ -27,9 +27,6 @@ ORG="$CA_DOMAIN CA"
 # -------------------------------------------
 # Copy config files to where they're expected
 # -------------------------------------------
-
-# nginx
-cp -f /config/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 # openssl
 cp -f /config/openssl.cnf /usr/lib/ssl/openssl.cnf
@@ -85,15 +82,7 @@ openssl ca -gencrl                                                              
 
 
 # Start 
-cd /config 
-npm install
-npm start
-
+cd /ca && npm start
 
 # Tail the logs and keep the container alive
 # tail -F /var/log/nginx/*
-
-# /usr/sbin/service mysql start
-
-# Tail the logs and keep the container alive
-# tail -F /var/log/mysql.log

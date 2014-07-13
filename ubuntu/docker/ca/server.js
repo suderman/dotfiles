@@ -1,3 +1,10 @@
+// 2014 Jon Suderman
+// https://github.com/suderman/local
+// 
+// Simple Certificate Authority API
+// GET to build/request certificates
+// POST to revoke/delete certificates
+
 require('shelljs/global');
 var express = require('express'),
     app = express(),
@@ -38,7 +45,7 @@ app.get('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
 
   // Build the requested file if it doesn't exist
   if (!test('-f', path)) {
-    exec("/config/certify.sh '" + req.params.filename + "'", { encoding: 'utf8' });
+    exec("/certify.sh '" + req.params.filename + "'", { encoding: 'utf8' });
   }
 
   // Send the requested file
@@ -52,7 +59,7 @@ app.post('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
 
   // Revoke the certificate if it exists
   if (test('-f', path)) {
-    exec("/config/revoke.sh '" + req.params.filename + "'", { encoding: 'utf8' });
+    exec("/revoke.sh '" + req.params.filename + "'", { encoding: 'utf8' });
     res.send(200, req.params.filename + ' is now revoked');
   } else {
     res.send(200, req.params.filename + " doesn't exist");
@@ -74,10 +81,12 @@ public_app.get(/\/*/, function(req, res) {
 });
 
 
+// Private port
 port = 11443;
 app.listen(port);
 console.log('Listening on port ' + port);
 
+// Public port
 port = 11180;
 public_app.listen(port);
 console.log('Listening on port ' + port);
