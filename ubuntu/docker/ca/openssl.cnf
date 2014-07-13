@@ -66,7 +66,7 @@ cert_opt      	  = ca_default	            # Certificate field options
 # crlnumber must also be commented out to leave a V1 CRL.
 crl_extensions	= crl_ext
 
-default_days	    = 365			                # how long to certify for
+default_days	    = 3650		                # how long to certify for
 default_crl_days  = 30			                # how long before next CRL
 default_md	      = default		              # use public key default MD
 preserve	        = no			                # keep passed DN ordering
@@ -120,17 +120,18 @@ string_mask             = utf8only
 
 [ req_distinguished_name ]
 countryName			            = Country Name (2 letter code)
-countryName_default		      = CA
+countryName_default		      = $COUNTRY
 countryName_min			        = 2
 countryName_max			        = 2
 
 stateOrProvinceName		      = State or Province Name (full name)
-stateOrProvinceName_default	= Some-State
+stateOrProvinceName_default	= $REGION
 
 localityName			          = Locality Name (eg, city)
+localityName_default        = $CITY
 
 0.organizationName		      = Organization Name (eg, company)
-0.organizationName_default	= Internet Widgits Pty Ltd
+0.organizationName_default	= $ORG
 
 # we can do this but it is not needed normally :-)
 #1.organizationName		      = Second Organization Name (eg, company)
@@ -293,12 +294,12 @@ default_tsa             = tsa_config1	                          # the default TS
 [ tsa_config1 ]
 
 # These are used by the TSA reply generation only.
-dir		                  = ./demoCA		                          # TSA root directory
-serial		              = $dir/tsaserial	                      # The current serial number (mandatory)
+dir		                  = /config 		                          # TSA root directory
+serial		              = $dir/db/tsaserial                     # The current serial number (mandatory)
 crypto_device	          = builtin		                            # OpenSSL engine to use for signing
-signer_cert	            = $dir/tsacert.pem 	                    # The TSA signing certificate (optional)
-certs		                = $dir/cacert.pem	                      # Certificate chain to include in reply (optional)
-signer_key	            = $dir/private/tsakey.pem               # The TSA private key (optional)
+signer_cert	            = $dir/tsa/tsa.crt 	                    # The TSA signing certificate (optional)
+certs		                = $dir/ca/ca.crt	                      # Certificate chain to include in reply (optional)
+signer_key	            = $dir/tsa/tsa.key                      # The TSA private key (optional)
 
 default_policy	        = tsa_policy1		                        # Policy if request did not specify it (optional)
 other_policies	        = tsa_policy2, tsa_policy3	            # acceptable policies (optional)
