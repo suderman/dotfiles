@@ -12,8 +12,9 @@ image:
 # - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/btsync/sync
-	ln -f "$(shell pwd)/btsync.conf" /config/btsync/btsync.conf
-	ln -f "$(shell pwd)/restart.txt" /config/btsync/restart.txt
+	ln -f "$(shell pwd)/btsync.conf" 				/config/btsync/btsync.conf
+	ln -f "$(shell pwd)/restart.txt" 				/config/btsync/restart.txt
+	ln -f "$(shell pwd)/nginx.btsync.conf"	/config/nginx/nginx.btsync.conf
 
 # Create a new detached container from the image
 container: 

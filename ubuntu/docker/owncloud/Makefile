@@ -12,8 +12,9 @@ image:
 # - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/owncloud
-	ln -f "$(shell pwd)/owncloud.conf" /config/owncloud/owncloud.conf
-	ln -f "$(shell pwd)/restart.txt" 	 /config/owncloud/restart.txt
+	ln -f "$(shell pwd)/owncloud.conf" 				/config/owncloud/owncloud.conf
+	ln -f "$(shell pwd)/restart.txt" 	 				/config/owncloud/restart.txt
+	ln -f "$(shell pwd)/nginx.owncloud.conf"	/config/nginx/nginx.owncloud.conf
 
 # Create a new detached container from the image
 container: 

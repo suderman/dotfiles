@@ -5,12 +5,12 @@ source /helper.sh
 # Set environment variables
 # -------------------------------------------
 
-CA_DOMAIN=`getenv CA_DOMAIN localhost`
+DOMAIN=`getenv DOMAIN localhost`
 CA_NAME=`getenv CA_NAME 'Certificate Authority'`
 COUNTRY=`getenv COUNTRY $(curl -s ipinfo.io/country)`
 REGION=`getenv REGION $(curl -s ipinfo.io/region)`
 CITY=`getenv CITY $(curl -s ipinfo.io/city)`
-ORG="$CA_DOMAIN CA"
+ORG="ca.$DOMAIN CA"
 
 
 # -------------------------------------------
@@ -19,7 +19,7 @@ ORG="$CA_DOMAIN CA"
 
 # openssl
 cp -f /config/openssl.cnf /usr/lib/ssl/openssl.cnf
-expenv CA_DOMAIN /usr/lib/ssl/openssl.cnf
+expenv DOMAIN /usr/lib/ssl/openssl.cnf
 expenv CA_NAME /usr/lib/ssl/openssl.cnf
 expenv COUNTRY /usr/lib/ssl/openssl.cnf
 expenv REGION /usr/lib/ssl/openssl.cnf

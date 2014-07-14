@@ -5,12 +5,12 @@ source /helper.sh
 # Set environment variables
 # -------------------------------------------
 
-CA_DOMAIN=`getenv CA_DOMAIN localhost`
+DOMAIN=`getenv DOMAIN localhost`
 CA_NAME=`getenv CA_NAME 'Certificate Authority'`
 COUNTRY=`getenv COUNTRY $(curl -s ipinfo.io/country)`
 REGION=`getenv REGION $(curl -s ipinfo.io/region)`
 CITY=`getenv CITY $(curl -s ipinfo.io/city)`
-ORG="$CA_DOMAIN CA"
+ORG="ca.$DOMAIN CA"
 
 
 # -------------------------------------------

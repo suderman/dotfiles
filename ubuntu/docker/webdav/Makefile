@@ -12,11 +12,12 @@ image:
 # - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/webdav/theme
-	ln -f "$(shell pwd)/webdav.conf" /config/webdav/webdav.conf
-	ln -f "$(shell pwd)/style.css"   /config/webdav/theme/style.css
-	ln -f "$(shell pwd)/header.html" /config/webdav/theme/header.html
-	ln -f "$(shell pwd)/footer.html" /config/webdav/theme/footer.html
-	ln -f "$(shell pwd)/restart.txt" /config/webdav/restart.txt
+	ln -f "$(shell pwd)/webdav.conf" 				/config/webdav/webdav.conf
+	ln -f "$(shell pwd)/style.css"   				/config/webdav/theme/style.css
+	ln -f "$(shell pwd)/header.html" 				/config/webdav/theme/header.html
+	ln -f "$(shell pwd)/footer.html" 				/config/webdav/theme/footer.html
+	ln -f "$(shell pwd)/restart.txt" 				/config/webdav/restart.txt
+	ln -f "$(shell pwd)/nginx.webdav.conf"	/config/nginx/nginx.webdav.conf
 
 # Create a new detached container from the image
 container: 

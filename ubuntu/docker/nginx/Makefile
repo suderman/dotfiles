@@ -11,7 +11,7 @@ image:
 # - Hardlink config files so changes can be made from this directory
 # - daemon will reload when restart.txt is touched
 config:
-	mkdir -p /config/nginx/env
+	mkdir -p /config/nginx
 	ln -f "$(shell pwd)/nginx.conf"  /config/nginx/nginx.conf
 	ln -f "$(shell pwd)/restart.txt" /config/nginx/restart.txt
 
@@ -24,7 +24,9 @@ container:
 	--publish 8000:8000                                                     \
 	--publish 443:443                                                       \
 	--env DOMAIN="$(DOMAIN)"        			 			 		      					  			\
-	--env CA_SERVER="http://10.0.0.2:11443" 		 		      					  			\
+	--env HOST_IP="$(HOST_IP)"       			 			 		      					  			\
+	--env GATEWAY_IP="$(GATEWAY_IP)" 			 			 		      					  			\
+	--env CA_SERVER="$(CA_SERVER)" 							 		      					  			\
 	--volume /data/public:/public        			                        		  \
 	--volume /config/nginx:/config        			                       		  \
 	suderman/nginx

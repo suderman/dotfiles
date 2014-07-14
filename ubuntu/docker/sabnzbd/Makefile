@@ -17,6 +17,7 @@ config:
 config:
 	mkdir -p /config/sabnzbd
 	ln -f "$(shell pwd)/restart.txt" /config/sabnzbd/restart.txt
+	ln -f "$(shell pwd)/nginx.sabnzbd.conf"	/config/nginx/nginx.sabnzbd.conf
 
 # Create a new detached container from the image
 container: 

@@ -17,6 +17,8 @@ source /helper.sh
 # -------------------------------------------
 
 DOMAIN=`getenv DOMAIN localhost`
+HOST_IP=`getenv HOST_IP localhost`
+GATEWAY_IP=`getenv GATEWAY_IP localhost`
 CA_SERVER=`getenv CA_SERVER localhost`
 
 
@@ -24,8 +26,11 @@ CA_SERVER=`getenv CA_SERVER localhost`
 # Copy config files to where they're expected
 # -------------------------------------------
 
-cp -f /config/nginx.conf /etc/nginx/sites-enabled/nginx.conf
-expenv DOMAIN /etc/nginx/sites-enabled/nginx.conf
+cp -f /config/nginx.conf    /etc/nginx/sites-enabled/nginx.conf
+cat /config/nginx.*.conf >> /etc/nginx/sites-enabled/nginx.conf
+expenv DOMAIN               /etc/nginx/sites-enabled/nginx.conf
+expenv HOST_IP              /etc/nginx/sites-enabled/nginx.conf
+expenv GATEWAY_IP           /etc/nginx/sites-enabled/nginx.conf
 
 
 # -------------------------------------------

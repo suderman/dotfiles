@@ -71,13 +71,13 @@ app.post('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
 app.get(/\/*/, function(req, res) {
   var certs = exec('ls /config/certs', { encoding: 'utf8', silent:true }).output.split("\n");
   var ca_name = (test('-f', '/config/env/CA_NAME')) ? exec('cat /config/env/CA_NAME', { encoding: 'utf8', silent:true }).output : "Certificate Authority";
-  var ca_domain = (test('-f', '/config/env/CA_DOMAIN')) ? exec('cat /config/env/CA_DOMAIN', { encoding: 'utf8', silent:true }).output : "localhost";
-  res.render('index.ejs', { private: true, certs: certs, ca_name: ca_name, ca_email: 'ca@' + ca_domain });
+  var domain = (test('-f', '/config/env/DOMAIN')) ? exec('cat /config/env/DOMAIN', { encoding: 'utf8', silent:true }).output : "localhost";
+  res.render('index.ejs', { private: true, certs: certs, ca_name: ca_name, ca_email: 'ca@' + domain });
 });
 public_app.get(/\/*/, function(req, res) {
   var ca_name = (test('-f', '/config/env/CA_NAME')) ? exec('cat /config/env/CA_NAME', { encoding: 'utf8', silent:true }).output : "Certificate Authority";
-  var ca_domain = (test('-f', '/config/env/CA_DOMAIN')) ? exec('cat /config/env/CA_DOMAIN', { encoding: 'utf8', silent:true }).output : "localhost";
-  res.render('index.ejs', { private: false, certs: [], ca_name: ca_name, ca_email: 'ca@' + ca_domain  });
+  var domain = (test('-f', '/config/env/DOMAIN')) ? exec('cat /config/env/DOMAIN', { encoding: 'utf8', silent:true }).output : "localhost";
+  res.render('index.ejs', { private: false, certs: [], ca_name: ca_name, ca_email: 'ca@' + domain  });
 });
 
 

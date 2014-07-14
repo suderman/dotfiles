@@ -14,7 +14,8 @@ config:
 	mkdir -p /config/plex
 	mkdir -p /data/library
 	mkdir -p /data/media/videos
-	ln -f "$(shell pwd)/restart.txt" /config/plex/restart.txt
+	ln -f "$(shell pwd)/restart.txt" 			/config/plex/restart.txt
+	ln -f "$(shell pwd)/nginx.plex.conf"	/config/nginx/nginx.plex.conf
 
 # Create a new detached container from the image
 container: 

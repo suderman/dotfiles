@@ -12,15 +12,16 @@ image:
 # - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/ca/env
-	ln -f "$(shell pwd)/openssl.cnf"	/config/ca/openssl.cnf
-	ln -f "$(shell pwd)/restart.txt" 	/config/ca/restart.txt
+	ln -f "$(shell pwd)/openssl.cnf"		/config/ca/openssl.cnf
+	ln -f "$(shell pwd)/restart.txt" 		/config/ca/restart.txt
+	ln -f "$(shell pwd)/nginx.ca.conf"	/config/nginx/nginx.ca.conf
 
 # Create a new detached container from the image
 container: 
 	docker run                                                              \
 	--detach                                                                \
 	--name ca                                                          			\
-	--env CA_DOMAIN="$(CA_DOMAIN)"   			 			 		      					  			\
+	--env DOMAIN="$(DOMAIN)"   						 			 		      					  			\
 	--env CA_NAME="$(CA_NAME)"   			 			 		      					  					\
 	--publish 11443:11443                                                   \
 	--publish 11180:11180                                                   \
@@ -32,7 +33,7 @@ container:
 shell: 
 	docker run													\
 	--rm -it														\
-	--env CA_DOMAIN="$(CA_DOMAIN)"  		\
+	--env DOMAIN="$(DOMAIN)"			  		\
 	--env CA_NAME="$(CA_NAME)"  				\
 	--volume /data:/data								\
 	--publish 11443:11443               \
