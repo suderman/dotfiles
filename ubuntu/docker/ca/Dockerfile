@@ -22,6 +22,7 @@ RUN cd /ca && npm install
 ADD ./start.sh    /start.sh
 ADD ./certify.sh  /certify.sh
 ADD ./revoke.sh   /revoke.sh
+ADD ./ocsp.sh     /ocsp.sh
 ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh
 

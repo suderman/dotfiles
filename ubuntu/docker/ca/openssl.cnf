@@ -163,6 +163,7 @@ nsComment			              = "OpenSSL Generated Certificate"
 subjectKeyIdentifier        = hash
 authorityKeyIdentifier      = keyid,issuer
 crlDistributionPoints       = URI:http://ca.$DOMAIN/ca.crl
+authorityInfoAccess         = OCSP;URI:http://ocsp.ca.$DOMAIN
 
 # For normal client use this is typical
 # nsCertType      = client, email
@@ -189,6 +190,12 @@ crlDistributionPoints       = URI:http://ca.$DOMAIN/ca.crl
 
 # This is required for TSA certificates.
 # extendedKeyUsage = critical,timeStamping
+
+[ v3_OCSP ]
+basicConstraints        = CA:FALSE
+keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage        = OCSPSigning
+
 
 [ v3_req ]
 # Extensions to add to a certificate request

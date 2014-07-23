@@ -15,7 +15,7 @@ if grep '^V.*'`printf '%q' "/CN=$NAME/"` /config/db/index; then
     -keyfile /config/ca/ca.key                                                            \
     -cert /config/ca/ca.crt
 
-  # Update the certificate revocation list
+  # Regenerate the certificate revocation list
   openssl ca -gencrl                                                                      \
     -keyfile /config/ca/ca.key                                                            \
     -cert /config/ca/ca.crt                                                               \

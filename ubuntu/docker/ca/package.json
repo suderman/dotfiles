@@ -5,6 +5,7 @@
   "dependencies": {
     "ejs": "^1.0.0",
     "express": "~3.3.3",
+    "find-remove": "^0.2.4",
     "shelljs": "^0.3.0"
   },
   "scripts": {

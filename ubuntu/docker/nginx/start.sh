@@ -47,6 +47,13 @@ curl "$CA_SERVER/ca.crl" > /config/ca.crl
 cat /config/my.crt /config/my.key > /config/my.pem
 chmod 600 /config/my.key /config/my.pem
 
+# Get the revoked server key & crt
+(has /config/revoked.key) || curl "$CA_SERVER/revoked.$DOMAIN.key" > /config/revoked.key
+(has /config/revoked.crt) || curl "$CA_SERVER/revoked.$DOMAIN.crt" > /config/revoked.crt
+cat /config/revoked.crt /config/revoked.key > /config/revoked.pem
+chmod 600 /config/revoked.key /config/revoked.pem
+
+
 # Start the service
 /usr/sbin/nginx
 
