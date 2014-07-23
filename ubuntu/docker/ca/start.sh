@@ -117,10 +117,16 @@ rm -f /config/ocsp/ocsp.csr
 
 # Regenerate the certificate revocation list
 openssl ca -gencrl                                                                      \
-  -keyfile /config/ca/ca.key                                                            \
-  -cert /config/ca/ca.crt                                                               \
-  -out /config/crl/ca.crl
+  -keyfile  /config/ca/ca.key                                                           \
+  -cert     /config/ca/ca.crt                                                           \
+  -out      /config/crl/ca.crl.pem
+openssl crl                                                                             \
+  -inform   PEM                                                                         \
+  -outform  DER                                                                         \
+  -in       /config/crl/ca.crl.pem                                                      \
+  -out      /config/crl/ca.crl
 
+openssl crl -inform PEM -in /config/crl/ca.crl.pem -outform DER -out /config/crl/ca.crl 
 
 # -------------------------------------------
 # Start this container's services

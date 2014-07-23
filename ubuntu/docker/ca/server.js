@@ -155,30 +155,31 @@ ocsp.verify = function(b64, res) {
 
   // Send the response
   if (test('-f', path)) {
-    res.setHeader('content-type', 'application/ocsp-response');
     res.sendfile(path);
   } else {
-    res.send(404);
+    res.send(200, '');
   }
 }
-
-// Verify request on GET
-ocsp.get('/:request', function(req, res) {
-  var b64 = unescape(req.params.request);
-  ocsp.verify(b64, res);
-});
 
 // Verify request on POST
 ocsp.post('/', function(req, res) {
   var b64 = new Buffer(req.rawBody).toString('base64')
+  res.setHeader('content-type', 'application/ocsp-response');
   ocsp.verify(b64, res);
 });
 
-// Nothing on index page
-ocsp.get('/', function(req, res) {
-  res.send(404);
+// Verify request on GET
+ocsp.get('/:request', function(req, res) {
+  var b64 = unescape(req.params.request);
+  res.setHeader('content-type', 'application/ocsp-response');
+  ocsp.verify(b64, res);
 });
 
+// Nothing on GET index page
+ocsp.get('/', function(req, res) {
+  res.setHeader('content-type', 'application/ocsp-response');
+  res.send(200, '');
+});
 
 // OCSP port
 port = 11188;
