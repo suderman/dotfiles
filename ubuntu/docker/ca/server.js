@@ -37,6 +37,11 @@ app.get('/ca.crl', function(req, res) {
   res.sendfile('/config/crl/ca.crl');
 });
 
+// Send the certificate revocation list (pem)
+app.get('/ca.crl.pem', function(req, res) {
+  res.sendfile('/config/crl/ca.crl.pem');
+});
+
 // Sign/present certificates on GET
 app.get('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
   var path = '/config/certs/' + req.params.filename + '/' + req.params.filename + '.' + req.params.filetype;
@@ -97,6 +102,11 @@ public_app.get('/ca.crt', function(req, res) {
 // Send the certificate revocation list
 public_app.get('/ca.crl', function(req, res) {
   res.sendfile('/config/crl/ca.crl');
+});
+
+// Send the certificate revocation list (pem)
+public_app.get('/ca.crl.pem', function(req, res) {
+  res.sendfile('/config/crl/ca.crl.pem');
 });
 
 // Show index page
@@ -169,16 +179,15 @@ ocsp.post('/', function(req, res) {
 });
 
 // Verify request on GET
-ocsp.get('/:request', function(req, res) {
-  var b64 = unescape(req.params.request);
-  res.setHeader('content-type', 'application/ocsp-response');
-  ocsp.verify(b64, res);
-});
-
-// Nothing on GET index page
-ocsp.get('/', function(req, res) {
-  res.setHeader('content-type', 'application/ocsp-response');
-  res.send(200, '');
+ocsp.get('/*', function(req, res) {
+  var b64 = unescape(req.params[0]);
+  if (b64.charAt(0) == "/") b64 = b64.substr(1);
+  if (b64 != "") {
+    res.setHeader('content-type', 'application/ocsp-response');
+    ocsp.verify(b64, res);
+  } else {
+    res.send(200, 'OCSP responder');
+  }
 });
 
 // OCSP port

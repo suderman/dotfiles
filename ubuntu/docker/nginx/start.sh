@@ -41,7 +41,7 @@ expenv GATEWAY_IP           /etc/nginx/sites-enabled/nginx.conf
 curl "$CA_SERVER/*.$DOMAIN.key" > /config/my.key
 curl "$CA_SERVER/*.$DOMAIN.crt" > /config/my.crt
 curl "$CA_SERVER/ca.crt" > /config/ca.crt
-curl "$CA_SERVER/ca.crl" > /config/ca.crl
+curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
 
 # Put it together
 cat /config/my.crt /config/my.key > /config/my.pem

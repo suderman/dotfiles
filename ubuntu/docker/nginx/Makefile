@@ -31,5 +31,19 @@ container:
 	--volume /config/nginx:/config        			                       		  \
 	suderman/nginx
 
+shell: 
+	docker run                                                              \
+	--rm -it																																\
+	--publish 80:80                                                         \
+	--publish 8000:8000                                                     \
+	--publish 443:443                                                       \
+	--env DOMAIN="$(DOMAIN)"        			 			 		      					  			\
+	--env HOST_IP="$(HOST_IP)"       			 			 		      					  			\
+	--env GATEWAY_IP="$(GATEWAY_IP)" 			 			 		      					  			\
+	--env CA_SERVER="$(CA_SERVER)" 							 		      					  			\
+	--volume /data/public:/public        			                        		  \
+	--volume /config/nginx:/config        			                       		  \
+	suderman/nginx /bin/bash
+
 # docker run -it --rm -p 80:80 -p 8000:8000 -p 443:443 -v /data/config/nginx:/config suderman/nginx /bin/bash
 # docker run -it --rm --net host -v /data/config/nginx:/config suderman/nginx /bin/bash

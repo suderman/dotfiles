@@ -163,7 +163,8 @@ nsComment			              = "OpenSSL Generated Certificate"
 subjectKeyIdentifier        = hash
 authorityKeyIdentifier      = keyid,issuer
 crlDistributionPoints       = URI:http://ca.$DOMAIN/ca.crl
-authorityInfoAccess         = OCSP;URI:http://ocsp.ca.$DOMAIN
+authorityInfoAccess         = OCSP;URI:http://ocsp.ca.$DOMAIN/
+# authorityInfoAccess         = OCSP;URI:http://ca.$DOMAIN:11188/
 
 # For normal client use this is typical
 # nsCertType      = client, email
