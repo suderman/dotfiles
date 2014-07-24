@@ -37,20 +37,16 @@ expenv GATEWAY_IP           /etc/nginx/sites-enabled/nginx.conf
 # Start this container's services
 # -------------------------------------------
 
-# Get the server key & crt, and the ca crt & crl
+# Get the server key & pem, and the ca crt & crl
 curl "$CA_SERVER/*.$DOMAIN.key" > /config/my.key
-curl "$CA_SERVER/*.$DOMAIN.crt" > /config/my.crt
+curl "$CA_SERVER/*.$DOMAIN.pem" > /config/my.pem
 curl "$CA_SERVER/ca.crt" > /config/ca.crt
 curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
-
-# Put it together
-cat /config/my.crt /config/my.key > /config/my.pem
 chmod 600 /config/my.key /config/my.pem
 
 # Get the revoked server key & crt
 (has /config/revoked.key) || curl "$CA_SERVER/revoked.$DOMAIN.key" > /config/revoked.key
-(has /config/revoked.crt) || curl "$CA_SERVER/revoked.$DOMAIN.crt" > /config/revoked.crt
-cat /config/revoked.crt /config/revoked.key > /config/revoked.pem
+(has /config/revoked.pem) || curl "$CA_SERVER/revoked.$DOMAIN.pem" > /config/revoked.pem
 chmod 600 /config/revoked.key /config/revoked.pem
 
 

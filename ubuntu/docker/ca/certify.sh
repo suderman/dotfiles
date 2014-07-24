@@ -66,6 +66,10 @@ openssl pkcs12 -export -password pass:$NAME                                     
   -in "/config/certs/$NAME/$NAME.crt"                                                   \
   -out "/config/certs/$NAME/$NAME.p12"                           
 
+# Generate a pem file with the crt & key combined ($NAME.pem)
+cat "/config/certs/$NAME/$NAME.crt" "/config/certs/$NAME/$NAME.key"                     \
+  > "/config/certs/$NAME/$NAME.pem"
+
 # Create a zip archive of everything ($NAME.zip)
 rm -f  "/config/certs/$NAME/$NAME.zip"
 zip -j "/config/certs/$NAME/$NAME.zip" "/config/certs/$NAME/"*

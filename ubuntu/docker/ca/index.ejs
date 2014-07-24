@@ -12,6 +12,7 @@
       #site { padding: 0px 5px 20px; }
       h1 { font-size: 33px; padding: 10px; background: lightgray; text-align: center; }
       .main { text-align: center; }
+      .main a { font-size: 16px; }
 
       .form-control { padding: 6px 10px; }
 
@@ -33,6 +34,7 @@
 
       @media only screen and (max-width : 320px) {
         tr.cert td.pub { display: none; }
+        tr.cert td.pem { display: none; }
         tr.cert td.zip { display: none; }
       }
       .clear { clear: both; height: 0; }
@@ -47,6 +49,7 @@
         <h1><%= ca_name %></h1>
         <a class="btn btn-primary btn-lg" href="/ca.crt">Root Certificate</a>
         <a class="btn btn-default btn-lg" href="/ca.crl">CRL</a>
+        <a class="btn btn-default btn-lg" href="http://ocsp.ca.<%=domain%>/">OCSP</a>
       </div>
 
       <% if (private) { %>
@@ -61,6 +64,7 @@
                   <td class="key"><a href="/<%= cert %>.key">key</a></td>
                   <td class="pub"><a href="/<%= cert %>.pub">pub</a></td>
                   <td class="p12"><a href="/<%= cert %>.p12">p12</a></td>
+                  <td class="pem"><a href="/<%= cert %>.pem">pem</a></td>
                   <td class="zip"><a href="/<%= cert %>.zip">zip</a></td>
                 </tr>
                 <% } %>
@@ -72,6 +76,7 @@
             <td class="key"><a>key</a></td>
             <td class="pub"><a>pub</a></td>
             <td class="p12"><a>p12</a></td>
+            <td class="pem"><a>pem</a></td>
             <td class="zip"><a>zip</a></td>
           </tr>
         </table>
@@ -119,6 +124,7 @@
               $tr.find('td.key a').attr('href', '/' + name + '.key');
               $tr.find('td.pub a').attr('href', '/' + name + '.pub');
               $tr.find('td.p12 a').attr('href', '/' + name + '.p12');
+              $tr.find('td.pem a').attr('href', '/' + name + '.pem');
               $tr.find('td.zip a').attr('href', '/' + name + '.zip');
             } else {
               $tr.removeClass('ready');

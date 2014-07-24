@@ -43,7 +43,7 @@ app.get('/ca.crl.pem', function(req, res) {
 });
 
 // Sign/present certificates on GET
-app.get('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
+app.get('/:filename\.:filetype(crt|key|p12|pem|pub|zip)', function(req, res) {
   var path = '/config/certs/' + req.params.filename + '/' + req.params.filename + '.' + req.params.filetype;
 
   // Build the requested file if it doesn't exist
@@ -56,7 +56,7 @@ app.get('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
 });
 
 // Revoke certicates on POST
-app.post('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
+app.post('/:filename\.:filetype(crt|key|p12|pem|pub|zip)', function(req, res) {
   var path = '/config/certs/' + req.params.filename + '/' + req.params.filename + '.' + req.params.filetype;
 
   // Revoke the certificate if it exists
@@ -71,9 +71,9 @@ app.post('/:filename\.:filetype(crt|key|p12|pub|zip)', function(req, res) {
 // Show index page
 app.get(/\/*/, function(req, res) {
   var certs = exec('ls /config/certs', { encoding: 'utf8', silent:true }).output.split("\n");
-  var ca_name = (test('-f', '/config/env/CA_NAME')) ? exec('cat /config/env/CA_NAME', { encoding: 'utf8', silent:true }).output : "Certificate Authority";
-  var domain = (test('-f', '/config/env/DOMAIN')) ? exec('cat /config/env/DOMAIN', { encoding: 'utf8', silent:true }).output : "localhost";
-  res.render('index.ejs', { private: true, certs: certs, ca_name: ca_name, ca_email: 'ca@' + domain });
+  var ca_name = (test('-f', '/config/env/CA_NAME')) ? exec('cat /config/env/CA_NAME', { encoding: 'utf8', silent:true }).output.replace(/[\n\r]/g,'') : "Certificate Authority";
+  var domain = (test('-f', '/config/env/DOMAIN')) ? exec('cat /config/env/DOMAIN', { encoding: 'utf8', silent:true }).output.replace(/[\n\r]/g,'') : "localhost";
+  res.render('index.ejs', { private: true, certs: certs, ca_name: ca_name, ca_email: 'ca@' + domain, domain: domain });
 });
 
 // Private port
@@ -111,9 +111,9 @@ public_app.get('/ca.crl.pem', function(req, res) {
 
 // Show index page
 public_app.get(/\/*/, function(req, res) {
-  var ca_name = (test('-f', '/config/env/CA_NAME')) ? exec('cat /config/env/CA_NAME', { encoding: 'utf8', silent:true }).output : "Certificate Authority";
-  var domain = (test('-f', '/config/env/DOMAIN')) ? exec('cat /config/env/DOMAIN', { encoding: 'utf8', silent:true }).output : "localhost";
-  res.render('index.ejs', { private: false, certs: [], ca_name: ca_name, ca_email: 'ca@' + domain  });
+  var ca_name = (test('-f', '/config/env/CA_NAME')) ? exec('cat /config/env/CA_NAME', { encoding: 'utf8', silent:true }).output.replace(/[\n\r]/g,'') : "Certificate Authority";
+  var domain = (test('-f', '/config/env/DOMAIN')) ? exec('cat /config/env/DOMAIN', { encoding: 'utf8', silent:true }).output.replace(/[\n\r]/g,'') : "localhost";
+  res.render('index.ejs', { private: false, certs: [], ca_name: ca_name, ca_email: 'ca@' + domain, domain: domain });
 });
 
 // Public port
@@ -132,6 +132,7 @@ var ocsp = express(),
 
 // Needed for req.rawBody
 ocsp.configure(function() {
+  ocsp.set('views', __dirname);
   ocsp.use(function(req, res, next) {
     var data = new Buffer('');
     req.on('data', function(chunk) {
@@ -186,7 +187,9 @@ ocsp.get('/*', function(req, res) {
     res.setHeader('content-type', 'application/ocsp-response');
     ocsp.verify(b64, res);
   } else {
-    res.send(200, 'OCSP responder');
+    var ca_name = 'OCSP Responder';
+    var domain = (test('-f', '/config/env/DOMAIN')) ? exec('cat /config/env/DOMAIN', { encoding: 'utf8', silent:true }).output.replace(/[\n\r]/g,'') : "localhost";
+    res.render('index.ejs', { private: false, certs: [], ca_name: ca_name, ca_email: 'ca@' + domain, domain: domain });
   }
 });
 
@@ -194,3 +197,4 @@ ocsp.get('/*', function(req, res) {
 port = 11188;
 ocsp.listen(port);
 console.log('Listening on port ' + port);
+
