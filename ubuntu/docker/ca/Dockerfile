@@ -13,16 +13,16 @@ VOLUME ["/config"]
 
 # Add node app
 RUN mkdir /ca
-ADD ./server.js     /ca/server.js
-ADD ./index.ejs     /ca/index.ejs
-ADD ./package.json  /ca/package.json
+ADD ./server.js         /ca/server.js
+ADD ./index.ejs         /ca/index.ejs
+ADD ./package.json      /ca/package.json
+ADD ./malformedRequest  /ca/malformedRequest
 RUN cd /ca && npm install
 
 # Add scripts 
 ADD ./start.sh    /start.sh
 ADD ./certify.sh  /certify.sh
 ADD ./revoke.sh   /revoke.sh
-ADD ./ocsp.sh     /ocsp.sh
 ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh
 

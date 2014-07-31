@@ -45,11 +45,12 @@ expenv ORG /usr/lib/ssl/openssl.cnf
 # Create directory structure
 mkdir -p /config/ca
 mkdir -p /config/db
-mkdir -p /config/crl
-mkdir -p /config/ocsp
 mkdir -p /config/certs
 mkdir -p /config/newcerts
-mkdir -p /config/responses
+mkdir -p /config/revoked
+mkdir -p /config/crl
+mkdir -p /config/ocsp/requests
+mkdir -p /config/ocsp/responses
 
 # Flat file database
 [ -f /config/db/index ] || touch /config/db/index

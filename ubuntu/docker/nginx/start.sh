@@ -38,10 +38,10 @@ expenv GATEWAY_IP           /etc/nginx/sites-enabled/nginx.conf
 # -------------------------------------------
 
 # Get the server key & pem, and the ca crt & crl
-curl "$CA_SERVER/*.$DOMAIN.key" > /config/my.key
-curl "$CA_SERVER/*.$DOMAIN.pem" > /config/my.pem
-curl "$CA_SERVER/ca.crt" > /config/ca.crt
-curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
+(has /config/my.key) || curl "$CA_SERVER/*.$DOMAIN.key" > /config/my.key
+(has /config/my.pem) || curl "$CA_SERVER/*.$DOMAIN.pem" > /config/my.pem
+(has /config/ca.crt) || curl "$CA_SERVER/ca.crt" > /config/ca.crt
+(has /config/ca.crl) || curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
 chmod 600 /config/my.key /config/my.pem
 
 # Get the revoked server key & crt

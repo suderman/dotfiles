@@ -26,9 +26,11 @@ if grep '^V.*'`printf '%q' "/CN=$NAME/"` /config/db/index; then
     -in       /config/crl/ca.crl.pem                                                      \
     -out      /config/crl/ca.crl
 
+  # Remove all key/cert files
+  rm -rf  "/config/revoked/$NAME"
+  mv "/config/certs/$NAME" "/config/revoked/$NAME"
+
 else
   echo "Revoke issue: $NAME doesn't exist."
 fi
 
-# Remove all key/cert files
-rm -rf  "/config/certs/$NAME"
