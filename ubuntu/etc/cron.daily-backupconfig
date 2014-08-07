@@ -3,7 +3,7 @@
 # 2014 Jon Suderman
 # https://github.com/suderman/local
 #
-# cp ~/.local/ubuntu/etc/cron.hourly-backupconfig /etc/cron.hourly/backupconfig
+# cp ~/.local/ubuntu/etc/cron.daily-backupconfig /etc/cron.daily/backupconfig
 
 # Set to my home
 HOME="/home/jon"
@@ -11,5 +11,8 @@ HOME="/home/jon"
 # Source my environment variables
 . $HOME/.local/sh/bashrc.sh
 
-# Rsync /config to /data/backup/config and fix permissions
+# Create archive of /config to /data/backup/config.tar.gz
 $HOME/.local/ubuntu/bin/backupconfig
+
+# Fix permissions
+$HOME/.local/ubuntu/bin/dataperm

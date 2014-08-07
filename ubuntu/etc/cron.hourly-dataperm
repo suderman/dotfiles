@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+#
+# cp ~/.local/ubuntu/etc/cron.hourly-dataperm /etc/cron.hourly/dataperm
+
+# Set to my home
+HOME="/home/jon"
+
+# Source my environment variables
+. $HOME/.local/sh/bashrc.sh
+
+# Fix permissions
+$HOME/.local/ubuntu/bin/dataperm
