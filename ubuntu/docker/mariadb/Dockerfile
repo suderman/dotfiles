@@ -19,6 +19,10 @@ ADD ./start.sh    /start.sh
 ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh
 
+# Add cron job
+ADD ./mysqldump  /etc/cron.daily/mysqldump
+RUN chmod u+x    /etc/cron.daily/mysqldump
+
 # Start it up 
 CMD ["/start.sh"]
 

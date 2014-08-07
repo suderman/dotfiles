@@ -1,4 +1,5 @@
 #!/bin/bash
+source /helper.sh
 
 # -------------------------------------------
 # Start common services
@@ -23,6 +24,13 @@ cp -f /config/my.cnf /etc/mysql/my.cnf
 # Start this container's services
 # -------------------------------------------
 
+# Get the server key & crt, and the ca crt & crl
+(has /config/my.key) || curl "$CA_SERVER/my.key" > /config/my.key
+(has /config/my.crt) || curl "$CA_SERVER/my.crt" > /config/my.crt
+(has /config/ca.crt) || curl "$CA_SERVER/ca.crt" > /config/ca.crt
+(has /config/ca.crl) || curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
+
+
 # Default user and password if none provided
 [[ "$DB_USER" == "" ]] && DB_USER="user"
 [[ "$DB_PASS" == "" ]] && DB_PASS="pass"
@@ -44,6 +52,7 @@ rm -f /run/mysqld/mysqld.sock
 
 # Start MariaDB
 /usr/sbin/service mysql start
+# mysqld --ssl-ca=/config/ca.crt --ssl-cert=/config/mariadb.crt --ssl-key=/config/mariadb.key --ssl-crl=/config/ca.crl
 
 # The password for 'debian-sys-maint'@'localhost' is auto generated
 DB_MAINT_PASS=$(cat /etc/mysql/debian.cnf | grep -m 1 "password\s*=\s*"| sed 's/^password\s*=\s*//')
@@ -54,10 +63,14 @@ mysql -u root -e \
 mysql -u root <<-EOF
     DELETE FROM mysql.user WHERE user = '$DB_USER';
     FLUSH PRIVILEGES;
+
     CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
     GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'localhost' WITH GRANT OPTION;
+    GRANT USAGE ON *.* TO '$DB_USER'@'localhost' REQUIRE SSL;
+
     CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';
     GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%' WITH GRANT OPTION;
+    GRANT USAGE ON *.* TO '$DB_USER'@'%' REQUIRE SSL;
 EOF
 
 # Tail the logs and keep the container alive

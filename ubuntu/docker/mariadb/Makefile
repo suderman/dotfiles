@@ -22,6 +22,7 @@ container:
 	--name mariadb                                                          \
 	--env DB_USER="$(MARIADB_USER)"        			 			 		      					  \
 	--env DB_PASS="$(MARIADB_PASS)"        			 			 		      					  \
+	--env CA_SERVER="$(CA_SERVER)" 							 		      					  			\
 	--publish 3306:3306                                                     \
 	--volume /config/mariadb:/config       			                       		  \
 	suderman/mariadb
