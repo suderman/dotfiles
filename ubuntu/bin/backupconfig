@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# 2014 Jon Suderman
+# https://github.com/suderman/local
+
+sudo rsync -av /config /data/backup
+sudo chown -R data:data /data
+sudo chmod -R 775 /data
