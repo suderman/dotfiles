@@ -8,10 +8,6 @@ image:
 	docker build --tag suderman/sabnzbd .
 
 # Make host configuration directory
-config:
-	mkdir -p /config/sabnzbd
-
-# Make host configuration directory
 # - Hardlink config files so changes can be made from this directory
 # - daemon will reload when restart.txt is touched
 config:
