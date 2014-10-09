@@ -34,9 +34,9 @@ container:
 shell: 
 	docker run                                                              \
 	--rm -it																																\
-	--publish 80:80                                                         \
-	--publish 8000:8000                                                     \
-	--publish 443:443                                                       \
+	--publish 10.0.0.53:80:80                                               \
+	--publish 10.0.0.53:8000:8000                                           \
+	--publish 10.0.0.53:443                                                 \
 	--env DOMAIN="$(DOMAIN)"        			 			 		      					  			\
 	--env HOST_IP="$(HOST_IP)"       			 			 		      					  			\
 	--env GATEWAY_IP="$(GATEWAY_IP)" 			 			 		      					  			\
