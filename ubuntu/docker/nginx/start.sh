@@ -32,16 +32,25 @@ expenv DOMAIN               /etc/nginx/sites-enabled/nginx.conf
 expenv HOST_IP              /etc/nginx/sites-enabled/nginx.conf
 expenv GATEWAY_IP           /etc/nginx/sites-enabled/nginx.conf
 
+cp -f /config/prox_params.conf /config/prox_params
+expenv DOMAIN                  /config/prox_params
+expenv HOST_IP                 /config/prox_params
+expenv GATEWAY_IP              /config/prox_params
+
+cp -f /config/ssl_client.conf  /config/ssl_client
+expenv DOMAIN                  /config/ssl_client
+expenv HOST_IP                 /config/ssl_client
+expenv GATEWAY_IP              /config/ssl_client
 
 # -------------------------------------------
 # Start this container's services
 # -------------------------------------------
 
 # Get the server key & pem, and the ca crt & crl
-(has /config/my.key) || curl "$CA_SERVER/*.$DOMAIN.key" > /config/my.key
-(has /config/my.pem) || curl "$CA_SERVER/*.$DOMAIN.pem" > /config/my.pem
-(has /config/ca.crt) || curl "$CA_SERVER/ca.crt" > /config/ca.crt
-(has /config/ca.crl) || curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
+curl "$CA_SERVER/*.$DOMAIN.key" > /config/my.key
+curl "$CA_SERVER/*.$DOMAIN.pem" > /config/my.pem
+curl "$CA_SERVER/ca.crt" > /config/ca.crt
+curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
 chmod 600 /config/my.key /config/my.pem
 
 # Get the revoked server key & crt
