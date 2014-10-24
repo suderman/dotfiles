@@ -14,7 +14,7 @@ config:
 	mkdir -p /config/nginx
 	ln -f "$(shell pwd)/nginx.conf"  				/config/nginx/nginx.conf
 	ln -f "$(shell pwd)/proxy_params.conf"	/config/nginx/proxy_params.conf
-	ln -f "$(shell pwd)/ssl_client.conf"  	/config/nginx/ssl_client.conf
+	ln -f "$(shell pwd)/verify_client.conf" /config/nginx/verify_client.conf
 	ln -f "$(shell pwd)/restart.txt" 				/config/nginx/restart.txt
 
 # Create a new detached container from the image
