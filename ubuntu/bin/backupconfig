@@ -3,8 +3,11 @@
 # 2014 Jon Suderman
 # https://github.com/suderman/local
 
-# Create tar archive of config directory
-sudo tar -pczf /data/backup/config.tar.gz /config
+# # Create tar archive of config directory (excluding Plex cache)
+sudo tar -pczf /data/backup/config.tar.gz /config --exclude "/config/plex/Library/Application Support/Plex Media Server/Cache" 
+
+# Create tar archive of config directory (excluding BTsync partial files & Plex cache)
+# sudo tar -pczf /data/backup/config.tar.gz --exclude={"/config/btsync/sync","/config/plex/Library/Application Support/Plex Media Server/Cache"} /config 
 
 # Update permissions
 sudo chown -R data:data /data
