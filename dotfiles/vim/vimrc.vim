@@ -235,7 +235,7 @@ endif
 
 "============="
 
-Source https://github.com/vim-scripts/bufexplorer.zip
+Source https://github.com/jlanzarotta/bufexplorer
 
 command! Buffers call s:Buffers()
 function! s:Buffers()
@@ -276,7 +276,7 @@ Source https://github.com/Shougo/neomru.vim
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#set_profile('files', 'smartcase', 1)
+call unite#set_profile('files', 'context.smartcase', 1)
 call unite#custom#source('line,outline','matchers','matcher_fuzzy')
 
 let g:unite_data_directory='~/.vim/.cache/unite'
