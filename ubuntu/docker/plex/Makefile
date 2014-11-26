@@ -28,6 +28,15 @@ container:
 	--volume /data/media:/media              				     \
 	suderman/plex
 
+# Create a new interactive container from the image
+shell: 
+	docker run														\
+	--rm -it															\
+	--volume /config/plex:/config  	      \
+	--volume /data/library:/library       \
+	--volume /data/media:/media           \
+	suderman/plex /bin/bash
+
 # container: 
 # 	docker run                                           \
 # 	--detach                                             \

@@ -3,7 +3,7 @@ FROM suderman/trusty
 MAINTAINER Jon Suderman <suderman@gmail.com>
 
 # Install btsync
-RUN curl -o /usr/bin/btsync.tar.gz http://download-lb.utorrent.com/endpoint/btsync/os/linux-x64/track/stable
+RUN curl -o /usr/bin/btsync.tar.gz http://download.getsyncapp.com/endpoint/btsync/os/linux-x64/track/stable
 RUN cd /usr/bin && tar -xzvf btsync.tar.gz && rm btsync.tar.gz 
 
 # Define mountable directories

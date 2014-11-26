@@ -39,4 +39,6 @@ HOME=/config start_pms &
 sleep 5
 
 # Tail the logs and keep the container alive
-tail -F /config/Library/Application\ Support/Plex\ Media\ Server/Logs/**/*.log
+tail -F /config/Library/Application\ Support/Plex\ Media\ Server/Logs/Plex\ Media\ Server.log
+# tail -F /config/Library/Application\ Support/Plex\ Media\ Server/Logs/**/*.log
+

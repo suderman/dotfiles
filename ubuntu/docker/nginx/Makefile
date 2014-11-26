@@ -30,6 +30,7 @@ container:
 	--env GATEWAY_IP="$(GATEWAY_IP)" 			 			 		      					  			\
 	--env CA_SERVER="$(CA_SERVER)" 							 		      					  			\
 	--volume /data/public:/public        			                        		  \
+	--volume /data/downloads:/downloads    		                        		  \
 	--volume /config/nginx:/config        			                       		  \
 	suderman/nginx
 
@@ -44,6 +45,7 @@ shell:
 	--env GATEWAY_IP="$(GATEWAY_IP)" 			 			 		      					  			\
 	--env CA_SERVER="$(CA_SERVER)" 							 		      					  			\
 	--volume /data/public:/public        			                        		  \
+	--volume /data/downloads:/downloads    		                        		  \
 	--volume /config/nginx:/config        			                       		  \
 	suderman/nginx /bin/bash
 

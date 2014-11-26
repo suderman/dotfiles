@@ -10,7 +10,7 @@ RUN                                                                      \
   chown -R www-data:www-data /var/lib/nginx
 
 # Define mountable directories.
-VOLUME ["/config", "/public"]
+VOLUME ["/config", "/public", "/downloads"]
 
 # Define working directory.
 WORKDIR /etc/nginx
