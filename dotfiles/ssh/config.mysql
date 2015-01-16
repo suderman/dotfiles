@@ -23,3 +23,9 @@ Host handbill
 
 Host csmysql
   LocalForward 3318 localhost:3306
+
+Host nuc
+  LocalForward 3302 localhost:3306
+
+Host macpro
+  LocalForward 3308 localhost:3306

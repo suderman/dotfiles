@@ -39,6 +39,11 @@ if has security; then
   alias trust="sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "
 fi
 
+# Homebrew openssl
+if has /usr/local/Cellar/openssl/1.0.1h/bin/openssl; then
+  alias ssl="/usr/local/Cellar/openssl/1.0.1h/bin/openssl"
+fi
+
 # docker
 alias dk='docker'
 

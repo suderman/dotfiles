@@ -54,7 +54,7 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 # dotfiles/ssh/config.*
 # secret/dotfiles/ssh/config.*
-export HOSTS="macpro pi tigerblood bam garnet talisman cnrl handbill"
+export HOSTS="nuc macpro pi tigerblood bam garnet talisman cnrl handbill"
 
 # osx/bin/copy
 # dotfiles/ssh/config.scp
