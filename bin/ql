@@ -12,14 +12,21 @@ if [ $# -eq 0 ]; then
 fi
 for filepath in "$@"                
 do
-  if [ -r $filepath ] ; then
+  if [ -r "$filepath" ] ; then
 
     # Remote QuickLook
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 
-      # Send the file to local machine
+      # Get only the filename
       filename=$(basename "$filepath")
-      scp -q -P$port_scp $filepath 127.0.0.1:/tmp/$filename
+
+      # Replace spaces with periods
+      filename=${filename// /.}
+
+      # Send the file to local machine
+      echo "Loading..."
+      scp -q -P$port_scp "$filepath" 127.0.0.1:/tmp/$filename
+      echo "...done!"
 
       # netcat on OS X
       if [ "`uname`"=="Darwin" ]; then
@@ -32,7 +39,7 @@ do
 
     # Local QuickLook
     else
-      quicky $filepath
+      quicky "$filepath"
     fi
 
   # Bad filename given!

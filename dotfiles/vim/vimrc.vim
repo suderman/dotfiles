@@ -553,6 +553,20 @@ au BufRead,BufNewFile {Makefile} set ft=make | setlocal noexpandtab
 Source https://github.com/evanmiller/nginx-vim-syntax
 au BufRead,BufNewFile {nginx.conf,/etc/nginx/*,/usr/local/nginx/conf/*} setfiletype nginx 
 
+" JavaScript
+Source https://github.com/pangloss/vim-javascript
+" let g:javascript_conceal_function   = "ƒ"
+" let g:javascript_conceal_null       = "ø"
+" let g:javascript_conceal_this       = "@"
+" let g:javascript_conceal_return     = "⇚"
+" let g:javascript_conceal_undefined  = "¿"
+" let g:javascript_conceal_NaN        = "ℕ"
+" let g:javascript_conceal_prototype  = "¶"
+
+" React/JSX
+Source https://github.com/mxw/vim-jsx
+let g:jsx_ext_required = 0
+
 " Filetype mappings
 nmap _vi :setfiletype vim<CR>
 nmap _js :setfiletype javascript<CR>
