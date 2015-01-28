@@ -66,11 +66,11 @@ mysql -u root <<-EOF
 
     CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
     GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'localhost' WITH GRANT OPTION;
-    GRANT USAGE ON *.* TO '$DB_USER'@'localhost' REQUIRE SSL;
+    # GRANT USAGE ON *.* TO '$DB_USER'@'localhost' REQUIRE SSL;
 
     CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';
     GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%' WITH GRANT OPTION;
-    GRANT USAGE ON *.* TO '$DB_USER'@'%' REQUIRE SSL;
+    # GRANT USAGE ON *.* TO '$DB_USER'@'%' REQUIRE SSL;
 EOF
 
 # Tail the logs and keep the container alive

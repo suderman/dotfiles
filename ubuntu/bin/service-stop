@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+
+cd ~/.local/ubuntu/docker/ca          && d clean
+cd ~/.local/ubuntu/docker/mariadb     && d clean
+cd ~/.local/ubuntu/docker/nginx       && d clean
+cd ~/.local/ubuntu/docker/homemaker   && d clean
+cd ~/.local/ubuntu/docker/btsync      && d clean
+cd ~/.local/ubuntu/docker/plex        && d clean
+cd ~/.local/ubuntu/docker/sabnzbd     && d clean
+cd ~/.local/ubuntu/docker/couchpotato && d clean
+cd ~/.local/ubuntu/docker/samba       && d clean
+cd ~/.local/ubuntu/docker/webdav      && d clean

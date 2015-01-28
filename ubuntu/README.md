@@ -26,6 +26,14 @@ sudo cp -f ubuntu/etc/hostname /etc/hostname
 sudo cp -f ubuntu/etc/network-interfaces /etc/network/interfaces  
 ```
 
+### Configure swappiness
+```
+sudo bash
+echo 'vm.swappiness=10' >> /etc/sysctl.conf
+exit
+```
+
+
 ### Create data user on host
 ```
 sudo mkdir -p /data
