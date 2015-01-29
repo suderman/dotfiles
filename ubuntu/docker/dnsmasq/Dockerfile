@@ -5,9 +5,9 @@ MAINTAINER Jon Suderman <suderman@gmail.com>
 RUN apt-get update
 RUN apt-get install -y dnsmasq incron
 
-# Watch for file changes to reload dnsmasq
-ADD incron.root /var/spool/incron/root
-RUN echo 'root' >> /etc/incron.allow
+# # Watch for file changes to reload dnsmasq
+# ADD incron.root /var/spool/incron/root
+# RUN echo 'root' >> /etc/incron.allow
 
 # Define mountable directories.
 VOLUME ["/config"]
@@ -16,11 +16,12 @@ VOLUME ["/config"]
 ADD ./dhcp.sh /dhcp.sh
 RUN chmod u+x  /dhcp.sh
 
-# Symlink config scripts, start incron & dnsmasq daemon 
-ADD ./start.sh /start.sh
-RUN chmod u+x  /start.sh
+# Add scripts 
+ADD ./start.sh    /start.sh
+RUN chmod u+x     /*.sh
 
-ENTRYPOINT ["/start.sh"]
+# Start it up 
+CMD ["/start.sh"]
 
 # Expose ports.
 EXPOSE 53/udp
