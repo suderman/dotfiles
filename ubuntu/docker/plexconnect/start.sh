@@ -11,6 +11,12 @@ source /helper.sh
 # Start sshd
 /usr/sbin/sshd
 
+# -------------------------------------------
+# Set environment variables
+# -------------------------------------------
+
+CA_SERVER=`getenv CA_SERVER localhost`
+
 
 # -------------------------------------------
 # Copy config files to where they're expected
@@ -19,15 +25,17 @@ source /helper.sh
 # Copy config files to where they're expected
 touch /config/Settings.cfg && ln -sf /config/Settings.cfg /PlexConnect/Settings.cfg
 
+# Keep ATVSettings saved in /config
+touch /config/ATVSettings.cfg && ln -sf /config/ATVSettings.cfg /PlexConnect/ATVSettings.cfg
+
 
 # -------------------------------------------
 # Start this container's services                                  :
 # -------------------------------------------
 
-# Get the server key & pem, and the ca crt & crl
+# Get the trailers.apple.com key & pem, for nginx
 curl "$CA_SERVER/trailers.apple.com.key" > /nginx/trailers.apple.com.key
 curl "$CA_SERVER/trailers.apple.com.pem" > /nginx/trailers.apple.com.pem
-curl "$CA_SERVER/trailers.apple.com.crt" > /nginx/trailers.apple.com.crt
 chmod 600 /nginx/trailers.apple.com.key /nginx/trailers.apple.com.pem
 
 # Check for updates

@@ -8,7 +8,6 @@ source /helper.sh
 # Copy config files to where they're expected
 # (none)
 
-
 # -------------------------------------------
 # Restart this container's services
 # -------------------------------------------
