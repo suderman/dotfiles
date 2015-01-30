@@ -1,13 +1,28 @@
-FROM ubuntu:trusty
+FROM suderman/trusty
 
-RUN apt-get update -q
-RUN apt-get install -qy openvpn iptables socat curl
+MAINTAINER Jon Suderman <suderman@gmail.com>
 
-ADD ./bin /usr/local/sbin
+RUN apt-get update
+RUN apt-get install -y openvpn iptables socat curl incron
 
-VOLUME ["/etc/openvpn"]
+# Define mountable directories
+VOLUME ["/config"]
 
-EXPOSE 443/tcp 1194/udp 8080/tcp
+ADD ./client.opvn.template /config/client.opvn.template
+ADD ./generate-client-keys.sh /generate-client-keys.sh
+RUN chmod u+x  /generate-client-keys.sh
 
-CMD run
+# Config script 
+ADD ./config.sh /config.sh
+RUN chmod u+x  /config.sh
 
+# Start script 
+ADD ./start.sh /start.sh
+RUN chmod u+x  /start.sh
+
+CMD ["/start.sh"]
+
+# Expose ports.
+EXPOSE 443/tcp
+EXPOSE 1194/udp
+EXPOSE 8194/udp

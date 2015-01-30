@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+
+CERT=`hostname`@$DOMAIN
+API=https://api.$DOMAIN
+
+curl --silent --cert "$CERT" $API/$1 | python -m json.tool

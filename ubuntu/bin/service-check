@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+
+services="   \
+ca           \
+mariadb      \
+homemaker    \
+plex         \
+plexconnect  \
+btsync       \
+sabnzbd      \
+couchpotato  \
+samba        \
+webdav       \
+nginx        \
+"
+
+for service in $services; do
+  container=$(docker ps | grep suderman/$service:latest)
+
+  if [ -z "$container" ]; then
+    echo "$service is down! Restarting..."
+    cd $HOME/.local/ubuntu/docker/$service && d clean && d start
+  else
+    echo "$service is running"
+  fi
+done
+

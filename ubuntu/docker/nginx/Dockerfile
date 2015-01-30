@@ -26,8 +26,11 @@ CMD ["/start.sh"]
 # Private HTTP
 EXPOSE 80/tcp
 
+# Private HTTPS
+EXPOSE 443/tcp
+
 # Public HTTP
 EXPOSE 8000/tcp
 
-# Secure HTTP
-EXPOSE 443/tcp
+# Public HTTPS
+EXPOSE 4430/tcp

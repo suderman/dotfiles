@@ -18,6 +18,7 @@ RUN chmod u+x  /dhcp.sh
 
 # Add scripts 
 ADD ./start.sh    /start.sh
+ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh
 
 # Start it up 

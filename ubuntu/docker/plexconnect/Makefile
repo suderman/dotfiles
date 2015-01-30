@@ -21,11 +21,11 @@ container:
 	docker run                                                              \
 	--detach                                                                \
 	--name plexconnect           	                                          \
-	--net host																					                    \
 	--publish 10443:10443             																		  \
 	--publish 10080:10080	             																		  \
-	--publish 53:53/udp		         	  																		  \
+	--env CA_SERVER="$(CA_SERVER)" 							 		      					  			\
 	--volume /config/plexconnect:/config   	                       		  		\
+	--volume /config/nginx:/nginx   	                            		  		\
 	suderman/plexconnect
 
 # Create a new interactive container from the image
@@ -35,7 +35,8 @@ shell:
 	--net host	 	  										  \
 	--publish 10443:10443  		           	\
 	--publish 10080:10080		            	\
-	--publish 53:53/udp              			\
+	--env CA_SERVER="$(CA_SERVER)"  			\
 	--volume /config/plexconnect:/config 	\
+	--volume /config/nginx:/nginx   	 		\
 	suderman/plexconnect /bin/bash
 

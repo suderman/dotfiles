@@ -4,5 +4,5 @@
 # ln -s ~/.dotfiles/osx/LaunchAgents/local.reload-chrome.plist ~/Library/LaunchAgents
 # launchctl load ~/Library/LaunchAgents/local.reload-chrome.plist
 
-/usr/bin/osascript -e 'tell application "Google Chrome Canary" to reload active tab of window 1'
+/usr/bin/osascript -e 'tell application "Google Chrome" to reload active tab of window 1'
 
