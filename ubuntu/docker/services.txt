@@ -1,0 +1,12 @@
+ca
+dnsmasq
+mariadb
+homemaker
+plex
+plexconnect
+btsync
+sabnzbd
+couchpotato
+samba
+webdav
+nginx

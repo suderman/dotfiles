@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+#
+# cp ~/.local/ubuntu/etc/cron.hourly-docker /etc/cron.hourly/docker
+
+# Set to my home
+HOME="/home/jon"
+
+# Source my environment variables
+. $HOME/.local/sh/bashrc.sh
+
+# Fix permissions
+$HOME/.local/ubuntu/bin/service-start
