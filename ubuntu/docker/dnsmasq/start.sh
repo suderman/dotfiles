@@ -37,6 +37,9 @@ expenv GATEWAY_IP           /etc/dnsmasq.conf
 # Start this container's services
 # -------------------------------------------
 
+# Generate /config/blacklist.conf
+/adblock.sh
+
 # Start it up
 /usr/sbin/dnsmasq
 

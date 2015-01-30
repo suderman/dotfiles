@@ -14,7 +14,9 @@ VOLUME ["/config"]
 
 # Run this script whenever a DHCP lease is created/destroyed
 ADD ./dhcp.sh /dhcp.sh
-RUN chmod u+x  /dhcp.sh
+
+# Generate /config/blacklist.conf
+ADD ./adblock.sh /adblock.sh
 
 # Add scripts 
 ADD ./start.sh    /start.sh

@@ -3,9 +3,6 @@
 # 2015 Jon Suderman
 # https://github.com/suderman/local
                                                                                 
-# Open a terminal and run this command:
-# bash <(curl https://raw.githubusercontent.com/suderman/local/master/bin/init)
-                                                                                
 # Helper methods for prettier shell scripting - http://shelper.suderman.io
 eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
 
@@ -19,8 +16,8 @@ if ! ping -c 1 yahoo.com ; then exit; fi
 sources="                                                                   \
 http://www.mvps.org/winhelp2002/hosts.txt                                   \
 http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts;showintro=0   \
-http://support.it-mate.co.uk/downloads/hosts.txt                            \
 "
+# http://support.it-mate.co.uk/downloads/hosts.txt                            \
 # http://hostsfile.mine.nu/Hosts                                              \
 # https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 
