@@ -103,7 +103,7 @@ openssl req -new -extensions v3_OCSP                                            
 
 # Sign the request and create the certificate (ocsp.crt)
 [ -f /config/ocsp/ocsp.crt ] || 
-yes | openssl ca -notext -md sha1 -days 3650 -extensions v3_OCSP                        \
+yes | openssl ca -notext -md sha256 -days 3650 -extensions v3_OCSP                        \
   -keyfile /config/ca/ca.key                                                            \
   -cert    /config/ca/ca.crt                                                            \
   -in      /config/ocsp/ocsp.csr                                                        \

@@ -51,7 +51,7 @@ openssl req -new                                                                
 
 
 # Sign the request and create the certificate ($NAME.crt)
-yes | openssl ca -notext -md sha1 -days 3650 -extensions usr_cert                       \
+yes | openssl ca -notext -md sha256 -days 3650 -extensions usr_cert                       \
   -keyfile /config/ca/ca.key                                                            \
   -cert    /config/ca/ca.crt                                                            \
   -in      "/config/certs/$NAME/$NAME.csr"                                              \
