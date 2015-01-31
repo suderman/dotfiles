@@ -7,4 +7,6 @@ coffee-script
 uglify-js
 importer
 tldr
+shelljs
+6to5
 

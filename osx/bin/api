@@ -1,9 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env node
 
-# 2015 Jon Suderman
-# https://github.com/suderman/local
+require('shelljs/global');
+var s = { silent: true };
+var args = process.argv.slice(2);
 
-CERT=`hostname`@$DOMAIN
-API=https://api.$DOMAIN
+var curl = 'curl --silent --cert';
+var cert = '"' + [exec('hostname', s).output.trim(), env['DOMAIN']].join('@') + '"';
+var api = ['https://api.' + env['DOMAIN'], args[0]].join('/');
 
-curl --silent --cert "$CERT" $API/$1 | python -m json.tool
+var obj = JSON.parse(exec([curl, cert, api].join(' '), s).output.trim());
+
+var nodes = obj.nodes.map(function(node) { return node.name });
+var actions = obj.actions.map(function(action) { return action.name });
+var children = nodes.concat(actions).sort().join(', ');
+
+console.log(['[', obj.status || 'none', ']', children].join(' '));

@@ -57,3 +57,5 @@ export PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a)
 # Man path
 export MANPATH="$HOME/local/share:/usr/local/man:$MANPATH"
 
+# node_path
+export NODE_PATH="/usr/local/lib/node_modules"
