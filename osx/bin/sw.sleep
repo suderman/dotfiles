@@ -5,6 +5,6 @@ if [[ `hostname` == 'macbook' ]]; then
 fi
 
 if [[ `hostname` == 'macpro' ]]; then
-  curl api.lan/den/avr/volume/0
+  curl api.lan/den/avr/vol/0
   curl api.lan/den/lcd/off
 fi
