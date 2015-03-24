@@ -6,12 +6,12 @@ var args = process.argv.slice(2);
 
 var curl = 'curl --silent --cert';
 var cert = '"' + [exec('hostname', s).output.trim(), env['DOMAIN']].join('@') + '"';
-var api = ['https://api.' + env['DOMAIN'], args[0]].join('/');
+var api = ['https://api.' + env['DOMAIN'], args.join('/')].join('/');
 
 var obj = JSON.parse(exec([curl, cert, api].join(' '), s).output.trim());
 
-var nodes = obj.nodes.map(function(node) { return node.name });
-var actions = obj.actions.map(function(action) { return action.name });
+var nodes = (obj.nodes) ? obj.nodes.map(function(node) { return node.name }) : []
+var actions = (obj.actions) ? obj.actions.map(function(action) { return action.name }) : [];
 var children = nodes.concat(actions).sort().join(', ');
 
 console.log(['[', obj.status || 'none', ']', children].join(' '));
