@@ -3,8 +3,8 @@
 # 2014 Jon Suderman
 # https://github.com/suderman/local
 
-# Helper methods for prettier shell scripting - http://shelper.suderman.io
-eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
 
 # Don't ask questions, just install/update everything 
 answer="ask"; if [ "$1" == "y" ]; then answer="y"; fi
@@ -33,17 +33,17 @@ fi
 
 # Install launchup to manage launchd plists
 installing "launchdn and launchup"
-curl -sS launchup.suderman.io/install | sh
+curl -sS suderman.github.io/launchup/install | sh
 msg "Running launchdn and launchup"
 launchdn && launchup
 
 # Install node & npm
 installing "nodejs and npm"
-curl -sS install.suderman.io/node | sh
+curl -sS suderman.github.io/install/node | sh
 
 # Install MySQL
 installing "mysql"
-curl -sS install.suderman.io/mysql | sh
+curl -sS suderman.github.io/install/mysql | sh
 
 # Install packages
 if ask "Do you want to install $(cyan "Homebrew, Node, Python and Ruby packages") on this computer?"; then
