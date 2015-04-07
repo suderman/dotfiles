@@ -16,7 +16,7 @@ RUN a2enmod dav dav_fs; a2ensite
 RUN mkdir -p /var/lock/apache2
 
 # Add command `git clone-pull`
-RUN curl git-clone-pull.suderman.io/install | sh
+RUN curl suderman.github.io/git-clone-pull/install | sh
 
 # Define mountable directories
 VOLUME ["/config", "/data"]

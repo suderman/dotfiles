@@ -3,7 +3,7 @@ FROM suderman/trusty
 MAINTAINER Jon Suderman <suderman@gmail.com>
 
 # Install tools and dependencies
-RUN apt-get update
+RUN apt-get update --fix-missing
 RUN apt-get install -y avahi-daemon avahi-utils unzip
 
 # Download deb and install
@@ -11,7 +11,8 @@ RUN apt-get install -y avahi-daemon avahi-utils unzip
 # RUN curl https://downloads.plex.tv/plex-media-server/0.9.10.0.581-cec9e01/plexmediaserver_0.9.10.0.581-cec9e01_amd64.deb -o /tmp/plex.deb
 # RUN curl https://downloads.plex.tv/plex-media-server/0.9.10.1.585-f31034e/plexmediaserver_0.9.10.1.585-f31034e_amd64.deb -o /tmp/plex.deb
 # RUN curl https://downloads.plex.tv/plex-media-server/0.9.11.4.739-a4e710f/plexmediaserver_0.9.11.4.739-a4e710f_amd64.deb -o /tmp/plex.deb
-RUN curl https://downloads.plex.tv/plex-media-server/0.9.11.7.803-87d0708/plexmediaserver_0.9.11.7.803-87d0708_amd64.deb -o /tmp/plex.deb
+# RUN curl https://downloads.plex.tv/plex-media-server/0.9.11.7.803-87d0708/plexmediaserver_0.9.11.7.803-87d0708_amd64.deb -o /tmp/plex.deb
+RUN curl https://downloads.plex.tv/plex-media-server/0.9.11.17.986-269b82b/plexmediaserver_0.9.11.17.986-269b82b_amd64.deb -o /tmp/plex.deb
 RUN dpkg -i /tmp/plex.deb
 RUN apt-get -yf install
 

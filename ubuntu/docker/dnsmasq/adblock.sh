@@ -3,8 +3,8 @@
 # 2015 Jon Suderman
 # https://github.com/suderman/local
                                                                                 
-# Helper methods for prettier shell scripting - http://shelper.suderman.io
-eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
 
 redirectip="0.0.0.0"
 blacklist="/config/blacklist.conf"

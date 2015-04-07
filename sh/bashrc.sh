@@ -1,8 +1,8 @@
 # Sometimes scripts call bash instead of my beloved zsh
 # ...so I have to maintain a little bashrc too I guess
 
-# Helper methods for prettier shell scripting - http://shelper.suderman.io
-eval "$(cat ~/.local/share/shelper.sh || curl shelper.suderman.io/shelper.sh)"
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
 
 # Use what I can
 source ~/.local/sh/path.sh
