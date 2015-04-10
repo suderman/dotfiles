@@ -7,7 +7,7 @@
 eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
 
 if [ $# -eq 0 ]; then
-  msg "Usage: d start|stop|logs|ip|ssh|clean|clean-image|push|pull|vars"
+  msg "Usage: d start|stop|restart|exec|logs|ip|ssh|clean|clean-image|push|pull|vars"
   exit 1
 fi
 
@@ -33,6 +33,8 @@ if [ -z "$container" ]; then
   msg "Error: Cannot determine container"
   exit 1
 fi
+
+cid=$(docker ps | grep $container: | cut -d' ' -f1)
 
 # Check if an image is missing and needs to be built
 missing_image() {
@@ -70,11 +72,26 @@ case $1 in
     docker stop $container
     ;;
 
+  # Execute restart.sh script
+  "restart" )
+    docker exec $cid /restart.sh
+    ;;
+
+  # Execute command in the container, or start shell
+  "exec" )
+    if [ -z "$2" ]; then
+      docker exec -it $cid bash
+    else
+      docker exec $cid ${@:2}
+    fi
+    ;;
+
   # Tail the logs from the container
   "logs" )
     msg "Tailing logs..."
 	  docker logs --follow $container
     ;;
+
 
   # Get the IP from the container
   "ip" )
@@ -118,6 +135,7 @@ case $1 in
   "vars" )
     echo "Image: $image"
     echo "Container: $container"
+    echo "CID: $cid"
     ;;
 esac
 

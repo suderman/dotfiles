@@ -63,4 +63,7 @@ RUN sed -ri 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 RUN echo 'root:root' | chpasswd
 
+# Set TERM environment variable
+ENV TERM dumb
+
 EXPOSE 22/tcp
