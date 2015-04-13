@@ -1,4 +1,4 @@
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 all: 
 	@echo "image config container"
@@ -9,13 +9,11 @@ image:
 
 # Make host configuration directory
 # - Hardlink config files so changes can be made from this directory
-# - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/nginx
 	ln -f "$(shell pwd)/nginx.conf"  				/config/nginx/nginx.conf
 	ln -f "$(shell pwd)/proxy_params.conf"	/config/nginx/proxy_params.conf
 	ln -f "$(shell pwd)/verify_client.conf" /config/nginx/verify_client.conf
-	ln -f "$(shell pwd)/restart.txt" 				/config/nginx/restart.txt
 
 # Create a new detached container from the image
 container: 
@@ -50,6 +48,3 @@ shell:
 	--volume /data/downloads:/downloads    		                        		  \
 	--volume /config/nginx:/config        			                       		  \
 	suderman/nginx /bin/bash
-
-# docker run -it --rm -p 80:80 -p 8000:8000 -p 443:443 -v /data/config/nginx:/config suderman/nginx /bin/bash
-# docker run -it --rm --net host -v /data/config/nginx:/config suderman/nginx /bin/bash

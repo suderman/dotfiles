@@ -20,6 +20,7 @@ ADD ./malformedRequest  /ca/malformedRequest
 RUN cd /ca && npm install
 
 # Add scripts 
+ADD ./config.sh   /config.sh
 ADD ./start.sh    /start.sh
 ADD ./certify.sh  /certify.sh
 ADD ./revoke.sh   /revoke.sh

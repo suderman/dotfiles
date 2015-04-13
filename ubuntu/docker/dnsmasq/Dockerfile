@@ -3,11 +3,7 @@ FROM suderman/trusty
 MAINTAINER Jon Suderman <suderman@gmail.com>
 
 RUN apt-get update
-RUN apt-get install -y dnsmasq incron
-
-# # Watch for file changes to reload dnsmasq
-# ADD incron.root /var/spool/incron/root
-# RUN echo 'root' >> /etc/incron.allow
+RUN apt-get install -y dnsmasq
 
 # Define mountable directories.
 VOLUME ["/config"]
@@ -15,10 +11,8 @@ VOLUME ["/config"]
 # Run this script whenever a DHCP lease is created/destroyed
 ADD ./dhcp.sh /dhcp.sh
 
-# Generate /config/blacklist.conf
-ADD ./adblock.sh /adblock.sh
-
 # Add scripts 
+ADD ./config.sh   /config.sh
 ADD ./start.sh    /start.sh
 ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh

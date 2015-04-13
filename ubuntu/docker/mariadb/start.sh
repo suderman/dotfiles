@@ -1,35 +1,11 @@
 #!/bin/bash
-source /helper.sh
-
-# -------------------------------------------
-# Start common services
-# -------------------------------------------
-
-# Start incrond to watch /config/restart.txt
-/usr/sbin/incrond
-
-# Start sshd
-/usr/sbin/sshd
-
-
-# -------------------------------------------
-# Copy config files to where they're expected
-# -------------------------------------------
-
-# Copy config files to where they're expected
-cp -f /config/my.cnf /etc/mysql/my.cnf
-
-
-# -------------------------------------------
-# Start this container's services
-# -------------------------------------------
+source /config.sh
 
 # Get the server key & crt, and the ca crt & crl
 (has /config/my.key) || curl "$CA_SERVER/my.key" > /config/my.key
 (has /config/my.crt) || curl "$CA_SERVER/my.crt" > /config/my.crt
 (has /config/ca.crt) || curl "$CA_SERVER/ca.crt" > /config/ca.crt
 (has /config/ca.crl) || curl "$CA_SERVER/ca.crl.pem" > /config/ca.crl
-
 
 # Default user and password if none provided
 [[ "$DB_USER" == "" ]] && DB_USER="user"

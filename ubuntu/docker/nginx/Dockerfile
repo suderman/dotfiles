@@ -16,6 +16,7 @@ VOLUME ["/config", "/public", "/downloads"]
 WORKDIR /etc/nginx
 
 # Add scripts 
+ADD ./config.sh   /config.sh
 ADD ./start.sh    /start.sh
 ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh

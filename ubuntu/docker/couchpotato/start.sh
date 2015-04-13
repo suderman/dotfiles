@@ -1,27 +1,5 @@
 #!/bin/bash
-source /helper.sh
-
-# -------------------------------------------
-# Start common services
-# -------------------------------------------
-
-# Start incrond to watch /config/restart.txt
-# /usr/sbin/incrond
-
-# Start sshd
-/usr/sbin/sshd
-
-
-# -------------------------------------------
-# Copy config files to where they're expected
-# -------------------------------------------
-
-# Copy config files to where they're expected
-
-
-# -------------------------------------------
-# Start this container's services
-# -------------------------------------------
+source /config.sh
 
 # Start the service
 /usr/bin/python /CouchPotatoServer/CouchPotato.py   \

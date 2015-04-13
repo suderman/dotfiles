@@ -1,4 +1,0 @@
-/config/hosts IN_MODIFY pkill -HUP dnsmasq
-/config/hosts.dhcp IN_MODIFY pkill -HUP dnsmasq
-/config/ethers IN_MODIFY pkill -HUP dnsmasq
-/config/dnsmasq.conf IN_MODIFY pkill -HUP dnsmasq

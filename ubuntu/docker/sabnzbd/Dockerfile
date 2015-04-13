@@ -18,6 +18,7 @@ RUN                                                                      \
 VOLUME ["/config", "/downloads", "/library"]
 
 # Add scripts 
+ADD ./config.sh   /config.sh
 ADD ./start.sh    /start.sh
 ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh

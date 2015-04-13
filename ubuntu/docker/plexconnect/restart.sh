@@ -1,16 +1,5 @@
 #!/bin/bash
-source /helper.sh
-
-# -------------------------------------------
-# Copy config files to where they're expected
-# -------------------------------------------
-
-# Copy config files to where they're expected
-# (none)
-
-# -------------------------------------------
-# Restart this container's services
-# -------------------------------------------
+source /config.sh
 
 # Kill services
 pkill python

@@ -10,6 +10,7 @@ RUN cd /usr/bin && tar -xzvf btsync.tar.gz && rm btsync.tar.gz
 VOLUME ["/config", "/data"]
 
 # Add scripts 
+ADD ./config.sh   /config.sh
 ADD ./start.sh    /start.sh
 ADD ./restart.sh  /restart.sh
 RUN chmod u+x     /*.sh

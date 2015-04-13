@@ -1,4 +1,4 @@
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 all: 
 	@echo "image config container"
@@ -9,24 +9,22 @@ image:
 
 # Make host configuration directory
 # - Hardlink config files so changes can be made from this directory
-# - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/homemaker
-	ln -f "$(shell pwd)/restart.txt" /config/homemaker/restart.txt
 	ln -f "$(shell pwd)/nginx.homemaker.conf"	/config/nginx/nginx.homemaker.conf
 
 # Create a new detached container from the image
 container: 
-	docker run                                                              \
-	--detach                                                                \
-	--name homemaker                                                        \
-	--hostname homemaker                                                    \
-	--env DB_HOST="$(HOST_IP)"            			 			 		      					  \
-	--env DB_USER="$(MARIADB_USER)"        			 			 		      					  \
-	--env DB_PASS="$(MARIADB_PASS)"        			 			 		      					  \
-	--publish 7000:7000                                                     \
-	--publish 7001:7001                                                     \
-	--volume /config/homemaker:/config                                      \
+	docker run                                  \
+	--detach                                    \
+	--name homemaker                            \
+	--hostname homemaker                        \
+	--env DB_HOST="$(HOST_IP)"            		  \
+	--env DB_USER="$(MARIADB_USER)"        		  \
+	--env DB_PASS="$(MARIADB_PASS)"        		  \
+	--publish 7000:7000                         \
+	--publish 7001:7001                         \
+	--volume /config/homemaker:/config          \
 	suderman/homemaker
 
 # Create a new interactive container from the image

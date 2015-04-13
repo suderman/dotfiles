@@ -1,16 +1,5 @@
-#!/bin/sh
-
-# -------------------------------------------
-# Copy config files to where they're expected
-# -------------------------------------------
-
-# Copy config files to where they're expected
-# (none)
-
-
-# -------------------------------------------
-# Restart this container's services
-# -------------------------------------------
+#!/bin/bash
+source /config.sh
 
 # Kill services
 pkill btsync
