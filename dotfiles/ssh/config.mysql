@@ -29,3 +29,6 @@ Host nuc
 
 Host macpro
   LocalForward 3308 localhost:3306
+
+Host premiumapp
+  LocalForward 3319 localhost:3306
