@@ -73,7 +73,7 @@ delete_container() {
       docker stop $container
     fi
     msg "[$container] Cleaning container..."
-    docker rm $container
+    docker rm -f $container
   fi
 }
 
@@ -83,7 +83,7 @@ delete_image() {
     msg "[$image] Image already cleared"
   else
     msg "[$image] Clearing image..."
-    docker rmi $image
+    docker rmi -f $image
   fi
 }
 
