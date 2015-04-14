@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# 2015 Jon Suderman
-# https://github.com/suderman/local
-
-while read service
-do
-  cd $HOME/.local/ubuntu/docker/$service && d clean
-done < $HOME/.local/ubuntu/docker/services.txt

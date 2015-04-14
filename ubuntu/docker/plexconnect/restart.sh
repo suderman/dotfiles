@@ -3,7 +3,7 @@ source /config.sh
 
 # Kill services
 pkill python
-sleep 1
+sleep 5
 
 # Restart services
-/usr/bin/python /PlexConnect/PlexConnect.py
+/usr/bin/python /PlexConnect/PlexConnect.py &

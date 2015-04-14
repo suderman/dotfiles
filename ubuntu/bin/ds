@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
+
+# Where docker directories are found
+docker="$HOME/.local/ubuntu/docker"
+
+if [ $# -eq 0 ]; then
+  msg "Usage: ds start stop restart clean clear refresh stats"
+  exit 1
+fi
+
+
+case $1 in
+
+  "start" )
+    while read service; do
+      has $docker/$service && cd $docker/$service && d start
+    done < $docker/services.txt
+    ;;
+
+  "stop" )
+    while read service; do
+      has $docker/$service && cd $docker/$service && d stop
+    done < $docker/services.txt
+    ;;
+
+  "restart" )
+    while read service; do
+      has $docker/$service && cd $docker/$service && d restart
+    done < $docker/services.txt
+    ;;
+
+  "clean" )
+    while read service; do
+      has $docker/$service && cd $docker/$service && d clean
+    done < $docker/services.txt
+    ;;
+
+  "clear" )
+    while read service; do
+      has $docker/$service && cd $docker/$service && d clear
+    done < $docker/services.txt
+    ;;
+
+  "refresh" )
+    while read service; do
+      has $docker/$service && cd $docker/$service && d refresh
+    done < $docker/services.txt
+    ;;
+
+  "stats" )
+    while read service; do
+      if has $docker/$service; then 
+        cd $docker/$service && d stats
+        echo "------------------------------------"
+      fi
+    done < $docker/services.txt
+    ;;
+esac

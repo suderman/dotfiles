@@ -9,7 +9,6 @@ image:
 
 # Make host configuration directory
 # - Hardlink config files so changes can be made from this directory
-# - daemon will reload when restart.txt is touched
 config:
 	mkdir -p /config/plexconnect
 	ln -f "$(shell pwd)/Settings.cfg"  					/config/plexconnect/Settings.cfg

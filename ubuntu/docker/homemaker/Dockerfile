@@ -5,7 +5,7 @@ MAINTAINER Jon Suderman <suderman@gmail.com>
 # Install tools
 RUN                                                       \
   add-apt-repository -y ppa:chris-lea/node.js          && \
-  apt-get update                                       && \
+  apt-get update --fix-missing                         && \
   apt-get install -y nodejs
 
 # Install application

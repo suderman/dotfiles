@@ -5,7 +5,7 @@ MAINTAINER Jon Suderman <suderman@gmail.com>
 # Install Nginx.
 RUN                                                                      \
   add-apt-repository -y ppa:nginx/stable                              && \
-  apt-get update                                                      && \
+  apt-get update  --fix-missing                                       && \
   apt-get install -y nginx                                            && \
   chown -R www-data:www-data /var/lib/nginx
 

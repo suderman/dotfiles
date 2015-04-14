@@ -14,7 +14,7 @@ ADD ./sources.list /etc/apt/sources.list
 
 # Update everything
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
+RUN apt-get update --fix-missing
 RUN apt-get --assume-yes dist-upgrade
 
 # Include a few basics
