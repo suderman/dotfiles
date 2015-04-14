@@ -50,7 +50,7 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 #------------------------------------------
 # Cross-platform host & port configuration
-#--------0---------------------------------
+#------------------------------------------
 
 # dotfiles/ssh/config.*
 # secret/dotfiles/ssh/config.*

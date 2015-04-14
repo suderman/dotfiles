@@ -45,6 +45,7 @@ MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
 
 # Docker bins
 if is ubuntu; then
+  MYPATH="$MYPATH:$HOME/.local/ubuntu/docker/bin"
   for dockerbin in $HOME/.local/ubuntu/docker/*/bin; do
     MYPATH="$MYPATH:$dockerbin"
   done

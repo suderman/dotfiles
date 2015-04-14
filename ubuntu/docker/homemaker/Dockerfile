@@ -6,7 +6,11 @@ MAINTAINER Jon Suderman <suderman@gmail.com>
 RUN                                                       \
   add-apt-repository -y ppa:chris-lea/node.js          && \
   apt-get update --fix-missing                         && \
-  apt-get install -y nodejs
+  apt-get install -y                                      \
+          python2.7                                       \
+          python-openssl                                  \
+          nodejs
+RUN npm install -g node-gyp
 
 # Install application
 RUN cd /                                                && \
