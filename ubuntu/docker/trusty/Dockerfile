@@ -45,4 +45,4 @@ RUN usermod -p data data && usermod -U data
 RUN usermod -u 2000 data && groupmod -g 2000 data
 
 # Set TERM environment variable
-ENV TERM dumb
+ENV TERM xterm-256color

@@ -11,7 +11,7 @@ image:
 # - Hardlink config files so changes can be made from this directory
 config:
 	mkdir -p /config/btsync/sync
-	ln -f "$(shell pwd)/btsync.conf" 				/config/btsync/btsync.conf
+	ln -f "$(shell pwd)/btsync.conf" 		/config/btsync/btsync.conf
 	ln -f "$(shell pwd)/nginx.btsync.conf"	/config/nginx/nginx.btsync.conf
 
 # Create a new detached container from the image
