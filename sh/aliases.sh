@@ -1,10 +1,5 @@
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
-
-# Make these commands ask before clobbering a file
-alias rm="rm -i"
-alias cp="cp -i"
-alias mv="mv -i"
 
 # Use human-readable filesizes
 alias du="du -h"
