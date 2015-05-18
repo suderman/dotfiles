@@ -1,5 +1,10 @@
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
+
+# MySQL suffix shortcut
+mysqls() {
+  mysql --defaults-group-suffix=$1
+}
 
 # Path on separate lines
 path() {
