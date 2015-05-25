@@ -38,9 +38,11 @@ MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
 # Docker bins
 if has ~/docker; then
   MYPATH="$MYPATH:$HOME/docker/bin"
-  for dockerbin in $HOME/docker/*/bin; do
-    MYPATH="$MYPATH:$dockerbin"
-  done
+  if undefined $({ ls $HOME/docker/*/bin } 2>&1); then
+    for dockerbin in $HOME/docker/*/bin; do
+      MYPATH="$MYPATH:$dockerbin"
+    done
+  fi
 fi
 
 # tmuxifier
