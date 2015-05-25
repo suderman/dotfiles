@@ -15,4 +15,3 @@ source ~/.local/sh/functions.sh
 
 # umask permissions
 umask 0002
-

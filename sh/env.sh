@@ -1,4 +1,4 @@
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 
 #---------------------------
@@ -21,7 +21,7 @@ export VISUAL=vim
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # https://github.com/georgebrock/1pass
-(has 1pass) && export ONEPASSWORD_KEYCHAIN="$HOME/Dropbox/Library/1Password.agilekeychain"
+(has 1pass) && export ONEPASSWORD_KEYCHAIN="$HOME/Dropbox/sync/1Password.agilekeychain"
 
 # https://github.com/jimeh/tmuxifier
 if has tmuxifier; then 
@@ -39,9 +39,6 @@ fi
 (has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
-# OS X app installer
-(is osx) && export APP_SOURCE=~/Dropbox/Installers
-
 # https://github.com/suderman/launchup
 (is osx) && export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
  
@@ -54,7 +51,7 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 # dotfiles/ssh/config.*
 # secret/dotfiles/ssh/config.*
-export HOSTS="nuc macpro pi tigerblood bam garnet talisman cnrl handbill"
+export HOSTS="nuc macpro pi tigerblood bam garnet talisman cnrl csweb csmysql"
 
 # osx/bin/copy
 # dotfiles/ssh/config.scp

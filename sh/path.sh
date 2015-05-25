@@ -1,4 +1,4 @@
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 
 # Each bin listed in order it's checked
@@ -35,6 +35,14 @@ fi
 # usr local bin (often Homebrew)
 MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
 
+# Docker bins
+if has ~/docker; then
+  MYPATH="$MYPATH:$HOME/docker/bin"
+  for dockerbin in $HOME/docker/*/bin; do
+    MYPATH="$MYPATH:$dockerbin"
+  done
+fi
+
 # tmuxifier
 (has ~/.tmuxifier) && \
   MYPATH="$MYPATH:$HOME/.tmuxifier/bin"
@@ -42,14 +50,6 @@ MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
 # Heroku Toolbelt
 (has /usr/local/heroku/bin) && \
   MYPATH="$MYPATH:/usr/local/heroku/bin"
-
-# Docker bins
-if is ubuntu; then
-  MYPATH="$MYPATH:$HOME/.local/ubuntu/docker/bin"
-  for dockerbin in $HOME/.local/ubuntu/docker/*/bin; do
-    MYPATH="$MYPATH:$dockerbin"
-  done
-fi
 
 # Append original path and strip duplicates
 PATH="$MYPATH:$PATH"

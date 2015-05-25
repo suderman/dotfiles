@@ -42,7 +42,7 @@ let g:airline_symbols.linenr = '⭡'
 " Wild stuff!
 set wildmenu                           " visual autocomplete for command menu
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,./var/**,*/uploads/**,*/pear/**,*/build/**
+set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,*/var/**,*/uploads/**,*/pear/**,*/build/**
 
 " Whitespace
 set nowrap
