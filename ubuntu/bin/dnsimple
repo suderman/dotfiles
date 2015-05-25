@@ -1,29 +1,28 @@
 #!/bin/bash
 
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 
-# DNSIMPLE_API_EMAIL="email@example.com"
-# DNSIMPLE_API_TOKEN="foobar123example"
-# DNSIMPLE_DOMAIN_NAME="home.computer.com"
-# DNSIMPLE_RECORD_ID="1234567"
-# DNSIMPLE_HOST_NAME="ubuntu.local"
+# DNSIMPLE="email@example.com:foobar123example"
+# DOMAIN="myserver.com"
 
 # Prevent IP from being updated to something outside home network
-if [[ `hostname` != $DNSIMPLE_HOST_NAME ]]; then
-  echo "Command must be run on $DNSIMPLE_HOST_NAME"
+if [[ `hostname` != "nuc" ]]; then
+  echo "Command must be run on nuc"
   exit
 fi
 
+# Update router.$DOMAIN to value of $IP
 IP="`curl -s http://icanhazip.com/`"
+ROUTER="router.$DOMAIN"
 
-curl  -H "X-DNSimple-Token: $DNSIMPLE_API_EMAIL:$DNSIMPLE_API_TOKEN" \
+curl  -H "X-DNSimple-Token: $DNSIMPLE" \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X PUT \
       -d "{\"record\":{\"content\":\"$IP\"}}" \
-      https://api.dnsimple.com/v1/domains/$DNSIMPLE_DOMAIN_NAME/records/$DNSIMPLE_RECORD_ID \
+      https://api.dnsimple.com/v1/domains/$DOMAIN/records/$ROUTER \
       -s > /dev/null
 
-echo "$DNSIMPLE_DOMAIN_NAME -> $IP"
+echo "$ROUTER -> $IP"
 

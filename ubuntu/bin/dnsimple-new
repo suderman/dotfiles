@@ -9,7 +9,7 @@
 
 
 SUBDOMAIN="$1"
-ROUTER="router.$DOMAIN"
+ROUTER="rt.$DOMAIN"
 
 if [ -z "$SUBDOMAIN" ]; then
   echo "Missing subdomain"
