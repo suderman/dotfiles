@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Backup all data
-/usr/bin/mysqldump -A > /config/dump.sql
