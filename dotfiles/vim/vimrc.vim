@@ -553,6 +553,10 @@ au BufRead,BufNewFile {Makefile} set ft=make | setlocal noexpandtab
 Source https://github.com/evanmiller/nginx-vim-syntax
 au BufRead,BufNewFile {nginx.conf,/etc/nginx/*,/usr/local/nginx/conf/*} setfiletype nginx 
 
+" OpenVPN
+Source https://github.com/vim-scripts/openvpn
+au BufRead,BufNewFile {*.ovpn} setfiletype openvpn 
+
 " JavaScript
 Source https://github.com/pangloss/vim-javascript
 " let g:javascript_conceal_function   = "ƒ"

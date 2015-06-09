@@ -6,6 +6,11 @@ mysqls() {
   mysql --defaults-group-suffix=$1
 }
 
+# Wake MacPro and SSH in
+macpro() {
+  curl https://api.lan/den/macpro/wake && ssh macpro
+}
+
 # Path on separate lines
 path() {
   echo $PATH | tr ':' '\n'
