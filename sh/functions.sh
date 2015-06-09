@@ -8,7 +8,9 @@ mysqls() {
 
 # Wake MacPro and SSH in
 macpro() {
-  curl https://api.lan/den/macpro/wake && ssh macpro
+  curl https://api.lan/den/macpro/wake
+  sleep 1
+  ssh macpro
 }
 
 # Path on separate lines
