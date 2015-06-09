@@ -60,6 +60,10 @@ git clone-pull https://github.com/zsh-users/antigen.git ~/.antigen
 installing "~/.oh-my-zsh"
 git clone-pull https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
+# Install fzf
+git clone-pull https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # Install tmuxifier
 installing "~/.tmuxifier"
 git clone-pull https://github.com/jimeh/tmuxifier.git ~/.tmuxifier

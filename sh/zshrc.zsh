@@ -1,14 +1,13 @@
 # Helper methods for prettier shell scripting - http://suderman.github.io/shelper
 eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
 
+# Prevent oh-my-zsh from messing with tmux windows
+export DISABLE_AUTO_TITLE="true"
+
+# Load bundles with antigen
 source ~/.antigen/antigen.zsh
 
-# Local bundles
-(has fzf) && antigen bundle ~/.local/sh/bundles/fzf
-# antigen bundle ~/.local/sh/bundles/vi-visual
-# source ~/.local/sh/bundles/opp/opp.plugin.zsh
-
-# Other bundles
+# Bundles
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 bindkey -M vicmd 'k' history-substring-search-up
@@ -70,6 +69,9 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # http://direnv.net
 (has direnv) && eval "$(direnv hook zsh)" 
+
+# https://github.com/junegunn/fzf
+(has ~/.fzf.zsh) && source ~/.fzf.zsh
 
 #------------------
 # ZSH Keybindings

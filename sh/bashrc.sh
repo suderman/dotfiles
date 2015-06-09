@@ -13,5 +13,8 @@ source ~/.local/sh/functions.sh
 # http://direnv.net
 (has direnv) && eval "$(direnv hook bash)" 
 
+# https://github.com/junegunn/fzf
+(has ~/.fzf.bash) && source ~/.fzf.bash
+
 # umask permissions
 umask 0002

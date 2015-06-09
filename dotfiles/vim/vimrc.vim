@@ -224,6 +224,12 @@ Source https://github.com/vim-scripts/IndexedSearch
 " Clear search with comma-space
 noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 
+" fzf fuzzy finder 
+set rtp+=~/.fzf
+let g:fzf_height='25%'
+vmap <C-t> <ESC>:FZF<CR>
+nmap <C-t> <ESC>:FZF<CR>
+
 " Ag - The Silver Searcher
 Source https://github.com/rking/ag.vim
 
