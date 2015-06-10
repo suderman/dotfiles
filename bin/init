@@ -31,7 +31,7 @@ installing "~/.local"
 git clone-pull https://github.com/suderman/local.git ~/.local
 
 # Don't install this on just any system
-if ask "Do you want to install $_cyan_~/.local/secret$_white_ on this computer?"; then
+if has ~/.local/secret || ask "Do you want to install $_cyan_~/.local/secret$_white_ on this computer?"; then
 
   # Secret repo contains SSH and other sensitive config
   installing "~/.local/secret"
