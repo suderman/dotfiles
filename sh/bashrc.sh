@@ -1,8 +1,18 @@
-# Sometimes scripts call bash instead of my beloved zsh
-# ...so I have to maintain a little bashrc too I guess
-
 # Helper methods for prettier shell scripting - http://suderman.github.io/shelper
 eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
+
+# Vi mode
+set -o vi
+KEYTIMEOUT=0
+
+# umask permissions
+umask 0002
+
+# https://github.com/Bash-it/bash-it
+export BASH_IT="$HOME/.bash_it"
+#export BASH_IT_THEME='bobby'
+unset MAILCHECK
+(has $BASH_IT) && source $BASH_IT/bash_it.sh
 
 # Use what I can
 source ~/.local/sh/path.sh
@@ -11,10 +21,10 @@ source ~/.local/sh/aliases.sh
 source ~/.local/sh/functions.sh
 
 # http://direnv.net
-(has direnv) && eval "$(direnv hook bash)" 
+(has direnv) && eval "$(direnv hook $(shell))" 
 
 # https://github.com/junegunn/fzf
-(has ~/.fzf.bash) && source ~/.fzf.bash
+has ~/.fzf.$(shell) && source ~/.fzf.$(shell)
 
-# umask permissions
-umask 0002
+# https://github.com/nojhan/liquidprompt
+(has ~/.liquidprompt) && [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt

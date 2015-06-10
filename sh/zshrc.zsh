@@ -26,17 +26,6 @@ antigen bundle tmux
 antigen bundle autojump 
 antigen bundle nyan 
 antigen bundle docker
-# antigen bundle npm 
-# antigen bundle chruby 
-# antigen bundle gem 
-# antigen bundle rails 
-# antigen bundle pip
-# antigen bundle command-not-found
-# antigen bundle extract 
-
-# Load the theme.
-antigen theme flazz
-# antigen theme fwalch
 
 # Tell antigen that you're done.
 antigen apply
@@ -68,10 +57,13 @@ stty -ixon
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # http://direnv.net
-(has direnv) && eval "$(direnv hook zsh)" 
+(has direnv) && eval "$(direnv hook $(shell))" 
 
 # https://github.com/junegunn/fzf
-(has ~/.fzf.zsh) && source ~/.fzf.zsh
+has ~/.fzf.$(shell) && source ~/.fzf.$(shell)
+
+# https://github.com/nojhan/liquidprompt
+(has ~/.liquidprompt) && [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
 
 #------------------
 # ZSH Keybindings

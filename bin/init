@@ -52,6 +52,14 @@ msg "Symlinking ~/.rcrc and running rcup"
 ln -sf ~/.local/dotfiles/rcrc ~/.rcrc
 rcup
 
+# Install Bash it
+installing "~/.bash_it"
+git clone-pull https://github.com/Bash-it/bash-it.git ~/.bash_it
+
+# Install Liquid Prompt 
+installing "~/.liquidprompt"
+git clone-pull https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
+
 # Install antigen
 installing "~/.antigen"
 git clone-pull https://github.com/zsh-users/antigen.git ~/.antigen
@@ -61,8 +69,9 @@ installing "~/.oh-my-zsh"
 git clone-pull https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 # Install fzf
+installing "~/.fzf"
 git clone-pull https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --bin
 
 # Install tmuxifier
 installing "~/.tmuxifier"

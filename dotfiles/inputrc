@@ -1,7 +1,27 @@
 # Edit commands in Vi mode
-set editing-mode vi
-set keymap vi
+#set editing-mode vi
+#set keymap vi-command
+#bind -m vi-command ".":insert-last-argument
+#bind -m vi-insert "\C-l.":clear-screen
+#bind -m vi-insert "\C-a.":beginning-of-line
+#bind -m vi-insert "\C-e.":end-of-line
+#bind -m vi-insert "\C-w.":backward-kill-word
+#
+## TAB: menu-complete
+## set completion-ignore-case On
+## set mark-symlinked-directories On
 
-# TAB: menu-complete
-# set completion-ignore-case On
-# set mark-symlinked-directories On
+set editing-mode vi                                            
+
+# vi settings                                         
+$if mode=vi                
+    # normal mode                           
+    set keymap vi-command                                 
+    "gg": beginning-of-history
+    "h": backward-char
+    "l": forward-char         
+    "G": end-of-history
+    # insert mode             
+    set keymap vi-insert                          
+    #"jj": vi-movement-mode # remap escape   
+$endif 

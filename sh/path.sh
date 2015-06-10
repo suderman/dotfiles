@@ -38,16 +38,21 @@ MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
 # Docker bins
 if has ~/docker; then
   MYPATH="$MYPATH:$HOME/docker/bin"
-  if undefined $({ ls $HOME/docker/*/bin } 2>&1); then
-    for dockerbin in $HOME/docker/*/bin; do
-      MYPATH="$MYPATH:$dockerbin"
-    done
-  fi
+  #if undefined $({ ls $HOME/docker/*/bin } 2>&1); then
+  #  for dockerbin in $HOME/docker/*/bin; do
+  #    MYPATH="$MYPATH:$dockerbin"
+  #  done
+  #fi
 fi
 
 # tmuxifier
 (has ~/.tmuxifier) && \
   MYPATH="$MYPATH:$HOME/.tmuxifier/bin"
+
+# fzf
+(has ~/.fzf)                         && \
+  MYPATH="$MYPATH:$HOME/.fzf/bin"    && \
+  MANPATH="$HOME/.fzf/man:$MANPATH"
 
 # Heroku Toolbelt
 (has /usr/local/heroku/bin) && \
