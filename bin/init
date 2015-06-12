@@ -88,6 +88,11 @@ curl -sS suderman.github.io/sshconfig/install | sh
 msg "Running sshconfig"
 sshconfig
 
+# Update vim bundles
+if has vim-update-bundles; then
+  vim-update-bundles
+fi
+
 msg "...init complete!"
 
 # Run update only if this script is called direct
