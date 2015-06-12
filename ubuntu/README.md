@@ -24,6 +24,7 @@ sudo cp -f ubuntu/etc/hostname /etc/hostname
 ### Configure networking
 ```
 sudo cp -f ubuntu/etc/network-interfaces /etc/network/interfaces  
+sudo echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
 ```
 
 ### Configure swappiness

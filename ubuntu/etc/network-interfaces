@@ -11,9 +11,9 @@
 auto lo
 iface lo inet loopback
 
-# The primary network interface
-auto em1
-iface em1 inet static
+# The bridge network interface
+auto br0
+iface br0 inet static
   address 10.0.0.2
   netmask 255.255.255.0
   network 10.0.0.0
@@ -21,3 +21,25 @@ iface em1 inet static
   gateway 10.0.0.1
   dns-search nuc
   dns-nameservers 10.0.0.2 8.8.8.8 8.8.4.4
+  bridge_ports em1
+  bridge_fd 9
+  bridge_hello 2
+  bridge_maxage 12
+  bridge_stp off
+ 
+# The primary network interface
+auto em1
+iface em1 inet manual
+  up ip link set $IFACE up promisc on
+  down ip link set $IFACE down promisc off
+
+# The primary network interface
+# auto em1
+# iface em1 inet static
+#   address 10.0.0.2
+#   netmask 255.255.255.0
+#   network 10.0.0.0
+#   broadcast 10.0.0.255
+#   gateway 10.0.0.1
+#   dns-search nuc
+#   dns-nameservers 10.0.0.2 8.8.8.8 8.8.4.4
