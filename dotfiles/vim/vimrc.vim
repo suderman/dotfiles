@@ -75,14 +75,39 @@ nnoremap <silent> <space>p :Pmenu<CR>
 colorscheme solarized
 call s:Pmenu()
 
+" Directories for session, undo, backup, swp files
+let vim_pid = $HOME.'/.vim/session/process-'.getpid()
+let vim_sid = $HOME.'/.vim/session/session'.substitute(expand("%:p:h"),'/','-','g')
+silent! call mkdir(vim_pid, 'p', 0700)
+silent! call mkdir(vim_sid, 'p', 0700)
 
-" Directories for undo backup, swp files
+
+
+
+
+
+" Track undo and open files
 if has('persistent_undo')
   set undofile
-  set undodir=~/.vim/backup
+  let &undodir=vim_sid
 endif
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+let &backupdir=vim_pid
+let &directory=vim_pid
+
+" Track sessions
+Source https://github.com/tpope/vim-obsession
+if filereadable(vim_sid."/Session.vim")
+  au VimEnter * nested exec "source ".vim_sid."/Session.vim"
+  if bufexists(1)
+    for l in range(1, bufnr('$'))
+      if bufwinnr(l) == -1
+        exec 'sbuffer ' . l
+      endif
+    endfor
+  endif
+else
+  au VimEnter * exec "Obsession ".vim_sid
+endif
 
 " Remember last location in file
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
