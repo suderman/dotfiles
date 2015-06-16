@@ -1,11 +1,8 @@
-# Static IP for Ubuntu 14 server nuc
+# Static IP bridge for Ubuntu 14 server nuc
 # 
-# sudo mv /etc/network/interfaces /etc/network/interfaces.backup
-# sudo cp network-interfaces /etc/network/interfaces
-# sudo chmod 644 /etc/network/interfaces
-# sudo service networking restart
-# sudo ifdown em1
-# sudo ifup em1
+# sudo cp -f ubuntu/etc/network-interfaces /etc/network/interfaces
+# sudo echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
+# sudo reboot now
 
 # The loopback network interface
 auto lo

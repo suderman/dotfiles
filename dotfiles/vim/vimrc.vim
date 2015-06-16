@@ -152,25 +152,14 @@ if has("clipboard")
   endif
 endif
 
-
-"============="
-" https://gist.github.com/burke/5960455
-
-function! PropagatePasteBufferToOSX()
-  let @n=getreg("*")
-  call system('pbcopy', @n)
-  echo "done"
+function! ClipboardYank()
+  call system('pbcopy', @@)
 endfunction
-
-function! PopulatePasteBufferFromOSX()
-  let @+ = system('pbpaste')
-  echo "done"
+function! ClipboardPaste()
+  let @@ = system('pbpaste')
 endfunction
-
-nnoremap <leader>6 :call PopulatePasteBufferFromOSX()<cr>
-nnoremap <leader>7 :call PropagatePasteBufferToOSX()<cr>
-
-"============="
+noremap <leader>y y:call ClipboardYank()<cr>
+noremap <leader>p :call ClipboardPaste()<cr>p
 
 " Make 'Y' follow 'D' and 'C' conventions'
 nnoremap Y y$
@@ -212,6 +201,9 @@ cmap <C-z> <BS>
 cmap <C-v> <C-R>"
 
 "============="
+
+
+Source https://github.com/bruno-/vim-husk
 
 
 " Multiple Cursors

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local/
 
-port_scp=2222
-port_ql=2223
+port_scp=$PORT_SCP
+port_ql=$PORT_QUICKLOOK
 
 if [ $# -eq 0 ]; then
   echo "Usage: ql file ..."
