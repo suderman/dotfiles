@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
+
+# Ensure a port is specified
+port=$PORT_PBPASTE
+defined "$port" || port=2225
+
+# Attempt to get output from netcat
+output="$(nc localhost $port)"
+
+# If empty, try something else
+if undefined "$output"; then
+
+  # Try pbpaste if it exists
+  if /usr/bin/pbpaste; then
+    output="$(/usr/bin/pbpaste)"
+
+  # Otherwise, read ~/.pb file
+  else
+    touch ~/.pb
+    output="$(cat ~/.pb)"
+  fi
+
+fi
+
+# Deliver it
+printf "$output"

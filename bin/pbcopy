@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
+
+# Redirect input to pbcopy or ~/.pb file
+tee="tee >(/usr/bin/pbcopy)"
+has /usr/bin/pbcopy || tee="tee ~/.pb"
+
+# Redirect input to netcat with proper flag
+nc="nc"
+defined "$(nc -q 2>&1 | grep illegal)" || nc="nc -q1"
+defined "$(nc -c 2>&1 | grep invalid)" || nc="nc -c"
+
+# Ensure a port is specified
+port=$PORT_PBCOPY
+defined "$port" || port=2224
+
+cat | eval $tee | eval $nc localhost $port
