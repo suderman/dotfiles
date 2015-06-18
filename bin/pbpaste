@@ -17,7 +17,7 @@ output="$(nc localhost $port)"
 if undefined "$output"; then
 
   # Try pbpaste if it exists
-  if /usr/bin/pbpaste; then
+  if has /usr/bin/pbpaste; then
     output="$(/usr/bin/pbpaste)"
 
   # Otherwise, read ~/.pb file
