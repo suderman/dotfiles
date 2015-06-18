@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local/
+
+# Usage: echo $(escape "$1")
+escape() { 
+  echo $1 | sed 's/\([^a-zA-Z0-9_]\)/\\\1/g' 
+}
+
+# payload="{\"channel\": \"$SLACK_CHANNEL\", \"username\": \"$SLACK_USER\", \"text\": \"$(escape "$1")\", \"icon_emoji\": \":ghost:\"}"
+# payload="{\"channel\": \"$SLACK_CHANNEL\", \"username\": \"$SLACK_USER\", \"text\": \"$1\", \"icon_emoji\": \":ghost:\"}"
+payload="{\"channel\": \"$SLACK_CHANNEL\", \"username\": \"$USER\", \"text\": \"$@\", \"icon_emoji\": \":feelsgood:\"}"
+# echo $payload
+curl -X POST --data-urlencode "payload=$payload" $SLACK_WEBHOOK
+

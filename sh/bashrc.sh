@@ -10,7 +10,6 @@ umask 0002
 
 # https://github.com/Bash-it/bash-it
 export BASH_IT="$HOME/.bash_it"
-#export BASH_IT_THEME='bobby'
 unset MAILCHECK
 (has $BASH_IT) && source $BASH_IT/bash_it.sh
 
