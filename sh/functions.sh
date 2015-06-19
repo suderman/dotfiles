@@ -6,9 +6,18 @@ mysqls() {
   mysql --defaults-group-suffix=$1
 }
 
+# Kick a service to make sure it's running
+if has d; then
+  kick() {
+    has ~/docker/$1 && 
+    defined $(cd ~/docker/$1 && d info | grep stopped) && 
+    cd ~/docker/$1 && d start
+  }
+fi
+
 # Wake MacPro and SSH in
 macpro() {
-  curl https://api.lan/den/macpro/wake
+  curl api.lan/den/macpro/wake
   sleep 1
   ssh macpro
 }
@@ -19,7 +28,7 @@ path() {
 }
 
 # Change directory using ranger
-ranger-cd() {
+rcd() {
   tempfile='/tmp/chosendir'
   ranger --choosedir="$tempfile" "${@:-$(pwd)}" < $TTY
   test -f "$tempfile" &&
@@ -29,8 +38,3 @@ ranger-cd() {
   rm -f -- "$tempfile"
   ls -lah
 }
-ranger-cd-wrapper() {
-  ranger-cd
-  ls -lah
-}
-
