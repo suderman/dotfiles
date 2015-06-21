@@ -11,7 +11,7 @@ if has d; then
   kick() {
     has ~/docker/$1 && 
     defined $(cd ~/docker/$1 && d info | grep stopped) && 
-    cd ~/docker/$1 && d start
+    cd ~/docker/$1 && d refresh
   }
 fi
 
