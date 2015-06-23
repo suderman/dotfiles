@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/local
+
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
+source suderman.github.io/shelper/cloudflare.sh
+
+# CLOUDFLARE="email@example.com:foobar123example"
+# DNSIMPLE="email@example.com:foobar123example"
+# DOMAIN="myserver.com"
+
+# Prevent IP from being updated to something outside home network
+if [[ `hostname` != "nuc" ]]; then
+  echo "Command must be run on nuc"
+  exit
+fi
+
+# Update router.$DOMAIN to value of $IP
+IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+ROUTER="router.$DOMAIN"
+
+# Update DNSimple
+if defined "$DNSIMPLE"; then
+  curl  -H "X-DNSimple-Token: $DNSIMPLE" \
+        -H 'Accept: application/json' \
+        -H 'Content-Type: application/json' \
+        -X PUT \
+        -d "{\"record\":{\"content\":\"$IP\"}}" \
+        https://api.dnsimple.com/v1/domains/$DOMAIN/records/$ROUTER \
+        -s > /dev/null
+fi
+
+# Update CloudFlare
+if defined "$CLOUDFLARE"; then
+  cf_set $ROUTER $IP
+fi
+
+# Announce the update
+echo "" && msg "$ROUTER -> $IP"

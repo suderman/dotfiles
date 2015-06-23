@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 #
-# cp ~/.local/ubuntu/etc/cron.hourly-dnsimple /etc/cron.hourly/dnsimple
+# cp ~/.local/ubuntu/etc/cron.hourly-dyndns /etc/cron.hourly/dyndns
 
 # Set to my home
 HOME="/home/jon"
@@ -12,4 +12,4 @@ HOME="/home/jon"
 . $HOME/.local/sh/bashrc.sh
 
 # Update dnsimple
-$HOME/.local/ubuntu/bin/dnsimple
+$HOME/.local/ubuntu/bin/dyndns
