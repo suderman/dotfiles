@@ -3,7 +3,7 @@
 # 2015 Jon Suderman
 # https://github.com/suderman/local
 #
-# cp ~/.local/ubuntu/etc/cron.daily-backup-docker /etc/cron.daily/backup-docker
+# cp ~/.local/ubuntu/etc/cron.daily-ds-tar /etc/cron.daily/ds-tar
 
 # Set to my home
 HOME="/home/jon"
@@ -11,5 +11,5 @@ HOME="/home/jon"
 # Source my environment variables
 . $HOME/.local/sh/bashrc.sh
 
-# Create archive of ~/docker to /data/backup/docker.tar.gz
-$HOME/docker/bin/backup-docker
+# Create archive of ~/docker to /data/backup/docker
+$HOME/docker/bin/ds tar
