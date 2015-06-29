@@ -1,5 +1,4 @@
 # Run `sshconfig` to include this file in ~/.ssh/config
 
 Host $HOSTS
-  RemoteForward $PORT_SCP 127.0.0.1:22
-
+  RemoteForward $PORT_SCP 127.0.0.1:$PORT_SCP
