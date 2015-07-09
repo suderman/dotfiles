@@ -333,3 +333,39 @@ nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
+
+
+" VimShell
+Source https://github.com/Shougo/vimshell.vim
+if has('gui_macvim')
+  let g:vimshell_editor_command='mvim'
+else
+  let g:vimshell_editor_command='vim'
+endif
+let g:vimshell_right_prompt='getcwd()'
+let g:vimshell_data_directory='~/.vim/.cache/vimshell'
+let g:vimshell_vimshrc_path='~/.vim/vimshrc'
+
+nnoremap <leader>c :VimShell -split<cr>
+nnoremap <leader>cc :VimShell -split<cr>
+nnoremap <leader>cn :VimShellInteractive node<cr>
+nnoremap <leader>cl :VimShellInteractive lua<cr>
+nnoremap <leader>cr :VimShellInteractive irb<cr>
+nnoremap <leader>cp :VimShellInteractive python<cr>
+
+
+" This plugin overwrites my Source command! Bad plugin.
+" " VimFiler
+" Source https://github.com/Shougo/vimfiler.vim
+" " let g:vimfiler_as_default_explorer = 1
+" let g:vimfiler_safe_mode_by_default=0
+" let g:vimfiler_quick_look_command = 'qlmanage -p'
+" let g:vimfiler_tree_leaf_icon = ' '
+" let g:vimfiler_tree_opened_icon = '▾'
+" let g:vimfiler_tree_closed_icon = '▸'
+" let g:vimfiler_file_icon = '-'
+" let g:vimfiler_marked_file_icon = '*'
+
+
+
+

@@ -76,38 +76,36 @@ colorscheme solarized
 call s:Pmenu()
 
 " Directories for session, undo, backup, swp files
-let vim_pid = $HOME.'/.vim/session/process-'.getpid()
-let vim_sid = $HOME.'/.vim/session/session'.substitute(expand("%:p:h"),'/','-','g')
-silent! call mkdir(vim_pid, 'p', 0700)
-silent! call mkdir(vim_sid, 'p', 0700)
-
-
-
-
-
+let g:vim_pid = $HOME.'/.vim/session/process-'.getpid()
+let g:vim_sid = $HOME.'/.vim/session/session'.substitute(expand("%:p:h"),'/','-','g')
+silent! call mkdir(g:vim_pid, 'p', 0700)
+silent! call mkdir(g:vim_sid, 'p', 0700)
 
 " Track undo and open files
 if has('persistent_undo')
   set undofile
-  let &undodir=vim_sid
+  let &undodir=g:vim_sid
 endif
-let &backupdir=vim_pid
-let &directory=vim_pid
+let &backupdir=g:vim_pid
+let &directory=g:vim_pid
 
 " Track sessions
 Source https://github.com/tpope/vim-obsession
-if filereadable(vim_sid."/Session.vim")
-  au VimEnter * nested exec "source ".vim_sid."/Session.vim"
-  if bufexists(1)
-    for l in range(1, bufnr('$'))
-      if bufwinnr(l) == -1
-        exec 'sbuffer ' . l
-      endif
-    endfor
+command! -bang Session call <SID>session(<bang>0)
+function s:session(clear)
+  if (a:clear=='0') && filereadable(g:vim_sid."/Session.vim")
+    exec "source ".g:vim_sid."/Session.vim"
+    if bufexists(1)
+      for l in range(1, bufnr('$'))
+        if bufwinnr(l) == -1
+          exec 'sbuffer ' . l
+        endif
+      endfor
+    endif
   endif
-else
-  au VimEnter * exec "Obsession ".vim_sid
-endif
+  exec "Obsession ".g:vim_sid
+endfunction
+
 
 " Remember last location in file
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
@@ -358,37 +356,6 @@ let g:junkfile#directory=expand("~/.vim/.cache/junk")
 nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
 
 
-" VimShell
-Source https://github.com/Shougo/vimshell.vim
-if has('gui_macvim')
-  let g:vimshell_editor_command='mvim'
-else
-  let g:vimshell_editor_command='vim'
-endif
-let g:vimshell_right_prompt='getcwd()'
-let g:vimshell_data_directory='~/.vim/.cache/vimshell'
-let g:vimshell_vimshrc_path='~/.vim/vimshrc'
-
-nnoremap <leader>c :VimShell -split<cr>
-nnoremap <leader>cc :VimShell -split<cr>
-nnoremap <leader>cn :VimShellInteractive node<cr>
-nnoremap <leader>cl :VimShellInteractive lua<cr>
-nnoremap <leader>cr :VimShellInteractive irb<cr>
-nnoremap <leader>cp :VimShellInteractive python<cr>
-
-
-" This plugin overwrites my Source command! Bad plugin.
-" " VimFiler
-" Source https://github.com/Shougo/vimfiler.vim
-" " let g:vimfiler_as_default_explorer = 1
-" let g:vimfiler_safe_mode_by_default=0
-" let g:vimfiler_quick_look_command = 'qlmanage -p'
-" let g:vimfiler_tree_leaf_icon = ' '
-" let g:vimfiler_tree_opened_icon = '▾'
-" let g:vimfiler_tree_closed_icon = '▸'
-" let g:vimfiler_file_icon = '-'
-" let g:vimfiler_marked_file_icon = '*'
-
 "============="
 
 Source https://github.com/rgarver/Kwbd.vim
@@ -545,7 +512,7 @@ Source https://github.com/hail2u/vim-css3-syntax
 
 " LESS
 Source https://github.com/groenewege/vim-less
-au BufNewFile,BufReadPost *.less set ft=less
+" au BufNewFile,BufReadPost *.less set ft=less
 
 " .ssh/config
 au Bufread,BufNewFile {ssh-config} set ft=sshconfig
