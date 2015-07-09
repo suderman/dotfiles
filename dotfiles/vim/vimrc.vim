@@ -22,11 +22,11 @@ set showmode                           " show what mode (Insert/Normal/Visual) i
 set timeoutlen=500
 
 set number                             " show line numbers
-set relativenumber
-au InsertEnter * :set norelativenumber
-au InsertLeave * :set relativenumber
-au FocusLost *   :set norelativenumber
-au FocusGained * :set relativenumber
+" set relativenumber
+" au InsertEnter * :set norelativenumber
+" au InsertLeave * :set relativenumber
+" au FocusLost *   :set norelativenumber
+" au FocusGained * :set relativenumber
 
 
 " Airline Status Line
