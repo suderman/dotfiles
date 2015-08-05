@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# 2015 Jon Suderman
-# https://github.com/suderman/local
-
-nc localhost $PORT_PBPASTE
-

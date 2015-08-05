@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# 2015 Jon Suderman
-# https://github.com/suderman/local
-
-cat | nc -q1 localhost $PORT_PBCOPY
-
