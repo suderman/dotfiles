@@ -1,172 +1,171 @@
+#!/bin/sh
+
 # brew bundle ~/.local/osx/Brewfile
-update
-upgrade
+brew update
+brew upgrade
 
 # homebrew taps
-tap homebrew/dupes
-tap homebrew/versions
-tap homebrew/homebrew-php
-tap thoughtbot/formulae
-tap suderman/suds
-tap phinze/cask 
-tap caskroom/versions 
-tap caskroom/fonts
+brew tap homebrew/dupes
+brew tap homebrew/versions
+brew tap homebrew/homebrew-php
+brew tap thoughtbot/formulae
+brew tap suderman/suds
+brew tap phinze/cask 
+brew tap caskroom/versions 
+brew tap caskroom/fonts
 
 # homebrew external commands
-install brew-cask
+brew install brew-cask
 
 # dependencies
-cask install xquartz
-install ctags-exuberant
-install cscope
+brew cask install xquartz
+brew install ctags-exuberant
+brew install cscope
 
 # languages
-install ruby
-install chruby
-install ruby-install
-install nginx
-install php55 --with-mysql --with-cgi
-install lua
-install luajit
-install python
-cask install node
+brew install ruby
+brew install chruby
+brew install ruby-install
+brew install nginx
+brew install php55 --with-mysql --with-cgi
+brew install lua
+brew install luajit
+brew install python
+brew cask install node
 
 # databases
-install redis
-install mongodb
-install sqlite
-install mysql
-cask install sequel-pro  
+brew install redis
+brew install mongodb
+brew install sqlite
+brew install mysql
+brew cask install sequel-pro  
 
 # git
-install git
-install tig
-install gitsh
-cask install gitbox
+brew install git
+brew install tig
+brew install gitsh
+brew cask install gitbox
 
 # shell
-cask install iterm2-nightly
-install tmux
-install reattach-to-user-namespace
-install wemux
-install rcm
-install direnv
-install mobile-shell
+brew cask install iterm2
+brew install tmux
+brew install reattach-to-user-namespace
+brew install wemux
+brew install rcm
+brew install direnv
+brew install mobile-shell
 
 # shell apps
-install ssh-copy-id
-install autojump
-install ranger
-# install highlight
-install wget
-install dockutil
-install sleepwatcher
-install fswatch
-install duti
+brew install ssh-copy-id
+brew install autojump
+brew install ranger
+# brew install highlight
+brew install wget
+brew install dockutil
+brew install sleepwatcher
+brew install fswatch
+brew install duti
 # install rsync
 
 # virtual machine
-cask install vmware-fusion
-cask install virtualbox
-cask install vagrant
-install docker
-install packer
-install ec2-api-tools
+brew cask install vmware-fusion
+brew cask install virtualbox
+brew cask install vagrant
+brew install docker
+brew install packer
+brew install ec2-api-tools
 
 # dev apps
-install vim --with-client-server --with-lua --with-luajit
-install fzf
-install ack
-install ag
+brew install vim --with-client-server --with-lua --with-luajit
+brew install fzf
+brew install ack
+brew install ag
 # install heroku-toolbelt
-cask install kaleidoscope-beta
-install imagemagick --build-from-source
-install fontforge
-cask install transmit
+brew cask install kaleidoscope-beta
+brew install imagemagick --build-from-source
+brew install fontforge
+brew cask install transmit
 
 # browsers
-cask install google-chrome-canary
-cask install firefox-beta
-cask install fluid
-cask install choosy
-cask install glimmerblocker
-cask install flash-player
-cask install flip4mac
-cask install silverlight
-install w3m
+brew cask install google-chrome-canary
+brew cask install firefox-beta
+brew cask install fluid
+brew cask install choosy
+brew cask install glimmerblocker
+brew cask install flash-player
+brew cask install flip4mac
+brew cask install silverlight
+brew install w3m
 
 # utilities
-cask install dropbox
-cask install onepassword
-cask install bartender
-cask install keyboard-maestro
-cask install hyperdock
-cask install bootchamp
-cask install teleport
-cask install launchrocket
-cask install controlplane
-cask install trim-enabler
-cask install daisydisk
-cask install the-unarchiver
-cask install sequential
-cask install appcleaner
-cask install cleanmymac
-cask install shortcat
-cask install alfred
-cask alfred link
+brew cask install dropbox
+brew cask install onepassword
+brew cask install bartender
+brew cask install keyboard-maestro
+brew cask install hyperdock
+brew cask install bootchamp
+brew cask install teleport
+brew cask install launchrocket
+brew cask install controlplane
+brew cask install trim-enabler
+brew cask install daisydisk
+brew cask install the-unarchiver
+brew cask install sequential
+brew cask install appcleaner
+brew cask install cleanmymac
+brew cask install karabiner
 
 # sound
-cask install audio-hijack-pro
-cask install soundflower
-cask install fission
+brew cask install audio-hijack-pro
+brew cask install soundflower
+brew cask install fission
 
 # text
-cask install scrivener
+brew cask install scrivener
 
 # downloads
-cask install transmission
-cask install bittorrent-sync
-cask install sabnzbd
-cask install sickbeard
-cask install fourk-youtube-to-mp3
-install youtube-dl
+brew cask install transmission
+brew cask install bittorrent-sync
+brew cask install sabnzbd
+brew cask install sickbeard
+brew cask install fourk-youtube-to-mp3
+brew install youtube-dl
 
 # video
-cask install vlc
-cask install handbrake
-cask install air-video-server
-# cask install plex-media-server
-cask install plex-home-theater
-cask install airparrot
-cask install airserver
+brew cask install vlc
+brew cask install handbrake
+brew cask install air-video-server
+brew cask install plex-home-theater
+brew cask install airparrot
+brew cask install airserver
 
 # music
-install cmus
-cask install groovesquid
-cask install spotify
+brew install cmus
+brew cask install groovesquid
+brew cask install spotify
 
 # communication
-cask install skype
-cask install google-hangouts
-cask install teamviewer
-cask install slack
-install center-im
-install mutt
+brew cask install skype
+brew cask install google-hangouts
+brew cask install teamviewer
+brew cask install slack
+brew install center-im
+brew install mutt
 
 # games
-cask install steam
-cask install dolphin
-cask install controllermate
+brew cask install steam
+brew cask install dolphin
+brew cask install controllermate
 
 # quicklook plugins
-cask install qlcolorcode
-cask install qlmarkdown
-cask install qlstephen
-cask install quicklook-json
+brew cask install qlcolorcode
+brew cask install qlmarkdown
+brew cask install qlstephen
+brew cask install quicklook-json
 
 # all done
-cleanup
-cask cleanup
+brew cleanup
+brew cask cleanup
 
 # missing from cask
 #
