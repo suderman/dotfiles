@@ -283,78 +283,6 @@ let g:ctrlp_custom_ignore = {
 vmap <C-g> <ESC>:CtrlP .<CR>
 nmap <C-g> <ESC>:CtrlP .<CR>
 
-"============="
-
-" Unite & Unite-related Plugins
-" -----------------------------
-
-" VimProc for async magic
-Source https://github.com/Shougo/vimproc.vim make
-
-" Unite
-Source https://github.com/Shougo/unite.vim
-Source https://github.com/Shougo/neomru.vim
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#set_profile('files', 'context.smartcase', 1)
-call unite#custom#source('line,outline','matchers','matcher_fuzzy')
-
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
-let g:unite_source_rec_max_cache_files=5000
-let g:unite_prompt='» '
-" let g:unite_winheight = 10
-let g:unite_split_rule = 'botright'
-
-" Ag searching
-let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
-let g:unite_source_grep_recursive_opt=''
-
-function! s:unite_settings()
-  nmap <buffer> Q <plug>(unite_exit)
-  nmap <buffer> <esc> <plug>(unite_exit)
-  imap <buffer> <esc> <plug>(unite_exit)
-  nmap <buffer> <C-s> <Plug>(unite_redraw)
-  imap <buffer> <C-s> <Plug>(unite_redraw)
-endfunction
-autocmd FileType unite call s:unite_settings()
-
-" Unite mappings
-nmap <space> [unite]
-nnoremap [unite] <nop>
-
-nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
-nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
-nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
-nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
-nnoremap <silent> [unite]b :<C-u>Unite -no-split -no-start-insert -buffer-name=buffers buffer<cr>
-
-Source https://github.com/osyo-manga/unite-airline_themes
-nnoremap <silent> [unite]a :<C-u>Unite -winheight=10 -auto-preview -buffer-name=airline_themes airline_themes<cr>
-
-Source https://github.com/ujihisa/unite-colorscheme
-nnoremap <silent> [unite]c :<C-u>Unite -winheight=10 -auto-preview -buffer-name=colorschemes colorscheme<cr>
-
-Source https://github.com/tsukkee/unite-tag
-nnoremap <silent> [unite]t :<C-u>Unite -auto-resize -buffer-name=tag tag tag/file<cr>
-
-Source https://github.com/Shougo/unite-outline
-nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
-
-Source https://github.com/Shougo/unite-help
-nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
-
-Source https://github.com/Shougo/junkfile.vim
-let g:junkfile#directory=expand("~/.vim/.cache/junk")
-nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
-
 
 "============="
 
@@ -382,7 +310,8 @@ nmap <leader>w :w<CR>
 "============="
 
 Source https://github.com/justinmk/vim-sneak
-let g:sneak#streak = 0
+let g:sneak#streak = 1
+let g:sneak#s_next = 1
 " nmap <C-s> <Plug>Sneak_s
 " nmap <C-S> <Plug>Sneak_S
 
@@ -469,7 +398,7 @@ Source https://github.com/scrooloose/nerdtree
 " NERDTree toggles with ,d
 map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 map <Leader>dd :NERDTreeFind<CR>
-let NERDTreeIgnore=['\.rbc$', '\~$']
+let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
@@ -528,6 +457,7 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Capfile,config.ru} 
 
 " Markdown
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmargin=2 | set textwidth=72
+Source https://github.com/junegunn/vim-xmark make
 
 " Python
 au FileType python  set tabstop=4 textwidth=79
