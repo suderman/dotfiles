@@ -9,17 +9,11 @@ Host bam
 Host garnet
   LocalForward 3315 localhost:3306
 
-Host ginaz
-  LocalForward 3307 localhost:3306
-
 Host talisman
   LocalForward 3311 localhost:3306
 
 Host cnrl
   LocalForward 3316 localhost:3306
-
-Host handbill
-  LocalForward 3317 localhost:3306
 
 Host csmysql
   LocalForward 3318 localhost:3306
