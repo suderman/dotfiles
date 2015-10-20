@@ -82,4 +82,4 @@ export PORT_RELOAD_CHROME=2226
 # Secret environment variables
 #-----------------------------
 source if "$HOME/.local/secret/sh/env.sh"
-
+source if "$HOME/sync/env.sh"
