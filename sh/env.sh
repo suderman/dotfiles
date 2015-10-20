@@ -21,7 +21,7 @@ export VISUAL=vim
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # https://github.com/georgebrock/1pass
-(has 1pass) && export ONEPASSWORD_KEYCHAIN="$HOME/Dropbox/sync/1Password.agilekeychain"
+(has 1pass) && export ONEPASSWORD_KEYCHAIN="$HOME/.sync/1Password/1Password.agilekeychain"
 
 # https://github.com/jimeh/tmuxifier
 if has tmuxifier; then 
@@ -81,5 +81,4 @@ export PORT_RELOAD_CHROME=2226
 #-----------------------------
 # Secret environment variables
 #-----------------------------
-source if "$HOME/.local/secret/sh/env.sh"
-source if "$HOME/sync/env.sh"
+source if "$HOME/.sync/local/sh/env.sh"
