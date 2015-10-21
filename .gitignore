@@ -2,4 +2,6 @@
 share/**
 secret
 secret/**
+private
+private/**
 npm-debug.log
