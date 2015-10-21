@@ -27,7 +27,7 @@ if (has 1pass); then
   export ONEPASSWORD_PATH=$(which 1pass)
   1pass() { 
     local pass=$(echo $ONEPASSWORD | base64 -D) 
-    echo "$pass" | $ONEPASSWORD_PATH --no-prompt --fuzzy --path "$ONEPASSWORD_KEYCHAIN" "$1"
+    echo "$pass" | $ONEPASSWORD_PATH --no-prompt --fuzzy --path "$ONEPASSWORD_KEYCHAIN" "\"$1\""
   }
 fi
 
