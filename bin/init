@@ -40,7 +40,7 @@ installing "rcm"
 curl -sS suderman.github.io/install/rcm | sh
 
 # Ensure the .rcrc file exists before rcup is run at all
-msg "Symlinking ~/.rcrc and running rcup"
+msg "Copying ~/.rcrc and running rcup"
 cp -f ~/.local/dotfiles/rcrc ~/.rcrc
 rcup
 
