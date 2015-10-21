@@ -23,7 +23,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # https://github.com/georgebrock/1pass
 if (has 1pass); then
   export ONEPASSWORD=""
-  export ONEPASSWORD_KEYCHAIN="$HOME/.sync/1Password/1Password.agilekeychain"
+  export ONEPASSWORD_KEYCHAIN="$HOME/.private/1Password/1Password.agilekeychain"
   export ONEPASSWORD_PATH=$(which 1pass)
   1pass() { 
     local pass=$(echo $ONEPASSWORD | base64 -D) 
@@ -90,4 +90,4 @@ export PORT_RELOAD_CHROME=2226
 #-----------------------------
 # Secret environment variables
 #-----------------------------
-source if "$HOME/.sync/local/sh/env.sh"
+source if "$HOME/.private/local/sh/env.sh"
