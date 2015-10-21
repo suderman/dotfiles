@@ -78,7 +78,7 @@ call s:Pmenu()
 " Directories for session, undo, backup, swp files
 let g:vim_pid = $HOME.'/.vim/session/process-'.getpid()
 let g:vim_sid = $HOME.'/.vim/session/session'.substitute(expand("%:p:h"),'/','-','g')
-silent! call mkdir(g:vim_pid, 'p', 0700)
+silent! call mkdir(g:vim_pid, 'p', 0701)
 silent! call mkdir(g:vim_sid, 'p', 0700)
 
 " Track undo and open files
@@ -274,6 +274,7 @@ nmap <S-k> :Buffers<CR>
 " CtrlP
 Source https://github.com/kien/ctrlp.vim
 
+let g:ctrlp_cache_dir = $HOME.'/.vim/session'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_map = ''
 let g:ctrlp_custom_ignore = {
