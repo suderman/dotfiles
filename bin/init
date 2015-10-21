@@ -32,7 +32,7 @@ git clone-pull https://github.com/suderman/local.git ~/.local
 
 # Symlink private repo if available
 if has ~/.private/local; then
-  ln -s ~/.private/local ~/.local/private
+  rm ~/.local/private && ln -s ~/.private/local ~/.local/private
 fi
 
 # Install rcm to manage the dotfiles
