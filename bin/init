@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 
 # Open a terminal and run this command:
@@ -30,27 +30,9 @@ curl -sS suderman.github.io/git-clone-pull/install | sh
 installing "~/.local"
 git clone-pull https://github.com/suderman/local.git ~/.local
 
-# Check if secret repo should be installed
-if hasnt ~/.local/skip-secret; then
-  if has ~/.local/secret || ask "Do you want to install $_cyan_~/.local/secret$_white_ on this computer?"; then
-    secret=true
-  else
-    touch ~/.local/skip-secret
-  fi
-fi
-
-# Don't install this on just any system
-if defined secret; then
-
-  # Secret repo contains SSH and other sensitive config
-  installing "~/.local/secret"
-  git clone-pull https://github.com/suderman/secret.git ~/.local/secret
-
-  # Update remote origins to use SSH
-  msg "Updating remote origins for ~/.local and ~/.local/secret to use SSH"
-  cd ~/.local && git remote set-url origin git@github.com:suderman/local.git
-  cd ~/.local/secret && git remote set-url origin git@github.com:suderman/secret.git
-
+# Symlink private repo if available
+if has ~/.private/local; then
+  ln -s ~/.private/local ~/.local/private
 fi
 
 # Install rcm to manage the dotfiles
@@ -59,7 +41,7 @@ curl -sS suderman.github.io/install/rcm | sh
 
 # Ensure the .rcrc file exists before rcup is run at all
 msg "Symlinking ~/.rcrc and running rcup"
-ln -sf ~/.local/dotfiles/rcrc ~/.rcrc
+cp -f ~/.local/dotfiles/rcrc ~/.rcrc
 rcup
 
 # Install Bash it
