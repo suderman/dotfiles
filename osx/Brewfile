@@ -144,6 +144,7 @@ brew cask install airserver
 brew install cmus
 brew cask install groovesquid
 brew cask install spotify
+brew cask install spotify-notifications
 
 # communication
 brew cask install skype
