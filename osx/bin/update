@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 2014 Jon Suderman
+# 2015 Jon Suderman
 # https://github.com/suderman/local
 
 # Helper methods for prettier shell scripting - http://suderman.github.io/shelper
@@ -36,6 +36,10 @@ installing "launchdn and launchup"
 curl -sS suderman.github.io/launchup/install | sh
 msg "Running launchdn and launchup"
 launchdn && launchup
+
+# Symlinking ~/.mackup.cfg
+msg "Symlinking ~/.mackup.cfg"
+has ~/.local/osx/mackup.$(hostname).cfg && ln -sf ~/.local/osx/mackup.$(hostname).cfg ~/.mackup.cfg
 
 # Install node & npm
 installing "nodejs and npm"

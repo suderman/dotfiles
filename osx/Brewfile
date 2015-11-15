@@ -56,6 +56,7 @@ brew install direnv
 brew install mobile-shell
 
 # shell apps
+brew install mackup
 brew install ssh-copy-id
 brew install autojump
 brew install ranger
