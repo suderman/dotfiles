@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# brew bundle ~/.local/osx/Brewfile
 brew update
 brew upgrade
 
@@ -109,6 +108,12 @@ brew cask install hazel
 brew cask install tg-pro
 brew cask install flux
 brew cask install viscosity
+brew cask install lingon-x
+brew cask install moom
+brew cask install cocktail
+brew cask install geektool
+brew cask install little-snitch
+
 
 # sound
 brew cask install soundflower
@@ -129,7 +134,6 @@ brew cask install vlc
 brew cask install handbrake
 brew cask install air-video-server
 brew cask install plex-home-theater
-brew cask install plex-home-player
 brew cask install airparrot
 brew cask install airserver
 
@@ -143,7 +147,6 @@ brew cask install spotify-notifications
 brew cask install telegram
 brew cask install skype
 brew cask install google-hangouts
-brew cask install teamviewer
 brew cask install slack
 brew install center-im
 brew install mutt
@@ -164,24 +167,26 @@ brew cleanup
 brew cask cleanup
 
 # missing from cask
+# https://itunes.apple.com/ca/app/
 #
 # Xcode.app:                             xcode/id497799835
 # Disk Sensei
 
+# appstore(){ 
+#   open macappstore://itunes.apple.com/ca/app/$1 
+#   read -n1 -r -p "Press space to continue..." key
+# }
+#
+# app Teleport/teleport.zip
+# app mocksmtp/id423535515
+
 # MadCatzCyborgRAT.prefPane:             nstn5qgytsrarl2/CyborgRAT.zip
-# Printopia.prefPane:                    srpfdbxx35g35pj/Printopia.zip --open
 # MockSmtp.app:                          mocksmtp/id423535515
-# OpenDNS Updater.app:                   7yg61t559wb7izc/OpenDNS-Updater.zip
 # Touvaly.app:                           tfqfa9tc52lyli3/Touvaly.dmg
-# DragonDrop.app:                        dragondrop/id499148234
-# Launchpad-Control.prefPane:            jyqrk79gdmxpxiu/Launchpad-Control.zip
 # SymbolicLinker.service:                sdk6lbzkygle5jw/SymbolicLinker.dmg
-# KeyBindingsEditor.app:                 bmqpa7r22p3e0om/KeyBindingsEditor.dmg
 # Aeon Timeline.app:                     tjes0nk2fg7ekub/AeonTimeline.dmg
 # Microsoft Word.app:                    ncheogj7u0tqd2u/Office-2011.dmg
 # Adobe Photoshop CS6.app:               tnzs36orgugn1dv/Photoshop-CS6.dmg --open
-# Adobe Fireworks CS6.app:               0pzfhfbik5b6n7k/Fireworks-CS6.dmg --open
-# Adobe Illustrator.app:                 wa8zq9gbfg8wohu/Illustrator-CS6.dmg --open
 # Final Cut Pro.app:                     final-cut-pro/id424389933
 # Lock & Load.fxplug:                    4zvvinm1hzwlrt2/CoreMeltLockAndLoad.dmg
 # Fisheye Removal Plugin.moef:           ns2ax6aavom78wu/Fisheye-Removal-Plugin-Installer.pkg
