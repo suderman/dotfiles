@@ -167,18 +167,11 @@ brew cleanup
 brew cask cleanup
 
 # missing from cask
-# https://itunes.apple.com/ca/app/
 #
-# Xcode.app:                             xcode/id497799835
-# Disk Sensei
-
-# appstore(){ 
-#   open macappstore://itunes.apple.com/ca/app/$1 
-#   read -n1 -r -p "Press space to continue..." key
-# }
-#
-# app Teleport/teleport.zip
-# app mocksmtp/id423535515
+app xcode/id497799835
+app 'Disk Sensei/Disk Sensei.dmg'
+app Teleport/teleport.zip
+app mocksmtp/id423535515
 
 # MadCatzCyborgRAT.prefPane:             nstn5qgytsrarl2/CyborgRAT.zip
 # MockSmtp.app:                          mocksmtp/id423535515
