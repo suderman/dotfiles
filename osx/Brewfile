@@ -167,19 +167,21 @@ brew cleanup
 brew cask cleanup
 
 # missing from cask
-#
-app xcode/id497799835
-app 'Disk Sensei/Disk Sensei.dmg'
-app Teleport/teleport.zip
-app mocksmtp/id423535515
 
-# MadCatzCyborgRAT.prefPane:             nstn5qgytsrarl2/CyborgRAT.zip
-# MockSmtp.app:                          mocksmtp/id423535515
-# Touvaly.app:                           tfqfa9tc52lyli3/Touvaly.dmg
-# SymbolicLinker.service:                sdk6lbzkygle5jw/SymbolicLinker.dmg
-# Aeon Timeline.app:                     tjes0nk2fg7ekub/AeonTimeline.dmg
+osx /usr/local/bin/vim                 || brew install vim --with-client-server --with-lua --with-luajit
+osx mutt                               || brew install mutt
+osx GoogleTalkBrowserPlugin.plugin     || brew cask install google-hangouts
+osx Xcode.app                          || app xcode/id497799835
+osx Disk Sensei.app                    || app Disk-Sensei/Disk-Sensei.dmg    
+osx Hazel.prefPane                     || app Hazel/Hazel.dmg               
+osx teleport.prefPane                  || app Teleport/teleport.zip         
+osx MockSMTP.app                       || app mocksmtp/id423535515          
+osx ScreenDimmer.app                   || app screendimmer/id562058942
+osx Aeon Timeline.app                  || app Aeon-Timeline/AeonTimeline.dmg  
+
+app Mad-Catz-RAT/Mad-Catz-RAT-Driver.pkg 
+
 # Microsoft Word.app:                    ncheogj7u0tqd2u/Office-2011.dmg
-# Adobe Photoshop CS6.app:               tnzs36orgugn1dv/Photoshop-CS6.dmg --open
 # Final Cut Pro.app:                     final-cut-pro/id424389933
 # Lock & Load.fxplug:                    4zvvinm1hzwlrt2/CoreMeltLockAndLoad.dmg
 # Fisheye Removal Plugin.moef:           ns2ax6aavom78wu/Fisheye-Removal-Plugin-Installer.pkg
@@ -187,8 +189,4 @@ app mocksmtp/id423535515
 # GoPro Studio.app:                      iik1ghu2h1afa3d/GoProStudio.dmg
 # Newshosting.app:                       nbipmpq44f9q8fu/Newshosting.dmg
 # RemoteMapper.app:                      tj82m71xw1btvmk/RemoteMapper.zip
-# SMBUp.app:                             j1098s8i0jofwmd/SMBUp.zip
-# Smutefy.app:                           2qz07v89y2vnk2d/Smutefy.zip
-# YouTube to MP3.app:                    4o5zldmvegornsq/YouTubeToMP3.dmg
-# MediaHuman YouTube Downloader.app:     b5wmkiwhfg3zawm/YouTubeDownloader.dmg
 

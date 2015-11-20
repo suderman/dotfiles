@@ -23,8 +23,10 @@ installing() { msg "Installing $(cyan "$1")..."; }
 msg "Keeping this computer up to snuff..."
 
 # Ensure git & git-clone-pull exists
-installing "git and git-clone-pull"
-curl -sS suderman.github.io/git-clone-pull/install | sh
+if hasnt git-clone-pull; then
+  installing "git and git-clone-pull"
+  curl -sS suderman.github.io/git-clone-pull/install | sh
+fi
 
 # Git clone/pull this repo to the home directory
 installing "~/.local"
@@ -36,8 +38,10 @@ if has ~/.private/local; then
 fi
 
 # Install rcm to manage the dotfiles
-installing "rcm"
-curl -sS suderman.github.io/install/rcm | sh
+if hasnt rcup; then
+  installing "rcm"
+  curl -sS suderman.github.io/install/rcm | sh
+fi
 
 # Ensure the .rcrc file exists before rcup is run at all
 msg "Copying ~/.rcrc and running rcup"
@@ -75,8 +79,10 @@ source ~/.local/sh/path.sh
 source ~/.local/sh/env.sh
 
 # Install sshconfig to manage ~/.ssh/config
-installing "sshconfig"
-curl -sS suderman.github.io/sshconfig/install | sh
+if hasnt sshconfig; then
+  installing "sshconfig"
+  curl -sS suderman.github.io/sshconfig/install | sh
+fi
 msg "Running sshconfig"
 sshconfig
 

@@ -23,17 +23,19 @@ if [ "$2" != "skip-init" ]; then init "$answer" skip-update; fi
 msg "Keeping OS X up to snuff..."
 
 # Verify xcode
-installing "xcode"
 r="$(pkgutil --pkg-info=com.apple.pkg.CLTools_Executables 2>/dev/null | grep -v version)"
 if [ "$r" == '' ]; then
+  installing "xcode"
   echo "Xcode Coommand Line Tools needed. Installing now"
   xcode-select --install
   exit 1
 fi
 
 # Install launchup to manage launchd plists
-installing "launchdn and launchup"
-curl -sS suderman.github.io/launchup/install | sh
+if hasnt launchup; then
+  installing "launchdn and launchup"
+  curl -sS suderman.github.io/launchup/install | sh
+fi
 msg "Running launchdn and launchup"
 launchdn && launchup
 
@@ -41,29 +43,37 @@ launchdn && launchup
 msg "Symlinking ~/.mackup.cfg"
 has ~/.local/osx/mackup.$(hostname).cfg && ln -sf ~/.local/osx/mackup.$(hostname).cfg ~/.mackup.cfg
 
+# osx & app help install OS X apps
+has osx || curl https://raw.githubusercontent.com/suderman/osx/master/install.sh | sh
+has app || curl https://raw.githubusercontent.com/suderman/app/master/install.sh | sh
+
 # Install node & npm
-installing "nodejs and npm"
-curl -sS suderman.github.io/install/node | sh
+if hasnt node; then
+  installing "nodejs and npm"
+  curl -sS suderman.github.io/install/node | sh
+fi
 
 # Install MySQL
-installing "mysql"
-curl -sS suderman.github.io/install/mysql | sh
-
-# Install packages
-if ask "Do you want to install $(cyan "Homebrew, Node, Python and Ruby packages") on this computer?"; then
-
-  msg "Updating packages in Brewfile"
-  brew bundle ~/.local/osx/Brewfile
-
-  msg "Updating packages in Npmfile"
-  npm-bundle ~/.local/osx/Npmfile
-
-  msg "Updating packages in Pipfile"
-  pip install -r ~/.local/osx/Pipfile
-
-  msg "Updating packages in Gemfile"
-  cd ~/.local/osx && bundle install
+if hasnt mysql; then
+  installing "mysql"
+  curl -sS suderman.github.io/install/mysql | sh
 fi
+
+# # Install packages
+# if ask "Do you want to install $(cyan "Homebrew, Node, Python and Ruby packages") on this computer?"; then
+#
+#   msg "Updating packages in Brewfile"
+#   brew bundle ~/.local/osx/Brewfile
+#
+#   msg "Updating packages in Npmfile"
+#   npm-bundle ~/.local/osx/Npmfile
+#
+#   msg "Updating packages in Pipfile"
+#   pip install -r ~/.local/osx/Pipfile
+#
+#   msg "Updating packages in Gemfile"
+#   cd ~/.local/osx && bundle install
+# fi
 
 msg "...done!"
 
