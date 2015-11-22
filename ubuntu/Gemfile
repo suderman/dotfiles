@@ -1,6 +1,0 @@
-# cd ~/.local/ubuntu && bundle install
-source 'https://rubygems.org'
-
-gem 'foreman'
-gem 'rails'
-

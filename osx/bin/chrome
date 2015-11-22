@@ -1,3 +1,0 @@
-#!/bin/bash
-open -a "/opt/homebrew-cask/Caskroom/google-chrome-canary/latest/Google Chrome Canary.app" --args --force-renderer-accessibility
-

@@ -33,10 +33,10 @@ antigen apply
 #------------------
 # ZSH Configuration
 #------------------
-source ~/.local/sh/path.sh
-source ~/.local/sh/env.sh
-source ~/.local/sh/aliases.sh
-source ~/.local/sh/functions.sh
+source ~/.sh/path*.sh
+source ~/.sh/env*.sh
+source ~/.sh/aliases*.sh
+source ~/.sh/functions*.sh
 
 # vi mode
 bindkey -v

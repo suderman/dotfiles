@@ -38,3 +38,8 @@ rcd() {
   rm -f -- "$tempfile"
   ls -lah
 }
+
+#------------------------------------------
+# Tag & Host specific functions
+#------------------------------------------
+for functions in ~/.sh/functions-*.sh; do source $functions; done

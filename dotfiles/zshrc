@@ -1,4 +1,0 @@
-source ~/.local/sh/zshrc.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source /Users/jon/.iterm2_shell_integration.zsh

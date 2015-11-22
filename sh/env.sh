@@ -20,18 +20,6 @@ export VISUAL=vim
 # Would be nice if configuration all went in one directory
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# https://github.com/georgebrock/1pass
-if (has 1pass); then
-  export ONEPASSWORD=""
-  export ONEPASSWORD_KEYCHAIN="$HOME/.private/1Password/1Password.agilekeychain"
-  export ONEPASSWORD_PATH=$(which 1pass)
-  1pass() { 
-    local pass=$(echo $ONEPASSWORD | base64 -D) 
-    echo "$pass" | $ONEPASSWORD_PATH --no-prompt --fuzzy --path "$ONEPASSWORD_KEYCHAIN" "\"$1\""
-  }
-fi
-
-
 # https://github.com/jimeh/tmuxifier
 if has tmuxifier; then 
   export TMUXIFIER_LAYOUT_PATH="$HOME/.local/tmux/layouts"
@@ -47,12 +35,6 @@ fi
 # ec2-api-tools
 (has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
-
-# https://github.com/suderman/launchup
-(is osx) && export LAUNCHD_PLISTS=$HOME/.local/osx/launchd
- 
-# boot2docker
-(is osx) && export DOCKER_HOST=tcp://localhost:4243
 
 #------------------------------------------
 # Cross-platform host & port configuration
@@ -87,7 +69,7 @@ export PORT_PBPASTE=2225
 export PORT_RELOAD_CHROME=2226
 
 
-#-----------------------------
-# Secret environment variables
-#-----------------------------
-source if "$HOME/.private/local/sh/env.sh"
+#------------------------------------------
+# Tag & Host specific environment variables
+#------------------------------------------
+for env in ~/.sh/env-*.sh; do source $env; done

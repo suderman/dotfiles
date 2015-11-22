@@ -10,27 +10,14 @@ MYPATH="bin"
 (has ~/bin) && \
   MYPATH="$MYPATH:$HOME/bin"
 
-# Local bin for OS X
-(is osx) && \
-  MYPATH="$MYPATH:$HOME/.local/osx/bin"
-
-# Local bin for Ubuntu
-(is ubuntu) && \
-  MYPATH="$MYPATH:$HOME/.local/ubuntu/bin"
-
-# Local bin
-(has ~/.local/bin) && \
-  MYPATH="$MYPATH:$HOME/.local/bin"
-
 # Vim bin
 (has ~/.vim/bin) && \
   MYPATH="$MYPATH:$HOME/.vim/bin"
 
 # linuxbrew
-if has ~/.linuxbrew; then
-  MYPATH="$MYPATH:$HOME/.linuxbrew/bin"
+(has ~/.linuxbrew) && \
+  MYPATH="$MYPATH:$HOME/.linuxbrew/bin" && \
   export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
-fi
 
 # usr local bin (often Homebrew)
 MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"

@@ -1,7 +1,7 @@
 .DS_Store
-share/**
-secret
-secret/**
 private
 private/**
 npm-debug.log
+vim/backup          
+vim/bundle
+vim/session

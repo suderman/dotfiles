@@ -81,7 +81,10 @@ alias dkps="docker ps -a";
 # dockers - all images and processes
 alias dks="docker images; docker ps -a"
 
-alias cdd="cd ~/.local/ubuntu/docker"
-
 unalias d 2>/dev/null
 unalias sudo 2>/dev/null
+
+#------------------------------------------
+# Tag & Host specific aliases
+#------------------------------------------
+for aliases in ~/.sh/aliases-*.sh; do source $aliases; done

@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# 2015 Jon Suderman
+# https://github.com/suderman/dotfiles
+
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
+
+
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+# ▀▄▀▄▀▄   Bootstrap my system   ▄▀▄▀▄▀
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+#
+has brew || ruby -e "$(curl -fsSL raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+
+
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+
+sudo apt-get update
+sudo apt-get upgrade
+brew update
+brew upgrade
+
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+# ▀▄▀▄▀▄     Things I like       ▄▀▄▀▄▀
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+#
+has node         || sudo apt-get install nodejs
+has npm          || sudo apt-get install npm
+has sshd         || sudo apt-get install openssh-server
+has ssh          || sudo apt-get install openssh-client
+has sshpass      || sudo apt-get install sshpass
+has zsh          || sudo apt-get install zsh
+has htop         || sudo apt-get install htop
+has tmux         || brew install tmux
+has ranger       || brew install ranger
+has vim          || brew install vim
+has chruby       || brew install chruby
+has ruby-install || brew install ruby-install
+has ag           || brew install ag
+
+
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+
+# gem install foreman
+# gem install rails
+#
+# npm install -g bower
+# npm install -g grunt
+# npm install -g sng
+# npm install -g less
+# npm install -g coffee-script
+# npm install -g uglify-js
+# npm install -g importer
+# npm install -g tldr
+#
+# pip install Cheetah

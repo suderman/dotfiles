@@ -1,4 +1,0 @@
-DOTFILES_DIRS="$HOME/.local/dotfiles $HOME/.private/local/dotfiles"
-EXCLUDES="README.md"
-COPY_ALWAYS="rcrc ssh/*.pem ssh/*.key ssh/*.pub ssh/*.pub.opt ssh/authorized_keys"
-

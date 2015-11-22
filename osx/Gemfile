@@ -1,8 +1,0 @@
-# cd ~/.local/osx && bundle install
-source 'https://rubygems.org'
-
-gem 'foreman'
-gem 'rails'
-gem 'lunchy'
-gem 'lolcommits'
-
