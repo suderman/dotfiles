@@ -22,7 +22,6 @@ antigen use oh-my-zsh
 antigen bundle osx 
 antigen bundle git
 antigen bundle heroku
-antigen bundle colored-man-pages
 antigen bundle brew 
 antigen bundle brew-cask 
 antigen bundle tmux 

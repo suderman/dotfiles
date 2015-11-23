@@ -1,3 +1,6 @@
+# launchd
+export LAUNCHD_PLISTS="~/.launchd"
+
 # https://github.com/georgebrock/1pass
 if (has 1pass); then
   export ONEPASSWORD=""
@@ -10,4 +13,4 @@ if (has 1pass); then
 fi
 
 # boot2docker
-(is osx) && export DOCKER_HOST=tcp://localhost:4243
+export DOCKER_HOST=tcp://localhost:4243
