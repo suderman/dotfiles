@@ -4,7 +4,7 @@
 # https://github.com/suderman/dotfiles
 
 # Open a terminal and run this command:
-# bash <(curl https://raw.githubusercontent.com/suderman/local/master/install.sh)
+# bash <(curl https://raw.githubusercontent.com/suderman/dotfiles/master/install.sh)
 
 # Helper methods for prettier shell scripting - http://suderman.github.io/shelper
 eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"

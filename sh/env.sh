@@ -1,5 +1,5 @@
 # 2015 Jon Suderman
-# https://github.com/suderman/local
+# https://github.com/suderman/dotfiles
 
 #---------------------------
 # Environment Variables
@@ -19,12 +19,6 @@ export VISUAL=vim
 
 # Would be nice if configuration all went in one directory
 export XDG_CONFIG_HOME="$HOME/.config"
-
-# https://github.com/jimeh/tmuxifier
-if has tmuxifier; then 
-  export TMUXIFIER_LAYOUT_PATH="$HOME/.local/tmux/layouts"
-  eval "$(tmuxifier init -)"
-fi
 
 # chruby
 if has $brew_prefix/share/chruby/chruby.sh; then

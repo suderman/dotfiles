@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 2015 Jon Suderman
-# https://github.com/suderman/local/
+# https://github.com/suderman/dotfiles
 
 # Usage: echo $(escape "$1")
 escape() { 

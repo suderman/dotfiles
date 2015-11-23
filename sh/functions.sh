@@ -1,5 +1,5 @@
 # 2015 Jon Suderman
-# https://github.com/suderman/local
+# https://github.com/suderman/dotfiles
 
 # MySQL suffix shortcut
 mysqls() {

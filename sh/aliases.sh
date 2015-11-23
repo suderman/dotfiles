@@ -1,12 +1,12 @@
 # 2015 Jon Suderman
-# https://github.com/suderman/local
+# https://github.com/suderman/dotfiles
 
 # Use human-readable filesizes
 alias du="du -h"
 alias df="df -h"
 
 # Quick access to dotfiles
-alias dotfiles='cd $HOME/.local/dotfiles; ls -lh'
+alias dotfiles='cd $HOME/./dotfiles; ls -lh'
 
 # bundler laziness
 if has bundle; then

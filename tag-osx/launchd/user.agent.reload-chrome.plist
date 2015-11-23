@@ -8,7 +8,7 @@
     <true/>
     <key>ProgramArguments</key>
     <array>
-      <string>~/.local/osx/bin/reload-chrome</string>
+      <string>~/bin/reload-chrome</string>
     </array>
     <key>inetdCompatibility</key>
     <dict>

@@ -10,7 +10,7 @@
     <array>
       <string>/usr/bin/ruby</string>
       <string>-e</string>
-      <string>`~/.local/osx/bin/quicky #{gets}`</string>
+      <string>`~/bin/quicky #{gets}`</string>
     </array>
     <key>inetdCompatibility</key>
     <dict>
