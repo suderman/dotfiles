@@ -1,6 +1,9 @@
 # Helper methods for prettier shell scripting - http://suderman.github.io/shelper
 eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
 
+# Enable null glob
+setopt null_glob
+
 # Prevent oh-my-zsh from messing with tmux windows
 export DISABLE_AUTO_TITLE="true"
 
@@ -19,7 +22,7 @@ antigen use oh-my-zsh
 antigen bundle osx 
 antigen bundle git
 antigen bundle heroku
-antigen bundle colored-man
+antigen bundle colored-man-pages
 antigen bundle brew 
 antigen bundle brew-cask 
 antigen bundle tmux 

@@ -1,6 +1,9 @@
 # Helper methods for prettier shell scripting - http://suderman.github.io/shelper
 eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
 
+# Enable null glob
+shopt -s nullglob
+
 # Vi mode
 set -o vi
 KEYTIMEOUT=0
