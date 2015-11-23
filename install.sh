@@ -35,6 +35,7 @@ if hasnt /usr/local/bin/brew && hasnt ~/.linuxbrew/bin/brew; then
 
     # Install Homebrew
     ruby -e "$(curl -fsSL raw.githubusercontent.com/Homebrew/install/master/install)"
+    export PATH="/usr/local/bin:$PATH"
 
   # Ubuntu's Homebrew has its own dependencies served via apt-get
   elif is ubuntu; then
@@ -45,6 +46,7 @@ if hasnt /usr/local/bin/brew && hasnt ~/.linuxbrew/bin/brew; then
                             libncurses-dev zlib1g-dev
     # Install Homebrew
     ruby -e "$(curl -fsSL raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+    export PATH="~/.linuxbrew/bin:$PATH"
 
   fi
 fi
