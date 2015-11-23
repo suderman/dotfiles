@@ -39,10 +39,10 @@ if hasnt /usr/local/bin/brew && hasnt ~/.linuxbrew/bin/brew; then
   # Ubuntu's Homebrew has its own dependencies served via apt-get
   elif is ubuntu; then
 
-    sudo apt-get update
-    sudo apt-get install build-essential curl git m4 ruby texinfo        \
-                         libbz2-dev libcurl4-openssl-dev libexpat-dev    \
-                         libncurses-dev zlib1g-dev
+    sudo apt-get update --fix-missing
+    sudo apt-get install -y build-essential curl git m4 ruby texinfo        \
+                            libbz2-dev libcurl4-openssl-dev libexpat-dev    \
+                            libncurses-dev zlib1g-dev
     # Install Homebrew
     ruby -e "$(curl -fsSL raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 
@@ -93,4 +93,4 @@ source ~/.sh/path.sh
 source ~/.sh/env.sh
 
 msg "Running update"
-update
+~/bin/update
