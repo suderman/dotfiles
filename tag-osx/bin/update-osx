@@ -105,7 +105,6 @@ osx ec2-describe-regions            || brew install ec2-api-tools
 # ▀▄▀▄▀▄       Development       ▄▀▄▀▄▀
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 #
-osx fzf                             || brew install fzf
 osx ack                             || brew install ack
 osx ag                              || brew install ag
 osx /usr/local/bin/vim              || brew install vim --with-client-server --with-lua --with-luajit
