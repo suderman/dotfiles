@@ -80,13 +80,13 @@ HOSTNAME=$(hostname)
 is osx && HOSTNAME=$(scutil --get ComputerName)
 
 # If there's a host match, set the rcrc
-if has ~/.dotfiles/host-$HOSTNAME; then
-  RCRC="~/.dotfiles/host-$HOSTNAME/rcrc" rcup
+if has $HOME/.dotfiles/host-$HOSTNAME; then
+  RCRC="$HOME/.dotfiles/host-$HOSTNAME/rcrc" rcup
 
 # Otherwise, go by OS type
 else
-  is ubuntu && RCRC="~/.dotfiles/tag-ubuntu/rcrc" rcup
-  is osx    && RCRC="~/.dotfiles/tag-osx/rcrc" rcup
+  is ubuntu && RCRC="$HOME/.dotfiles/tag-ubuntu/rcrc" rcup
+  is osx    && RCRC="$HOME/.dotfiles/tag-osx/rcrc" rcup
 fi
 # -------------------------------------------------------------------------
 
