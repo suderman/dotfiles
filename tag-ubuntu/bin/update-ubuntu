@@ -16,7 +16,7 @@ has brew || ruby -e "$(curl -fsSL raw.githubusercontent.com/Homebrew/linuxbrew/g
 
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 
-sudo apt-get update
+sudo apt-get update --fix-missing
 sudo apt-get upgrade
 brew update
 brew upgrade
@@ -25,13 +25,13 @@ brew upgrade
 # ▀▄▀▄▀▄     Things I like       ▄▀▄▀▄▀
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 #
-has node         || sudo apt-get install nodejs
-has npm          || sudo apt-get install npm
-has sshd         || sudo apt-get install openssh-server
-has ssh          || sudo apt-get install openssh-client
-has sshpass      || sudo apt-get install sshpass
-has zsh          || sudo apt-get install zsh
-has htop         || sudo apt-get install htop
+has node         || sudo apt-get -y install nodejs
+has npm          || sudo apt-get -y install npm
+has sshd         || sudo apt-get -y install openssh-server
+has ssh          || sudo apt-get -y install openssh-client
+has sshpass      || sudo apt-get -y install sshpass
+has zsh          || sudo apt-get -y install zsh
+has htop         || sudo apt-get -y install htop
 has tmux         || brew install tmux
 has ranger       || brew install ranger
 has vim          || brew install vim
