@@ -70,24 +70,11 @@ fi
 installing "rcm"
 brew install thoughtbot/formulae/rcm
 
-# -------------------------------------------------------------------------
-# IMPORTANT - this step decides which which rcrc file is used with rcm!
-# -------------------------------------------------------------------------
 msg "Running rcup"
+HOSTNAME=$(if is osx; then scutil --get ComputerName; else hostname; fi)
+TAG=$(if is osx; then echo osx; else echo ubuntu; fi)
+rcdn && rcup -B $HOSTNAME -t $TAG rcrc && rcup
 
-# Consistently set hostname variable (OS X is odd here)
-HOSTNAME=$(hostname)
-is osx && HOSTNAME=$(scutil --get ComputerName)
-
-# If there's a host match, set the rcrc
-if has $HOME/.dotfiles/host-$HOSTNAME; then
-  RCRC="$HOME/.dotfiles/host-$HOSTNAME/rcrc" rcup
-
-# Otherwise, go by OS type
-else
-  is ubuntu && RCRC="$HOME/.dotfiles/tag-ubuntu/rcrc" rcup
-  is osx    && RCRC="$HOME/.dotfiles/tag-osx/rcrc" rcup
-fi
 # -------------------------------------------------------------------------
 
 msg "Sourcing environment variables"

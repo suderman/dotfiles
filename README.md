@@ -29,8 +29,9 @@ Once ready, open a terminal and run this command:
 Usage
 -----
 
-Symlinked dotfiles are brought up with `rcup` or down with `rcdn`, using
-the `~/.rcrc` for configuration. Environment variables and shell functions 
-are sourced from the home directory's `~/.sh` folder. User commands are 
-stored in the home directory's `~/bin` folder, including the `update` command 
-(which is a good command to periodically run!).
+Symlinked dotfiles are brought down with `rcdn` and back up again with
+`rcup -B hostname -t osx/ubuntu rcrc && rcup`, using the `~/.rcrc` for 
+configuration. Environment variables and shell functions are sourced from 
+the home directory's `~/.sh` folder. User commands are stored in the home 
+directory's `~/bin` folder, including the `update` command (which is a good 
+command to periodically run!).
