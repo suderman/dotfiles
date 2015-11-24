@@ -17,10 +17,10 @@ unset MAILCHECK
 (has $BASH_IT) && source $BASH_IT/bash_it.sh
 
 # Use what I can
-source ~/.sh/path*.sh
-source ~/.sh/env*.sh
-source ~/.sh/aliases*.sh
-source ~/.sh/functions*.sh
+source ~/.sh/path.sh
+source ~/.sh/env.sh
+source ~/.sh/aliases.sh
+source ~/.sh/functions.sh
 
 # http://direnv.net
 (has direnv) && eval "$(direnv hook $(shell))" 
