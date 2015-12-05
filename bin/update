@@ -29,9 +29,7 @@ updating "~/.dotfiles"
 git clone-pull https://github.com/suderman/dotfiles.git ~/.dotfiles
 
 msg "Running rcup"
-HOSTNAME=$(if is osx; then scutil --get ComputerName; else hostname; fi)
-TAG=$(if is osx; then echo osx; else echo ubuntu; fi)
-rcdn && rcup -B $HOSTNAME -t $TAG rcrc && rcup
+~/.dotfiles/bin/rcm
 
 msg "Running sshconfig"
 sshconfig

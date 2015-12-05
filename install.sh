@@ -61,19 +61,12 @@ curl -fsSL suderman.github.io/git-clone-pull/install | sh
 installing "~/.dotfiles"
 git clone-pull https://github.com/suderman/dotfiles.git ~/.dotfiles
 
-# Symlink private repo if available
-if has ~/.private/dotfiles; then
-  rm -f ~/.dotfiles/private && ln -s ~/.private/dotfiles ~/.dotfiles/private
-fi
-
 # https://github.com/thoughtbot/rcm
 installing "rcm"
 brew install thoughtbot/formulae/rcm
 
 msg "Running rcup"
-HOSTNAME=$(if is osx; then scutil --get ComputerName; else hostname; fi)
-TAG=$(if is osx; then echo osx; else echo ubuntu; fi)
-rcdn && rcup -B $HOSTNAME -t $TAG rcrc && rcup
+~/.dotfiles/bin/rcm
 
 # -------------------------------------------------------------------------
 

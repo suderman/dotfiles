@@ -71,8 +71,11 @@ nnoremap <silent> <space>p :Pmenu<CR>
 " Colors
 " Source https://github.com/bzx/vim-theme-pack
 " Source https://github.com/ndzou/vim-colorschemes
-" colorscheme hemisu-dark
-colorscheme solarized
+colorscheme hemisu-dark
+hi Normal ctermbg=NONE
+" let g:solarized_termtrans = 1
+" colorscheme solarized
+set background=dark
 call s:Pmenu()
 
 " Directories for session, undo, backup, swp files

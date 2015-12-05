@@ -24,10 +24,11 @@ antigen bundle git
 antigen bundle heroku
 antigen bundle brew 
 antigen bundle brew-cask 
-antigen bundle tmux 
+# antigen bundle tmux 
 antigen bundle autojump 
 antigen bundle nyan 
 antigen bundle docker
+# antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
 # Tell antigen that you're done.
 antigen apply
