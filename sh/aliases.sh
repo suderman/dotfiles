@@ -25,6 +25,9 @@ alias server="python -m SimpleHTTPServer"
 # nuc tmux
 is osx && alias nuc="ssh nuc -t '~/.linuxbrew/bin/tmux a'"
 
+# vi is vim
+alias vi=vim
+
 # vlc
 osxvlc="/opt/homebrew-cask/Caskroom/vlc/2.1.4/VLC.app/Contents/MacOS/VLC"
 if has "$osxvlc"; then
