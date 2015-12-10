@@ -76,6 +76,7 @@ osx Gitbox.app                      || brew cask install gitbox
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 #
 osx iTerm.app                       || brew cask install iterm2
+osx /usr/local/bin/zsh              || brew install zsh
 osx tmux                            || brew install tmux
 osx wemux                           || brew install wemux
 osx rcup                            || brew install rcm

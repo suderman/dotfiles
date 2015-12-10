@@ -1,7 +1,10 @@
 if has("gui_macvim")
 
+  " Favourite colorscheme of the moment
+  colorscheme railscasts-sexy
+
   " Favourite font of the moment
-  set guifont=monofur:h18
+  set guifont=hack:h18
 
   " Enable option key
   set macmeta

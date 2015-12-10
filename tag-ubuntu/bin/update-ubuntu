@@ -25,6 +25,7 @@ brew upgrade
 # ▀▄▀▄▀▄     Things I like       ▄▀▄▀▄▀
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 #
+has ~/.linuxbrew/bin/zsh         || brew install zsh
 has ~/.linuxbrew/bin/curl        || brew install curl
 has node                         || sudo apt-get -y install nodejs
 has npm                          || sudo apt-get -y install npm
@@ -35,8 +36,8 @@ has zsh                          || sudo apt-get -y install zsh
 has htop                         || sudo apt-get -y install htop
 has tmux                         || brew install tmux
 has ranger                       || brew install ranger
-has vim                          || brew install vim
-has chruby                       || brew install chruby
+has ~/.linuxbrew/bin/vim         || brew install vim
+has chruby-exec                  || brew install chruby
 has ruby-install                 || brew install ruby-install
 has ag                           || brew install ag
 
