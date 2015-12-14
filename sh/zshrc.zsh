@@ -72,7 +72,7 @@ has ~/.fzf.$(shell) && source ~/.fzf.$(shell)
 # ZSH Keybindings
 #------------------
 
-# This binds Ctrl-O to ranger-cd:
-zle -N ranger-cd
-bindkey '^o' ranger-cd
+# This binds Ctrl-g to rcd:
+zle -N rcd
+bindkey '^g' rcd
 
