@@ -16,7 +16,8 @@ MYPATH="bin"
 
 # linuxbrew
 (has ~/.linuxbrew) && \
-  MYPATH="$MYPATH:$HOME/.linuxbrew/bin"
+  MYPATH="$MYPATH:$HOME/.linuxbrew/bin" 
+  unset LD_LIBRARY_PATH
 
 # usr local bin (often Homebrew)
 MYPATH="$MYPATH:/usr/local/bin:/usr/local/sbin"
