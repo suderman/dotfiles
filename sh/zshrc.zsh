@@ -68,6 +68,13 @@ has ~/.fzf.$(shell) && source ~/.fzf.$(shell)
 # https://github.com/nojhan/liquidprompt
 (has ~/.liquidprompt) && [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
 
+# iTerm2
+source if ~/.iterm2_shell_integration.zsh
+
+# Completion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
 #------------------
 # ZSH Keybindings
 #------------------
