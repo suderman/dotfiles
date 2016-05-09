@@ -11,6 +11,3 @@ export LAUNCHD_PLISTS="~/.launchd"
 #     echo "$pass" | $ONEPASSWORD_PATH --no-prompt --fuzzy --path "$ONEPASSWORD_KEYCHAIN" "\"$1\""
 #   }
 # fi
-
-# boot2docker
-export DOCKER_HOST=tcp://localhost:4243
