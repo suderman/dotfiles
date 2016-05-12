@@ -14,7 +14,7 @@ has osx         || curl -fsSL raw.githubusercontent.com/suderman/osx/master/inst
 has app         || curl -fsSL raw.githubusercontent.com/suderman/app/master/install.sh | sh
 osx Xcode.app   || app xcode/id497799835 && xcode-select --install
 osx brew        || ruby -e "$(curl -fsSL raw.githubusercontent.com/Homebrew/install/master/install)"
-osx brew-cask   || brew install caskroom/cask/brew-cask
+                   brew tap caskroom/cask
 osx XQuartz.app || brew cask install xquartz
 osx gcc-4.2     || brew install homebrew/dupes/apple-gcc42
 osx mackup      || brew install mackup
@@ -131,8 +131,8 @@ osx Choosy.prefPane                 || brew cask install choosy
 osx FirefoxDeveloperEdition.app     || brew cask install firefoxdeveloperedition
 osx Google Chrome.app               || brew cask install google-chrome
 osx Fluid.app                       || brew cask install fluid
-osx Flash Player.app                || brew cask install flash-player
-osx Silverlight.plugin              || brew cask install silverlight
+# osx Flash Player.app                || brew cask install flash-player
+# osx Silverlight.plugin              || brew cask install silverlight
 osx w3m                             || brew install w3m
 sox elinks                          || brew install elinks
 
@@ -155,7 +155,7 @@ osx atool                           || brew install atool
 # ▀▄▀▄▀▄      Productivity       ▄▀▄▀▄▀
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 #
-osx 1Password 5.app                 || brew cask install onepassword
+osx 1Password 6.app                 || brew cask install onepassword
 osx Bartender 2.app                 || brew cask install bartender
 osx Keyboard Maestro.app            || brew cask install keyboard-maestro
 osx teleport.prefPane               || brew cask install teleport
@@ -190,7 +190,7 @@ osx Fission.app                     || brew cask install fission
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 #
 osx Scrivener.app                   || brew cask install scrivener
-osx Aeon Timeline.app               || app Aeon-Timeline/AeonTimeline.dmg  
+osx Aeon Timeline 2.app             || app Aeon-Timeline/AeonTimeline2.dmg  
 osx Marked 2.app                    || brew cask install marked
 osx Microsoft Word.app              || app Microsoft-Office/MicrosoftOffice2011.dmg
 
@@ -201,7 +201,6 @@ osx Microsoft Word.app              || app Microsoft-Office/MicrosoftOffice2011.
 #
 osx Newshosting.app                 || app Newshosting/Newshosting.dmg
 osx Transmission.app                || brew cask install transmission
-osx YouTube to MP3.app              || brew cask install fourk-youtube-to-mp3
 osx YouTube Downloader.app          || brew install youtube-dl
 
 
@@ -220,7 +219,6 @@ osx AirServer.app                   || brew cask install airserver
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 #
 osx cmus                            || brew install cmus
-osx Groovesquid.app                 || brew cask install groovesquid
 osx Spotify.app                     || brew cask install spotify
 osx Spotify Notifications.app       || brew cask install spotify-notifications
 
