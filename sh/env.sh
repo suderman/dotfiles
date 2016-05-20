@@ -36,7 +36,7 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 # dotfiles/ssh/config.*
 # secret/dotfiles/ssh/config.*
-export HOSTS="nuc lan wan backup macpro pi tigerblood bam garnet talisman cnrl csweb csmysql"
+export HOSTS="nuc lan wan mini9 macpro pi tigerblood bam garnet cnrl csweb csmysql"
 
 # osx/bin/copy
 # dotfiles/ssh/config.scp
