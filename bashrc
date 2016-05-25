@@ -19,6 +19,9 @@ KEYTIMEOUT=0
 # umask permissions
 umask 0002
 
+# no need to cd
+# shopt -s autocd
+
 
 # -----------------------------------------------------------------------------
 # Plugins

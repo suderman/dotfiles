@@ -421,9 +421,9 @@ let NERDTreeShowHidden=1
 " HTML5
 Source https://github.com/othree/html5.vim
 
-" Smarty
-Source https://github.com/theprivileges/smarty.vim
-au BufNewFile,BufReadPost *.html set ft=smarty
+" " Smarty
+" Source https://github.com/theprivileges/smarty.vim
+" au BufNewFile,BufReadPost *.html set ft=smarty
 
 " Jade
 Source https://github.com/vim-scripts/jade.vim

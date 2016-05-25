@@ -53,7 +53,7 @@ function s:resolve(url)
 
   " Get the repo link from any Github project page or Gist
   if ( (match(url, 'github.com')>=0) && (match(url, 'raw.github.com')<0) && (match(url, '.git$')<0) )
-    let url = s:sub(url, ['^https://', '^http://'], 'git://') . '.git'
+    let url = s:sub(url, ['^https://', '^http://'], 'https://') . '.git'
   endif
 
   return url
