@@ -21,18 +21,16 @@ setpath() {
   (has ~/bin) && PATH="$PATH:$HOME/bin"
 
   # linuxbrew bin
-  (has ~/.linuxbrew) && path="$PATH:$HOME/.linuxbrew/bin" 
+  (has ~/.linuxbrew) && PATH="$PATH:$HOME/.linuxbrew/bin" 
 
   # homebrew bin 
-  path="$PATH:/usr/local/bin:/usr/local/sbin"
+  PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 
   # default PATH
-  path="$PATH:$DEFAULT_PATH"
+  PATH="$PATH:$DEFAULT_PATH"
 
   # strip duplicates
-  PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
-
-  echo $PATH
+  echo $(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')
 }
 
 # Set PATH variable
