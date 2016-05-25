@@ -1,1 +1,0 @@
-source ~/.sh/fzf.sh

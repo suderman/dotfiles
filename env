@@ -1,0 +1,98 @@
+# 2016 Jon Suderman
+# https://github.com/suderman/dotfiles
+
+# Helper methods for prettier shell scripting - http://suderman.github.io/shelper
+eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper.sh)"
+
+# -----------------------------------------------------------------------------
+# PATH
+# -----------------------------------------------------------------------------
+
+# Each bin listed in order it's checked
+setpath() {
+
+  # default path
+  local DEFAULT_PATH=$PATH
+
+  # relative bin
+  local PATH="bin"
+
+  # home bin
+  (has ~/bin) && PATH="$PATH:$HOME/bin"
+
+  # linuxbrew bin
+  (has ~/.linuxbrew) && path="$PATH:$HOME/.linuxbrew/bin" 
+
+  # homebrew bin 
+  path="$PATH:/usr/local/bin:/usr/local/sbin"
+
+  # default PATH
+  path="$PATH:$DEFAULT_PATH"
+
+  # strip duplicates
+  PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
+
+  echo $PATH
+}
+
+# Set PATH variable
+export PATH=$(setpath)
+
+
+# -----------------------------------------------------------------------------
+# Environment Variables
+# -----------------------------------------------------------------------------
+
+# Some of these settings will look here
+brew_prefix="/usr/local"
+(has brew) && brew_prefix="$(brew --prefix)"
+
+# Manually set your language environment
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
+# use vim as an editor
+export EDITOR=vim
+export VISUAL=vim
+
+# launchd
+(is osx) && export LAUNCHD_PLISTS="~/.launchd"
+
+# Would be nice if configuration all went in one directory
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# chruby
+source if $brew_prefix/share/chruby/chruby.sh
+source if $brew_prefix/share/chruby/auto.sh
+
+# ec2-api-tools
+(has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
+export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
+
+#------------------------------------------
+# Cross-platform host & port configuration
+#------------------------------------------
+
+# dotfiles/ssh/config.*
+# ownCloud/Apps/dotfiles/ssh/config.*
+export HOSTS="nuc lan wan mini9 macpro pi tigerblood bam garnet cnrl csweb csmysql"
+
+# dotfiles/bin/ql
+# dotfiles/ssh/config.quicklook
+# dotfiles/tag-osx/launchd/user.agent.quicky.plist
+export PORT_QUICKLOOK=2223
+
+# dotfiles/bin/pbcopy
+# dotfiles/ssh/config.pasteboard
+# dotfiles/tag-osx/launchd/user.agent.pbcopy.plist
+export PORT_PBCOPY=2224
+
+# dotfiles/bin/pbpaste
+# dotfiles/ssh/config.pasteboard
+# dotfiles/tag-osx/launchd/user.agent.pbpaste.plist
+export PORT_PBPASTE=2225
+
+#------------------------------------------
+# Private environment variables
+#------------------------------------------
+source if ~/.private.env

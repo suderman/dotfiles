@@ -1,1 +1,1 @@
-source ~/.sh/bashrc.sh
+source ~/.bashrc

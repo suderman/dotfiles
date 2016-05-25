@@ -1,4 +1,4 @@
-DOTFILES_DIRS="$HOME/.dotfiles $HOME/.private/dotfiles"
+DOTFILES_DIRS="$HOME/.dotfiles $HOME/ownCloud/Apps/dotfiles"
 EXCLUDES="*.md install.sh"
 COPY_ALWAYS="ssh/*.pem ssh/*.key ssh/*.pub ssh/*.opt ssh/authorized_keys"
 SYMLINK_DIRS="vim"

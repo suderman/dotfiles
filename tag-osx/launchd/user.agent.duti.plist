@@ -4,8 +4,6 @@
   <dict>
     <key>Label</key>
     <string>user.agent.duti</string>
-    <key>EnableGlobbing</key>
-    <true/>
     <key>ProgramArguments</key>
     <array>
       <string>/usr/local/bin/duti</string>

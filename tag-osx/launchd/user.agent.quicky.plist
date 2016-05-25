@@ -4,13 +4,11 @@
   <dict>
     <key>Label</key>
     <string>user.agent.quicky</string>
-    <key>EnableGlobbing</key>
-    <true/>
     <key>ProgramArguments</key>
     <array>
       <string>/usr/bin/ruby</string>
       <string>-e</string>
-      <string>`~/bin/quicky #{gets}`</string>
+      <string>`$HOME/bin/quicky #{gets}`</string>
     </array>
     <key>inetdCompatibility</key>
     <dict>

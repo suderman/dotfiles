@@ -1,4 +1,0 @@
-# Run `sshconfig` to include this file in ~/.ssh/config
-
-Host mini9
-  LocalForward 9091 localhost:9091

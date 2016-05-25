@@ -1,5 +1,0 @@
-# Run `sshconfig` to include this file in ~/.ssh/config
-
-Host $HOSTS
-  RemoteForward $PORT_RELOAD_CHROME 127.0.0.1:$PORT_RELOAD_CHROME
-

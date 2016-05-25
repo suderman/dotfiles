@@ -15,26 +15,28 @@ has app         || curl -fsSL raw.githubusercontent.com/suderman/app/master/inst
 osx Xcode.app   || app xcode/id497799835 && xcode-select --install
 osx brew        || ruby -e "$(curl -fsSL raw.githubusercontent.com/Homebrew/install/master/install)"
                    brew tap caskroom/cask
-osx XQuartz.app || brew cask install xquartz
 osx gcc-4.2     || brew install homebrew/dupes/apple-gcc42
-osx mackup      || brew install mackup
-osx launchup    || curl -fsSL suderman.github.io/launchup/install | sh
+osx rcup        || brew install thoughtbot/formulae/rcm
+osc sshconfig   || curl -fsSL suderman.github.io/sshconfig/install | sh
+osx borg        || brew install borgbackup
+osx mackup      || brew install mackup # TODO: remove this
 
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 
 brew update
 brew upgrade
+
+
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+# ▀▄▀▄▀▄     Automation      ▄▀▄▀▄▀
+# ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
+#
+osx Keyboard Maestro.app            || brew cask install keyboard-maestro
+osx Hazel.prefPane                  || brew cask install hazel
+osx LaunchControl.app               || brew cask install launchcontrol
+osx launchup                        || curl -fsSL suderman.github.io/launchup/install | sh
 launchdn && launchup
 
-# homebrew taps
-# brew tap homebrew/dupes
-# brew tap homebrew/versions
-# brew tap homebrew/homebrew-php
-# brew tap thoughtbot/formulae
-# brew tap suderman/suds
-# brew tap phinze/cask 
-# brew tap caskroom/versions 
-# brew tap caskroom/fonts
 
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 # ▀▄▀▄▀▄      Languages      ▄▀▄▀▄▀
@@ -79,7 +81,6 @@ osx iTerm.app                       || brew cask install iterm2-nightly
 osx /usr/local/bin/zsh              || brew install zsh
 osx tmux                            || brew install tmux
 osx wemux                           || brew install wemux
-osx rcup                            || brew install rcm
 osx direnv                          || brew install direnv
 osx mosh                            || brew install mobile-shell
 osx ssh-copy-id                     || brew install ssh-copy-id
@@ -109,7 +110,7 @@ osx ec2-describe-regions            || brew install ec2-api-tools
 #
 osx ack                             || brew install ack
 osx ag                              || brew install ag
-osx /usr/local/bin/vim              || brew install vim --with-client-server --with-lua --with-luajit
+osx /usr/local/bin/vim              || brew install vim
 osx highlight                       || brew install highlight
 osx cscope                          || brew install cscope
 osx /usr/local/bin/ctags            || brew install ctags-exuberant
@@ -117,7 +118,6 @@ osx MacVim.app                      || brew cask install macvim
 osx heroku                          || brew cask install heroku-toolbelt
 osx Kaleidoscope.app                || brew cask install kaleidoscope
 osx convert                         || brew install imagemagick --build-from-source
-osx fontforge                       || brew install fontforge
 osx Transmit.app                    || brew cask install transmit
 osx Integrity.app                   || brew cask install integrity
 osx MockSMTP.app                    || app mocksmtp/id423535515          
@@ -144,7 +144,6 @@ sox elinks                          || brew install elinks
 osx owncloud.app                    || brew cask install owncloud
 osx BitTorrent Sync.app             || brew cask install bittorrent-sync
 osx Dropbox.app                     || brew cask install dropbox
-osx Hazel.prefPane                  || brew cask install hazel
 osx DaisyDisk.app                   || brew cask install daisydisk
 osx Disk Sensei.app                 || app Disk-Sensei/Disk-Sensei.dmg    
 osx The Unarchiver.app              || brew cask install the-unarchiver
@@ -157,11 +156,9 @@ osx atool                           || brew install atool
 #
 osx 1Password 6.app                 || brew cask install onepassword
 osx Bartender 2.app                 || brew cask install bartender
-osx Keyboard Maestro.app            || brew cask install keyboard-maestro
 osx teleport.prefPane               || brew cask install teleport
 osx Flux.app                        || brew cask install flux
 osx Viscosity.app                   || brew cask install viscosity
-osx Lingon X.app                    || brew cask install lingon-x
 osx Moom.app                        || brew cask install moom
 osx GeekTool.app                    || brew cask install geektool
 osx Little Snitch Configuration.app || brew cask install little-snitch

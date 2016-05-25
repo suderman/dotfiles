@@ -1,66 +1,65 @@
 # .txt, .text, and plain text files without an extension
-com.apple.automator.OpenWithVim public.plain-text all
+com.apple.TextEdit public.plain-text all
 
 # executable scripts
-com.apple.automator.OpenWithVim public.unix-executable all
+com.apple.TextEdit public.unix-executable all
 
 # plain text
-com.apple.automator.OpenWithVim .nfo all
-com.apple.automator.OpenWithVim .md all
-com.apple.automator.OpenWithVim .readme all
-com.apple.automator.OpenWithVim .srt all
-com.apple.automator.OpenWithVim .sub all
-com.apple.automator.OpenWithVim .utf all
-com.apple.automator.OpenWithVim .bash all
-com.apple.automator.OpenWithVim .bom all
-com.apple.automator.OpenWithVim .class all
-com.apple.automator.OpenWithVim .coffee all
-com.apple.automator.OpenWithVim .conf all
-com.apple.automator.OpenWithVim .cpp all
-com.apple.automator.OpenWithVim .css all
-com.apple.automator.OpenWithVim .csv all
-com.apple.automator.OpenWithVim .dict all
-com.apple.automator.OpenWithVim .erb all
-com.apple.automator.OpenWithVim .gemspec all
-com.apple.automator.OpenWithVim .haml all
-com.apple.automator.OpenWithVim .inf all
-com.apple.automator.OpenWithVim .java all
-com.apple.automator.OpenWithVim .js all
-com.apple.automator.OpenWithVim .json all
-com.apple.automator.OpenWithVim .kmlibrary all
-com.apple.automator.OpenWithVim .less all
-com.apple.automator.OpenWithVim .log all
-com.apple.automator.OpenWithVim .manifest all
-com.apple.automator.OpenWithVim .msass all
-com.apple.automator.OpenWithVim .opml all
-com.apple.automator.OpenWithVim .pg all
-com.apple.automator.OpenWithVim .php all
-com.apple.automator.OpenWithVim .pl all
-com.apple.automator.OpenWithVim .plist all
-com.apple.automator.OpenWithVim .py all
-com.apple.automator.OpenWithVim .rb all
-com.apple.automator.OpenWithVim .rd all
-com.apple.automator.OpenWithVim .rdoc all
-com.apple.automator.OpenWithVim .rhtml all
-com.apple.automator.OpenWithVim .rst all
-com.apple.automator.OpenWithVim .sb all
-com.apple.automator.OpenWithVim .scss all
-com.apple.automator.OpenWithVim .sh all
-com.apple.automator.OpenWithVim .tex all
-com.apple.automator.OpenWithVim .xml all
-com.apple.automator.OpenWithVim .yaml all
+com.apple.TextEdit .nfo all
+com.apple.TextEdit .md all
+com.apple.TextEdit .readme all
+com.apple.TextEdit .srt all
+com.apple.TextEdit .sub all
+com.apple.TextEdit .utf all
+com.apple.TextEdit .bash all
+com.apple.TextEdit .bom all
+com.apple.TextEdit .class all
+com.apple.TextEdit .coffee all
+com.apple.TextEdit .conf all
+com.apple.TextEdit .cpp all
+com.apple.TextEdit .css all
+com.apple.TextEdit .csv all
+com.apple.TextEdit .dict all
+com.apple.TextEdit .erb all
+com.apple.TextEdit .gemspec all
+com.apple.TextEdit .haml all
+com.apple.TextEdit .inf all
+com.apple.TextEdit .java all
+com.apple.TextEdit .js all
+com.apple.TextEdit .json all
+com.apple.TextEdit .kmlibrary all
+com.apple.TextEdit .less all
+com.apple.TextEdit .log all
+com.apple.TextEdit .manifest all
+com.apple.TextEdit .msass all
+com.apple.TextEdit .opml all
+com.apple.TextEdit .pg all
+com.apple.TextEdit .php all
+com.apple.TextEdit .pl all
+com.apple.TextEdit .plist all
+com.apple.TextEdit .py all
+com.apple.TextEdit .rb all
+com.apple.TextEdit .rd all
+com.apple.TextEdit .rdoc all
+com.apple.TextEdit .rhtml all
+com.apple.TextEdit .rst all
+com.apple.TextEdit .sb all
+com.apple.TextEdit .scss all
+com.apple.TextEdit .sh all
+com.apple.TextEdit .tex all
+com.apple.TextEdit .xml all
+com.apple.TextEdit .yaml all
 
 # pdf
 com.apple.Preview .pdf all
 com.apple.Preview .eps all
-# net.sourceforge.skim-app.skim .pdf all
 
 # rich text
 com.apple.TextEdit .doc all
 
 # images
-com.SequentialX.Sequential .jpg all
-com.SequentialX.Sequential .png all
+com.apple.Preview .jpg all
+com.apple.Preview .png all
 
 # video
 org.videolan.vlc .3gp all
