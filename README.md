@@ -31,7 +31,10 @@ Usage
 
 Symlinked dotfiles are brought down with `rcdn` and back up again with
 `rcup -B hostname -t osx/ubuntu rcrc && rcup`, using the `~/.rcrc` for 
-configuration. Environment variables and shell functions are sourced from 
-the home directory's `~/.sh` folder. User commands are stored in the home 
-directory's `~/bin` folder, including the `update` command (which is a good 
-command to periodically run!).
+configuration. Run `~/.dotfiles/bin/rcm` to make this step easy. Additional, 
+private dotfiles are to be put `~/.dotfiles/private`. Since this directory 
+isn't tracked with git, I like to sync everything with ownCloud. I create a 
+symlink from `~/ownCloud/Dotfiles` to `~/.dotfiles`. Environment variables 
+including the PATH are sourced from the home directory's `.env` file.  User 
+commands are stored in the home directory's `~/bin` folder, including the 
+`update` command (which is a good command to periodically run!).

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 2015 Jon Suderman
+# 2016 Jon Suderman
 # https://github.com/suderman/dotfiles
 
 # Open a terminal and run this command:
