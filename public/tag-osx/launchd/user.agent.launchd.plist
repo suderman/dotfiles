@@ -8,11 +8,11 @@
     <array>
       <string>bash</string>
       <string>-c</string>
-      <string>export LAUNCHD_PLISTS=$HOME/.dotfiles/tag-osx/launchd; /usr/local/bin/launchdn; /usr/local/bin/launchup</string>
+      <string>export LAUNCHD_PLISTS=$HOME/.launchd; /usr/local/bin/launchdn; /usr/local/bin/launchup</string>
     </array>
     <key>QueueDirectories</key>
     <array>
-      <string>$HOME/.dotfiles/tag-osx/launchd</string>
+      <string>$HOME/.launchd</string>
     </array>
   </dict>
 </plist>

@@ -1,0 +1,7 @@
+DOTFILES_DIRS="$HOME/ownCloud/Dotfiles/public $HOME/ownCloud/Dotfiles/private"
+EXCLUDES="*.md"
+COPY_ALWAYS="ssh/*.pem ssh/*.key ssh/*.pub ssh/*.opt ssh/authorized_keys"
+SYMLINK_DIRS="autoload colors plugin"
+UNDOTTED="bin"
+TAGS="osx"
+HOSTNAME="macbook"

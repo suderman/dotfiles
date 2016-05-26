@@ -19,7 +19,7 @@ if has rcdn && has rcup; then
   rcdn 
 
   # Only enable ~/.rcrc dotfile, dependent on HOSTNAME and TAG
-  rcup -B $HOSTNAME -t $TAG rcrc 
+  rcup -d ~/ownCloud/Dotfiles/public -B $HOSTNAME -t $TAG rcrc
 
   # With ~/.rcrc in place, enable the rest of the dotfiles
   rcup

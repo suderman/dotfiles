@@ -25,11 +25,11 @@ has sshconfig      || curl -fsSL suderman.github.io/sshconfig/install | sh
 # ▀▄▀▄▀▄   Update my dotfiles    ▄▀▄▀▄▀
 # ▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 
-updating "~/.dotfiles"
-git clone-pull https://github.com/suderman/dotfiles.git ~/.dotfiles
+updating "~/ownCloud/Dotfiles"
+git clone-pull https://github.com/suderman/dotfiles.git ~/ownCloud/Dotfiles
 
 msg "Running rcup"
-~/.dotfiles/bin/rcm
+~/ownCloud/Dotfiles/public/bin/rcm
 
 msg "Running sshconfig"
 sshconfig
