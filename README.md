@@ -38,3 +38,8 @@ symlink from `~/ownCloud/Dotfiles` to `~/.dotfiles`. Environment variables
 including the PATH are sourced from the home directory's `.env` file.  User 
 commands are stored in the home directory's `~/bin` folder, including the 
 `update` command (which is a good command to periodically run!).
+
+ownCloud Syncing
+----------------
+`ln -sf ~/.sync-exclude.lst ~/Library/Application\ Support/ownCloud/sync-exclude.lst`  
+`owncloudcmd -u USER -p PASSWORD -h --exclude ~/.sync-exclude.lst --trust ~/ownCloud https://OWNCLOUDURL/`
