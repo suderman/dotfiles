@@ -1,6 +1,6 @@
 private/**
-!private/ssh/.gitignore
 !private/.gitignore
+private/ssh
 vim/backup          
 vim/bundle
 vim/session

@@ -71,26 +71,26 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 # Cross-platform host & port configuration
 #------------------------------------------
 
-# dotfiles/ssh/config.*
-# ownCloud/Apps/dotfiles/ssh/config.*
+# ssh/config.*
+# private/ssh/config.*
 export HOSTS="nuc lan wan mini9 macpro pi tigerblood bam garnet cnrl csweb csmysql"
 
-# dotfiles/bin/ql
-# dotfiles/ssh/config.quicklook
-# dotfiles/tag-osx/launchd/user.agent.quicky.plist
+# bin/ql
+# ssh/config.quicklook
+# tag-osx/launchd/user.agent.quicky.plist
 export PORT_QUICKLOOK=2223
 
-# dotfiles/bin/pbcopy
-# dotfiles/ssh/config.pasteboard
-# dotfiles/tag-osx/launchd/user.agent.pbcopy.plist
+# bin/pbcopy
+# ssh/config.pasteboard
+# tag-osx/launchd/user.agent.pbcopy.plist
 export PORT_PBCOPY=2224
 
-# dotfiles/bin/pbpaste
-# dotfiles/ssh/config.pasteboard
-# dotfiles/tag-osx/launchd/user.agent.pbpaste.plist
+# bin/pbpaste
+# ssh/config.pasteboard
+# tag-osx/launchd/user.agent.pbpaste.plist
 export PORT_PBPASTE=2225
 
 #------------------------------------------
 # Private environment variables
 #------------------------------------------
-source if ~/.private.env
+source if ~/.env.private

@@ -57,17 +57,16 @@ fi
 installing "git-clone-pull"
 curl -fsSL suderman.github.io/git-clone-pull/install | sh
 
-# Git clone/pull this repo
-installing "~/ownCloud/Dotfiles"
-mkdir -p ~/ownCloud
-git clone-pull https://github.com/suderman/dotfiles.git ~/ownCloud/Dotfiles
+# Git clone/pull this repo to ~/.dotfiles
+installing "~/.dotfiles"
+git clone-pull https://github.com/suderman/dotfiles.git ~/.dotfiles
 
 # https://github.com/thoughtbot/rcm
 installing "rcm"
 brew install thoughtbot/formulae/rcm
 
 msg "Running rcup"
-~/ownCloud/Dotfiles/public/bin/rcm
+~/.dotfiles/bin/rcm
 
 # -------------------------------------------------------------------------
 

@@ -16,13 +16,13 @@ if has rcdn && has rcup; then
   TAG=$(if is osx; then echo osx; else echo ubuntu; fi)
 
   # Remove all dotfiles 
-  rcdn 
+  rcdn -v
 
   # Only enable ~/.rcrc dotfile, dependent on HOSTNAME and TAG
-  rcup -d ~/ownCloud/Dotfiles/public -B $HOSTNAME -t $TAG rcrc
+  rcup -v -d ~/.dotfiles -B $HOSTNAME -t $TAG rcrc
 
   # With ~/.rcrc in place, enable the rest of the dotfiles
-  rcup
+  rcup -v
 
 else
   msg "rcm is not installed!"
