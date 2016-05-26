@@ -1,6 +1,6 @@
 .DS_Store
-private
-private/**
+private/*
+!private/.gitkeep
 npm-debug.log
 vim/backup          
 vim/bundle

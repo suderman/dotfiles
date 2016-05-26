@@ -57,22 +57,22 @@ fi
 installing "git-clone-pull"
 curl -fsSL suderman.github.io/git-clone-pull/install | sh
 
-# Git clone/pull this repo to the home directory
-installing "~/.dotfiles"
-git clone-pull https://github.com/suderman/dotfiles.git ~/.dotfiles
+# Git clone/pull this repo
+installing "~/ownCloud/Dotfiles"
+mkdir -p ~/ownCloud
+git clone-pull https://github.com/suderman/dotfiles.git ~/ownCloud/Dotfiles
 
 # https://github.com/thoughtbot/rcm
 installing "rcm"
 brew install thoughtbot/formulae/rcm
 
 msg "Running rcup"
-~/.dotfiles/bin/rcm
+~/ownCloud/Dotfiles/public/bin/rcm
 
 # -------------------------------------------------------------------------
 
 msg "Sourcing environment variables"
-source ~/.sh/path.sh
-source ~/.sh/env.sh
+source ~/.env
 
 msg "Running update"
 ~/bin/update
