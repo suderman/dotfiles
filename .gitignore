@@ -1,5 +1,7 @@
-private/*
-!.gitkeep
+private/**
+!private/jonny/
+private/jonny/**
+!private/jonny/.gitkeep
 vim/backup
 vim/bundle
 vim/session
