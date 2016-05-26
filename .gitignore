@@ -1,7 +1,8 @@
-.DS_Store
-private/*
-!private/.gitkeep
-npm-debug.log
+private/**
+!private/ssh/.gitignore
+!private/.gitignore
 vim/backup          
 vim/bundle
 vim/session
+.DS_Store
+npm-debug.log
