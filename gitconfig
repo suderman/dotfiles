@@ -30,5 +30,7 @@
 	excludesfile = ~/.gitignore
   autocrlf = input
 	quotepath = false
+[commit]
+  template = ~/.gitmessage
 [include]
   path = ~/.gitconfig.private
