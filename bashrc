@@ -4,6 +4,8 @@ eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper
 # Set path and environment variables
 source ~/.env
 
+# iTerm Shell Integration
+source ~/.iterm2_shell_integration.bash
 
 # -----------------------------------------------------------------------------
 # Configuration
@@ -53,6 +55,9 @@ is osx && alias nuc="ssh nuc -t '~/.linuxbrew/bin/tmux a'"
 
 # vi is vim
 alias vi=vim
+
+# memory hoggin' npm
+alias npm8='node --max-old-space-size=8192 /usr/local/bin/npm'
 
 # Add self-signed certificate
 if has security; then

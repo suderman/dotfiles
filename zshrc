@@ -4,6 +4,8 @@ eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper
 # Set path and environment variables
 source ~/.env
 
+# iTerm Shell Integration
+source ~/.iterm2_shell_integration.zsh
 
 # -----------------------------------------------------------------------------
 # Configuration
@@ -30,6 +32,15 @@ stty -ixon
 # Enable SSH agent forwarding
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
+# https://github.com/zeit/hyperterm/issues/186
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 # -----------------------------------------------------------------------------
 # Plugins
@@ -100,6 +111,9 @@ is osx && alias nuc="ssh nuc -t '~/.linuxbrew/bin/tmux a'"
 
 # vi is vim
 alias vi=vim
+
+# memory hoggin' npm
+alias npm8='node --max-old-space-size=8192 /usr/local/bin/npm'
 
 # Add self-signed certificate
 if has security; then

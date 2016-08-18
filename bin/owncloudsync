@@ -1,0 +1,11 @@
+#!/bin/bash
+# 2016 Jon Suderman
+source ~/.env
+
+# Run ownCloud sync command
+owncloudcmd --silent --trust -h                \
+            --non-interactive                  \
+            --exclude ~/.sync-exclude.lst      \
+            --user $USER                       \
+            --password $OWNCLOUD_PASS          \
+            ~/ownCloud $OWNCLOUD_URL
