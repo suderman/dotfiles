@@ -43,3 +43,5 @@ ownCloud Syncing
 ----------------
 `ln -sf ~/.sync-exclude.lst ~/Library/Application\ Support/ownCloud/sync-exclude.lst`  
 `owncloudcmd -u USER -p PASSWORD -h --exclude ~/.sync-exclude.lst --trust ~/ownCloud https://OWNCLOUDURL/`
+
+Hello!

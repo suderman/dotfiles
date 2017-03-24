@@ -20,6 +20,9 @@ setpath() {
   # home bin
   (has ~/bin) && PATH="$PATH:$HOME/bin"
 
+  # rbenv bin
+  (has ~/.rbenv/shims) && PATH="$PATH:$HOME/.rbenv/shims"
+
   # linuxbrew bin
   (has ~/.linuxbrew) && PATH="$PATH:$HOME/.linuxbrew/bin" 
 
@@ -63,6 +66,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 source if $brew_prefix/share/chruby/chruby.sh
 source if $brew_prefix/share/chruby/auto.sh
 
+# rbenv
+(has rbenv) && eval "$(rbenv init -)"
+
 # ec2-api-tools
 (has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
@@ -73,7 +79,7 @@ export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 # ssh/config.*
 # private/ssh/config.*
-export HOSTS="nuc lan wan mini9 macpro pi tigerblood bam garnet cnrl csweb csmysql"
+export HOSTS="nuc lan mini9 macpro pi tb bam garnet cnrl csweb csmysql"
 
 # bin/ql
 # ssh/config.quicklook

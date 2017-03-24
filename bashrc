@@ -5,7 +5,7 @@ eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper
 source ~/.env
 
 # iTerm Shell Integration
-source ~/.iterm2_shell_integration.bash
+# source ~/.iterm2_shell_integration.bash
 
 # -----------------------------------------------------------------------------
 # Configuration
@@ -84,12 +84,12 @@ if has ~/docker/bin/d; then
   }
 fi
 
-# Wake MacPro and SSH in
-macpro() {
-  curl api.lan/den/macpro/wake
-  sleep 1
-  ssh macpro
-}
+# # Wake MacPro and SSH in
+# macpro() {
+#   curl api.lan/den/macpro/wake
+#   sleep 1
+#   ssh macpro
+# }
 
 # Path on separate lines
 path() {
@@ -107,3 +107,4 @@ rcd() {
   rm -f -- "$tempfile"
   ls -lah
 }
+if [ -f $(brew --prefix)/etc/bash_completion ]; then source $(brew --prefix)/etc/bash_completion; fi

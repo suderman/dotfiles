@@ -495,6 +495,27 @@ Source https://github.com/pangloss/vim-javascript
 Source https://github.com/mxw/vim-jsx
 let g:jsx_ext_required = 0
 
+" Toggle betweetn Text and Code writing modes
+command! Text inoremap <buffer> . .<C-G>u|
+            \ inoremap <buffer> ! !<C-G>u|
+            \ inoremap <buffer> ? ?<C-G>u|
+            \ setlocal spell spelllang=sv,en
+            \     nolist nowrap tw=74 fo=t1|
+            \ augroup TEXT|
+            \   autocmd InsertEnter <buffer> set fo+=a|
+            \   autocmd InsertLeave <buffer> set fo-=a|
+            \ augroup END
+
+command! Code silent! iunmap <buffer> .|
+            \ silent! iunmap <buffer> !|
+            \ silent! iunmap <buffer> ?|
+            \ setlocal nospell list nowrap
+            \     tw=74 fo=cqr1 showbreak=…|
+            \ silent! autocmd! TEXT * <buffer>
+
+" Rewrap paragraph
+noremap Q gqip
+
 " Filetype mappings
 nmap _vi :setfiletype vim<CR>
 nmap _js :setfiletype javascript<CR>
