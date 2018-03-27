@@ -53,6 +53,14 @@ alias server="python -m SimpleHTTPServer"
 # nuc tmux
 is osx && alias nuc="ssh nuc -t '~/.linuxbrew/bin/tmux a'"
 
+# Add all keys to ssh-agent
+# is osx && ssh-add -A
+
+# Quickly determine what is keeping mac awake
+if has pmset; then
+  alias sleepless="pmset -g assertions | egrep '(PreventUserIdleSystemSleep|PreventUserIdleDisplaySleep)'"
+fi
+
 # vi is vim
 alias vi=vim
 
@@ -69,6 +77,9 @@ alias dc='docker-compose'
 
 # docker ip - get the ip address from a container
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+alias cdm='cd /Volumes/Media'
+alias cdf='cd /Volumes/Family'
 
 # MySQL suffix shortcut
 mysqls() {

@@ -1,7 +1,0 @@
-DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles/private"
-EXCLUDES="private install.sh *.md"
-COPY_ALWAYS="ssh/*.pem ssh/*.key ssh/*.pub ssh/*.opt ssh/authorized_keys"
-SYMLINK_DIRS="autoload colors plugin"
-UNDOTTED="bin"
-TAGS="osx"
-HOSTNAME="macbook"

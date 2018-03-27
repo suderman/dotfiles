@@ -28,21 +28,30 @@ set number                             " show line numbers
 " au FocusLost *   :set norelativenumber
 " au FocusGained * :set relativenumber
 
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-v><Esc> :<Esc>
+endif
+
+if has('nvim')
+  highlight! link TermCursor Cursor
+  highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
+endif
 
 " Airline Status Line
 Source https://github.com/bling/vim-airline
-let g:airline_left_sep='' "⮀
-let g:airline_left_alt_sep = '' "⮁
-let g:airline_right_sep='' "⮂
-let g:airline_right_alt_sep = '' "⮃
+"let g:airline_left_sep='' "⮀
+"let g:airline_left_alt_sep = '' "⮁
+"let g:airline_right_sep='' "⮂
+"let g:airline_right_alt_sep = '' "⮃
 let g:airline_symbols = {}
 let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.linenr = '⭡'
+"let g:airline_symbols.linenr = '⭡'
 
 " Wild stuff!
 set wildmenu                           " visual autocomplete for command menu
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,*/var/**,*/uploads/**,*/pear/**,*/build/**
+" set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,*/var/**,*/uploads/**,*/pear/**,*/build/**
 
 " Whitespace
 set nowrap
@@ -440,7 +449,7 @@ au BufNewFile,BufReadPost *.toffee set ft=toffee
 Source https://github.com/vim-scripts/jQuery
 
 " CSS
-Source https://github.com/skammer/vim-css-color
+" Source https://github.com/skammer/vim-css-color
 Source https://github.com/hail2u/vim-css3-syntax
 
 " LESS
@@ -512,6 +521,9 @@ command! Code silent! iunmap <buffer> .|
             \ setlocal nospell list nowrap
             \     tw=74 fo=cqr1 showbreak=…|
             \ silent! autocmd! TEXT * <buffer>
+
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+nmap <C-x> :setfiletype xml<CR>gg=G<CR>
 
 " Rewrap paragraph
 noremap Q gqip

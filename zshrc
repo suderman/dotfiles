@@ -109,6 +109,14 @@ alias server="python -m SimpleHTTPServer"
 # nuc tmux
 is osx && alias nuc="ssh nuc -t '~/.linuxbrew/bin/tmux a'"
 
+# Add all keys to ssh-agent
+# is osx && ssh-add -A
+
+# Quickly determine what is keeping mac awake
+if has pmset; then
+  alias sleepless="pmset -g assertions | egrep '(PreventUserIdleSystemSleep|PreventUserIdleDisplaySleep)'"
+fi
+
 # vi is vim
 alias vi=vim
 
@@ -167,3 +175,7 @@ rcd() {
 export NVM_DIR="/Users/jon/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="/usr/local/opt/curl/bin:$PATH"
+. "/Users/suderman/.acme.sh/acme.sh.env"
+
+PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+export PROMPT_COMMAND="${PROMPT_TITLE}; ${PROMPT_COMMAND}"

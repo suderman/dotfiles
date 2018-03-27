@@ -22,6 +22,7 @@ setpath() {
 
   # rbenv bin
   (has ~/.rbenv/shims) && PATH="$PATH:$HOME/.rbenv/shims"
+  (has ~/.rbenv/bin) && PATH="$PATH:$HOME/.rbenv/bin"
 
   # linuxbrew bin
   (has ~/.linuxbrew) && PATH="$PATH:$HOME/.linuxbrew/bin" 
@@ -70,8 +71,8 @@ source if $brew_prefix/share/chruby/auto.sh
 (has rbenv) && eval "$(rbenv init -)"
 
 # ec2-api-tools
-(has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
+# (has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
+# export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
 #------------------------------------------
 # Cross-platform host & port configuration
