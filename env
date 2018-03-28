@@ -1,4 +1,4 @@
-# 2016 Jon Suderman
+# 2018 Jon Suderman
 # https://github.com/suderman/dotfiles
 
 # Helper methods for prettier shell scripting - http://suderman.github.io/shelper
@@ -23,6 +23,11 @@ setpath() {
   # rbenv bin
   (has ~/.rbenv/shims) && PATH="$PATH:$HOME/.rbenv/shims"
   (has ~/.rbenv/bin) && PATH="$PATH:$HOME/.rbenv/bin"
+
+  # python bin
+  (has ~/Library/Python/2.7/bin) && PATH="$PATH:$HOME/Library/Python/2.7/bin"
+  (has ~/Library/Python/3.6/bin) && PATH="$PATH:$HOME/Library/Python/3.6/bin"
+  
 
   # linuxbrew bin
   (has ~/.linuxbrew) && PATH="$PATH:$HOME/.linuxbrew/bin" 
@@ -70,32 +75,32 @@ source if $brew_prefix/share/chruby/auto.sh
 # rbenv
 (has rbenv) && eval "$(rbenv init -)"
 
-# ec2-api-tools
-# (has /usr/libexec/java_home) && export JAVA_HOME="$(/usr/libexec/java_home)"
-# export EC2_HOME="$brew_prefix/Library/LinkedKegs/ec2-api-tools/libexec"
 
-#------------------------------------------
-# Cross-platform host & port configuration
-#------------------------------------------
+# -----------------------------------------------------------------------------
+# NeoVim
+# -----------------------------------------------------------------------------
+if [ -x "$(command -v nvr)" ]; then
+  # Use Neovim as "preferred editor"
+  export VISUAL=nvim
 
-# ssh/config.*
-# private/ssh/config.*
-export HOSTS="nuc lan mini9 macpro pi tb bam garnet cnrl csweb csmysql"
+  # Use Neovim instead of Vim or Vi
+  alias vim=nvim
+  alias vi=nvim
 
-# bin/ql
-# ssh/config.quicklook
-# tag-osx/launchd/user.agent.quicky.plist
-export PORT_QUICKLOOK=2223
+fi
 
-# bin/pbcopy
-# ssh/config.pasteboard
-# tag-osx/launchd/user.agent.pbcopy.plist
-export PORT_PBCOPY=2224
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  if [ -x "$(command -v nvr)" ]; then
+    alias nvim=nvr
+  else
+    alias nvim='echo "No nesting!"'
+  fi
+# else
+#   #if [ -x "$(command -v abduco)" ]; then
+#   #  alias nvim="abduco -A nvim nvim"
+#   #fi
+fi
 
-# bin/pbpaste
-# ssh/config.pasteboard
-# tag-osx/launchd/user.agent.pbpaste.plist
-export PORT_PBPASTE=2225
 
 #------------------------------------------
 # Private environment variables

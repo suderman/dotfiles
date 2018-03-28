@@ -1,10 +1,10 @@
 if has("gui_macvim")
 
-  " Favourite colorscheme of the moment
-  colorscheme hemisu-dark
-
-  " Favourite font of the moment
-  set guifont=hack:h18
+  " " Favourite colorscheme of the moment
+  " colorscheme hemisu-dark
+  "
+  " " Favourite font of the moment
+  " set guifont=hack:h18
 
   " Enable option key
   set macmeta

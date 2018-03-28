@@ -20,17 +20,12 @@ set cursorline                         " highlight current line
 set fillchars=vert:│                   " Solid line for vsplit separator
 set showmode                           " show what mode (Insert/Normal/Visual) is currently on
 set timeoutlen=500
-
 set number                             " show line numbers
-" set relativenumber
-" au InsertEnter * :set norelativenumber
-" au InsertLeave * :set relativenumber
-" au FocusLost *   :set norelativenumber
-" au FocusGained * :set relativenumber
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
   tnoremap <C-v><Esc> :<Esc>
+  nnoremap <Leader>t :terminal<CR>i
 endif
 
 if has('nvim')
@@ -38,20 +33,38 @@ if has('nvim')
   highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
 endif
 
-" Airline Status Line
-Source https://github.com/bling/vim-airline
-"let g:airline_left_sep='' "⮀
-"let g:airline_left_alt_sep = '' "⮁
-"let g:airline_right_sep='' "⮂
-"let g:airline_right_alt_sep = '' "⮃
-let g:airline_symbols = {}
-let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.linenr = '⭡'
+" Wrapped lines goes down/up to next row, rather than next line in file.
+noremap j gj
+noremap k gk
+
+" Remove keybinding for Ex Mode
+nnoremap Q <nop>
+
+" Remap ; to : in visual mode
+nnoremap ; :
+
+Source https://github.com/szw/vim-maximizer
+let g:maximizer_default_mapping_key = '<C-m>'
+" nnoremap <silent><C-m> :MaximizerToggle<CR>
+" vnoremap <silent><C-m> :MaximizerToggle<CR>gv
+" inoremap <silent><C-m> <C-o>:MaximizerToggle<CR>
+
+Source https://github.com/itchyny/lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+set noshowmode
 
 " Wild stuff!
 set wildmenu                           " visual autocomplete for command menu
 set wildmode=list:longest,list:full
-" set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,*/var/**,*/uploads/**,*/pear/**,*/build/**
 
 " Whitespace
 set nowrap
@@ -67,25 +80,10 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:
 set modeline
 set modelines=10
 
-" Fix popmenu with :Pmenu or <space>p if it's unreadable (bad colorscheme!)
-command! Pmenu call s:Pmenu()
-function! s:Pmenu()
-  highlight Pmenu      ctermfg=white ctermbg=darkgray guifg=white    guibg=gray40
-  highlight PmenuSel   ctermfg=white ctermbg=black    guifg=white    guibg=black
-  highlight PmenuSbar                                 guifg=white    guibg=gray40
-  highlight PmenuThumb                                guifg=#c0c0c0
-endfunction
-nnoremap <silent> <space>p :Pmenu<CR>
-
 " Colors
-" Source https://github.com/bzx/vim-theme-pack
-" Source https://github.com/ndzou/vim-colorschemes
-colorscheme hemisu-dark
-hi Normal ctermbg=NONE
-" let g:solarized_termtrans = 1
-" colorscheme solarized
+Source https://github.com/morhetz/gruvbox
+colorscheme gruvbox
 set background=dark
-call s:Pmenu()
 
 " Directories for session, undo, backup, swp files
 let g:vim_pid = $HOME.'/.vim/session/process-'.getpid()
@@ -133,21 +131,9 @@ set virtualedit+=onemore
 
 " Hide buffers or auto-save?
 set hidden       " allow unsaved buffers to be hidden
-" set autowriteall  " Automatically save buffers
 
-" ,u will show undo history graph
-Source https://github.com/sjl/gundo.vim
-nnoremap <leader>u :GundoToggle<CR>
-let g:gundo_right = 1
-
-" Redraw shortcut
-noremap <C-m> <Esc>:redraw!<CR>
-
-" Opens an edit command with the path of the currently edited file filled in
-map :ee :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" ;cd to current file
-nnoremap ;cd :cd %:p:h<CR>:pwd<CR>
+" " ;cd to current file
+" nnoremap ;cd :cd %:p:h<CR>:pwd<CR>
 
 " Alt-tab between buffers
 nnoremap <leader><leader> <c-^>
@@ -182,35 +168,37 @@ cmap w!! w !sudo tee % >/dev/null
 " Let split windows be different sizes
 set noequalalways
 
-" Tmux Navigator - Smart way to move between splits. Ctrl-[h,j,k,l]
-Source https://github.com/christoomey/vim-tmux-navigator
 
-" Vimux - send commands to tmux panes from vim
-Source https://github.com/benmills/vimux
-map <leader>g :call VimuxRunCommand("git status")<CR>
+" Smart way to move between windows. Ctrl-[h,j,k,l]
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 
 " If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
-vmap <C-j> <C-W>+
-vmap <C-k> <C-W>-
-vmap <C-h> <C-W><
-vmap <C-l> <C-W>>
+vnoremap <c-j> <c-w>+
+vnoremap <c-k> <c-w>-
+vnoremap <c-h> <c-w><
+vnoremap <c-l> <c-w>>
 
 " Let directional keys work in Insert Mode. Ctrl-[h,j,k,l]
-imap <C-j> <Down>
-imap <C-k> <Up>
-imap <C-h> <Left>
-imap <C-l> <Right>
+inoremap <c-j> <Down>
+inoremap <c-k> <Up>
+inoremap <c-h> <Left>
+inoremap <c-l> <Right>
 
 " Cursor movement in command mode
-cmap <C-j> <Down>
-cmap <C-k> <Up>
-cmap <C-h> <Left>
-cmap <C-l> <Right>
-cmap <C-x> <Del>
-cmap <C-z> <BS>
-cmap <C-v> <C-R>"
+cnoremap <c-j> <Down>
+cnoremap <c-k> <Up>
+cnoremap <c-h> <Left>
+cnoremap <c-l> <Right>
+cnoremap <c-x> <Del>
+cnoremap <c-z> <BS>
+cnoremap <c-v> <c-r>"
 
 "============="
+"
+
 
 
 Source https://github.com/bruno-/vim-husk
@@ -251,11 +239,13 @@ Source https://github.com/vim-scripts/IndexedSearch
 " Clear search with comma-space
 noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 
-" fzf fuzzy finder 
-set rtp+=~/.fzf
+" fzf fuzzy finder
+set rtp+=/usr/local/opt/fzf
 let g:fzf_height='25%'
-vmap <C-t> <ESC>:FZF<CR>
-nmap <C-t> <ESC>:FZF<CR>
+vmap <c-t> <ESC>:FZF<CR>
+nmap <c-t> <ESC>:FZF<CR>
+vmap <c-g> <ESC>:FZF<CR>
+nmap <c-g> <ESC>:FZF<CR>
 
 " Ag - The Silver Searcher
 Source https://github.com/rking/ag.vim
@@ -265,6 +255,17 @@ if executable("ag")
   set grepprg=ag\ -H\ --nogroup\ --nocolor
   nnoremap <leader>a :Ag ""<left>
 endif
+
+Source https://github.com/mhinz/vim-grepper
+nnoremap <leader>g :Grepper<cr>
+let g:grepper = { 'next_tool': '<leader>g' }
+
+"============="
+
+" ,u will show undo history graph
+Source https://github.com/sjl/gundo.vim
+nnoremap <leader>u :GundoToggle<CR>
+let g:gundo_right = 1
 
 "============="
 
@@ -281,44 +282,6 @@ function! s:Buffers()
 endfunction
 
 nmap <S-k> :Buffers<CR>
-
-
-" CtrlP
-Source https://github.com/kien/ctrlp.vim
-
-let g:ctrlp_cache_dir = $HOME.'/.vim/session'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_map = ''
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
-  \ }
-vmap <C-g> <ESC>:CtrlP .<CR>
-nmap <C-g> <ESC>:CtrlP .<CR>
-
-
-"============="
-
-Source https://github.com/rgarver/Kwbd.vim
-
-" :bd deletes a buffer, :BD deletes a buffer and keeps its window
-command! BD Kwbd
-
-" Don't save, close buffer, keep window
-nmap ZX :BD<CR>
-
-" Don't save, close buffer, close window
-nmap ZXX :bd!<CR>
-
-" Save, close buffer, keep window
-nmap ZSX :w<CR>:BD<CR>
-
-" Save, close buffer, close window
-nmap ZSXX :w<CR>:bd!<CR>
-
-" Save the buffer
-nmap ZS :w<CR>
-nmap <leader>w :w<CR>
 
 "============="
 
@@ -394,7 +357,7 @@ Source https://github.com/tpope/vim-repeat
 
 " Quickly align text all nice-like, shortcut with <C-a> in visual mode
 Source https://github.com/tsaleh/vim-align
-vnoremap <C-a> :Align 
+vnoremap <C-a> :Align
 
 " Prepend , to w b e motions to respect camelCase, hyphen and underscore words
 Source https://github.com/bkad/CamelCaseMotion
@@ -483,12 +446,12 @@ au BufRead,BufNewFile {Dockerfile} set ft=Dockerfile
 au BufRead,BufNewFile {Makefile} set ft=make | setlocal noexpandtab
 
 " nginx
-Source https://github.com/evanmiller/nginx-vim-syntax
-au BufRead,BufNewFile {nginx.conf,/etc/nginx/*,/usr/local/nginx/conf/*} setfiletype nginx 
+Source https://github.com/bwangel23/nginx-vim-syntax
+au BufRead,BufNewFile {nginx.conf,/etc/nginx/*,/usr/local/nginx/conf/*} setfiletype nginx
 
 " OpenVPN
 Source https://github.com/vim-scripts/openvpn
-au BufRead,BufNewFile {*.ovpn} setfiletype openvpn 
+au BufRead,BufNewFile {*.ovpn} setfiletype openvpn
 
 " JavaScript
 Source https://github.com/pangloss/vim-javascript
@@ -549,10 +512,10 @@ nmap <leader>v :EditVimRC<CR>
 command! EditVimRC call s:EditVimRC()
 function! s:EditVimRC()
   let l:title = expand("%:t")
-  if (l:title == 'vimrc.vim')
-    :edit ~/.vim/gvimrc.vim
+  if (l:title == 'vimrc')
+    :edit ~/.vim/gvimrc
   else
-    :edit ~/.vim/vimrc.vim
+    :edit ~/.vim/vimrc
   endif
 endfunction
 

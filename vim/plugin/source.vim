@@ -1,4 +1,4 @@
-﻿" Maintainer:   Jon Suderman
+﻿" Maintainer:   Jonathan Suderman
 " Homepage:     https://github.com/suderman/source.vim
 " License:      VIM License
 
@@ -237,6 +237,7 @@ function s:automatic_updates()
 
   " Pull the last epoch from the filesystem
   let last_epoch = system('cat '.s:bundledir.s:slash.'last_update')
+  
 
   " Check if the last_epoch is older than 6 days from the current_epoch
   if (current_epoch - last_epoch) > 6
@@ -344,24 +345,24 @@ augroup END
 " Moved from ~/.vim/after/syntax/vim/source.vim
 function! s:SourceSyntax()
 
-  syn region sourceName	start=/^runtime / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^ru / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^runtime! / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^ru! / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^runtime / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^ru / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^runtime! / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^ru! / end=/\n/ contains=sourceURL
 
-  syn region sourceName	start=/^source / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^so / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^source! / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^so! / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^source / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^so / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^source! / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^so! / end=/\n/ contains=sourceURL
 
-  syn region sourceName	start=/^Source / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^So / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^Source! / end=/\n/ contains=sourceURL
-  syn region sourceName	start=/^So! / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^Source / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^So / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^Source! / end=/\n/ contains=sourceURL
+  syntax region sourceName start=/^So! / end=/\n/ contains=sourceURL
 
-  syn match sourceURL	contained "\s\S\+"
+  syntax match sourceURL contained "\s\S\+"
 
   highlight link sourceName Keyword
-  highlight link sourceURL String
+  highlight link sourceURL Operator
 
 endfunction
