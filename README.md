@@ -57,6 +57,6 @@ Install a few grepping tools:
 
 Install a couple of my own for managing ssh and launchd configuration:
 
-	curl sshconfig.suderman.io/install | sh
+	curl suderman.github.io/sshconfig/install | sh
 	curl suderman.github.io/launchup/install | sh
 
