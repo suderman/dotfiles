@@ -37,17 +37,8 @@ endif
 noremap j gj
 noremap k gk
 
-" Remove keybinding for Ex Mode
-nnoremap Q <nop>
-
 " Remap ; to : in visual mode
 nnoremap ; :
-
-Source https://github.com/szw/vim-maximizer
-let g:maximizer_default_mapping_key = '<C-m>'
-" nnoremap <silent><C-m> :MaximizerToggle<CR>
-" vnoremap <silent><C-m> :MaximizerToggle<CR>gv
-" inoremap <silent><C-m> <C-o>:MaximizerToggle<CR>
 
 Source https://github.com/itchyny/lightline.vim
 let g:lightline = {
@@ -131,9 +122,6 @@ set virtualedit+=onemore
 
 " Hide buffers or auto-save?
 set hidden       " allow unsaved buffers to be hidden
-
-" " ;cd to current file
-" nnoremap ;cd :cd %:p:h<CR>:pwd<CR>
 
 " Alt-tab between buffers
 nnoremap <leader><leader> <c-^>
@@ -365,7 +353,7 @@ Source https://github.com/bkad/CamelCaseMotion
 "============="
 
 " YouCompleteMe autocomplete
-" Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive; ./install.sh
+Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive && ./install.py
 
 "============="
 
@@ -454,18 +442,13 @@ Source https://github.com/vim-scripts/openvpn
 au BufRead,BufNewFile {*.ovpn} setfiletype openvpn
 
 " JavaScript
-Source https://github.com/pangloss/vim-javascript
-" let g:javascript_conceal_function   = "ƒ"
-" let g:javascript_conceal_null       = "ø"
-" let g:javascript_conceal_this       = "@"
-" let g:javascript_conceal_return     = "⇚"
-" let g:javascript_conceal_undefined  = "¿"
-" let g:javascript_conceal_NaN        = "ℕ"
-" let g:javascript_conceal_prototype  = "¶"
+Source https://github.com/othree/yajs.vim
+Source https://github.com/othree/javascript-libraries-syntax.vim
+let g:used_javascript_libs = 'jquery,underscore,react,vue'
 
-" React/JSX
-Source https://github.com/mxw/vim-jsx
-let g:jsx_ext_required = 0
+" " React/JSX
+" Source https://github.com/mxw/vim-jsx
+" let g:jsx_ext_required = 0
 
 " Toggle betweetn Text and Code writing modes
 command! Text inoremap <buffer> . .<C-G>u|
@@ -486,7 +469,7 @@ command! Code silent! iunmap <buffer> .|
             \ silent! autocmd! TEXT * <buffer>
 
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-nmap <C-x> :setfiletype xml<CR>gg=G<CR>
+" nmap <C-x> :setfiletype xml<CR>gg=G<CR>
 
 " Rewrap paragraph
 noremap Q gqip

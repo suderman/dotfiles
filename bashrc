@@ -4,9 +4,6 @@ eval "$(cat ~/.local/share/shelper.sh || curl suderman.github.io/shelper/shelper
 # Set path and environment variables
 source ~/.env
 
-# iTerm Shell Integration
-# source ~/.iterm2_shell_integration.bash
-
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
@@ -20,10 +17,6 @@ KEYTIMEOUT=0
 
 # umask permissions
 umask 0002
-
-# no need to cd
-# shopt -s autocd
-
 
 # -----------------------------------------------------------------------------
 # Plugins
@@ -52,9 +45,6 @@ alias server="python -m SimpleHTTPServer"
 
 # nuc tmux
 is osx && alias nuc="ssh nuc -t '~/.linuxbrew/bin/tmux a'"
-
-# Add all keys to ssh-agent
-# is osx && ssh-add -A
 
 # Quickly determine what is keeping mac awake
 if has pmset; then
@@ -94,13 +84,6 @@ if has ~/docker/bin/d; then
     cd ~/docker/$1 && ~/docker/bin/d refresh
   }
 fi
-
-# # Wake MacPro and SSH in
-# macpro() {
-#   curl api.lan/den/macpro/wake
-#   sleep 1
-#   ssh macpro
-# }
 
 # Path on separate lines
 path() {
