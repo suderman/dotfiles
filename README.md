@@ -5,7 +5,7 @@ What's this?
 ------------
 
 This is my collection of scripts and configuration files for all of my systems, 
-including OS X and Ubuntu. 
+including macOS and Linux. 
 
 I keep my dotfiles symlinked from `~/.dotfiles` to my home directory. I use 
 [rcm](https://github.com/thoughtbot/rcm) to manage them nicely.  
@@ -13,35 +13,50 @@ I keep my dotfiles symlinked from `~/.dotfiles` to my home directory. I use
 Installation
 ------------
 
-First, it's a good idea to set the hostname of the computer, especially if it 
-matches one of the hostnames in this repo. Second, make sure the machine either 
-has [Homebrew](http://brew.sh/) installed, or is prepared for Homebrew.  
+Clone the repo and symlink rcm's configuration file:  
 
-On OS X, this means installing XCode along with its command line tools.
-It'd also be a good idea to check off iTerm or Terminal under 
-`System Preferences -> Security & Privacy -> Accessibility` 
-if you want to automate the installation of Mac App Store apps via 
-AppleScript.
+	git clone git@github.com:suderman/dotfiles.git ~/.dotfiles
+	ln -s ~/.dotfiles/rcrc ~/.rcrc
 
-Once ready, open a terminal and run this command:  
-`bash <(curl https://raw.githubusercontent.com/suderman/dotfiles/master/install.sh)`
+Install rcm and symlink all the dotfiles:  
 
-Usage
------
+	brew install rcm
+	rcup
 
-Symlinked dotfiles are brought down with `rcdn` and back up again with
-`rcup -B hostname -t osx/ubuntu rcrc && rcup`, using the `~/.rcrc` for 
-configuration. Run `~/.dotfiles/bin/rcm` to make this step easy. Additional, 
-private dotfiles are to be put `~/.dotfiles/private`. Since this directory 
-isn't tracked with git, I like to sync everything with ownCloud. I create a 
-symlink from `~/ownCloud/Dotfiles` to `~/.dotfiles`. Environment variables 
-including the PATH are sourced from the home directory's `.env` file.  User 
-commands are stored in the home directory's `~/bin` folder, including the 
-`update` command (which is a good command to periodically run!).
+Additional Tools
+-----------------
 
-ownCloud Syncing
-----------------
-`ln -sf ~/.sync-exclude.lst ~/Library/Application\ Support/ownCloud/sync-exclude.lst`  
-`owncloudcmd -u USER -p PASSWORD -h --exclude ~/.sync-exclude.lst --trust ~/ownCloud https://OWNCLOUDURL/`
+Install preferred terminal du jour:
 
-Hello!
+	brew install caskroom/cask/therm
+
+Install vim and neovim:  
+
+	brew install vim
+	brew install neovim
+
+Install python and a few vim niceties:  
+
+	brew install python2
+	brew install python3
+	
+	pip2 install --user --upgrade neovim
+	pip3 install --user --upgrade neovim
+	pip3 install --user --upgrade neovim-remote
+
+Install command-line fuzzy finder:  
+
+	brew install fzf
+	/usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
+
+Install a few grepping tools:  
+
+	brew install the_silver_searcher
+	brew install ack
+	brew install ripgrep
+
+Install a couple of my own for managing ssh and launchd configuration:
+
+	curl sshconfig.suderman.io/install | sh
+	curl suderman.github.io/launchup/install | sh
+
