@@ -30,6 +30,10 @@ Install preferred terminal du jour:
 
 	brew install caskroom/cask/therm
 
+Install abduco for session management:
+
+	brew install abduco
+
 Install vim and neovim:  
 
 	brew install vim
