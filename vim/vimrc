@@ -235,6 +235,9 @@ nmap <c-t> <ESC>:FZF<CR>
 vmap <c-g> <ESC>:FZF<CR>
 nmap <c-g> <ESC>:FZF<CR>
 
+" Find and Replace
+Source https://github.com/brooth/far.vim
+
 " Ag - The Silver Searcher
 Source https://github.com/rking/ag.vim
 
