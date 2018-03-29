@@ -345,7 +345,7 @@ Source https://github.com/tpope/vim-repeat
 
 " Quickly align text all nice-like, shortcut with <C-a> in visual mode
 Source https://github.com/tsaleh/vim-align
-vnoremap <C-a> :Align
+"vnoremap <C-a> :Align
 
 " Prepend , to w b e motions to respect camelCase, hyphen and underscore words
 Source https://github.com/bkad/CamelCaseMotion
@@ -374,6 +374,21 @@ let NERDTreeShowHidden=1
 " set foldnestmax=10      "deepest fold is 10 levels
 " au BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
 
+" Tmux-style shortcuts
+map <C-a>1 1gt
+map <C-a>2 2gt
+map <C-a>3 3gt
+map <C-a>4 4gt
+map <C-a>5 5gt
+map <C-a>6 6gt
+map <C-a>7 7gt
+map <C-a>8 8gt
+map <C-a>9 9gt
+map <C-a>- :sp<CR>
+map <C-a>\ :vs<CR>
+map <C-a>t :tabnew<CR>
+map <C-a>c :tabclose<CR>
+map <C-a>m :term<CR>i
 
 " Filetypes and Syntax
 "---------------------
