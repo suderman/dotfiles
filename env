@@ -65,7 +65,7 @@ export VISUAL=vim
 # launchd
 (is osx) && export LAUNCHD_PLISTS="~/.launchd"
 
-# Would be nice if configuration all went in one directory
+# ~/.config
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # chruby
