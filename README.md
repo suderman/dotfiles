@@ -39,7 +39,7 @@ Install vim and neovim:
 	brew install vim
 	brew install neovim
 
-Install python and a few vim niceties:  
+Install python:  
 
 	brew install python2
 	brew install python3
@@ -48,10 +48,26 @@ Install python and a few vim niceties:
 	pip3 install --user --upgrade neovim
 	pip3 install --user --upgrade neovim-remote
 
+Install ruby:
+
+	brew install ruby
+	/usr/local/bin/gem install neovim
+
+Install nodejs:
+
+	brew install nodejs
+	npm install neovim
+
 Install command-line fuzzy finder:  
 
 	brew install fzf
 	/usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
+
+Install preview tools:
+
+	brew install highlight
+	/usr/local/bin/gem install coderay
+	/usr/local/bin/gem install rouge
 
 Install a few grepping tools:  
 

@@ -1,15 +1,11 @@
 ﻿runtime plugin/source.vim
-syntax on
-filetype plugin indent on
+Source https://github.com/tpope/vim-sensible
 
 " Determine machine (alpha.mydevbox.com, beta.mydevbox.com, something.local)
 let hostname = substitute(system('hostname'), '\n', '', '')
 
 " Comma is the leader character
 let mapleader = ","
-
-" Sensible settings
-Source https://github.com/tpope/vim-sensible
 
 " Basic stuff
 set encoding=utf-8                     " always use the good encoding
@@ -22,16 +18,20 @@ set showmode                           " show what mode (Insert/Normal/Visual) i
 set timeoutlen=500
 set number                             " show line numbers
 
-if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-v><Esc> :<Esc>
-  nnoremap <Leader>t :terminal<CR>i
-endif
+" Terminal
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> :<Esc>
+nnoremap <Leader>t :terminal<CR>
+highlight! link TermCursor Cursor
+highlight! TermCursor ctermfg=red guifg=red
+au TermOpen *  :startinsert
+Source https://github.com/kassio/neoterm
 
-if has('nvim')
-  highlight! link TermCursor Cursor
-  highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
-endif
+" Source https://github.com/ipod825/vim-netranger
+Source https://github.com/tpope/vim-vinegar
+
+" Browse filesystem with ranger
+noremap <leader><space> :term EDITOR="nvr -o" ranger<CR>
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -53,8 +53,6 @@ let g:lightline = {
       \ }
 set noshowmode
 
-" Wild stuff!
-set wildmenu                           " visual autocomplete for command menu
 set wildmode=list:longest,list:full
 
 " Whitespace
@@ -225,18 +223,18 @@ set gdefault
 Source https://github.com/vim-scripts/IndexedSearch
 
 " Clear search with comma-space
-noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
+noremap <leader>/ :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 
 " fzf fuzzy finder
 set rtp+=/usr/local/opt/fzf
-let g:fzf_height='25%'
-vmap <c-t> <ESC>:FZF<CR>
-nmap <c-t> <ESC>:FZF<CR>
-vmap <c-g> <ESC>:FZF<CR>
-nmap <c-g> <ESC>:FZF<CR>
+Source https://github.com/junegunn/fzf.vim
+nnoremap <C-t> <ESC>:Files<CR>
+nnoremap <C-g> <ESC>:Buffers<CR>
+nnoremap <C-i> <ESC>:Lines<CR>
 
 " Find and Replace
 Source https://github.com/brooth/far.vim
+nnoremap <C-f> <ESC>:Farp<CR>
 
 " Ag - The Silver Searcher
 Source https://github.com/rking/ag.vim
@@ -262,17 +260,17 @@ let g:gundo_right = 1
 
 Source https://github.com/jlanzarotta/bufexplorer
 
-command! Buffers call s:Buffers()
-function! s:Buffers()
-  let l:title = expand("%:t")
-  if (l:title == '[BufExplorer]')
-    :b#
-  else
-    :silent BufExplorer
-  endif
-endfunction
-
-nmap <S-k> :Buffers<CR>
+" command! Buffers call s:Buffers()
+" function! s:Buffers()
+"   let l:title = expand("%:t")
+"   if (l:title == '[BufExplorer]')
+"     :b#
+"   else
+"     :silent BufExplorer
+"   endif
+" endfunction
+"
+" nmap <S-k> :Buffers<CR>
 
 "============="
 
@@ -360,15 +358,18 @@ Source https://github.com/Valloric/YouCompleteMe git submodule update --init --r
 
 "============="
 
-Source https://github.com/scrooloose/nerdtree
 
-" NERDTree toggles with ,d
-map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
-map <Leader>dd :NERDTreeFind<CR>
-let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
-let NERDTreeDirArrows=1
-let NERDTreeMinimalUI=1
-let NERDTreeShowHidden=1
+
+
+" Source https://github.com/scrooloose/nerdtree
+" 
+" " NERDTree toggles with ,d
+" map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
+" map <Leader>dd :NERDTreeFind<CR>
+" let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
+" let NERDTreeDirArrows=1
+" let NERDTreeMinimalUI=1
+" let NERDTreeShowHidden=1
 
 "============="
 
@@ -401,7 +402,7 @@ Source https://github.com/othree/html5.vim
 
 " " Smarty
 " Source https://github.com/theprivileges/smarty.vim
-" au BufNewFile,BufReadPost *.html set ft=smarty
+" au BufNewFile,BufReadPost .html set ft=smarty
 
 " Jade
 Source https://github.com/vim-scripts/jade.vim
