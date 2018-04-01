@@ -105,11 +105,6 @@ export PATH=$(setpath)
 # Environment Variables
 # -----------------------------------------------------------------------------
 
-# Some of these settings will look here
-BREW_PREFIX="/usr/local"
-(has brew) && BREW_PREFIX="$(brew --prefix)"
-source $BREW_PREFIX/etc/bash_completion
-
 # Manually set your language environment
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
@@ -123,14 +118,6 @@ export VISUAL=vim
 
 # ~/.config
 export XDG_CONFIG_HOME="$HOME/.config"
-
-## chruby
-#source $BREW_PREFIX/share/chruby/chruby.sh
-#source $BREW_PREFIX/share/chruby/auto.sh
-
-## rbenv
-#(has rbenv) && eval "$(rbenv init -)"
-
 
 # -----------------------------------------------------------------------------
 # NeoVim
@@ -158,9 +145,9 @@ if has nvim; then
   fi
 fi
 
-#------------------------------------------
+# -----------------------------------------------------------------------------
 # Private environment variables
-#------------------------------------------
+# -----------------------------------------------------------------------------
 source ~/.env
 
 # -----------------------------------------------------------------------------
@@ -181,30 +168,36 @@ ulimit -S -c 0
 umask 0022
 
 # -----------------------------------------------------------------------------
-# Plugins
+# Bash-It including plugins such as FZF
 # -----------------------------------------------------------------------------
 
+
 # https://github.com/Bash-it/bash-it
-#export BASH_IT="$HOME/.bash_it"
-#(has $BASH_IT) && source $BASH_IT/bash_it.sh
+# bash-it enable plugin alias-completion base direnv extract fasd fzf git history rbenv
+# bash-it enable alias clipboard general
+# bash-it enable completion bash-it brew bundler composer defaults docker-compose docker gem git makefile npm pip pip3 pipenv rake rvm ssh system
+if (has ~/.bash_it); then
 
-# https://github.com/nojhan/liquidprompt
-(has ~/.liquidprompt) && [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
+  # https://github.com/junegunn/fzf
+  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || coderay {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'"
+  export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+  #export FZF_ALT_C_COMMAND="cd ~/; bfs -type d -nohidden | sed s/^\./~/"  
+  export FZF_ALT_C_COMMAND="bfs -type d -nohidden"  
+  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+  
+  # Load Bash-it!
+  export BASH_IT="$HOME/.bash_it"
+  export BASH_IT_THEME="powerline-naked"
+  source $BASH_IT/bash_it.sh
 
-# http://direnv.net
-(has direnv) && eval "$(direnv hook $(shell))" 
+  # Add some FZF completions
+  complete -o default -F _fzf_path_completion l
+  complete -o default -F _fzf_path_completion la
+  complete -o nospace -F _fzf_dir_completion z
+fi
 
-# https://github.com/junegunn/fzf
-has ~/.fzf.$(shell) && source ~/.fzf.$(shell)
-
-
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || coderay {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-#export FZF_ALT_C_COMMAND="cd ~/; bfs -type d -nohidden | sed s/^\./~/"  
-export FZF_ALT_C_COMMAND="bfs -type d -nohidden | sed s/^\./~/"  
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 
 # -----------------------------------------------------------------------------
@@ -222,4 +215,3 @@ fi
 if is macos; then
   alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 fi
-

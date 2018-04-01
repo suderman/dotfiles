@@ -15,68 +15,77 @@ Installation
 
 Clone the repo and symlink rcm's configuration file:  
 
-	git clone git@github.com:suderman/dotfiles.git ~/.dotfiles
-	ln -s ~/.dotfiles/rcrc ~/.rcrc
+    git clone git@github.com:suderman/dotfiles.git ~/.dotfiles
+    ln -s ~/.dotfiles/rcrc ~/.rcrc
 
 Install rcm and symlink all the dotfiles:  
 
-	brew install rcm
-	rcup
+    brew install rcm
+    rcup
 
 Additional Tools
 -----------------
 
 Install preferred terminal du jour:
 
-	brew install caskroom/cask/therm
+    brew install caskroom/cask/therm
 
 Install abduco for session management:
 
-	brew install abduco
+    brew install abduco
 
 Install vim and neovim:  
 
-	brew install vim
-	brew install neovim
+    brew install vim
+    brew install neovim
 
 Install python:  
 
-	brew install python2
-	brew install python3
+    brew install python2
+    brew install python3
 	
-	pip2 install --user --upgrade neovim
-	pip3 install --user --upgrade neovim
-	pip3 install --user --upgrade neovim-remote
+    pip2 install --user --upgrade neovim
+    pip3 install --user --upgrade neovim
+    pip3 install --user --upgrade neovim-remote
 
 Install ruby:
 
-	brew install ruby
-	/usr/local/bin/gem install neovim
+    brew install ruby
+    /usr/local/bin/gem install neovim
 
 Install nodejs:
 
-	brew install nodejs
-	npm install neovim
+    brew install nodejs
+    npm install neovim
 
 Install command-line fuzzy finder:  
 
-	brew install fzf
-	/usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
+    brew install fzf
+    /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
 
 Install preview tools:
 
-	brew install highlight
-	/usr/local/bin/gem install coderay
-	/usr/local/bin/gem install rouge
+    brew install highlight
+    /usr/local/bin/gem install coderay
+    /usr/local/bin/gem install rouge
 
 Install a few grepping tools:  
 
-	brew install the_silver_searcher
-	brew install ack
-	brew install ripgrep
-	brew install tavianator/tap/bfs
+    brew install the_silver_searcher
+    brew install ack
+    brew install ripgrep
+    brew install tavianator/tap/bfs
+    brew install fasd
 
 Install a couple of my own for managing ssh and launchd configuration:
 
-	curl suderman.github.io/sshconfig/install | sh
-	curl suderman.github.io/launchup/install | sh
+    curl suderman.github.io/sshconfig/install | sh
+    curl suderman.github.io/launchup/install | sh
+
+    bash-it enable plugin alias-completion base direnv extract fasd fzf git history rbenv
+    bash-it enable alias clipboard general
+    bash-it enable completion bash-it brew bundler composer defaults docker-compose docker gem git makefile npm pip pip3 pipenv rake rvm ssh system
+
+    bash-it update
+    cd ~/.dotfiles && git pull
+    brew update && brew upgrade
