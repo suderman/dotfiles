@@ -185,8 +185,6 @@ cnoremap <c-v> <c-r>"
 "============="
 "
 
-
-
 Source https://github.com/bruno-/vim-husk
 
 

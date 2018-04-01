@@ -71,10 +71,6 @@ setpath() {
   # Support bin
   (has ~/Support/Bin) && PATH="$PATH:$HOME/Support/Bin"
 
-  # rbenv bin
-  #(has ~/.rbenv/shims) && PATH="$PATH:$HOME/.rbenv/shims"
-  #(has ~/.rbenv/bin) && PATH="$PATH:$HOME/.rbenv/bin"
-
   # python bin
   (has ~/Library/Python/2.7/bin) && PATH="$PATH:$HOME/Library/Python/2.7/bin"
   (has ~/Library/Python/3.6/bin) && PATH="$PATH:$HOME/Library/Python/3.6/bin"
@@ -156,7 +152,6 @@ source ~/.env
 
 set -o notify
 shopt -s cdspell >/dev/null 2>&1
-#shopt -s nullglob >/dev/null 2>&1
 shopt -s extglob >/dev/null 2>&1
 shopt -s histappend >/dev/null 2>&1
 shopt -s hostcomplete >/dev/null 2>&1
@@ -170,7 +165,6 @@ umask 0022
 # -----------------------------------------------------------------------------
 # Bash-It including plugins such as FZF
 # -----------------------------------------------------------------------------
-
 
 # https://github.com/Bash-it/bash-it
 # bash-it enable plugin alias-completion base direnv extract fasd fzf git history rbenv
@@ -197,7 +191,6 @@ if (has ~/.bash_it); then
   complete -o default -F _fzf_path_completion la
   complete -o nospace -F _fzf_dir_completion z
 fi
-
 
 
 # -----------------------------------------------------------------------------
