@@ -82,10 +82,15 @@ Install a couple of my own for managing ssh and launchd configuration:
     curl suderman.github.io/sshconfig/install | sh
     curl suderman.github.io/launchup/install | sh
 
+Enable my plugins in Bash-it:
+
     bash-it enable plugin alias-completion base direnv extract fasd fzf git history rbenv
     bash-it enable alias clipboard general
     bash-it enable completion bash-it brew bundler composer defaults docker-compose docker gem git makefile npm pip pip3 pipenv rake rvm ssh system
 
-    bash-it update
+Keep this configuration updated:
+
     cd ~/.dotfiles && git pull
+    bash-it update    
     brew update && brew upgrade
+    /usr/local/bin/gem update
