@@ -3,6 +3,11 @@ private/**
 !private/ssh/
 private/ssh/**
 !private/ssh/.gitkeep
+local/**
+!local/.gitkeep
+!local/ssh/
+local/ssh/**
+!local/ssh/.gitkeep
 vim/backup
 vim/bundle
 vim/session

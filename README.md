@@ -74,9 +74,9 @@ Install a few grepping tools:
 	brew install the_silver_searcher
 	brew install ack
 	brew install ripgrep
+	brew install tavianator/tap/bfs
 
 Install a couple of my own for managing ssh and launchd configuration:
 
 	curl suderman.github.io/sshconfig/install | sh
 	curl suderman.github.io/launchup/install | sh
-
