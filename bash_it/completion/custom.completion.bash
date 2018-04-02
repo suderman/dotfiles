@@ -6,4 +6,4 @@ complete -o default -F _fzf_path_completion la
 complete -o nospace -F _fzf_dir_completion z
 
 # ASDF
-source ~/.asdf/completions/asdf.bash
+(has ~/.asdf) && source ~/.asdf/completions/asdf.bash

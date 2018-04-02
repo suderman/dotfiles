@@ -8,19 +8,25 @@ This is my collection of scripts and configuration files for all of my systems,
 including macOS and Linux. 
 
 I keep my dotfiles symlinked from `~/.dotfiles` to my home directory. I use 
-[rcm](https://github.com/thoughtbot/rcm) to manage them nicely.  
+[Bash-it](https://github.com/Bash-it/bash-it) to organize my shell scripts and 
+[rcm](https://github.com/thoughtbot/rcm) to manage my dotfiles nicely.  
 
 Installation
-------------
+------------ 
 
-Clone the repo and symlink rcm's configuration file:  
+Clone the Bash-it repo and run the installer:  
+
+    git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+    ~/.bash_it/install.sh
+
+Clone this repo and symlink rcm's configuration file:  
 
     git clone git@github.com:suderman/dotfiles.git ~/.dotfiles
-    ln -s ~/.dotfiles/rcrc ~/.rcrc
+    ln -s ~/.dotfiles/rcrc ~/.rcrc   
 
 Install rcm and symlink all the dotfiles:  
 
-    brew install rcm
+    brew install thoughtbot/formulae/rcm
     rcup
 
 Additional Tools
@@ -44,43 +50,46 @@ Install python:
     brew install python2
     brew install python3
 	
-    pip2 install --user --upgrade neovim
-    pip3 install --user --upgrade neovim
-    pip3 install --user --upgrade neovim-remote
+    $(brew --prefix)/bin/pip2 install --user --upgrade neovim
+    $(brew --prefix)/bin/pip3 install --user --upgrade neovim neovim-remote
 
 Install ruby:
 
     brew install ruby
-    /usr/local/bin/gem install neovim
+    $(brew --prefix)/bin/gem install neovim
 
 Install nodejs:
 
     brew install nodejs
-    npm install neovim
+    $(brew --prefix)/bin/npm install -g neovim
 
 Install command-line fuzzy finder:  
 
     brew install fzf
-    /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
+    $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 
 Install preview tools:
 
     brew install highlight
-    /usr/local/bin/gem install coderay
-    /usr/local/bin/gem install rouge
+    $(brew --prefix)/bin/gem install coderay rouge
 
 Install a few grepping tools:  
 
+    brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
+    brew install ripgrep-bin
     brew install the_silver_searcher
     brew install ack
-    brew install ripgrep
     brew install tavianator/tap/bfs
     brew install fasd
+
+Install version manager:  
+
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
 
 Install a couple of my own for managing ssh and launchd configuration:
 
     curl suderman.github.io/sshconfig/install | sh
-    curl suderman.github.io/launchup/install | sh
+    curl suderman.github.io/launchup/install | sh # -- macos only --
 
 Enable my plugins in Bash-it:
 
@@ -93,4 +102,12 @@ Keep this configuration updated:
     cd ~/.dotfiles && git pull
     bash-it update    
     brew update && brew upgrade
-    /usr/local/bin/gem update
+    $(brew --prefix)/bin/gem update
+
+Install:
+
+    brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
+    brew install abduco vim neovim python2 python3 ruby fzf highlight the_silver_searcher ack ripgrep tavianator/tap/bfs fasd
+    pip2 install --user --upgrade neovim
+    pip3 install --user --upgrade neovim neovim-remote
+    $(brew --prefix)/bin/gem install neovim coderay rouge
