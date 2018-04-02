@@ -8,8 +8,8 @@ about-plugin 'custom plugin'
 path_prepend ./bin ~/bin ~/.dotfiles/bin ~/Support/Bin
 
 # Homebrew bin directories
-path_append /usr/local/bin /usr/local/sbin ~/.linuxbrew/bin 
-
+path_append /usr/local/bin /usr/local/sbin /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin
+ 
 # Python bin directories
 path_append ~/Library/Python/2.7/bin ~/Library/Python/3.6/bin  
 
