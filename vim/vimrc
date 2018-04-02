@@ -225,6 +225,7 @@ noremap <leader>/ :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 
 " fzf fuzzy finder
 set rtp+=/usr/local/opt/fzf
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 Source https://github.com/junegunn/fzf.vim
 nnoremap <C-t> <ESC>:Files<CR>
 nnoremap <C-g> <ESC>:Buffers<CR>
