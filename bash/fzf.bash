@@ -19,5 +19,21 @@ if (has fzf); then
   complete -o default -F _fzf_path_completion l
   complete -o default -F _fzf_path_completion la
   complete -o nospace -F _fzf_dir_completion z
-  
+
+fi
+
+# Ctrl-G to get directories from history
+if (has fzf) && (has fasd_cd); then
+  go(){
+    cd "$(fasd_cd -d -l | fzf --preview 'tree -C {} | head -200')"
+  }
+  bind '"\C-g": " \C-e\C-ugo\n"'
+fi
+
+# Ctrl-F to find directories under current directory
+if (has fzf) && (has bfs); then
+  finder(){
+    cd "$(bfs -type d -nohidden -f "$(pwd)" 2>/dev/null | fzf --preview 'tree -C {} | head -200')"
+  }
+  bind '"\C-f": " \C-e\C-ufinder\n"'
 fi
