@@ -19,8 +19,11 @@ set timeoutlen=500
 set number                             " show line numbers
 
 " Terminal
-tnoremap <Esc> <C-\><C-n>
-tnoremap <C-v><Esc> :<Esc>
+inoremap <C-a><C-a> <Esc>i
+nnoremap <C-a><C-a> <Esc>i
+vnoremap <C-a><C-a> <Esc>i
+tnoremap <C-a><C-a> <C-\><C-n>
+nnoremap <C-a><C-s> :terminal<CR>
 nnoremap <Leader>t :terminal<CR>
 highlight! link TermCursor Cursor
 highlight! TermCursor ctermfg=red guifg=red
@@ -259,17 +262,17 @@ let g:gundo_right = 1
 
 Source https://github.com/jlanzarotta/bufexplorer
 
-" command! Buffers call s:Buffers()
-" function! s:Buffers()
-"   let l:title = expand("%:t")
-"   if (l:title == '[BufExplorer]')
-"     :b#
-"   else
-"     :silent BufExplorer
-"   endif
-" endfunction
-"
-" nmap <S-k> :Buffers<CR>
+command! Buffers call s:Buffers()
+function! s:Buffers()
+  let l:title = expand("%:t")
+  if (l:title == '[BufExplorer]')
+    :b#
+  else
+    :silent BufExplorer
+  endif
+endfunction
+
+nmap <S-k> :Buffers<CR>
 
 "============="
 
@@ -353,22 +356,19 @@ Source https://github.com/bkad/CamelCaseMotion
 "============="
 
 " YouCompleteMe autocomplete
-Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive && YCM_CORES=1 ./install.py --clang-completer
+Source https://github.com/Valloric/YouCompleteMe [[ -f ./third_party/ycmd/ycm_core.so ]] || git submodule update --init --recursive && YCM_CORES=1 ./install.py --clang-completer
 
 "============="
 
 
-
-
-" Source https://github.com/scrooloose/nerdtree
-" 
-" " NERDTree toggles with ,d
-" map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
-" map <Leader>dd :NERDTreeFind<CR>
-" let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
-" let NERDTreeDirArrows=1
-" let NERDTreeMinimalUI=1
-" let NERDTreeShowHidden=1
+Source https://github.com/scrooloose/nerdtree
+" NERDTree toggles with ,d
+map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
+map <Leader>dd :NERDTreeFind<CR>
+let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
+let NERDTreeDirArrows=1
+let NERDTreeMinimalUI=1
+let NERDTreeShowHidden=1
 
 "============="
 
