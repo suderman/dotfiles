@@ -27,21 +27,24 @@ umask 0022
 
 # -----------------------------------------------------------------------------
 # Bash-It including plugins such as FZF
+# https://github.com/Bash-it/bash-it
+#
+# bash-it enable plugin alias-completion base direnv extract fasd fzf git history rbenv
+# bash-it enable alias clipboard general
+# bash-it enable completion bash-it brew bundler composer defaults docker-compose docker gem git makefile npm pip pip3 pipenv rake rvm ssh system  
 # -----------------------------------------------------------------------------
 if [ -e ~/.bash_it ]; then
-  
-  # https://github.com/Bash-it/bash-it
-  # bash-it enable plugin alias-completion base direnv extract fasd fzf git history rbenv
-  # bash-it enable alias clipboard general
-  # bash-it enable completion bash-it brew bundler composer defaults docker-compose docker gem git makefile npm pip pip3 pipenv rake rvm ssh system  
   export BASH_IT="$HOME/.bash_it"
   export BASH_IT_THEME="powerline-naked"
   source $BASH_IT/bash_it.sh
 fi
 
 # -----------------------------------------------------------------------------
+# Custom bash files
+# -----------------------------------------------------------------------------
+for f in ~/.dotfiles/bash/*.bash; do [[ -f "$f" ]] && source "$f"; done
+
+# -----------------------------------------------------------------------------
 # Local environment variables
 # -----------------------------------------------------------------------------
-if [ -e ~/.env ]; then
-  source ~/.env
-fi
+[[ -f ~/.env ]] && source ~/.env

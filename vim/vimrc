@@ -353,7 +353,7 @@ Source https://github.com/bkad/CamelCaseMotion
 "============="
 
 " YouCompleteMe autocomplete
-Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive && ./install.py
+Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive && YCM_CORES=1 ./install.py --clang-completer
 
 "============="
 
