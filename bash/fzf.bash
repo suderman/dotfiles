@@ -22,18 +22,18 @@ if (has fzf); then
 
 fi
 
-# Ctrl-G to get directories from history
+# Ctrl-F to find frecent (frequent/recent) directories
 if (has fzf) && (has fasd_cd); then
-  go(){
+  frecent(){
     cd "$(fasd_cd -d -l | fzf --preview 'tree -C {} | head -200')"
   }
-  bind '"\C-g": " \C-e\C-ugo\n"'
+  bind '"\C-f": " \C-e\C-ufrecent\n"'
 fi
 
-# Ctrl-F to find directories under current directory
+# Ctrl-G to go to folder under current working directory
 if (has fzf) && (has bfs); then
-  finder(){
+  go(){
     cd "$(bfs -type d -nohidden -f "$(pwd)" 2>/dev/null | fzf --preview 'tree -C {} | head -200')"
   }
-  bind '"\C-f": " \C-e\C-ufinder\n"'
+  bind '"\C-g": " \C-e\C-ugo\n"'
 fi
