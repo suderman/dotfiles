@@ -30,6 +30,20 @@ highlight! TermCursor ctermfg=red guifg=red
 au TermOpen *  :startinsert
 Source https://github.com/kassio/neoterm
 
+
+
+
+function! GoTo()
+  call termopen("nvr -c \"cd $(bfs -type d -nohidden -f \"$(pwd)\" 2>/dev/null | fzf --preview 'tree -C {} | head -200')\" && nvr -c pwd")
+endfunction
+command! GoTo call GoTo()
+nnoremap <C-g> :GoTo<CR>
+" augroup terminal
+"   autocmd!
+"   autocmd TermClose * if getline('$') == 'Exit 0' | close | endif
+" augroup end
+
+
 " Source https://github.com/ipod825/vim-netranger
 Source https://github.com/tpope/vim-vinegar
 
@@ -231,7 +245,7 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 Source https://github.com/junegunn/fzf.vim
 nnoremap <C-t> <ESC>:Files<CR>
-nnoremap <C-g> <ESC>:Buffers<CR>
+" nnoremap <C-g> <ESC>:Buffers<CR>
 nnoremap <C-i> <ESC>:Lines<CR>
 
 " Find and Replace
