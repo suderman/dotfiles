@@ -36,7 +36,7 @@ umask 0022
 if [ -e ~/.bash_it ]; then
   export BASH_IT="$HOME/.bash_it"
   export BASH_IT_THEME="powerline-naked"
-  source $BASH_IT/bash_it.sh
+  #source $BASH_IT/bash_it.sh
 fi
 
 # -----------------------------------------------------------------------------
@@ -48,3 +48,4 @@ for f in ~/.dotfiles/bash/*.bash; do [[ -f "$f" ]] && source "$f"; done
 # Local environment variables
 # -----------------------------------------------------------------------------
 [[ -f ~/.env ]] && source ~/.env
+. "/home/suderman/.acme.sh/acme.sh.env"

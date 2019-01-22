@@ -18,26 +18,51 @@ set showmode                           " show what mode (Insert/Normal/Visual) i
 set timeoutlen=500
 set number                             " show line numbers
 
-" Terminal
-inoremap <C-a><C-a> <Esc>i
-nnoremap <C-a><C-a> <Esc>i
-vnoremap <C-a><C-a> <Esc>i
-tnoremap <C-a><C-a> <C-\><C-n>
-nnoremap <C-a><C-s> :terminal<CR>
-nnoremap <Leader>t :terminal<CR>
+" " Terminal
+" inoremap <C-a><C-a> <Esc>i
+" nnoremap <C-a><C-a> <Esc>i
+" vnoremap <C-a><C-a> <Esc>i
+" tnoremap <C-a><C-a> <C-\><C-n>
+" nnoremap <C-a><C-s> :terminal<CR>
+" nnoremap <Leader>t :terminal<CR>
 highlight! link TermCursor Cursor
 highlight! TermCursor ctermfg=red guifg=red
 au TermOpen *  :startinsert
-Source https://github.com/kassio/neoterm
+" Source https://github.com/kassio/neoterm
+
+"F12 to activate terminal in window
+nnoremap <F10> :term<enter>
+tnoremap <F10> <nop>
+
+"shift tabs with F1 and F2
+imap <F1> :tabp<enter>
+nmap <F1> :tabp<enter>
+tmap <F1> <C-\><C-n>:tabp<enter>
+imap <F2> :tabn<enter>
+nmap <F2> :tabn<enter>
+tmap <F2> <C-\><C-n>:tabn<enter>
+
+"use ctrl + hjkl to switch windows
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
+" inoremap <C-h> <esc><C-w>h
+" inoremap <C-j> <esc><C-w>j
+" inoremap <C-k> <esc><C-w>k
+" inoremap <C-l> <esc><C-w>l
 
 
 
-
-function! GoTo()
-  call termopen("nvr -c \"cd $(bfs -type d -nohidden -f \"$(pwd)\" 2>/dev/null | fzf --preview 'tree -C {} | head -200')\" && nvr -c pwd")
-endfunction
-command! GoTo call GoTo()
-nnoremap <C-g> :GoTo<CR>
+" function! GoTo()
+"   call termopen("nvr -c \"cd $(bfs -type d -nohidden -f \"$(pwd)\" 2>/dev/null | fzf --preview 'tree -C {} | head -200')\" && nvr -c pwd")
+" endfunction
+" command! GoTo call GoTo()
+" nnoremap <C-g> :GoTo<CR>
 " augroup terminal
 "   autocmd!
 "   autocmd TermClose * if getline('$') == 'Exit 0' | close | endif
@@ -370,7 +395,7 @@ Source https://github.com/bkad/CamelCaseMotion
 "============="
 
 " YouCompleteMe autocomplete
-Source https://github.com/Valloric/YouCompleteMe [[ -f ./third_party/ycmd/ycm_core.so ]] || git submodule update --init --recursive && YCM_CORES=1 ./install.py --clang-completer
+" Source https://github.com/Valloric/YouCompleteMe [[ -f ./third_party/ycmd/ycm_core.so ]] || git submodule update --init --recursive && YCM_CORES=1 ./install.py --clang-completer
 
 "============="
 
@@ -391,21 +416,21 @@ let NERDTreeShowHidden=1
 " set foldnestmax=10      "deepest fold is 10 levels
 " au BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
 
-" Tmux-style shortcuts
-map <C-a>1 1gt
-map <C-a>2 2gt
-map <C-a>3 3gt
-map <C-a>4 4gt
-map <C-a>5 5gt
-map <C-a>6 6gt
-map <C-a>7 7gt
-map <C-a>8 8gt
-map <C-a>9 9gt
-map <C-a>- :sp<CR>
-map <C-a>\ :vs<CR>
-map <C-a>t :tabnew<CR>
-map <C-a>c :tabclose<CR>
-map <C-a>m :term<CR>i
+" " Tmux-style shortcuts
+" map <C-a>1 1gt
+" map <C-a>2 2gt
+" map <C-a>3 3gt
+" map <C-a>4 4gt
+" map <C-a>5 5gt
+" map <C-a>6 6gt
+" map <C-a>7 7gt
+" map <C-a>8 8gt
+" map <C-a>9 9gt
+" map <C-a>- :sp<CR>
+" map <C-a>\ :vs<CR>
+" map <C-a>t :tabnew<CR>
+" map <C-a>c :tabclose<CR>
+" map <C-a>m :term<CR>i
 
 " Filetypes and Syntax
 "---------------------

@@ -36,3 +36,6 @@
 	keepBackup = false
 [include]
   path = ~/.gitconfig.local
+[user]
+	name = Jonathan Suderman
+	email = jonathan@suderman.org

@@ -27,7 +27,7 @@ if (has fzf) && (has fasd_cd); then
   frecent(){
     cd "$(fasd_cd -d -l | fzf --preview 'tree -C {} | head -200')"
   }
-  bind '"\C-f": " \C-e\C-ufrecent\n"'
+  #bind '"\C-f": " \C-e\C-ufrecent\n"'
 fi
 
 # Ctrl-G to [g]o to folder under current working directory
@@ -35,7 +35,7 @@ if (has fzf) && (has bfs); then
   goto(){
     cd "$(bfs -type d -nohidden -f "$(pwd)" 2>/dev/null | fzf --preview 'tree -C {} | head -200')"
   }
-  bind '"\C-g": " \C-e\C-ugoto\n"'
+  #bind '"\C-g": " \C-e\C-ugoto\n"'
 fi
 
 # Ctrl-T to edi[t] file under current working directory
@@ -44,5 +44,5 @@ if (has fzf) && (has rg); then
     local pathname="$(rg --files --no-ignore --hidden --follow -g '!{.git,node_modules}/*' 2> /dev/null | fzf -m --select-1 --exit-0 --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || coderay {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500')"
     defined $pathname && $EDITOR $pathname
   }
-  bind '"\C-t": " \C-e\C-ueditor\n"'
+  #bind '"\C-t": " \C-e\C-ueditor\n"'
 fi
