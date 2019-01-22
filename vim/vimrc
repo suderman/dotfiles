@@ -417,6 +417,9 @@ Source https://github.com/othree/html5.vim
 " Source https://github.com/theprivileges/smarty.vim
 " au BufNewFile,BufReadPost .html set ft=smarty
 
+" Twig
+Source https://github.com/lumiliet/vim-twig
+
 " Jade
 Source https://github.com/vim-scripts/jade.vim
 

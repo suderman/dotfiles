@@ -1,8 +1,8 @@
 suderman-style dotfiles!
 ========================
 
-What's this?
-------------
+What is this?
+-------------
 
 This is my collection of scripts and configuration files for all of my systems, 
 including macOS and Linux. 
