@@ -1,0 +1,4 @@
+# 1. Install minpac
+git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+
+# 2. Inside vim, run :PackUpdate

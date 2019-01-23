@@ -49,3 +49,5 @@ for f in ~/.dotfiles/bash/*.bash; do [[ -f "$f" ]] && source "$f"; done
 # -----------------------------------------------------------------------------
 [[ -f ~/.env ]] && source ~/.env
 . "/home/suderman/.acme.sh/acme.sh.env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
