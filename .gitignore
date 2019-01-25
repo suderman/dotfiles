@@ -11,5 +11,6 @@ local/ssh/**
 vim/backup
 vim/bundle
 vim/session
+tmux/plugins/**
 npm-debug.log
 .DS_Store

@@ -105,6 +105,26 @@ noremap Q gqip
 " :Man pages in Vim
 runtime! ftplugin/man.vim
 
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" Create our own mappings
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+
+if has('nvim')
+  tnoremap <silent> <M-h> <C-\><C-n> :TmuxNavigateLeft<cr>
+  tnoremap <silent> <M-j> <C-\><C-n> :TmuxNavigateDown<cr>
+  tnoremap <silent> <M-k> <C-\><C-n> :TmuxNavigateUp<cr>
+  tnoremap <silent> <M-l> <C-\><C-n> :TmuxNavigateRight<cr>
+  tnoremap <silent> <M-\> <C-\><C-n> :TmuxNavigatePrevious<cr>
+endif
+
 " Smart way to move between windows. Ctrl-[h,j,k,l]
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -116,6 +136,11 @@ vnoremap <c-j> <c-w>+
 vnoremap <c-k> <c-w>-
 vnoremap <c-h> <c-w><
 vnoremap <c-l> <c-w>>
+
+vnoremap <M-j> <c-w>+
+vnoremap <M-k> <c-w>-
+vnoremap <M-h> <c-w><
+vnoremap <M-l> <c-w>>
 
 " Let directional keys work in Insert Mode. Ctrl-[h,j,k,l]
 inoremap <c-j> <Down>
@@ -144,7 +169,7 @@ noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 " fzf fuzzy finder
 set rtp+=~/.fzf
 nnoremap <C-t> <ESC>:Files<CR>
-nnoremap <M-k> <ESC>:Buffers<CR>
+" nnoremap <M-k> <ESC>:Buffers<CR>
 nnoremap <M-t> <ESC>:Lines<CR>
 
 " Find and Replace

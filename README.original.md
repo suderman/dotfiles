@@ -8,15 +8,16 @@ This is my collection of scripts and configuration files for all of my systems,
 including macOS and Linux. 
 
 I keep my dotfiles symlinked from `~/.dotfiles` to my home directory. I use 
-[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) to organize my shell scripts and 
+[Bash-it](https://github.com/Bash-it/bash-it) to organize my shell scripts and 
 [rcm](https://github.com/thoughtbot/rcm) to manage my dotfiles nicely.  
 
 Installation
 ------------ 
 
-Clone oh-my-zsh:
+Clone the Bash-it repo and run the installer:  
 
-    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+    ~/.bash_it/install.sh
 
 Clone this repo and symlink rcm's configuration file:  
 
