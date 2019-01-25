@@ -1,12 +1,20 @@
-command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
+" Define user commands for updating/cleaning the plugins.
+" Each of them loads minpac, reloads .vimrc to register the
+" information of plugins, then performs the task.
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
 if !exists('*minpac#init')
   finish
 endif
 
 " Plugin manager
+call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+
+" -- All the plugins --
 
 " Colorscheme
 call minpac#add('morhetz/gruvbox')

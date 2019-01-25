@@ -69,6 +69,9 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# path
+export PATH=/usr/local/bin:usr/local/sbin:$PATH
+
 # =============
 #    HISTORY
 # =============

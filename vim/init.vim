@@ -48,8 +48,11 @@ set modeline
 set modelines=10
 
 " Colors
-colorscheme gruvbox
-set background=dark
+try 
+  colorscheme gruvbox
+  set background=dark
+  catch
+endtry
 
 " Directories for session, undo, backup, swp files
 let g:vim_pid = $HOME.'/.vim/session/process-'.getpid()
@@ -182,15 +185,17 @@ vmap _ [egv
 vmap + ]egv
 
 " syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" let g:syntastic_enable_signs=1
-" let g:syntastic_quiet_messages = {'level': 'warnings'}
+if exists("*SyntasticStatuslineFlag")
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  " let g:syntastic_enable_signs=1
+  " let g:syntastic_quiet_messages = {'level': 'warnings'}
+endif
 
 " git
 autocmd BufReadPost fugitive://* set bufhidden=delete
