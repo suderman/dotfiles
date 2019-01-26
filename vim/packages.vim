@@ -28,14 +28,16 @@ call minpac#add('jlanzarotta/bufexplorer')
 " File/folder drawer on the side
 call minpac#add('scrooloose/nerdtree')
 
-" Vim/Tmux seamless navigation
+" Vim/Tmux integration
 call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('roxma/vim-tmux-clipboard')
 
 " Git
 call minpac#add('tpope/vim-git')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-rhubarb')
 call minpac#add('gregsexton/gitv')
+call minpac#add('airblade/vim-gitgutter')
 
 " Tim Pope's good stuff
 call minpac#add('tpope/vim-sensible')
