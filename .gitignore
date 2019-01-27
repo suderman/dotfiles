@@ -12,5 +12,6 @@ vim/backup
 vim/bundle
 vim/session
 tmux/plugins/**
+!tmux/plugins/install-tpm-here.txt
 npm-debug.log
 .DS_Store

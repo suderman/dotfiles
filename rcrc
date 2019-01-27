@@ -1,4 +1,4 @@
 DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles/local"
-EXCLUDES="bash zsh local *.md"
+EXCLUDES="local *.md"
 COPY_ALWAYS="ssh/authorized_keys"
 SYMLINK_DIRS="autoload colors plugin"

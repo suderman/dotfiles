@@ -1,0 +1,4 @@
+# 1. Install tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# 2. Inside tmux, run <prefix> Shift-I
