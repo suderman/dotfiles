@@ -50,6 +50,7 @@ set modelines=10
 " Colors
 try 
   colorscheme gruvbox
+  colorscheme nord
   set background=dark
   catch
 endtry
@@ -237,18 +238,6 @@ let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
-
-" Launch vimrc with ,v
-nmap <leader>v :EditVimRC<CR>
-command! EditVimRC call s:EditVimRC()
-function! s:EditVimRC()
-  let l:title = expand("%:t")
-  if (l:title == 'init.vim')
-    :edit ~/.vim/packages.vim
-  else
-    :edit ~/.vim/init.vim
-  endif
-endfunction
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

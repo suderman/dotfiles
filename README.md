@@ -1,4 +1,4 @@
-suderman-style dotfiles!
+suderman dotfiles!
 ========================
 
 What is this?
@@ -14,35 +14,46 @@ I keep my dotfiles symlinked from `~/.dotfiles` to my home directory. I use
 Installation
 ------------ 
 
-Clone oh-my-zsh:
-
-    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-
 Clone this repo and symlink rcm's configuration file:  
 
     git clone git@github.com:suderman/dotfiles.git ~/.dotfiles
     ln -s ~/.dotfiles/rcrc ~/.rcrc   
+
+clone oh-my-zsh:
+
+    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+clone tmux plugin manager:
+
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+clone minpac:
+
+    git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+
+Clone fzf:
+
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 Install rcm and symlink all the dotfiles:  
 
     brew install thoughtbot/formulae/rcm
     rcup
 
-Additional Tools
+Essential Tools
 -----------------
 
-Install preferred terminal du jour:
+Install tmux:
 
-    brew install caskroom/cask/therm
-
-Install abduco for session management:
-
-    brew install abduco
+    brew install tmux
 
 Install vim and neovim:  
 
     brew install vim
     brew install neovim
+
+Additional Tools
+-----------------
 
 Install python:  
 
@@ -62,11 +73,6 @@ Install nodejs:
     brew install nodejs
     $(brew --prefix)/bin/npm install -g neovim
 
-Install command-line fuzzy finder:  
-
-    brew install fzf
-    $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
-
 Install preview tools:
 
     brew install highlight
@@ -78,35 +84,26 @@ Install a few grepping tools:
     brew install ripgrep-bin
     brew install the_silver_searcher
     brew install ack
-    brew install tavianator/tap/bfs
-    brew install fasd
 
-Install version manager:  
-
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3
-
-Install a couple of my own for managing ssh and launchd configuration:
+Install my own for managing ssh configuration:
 
     curl suderman.github.io/sshconfig/install | sh
-    curl suderman.github.io/launchup/install | sh # -- macos only --
-
-Enable my plugins in Bash-it:
-
-    bash-it enable plugin alias-completion base direnv extract fasd fzf git history rbenv
-    bash-it enable alias clipboard general
-    bash-it enable completion bash-it brew bundler composer defaults docker-compose docker gem git makefile npm pip pip3 pipenv rake rvm ssh system
 
 Keep this configuration updated:
 
     cd ~/.dotfiles && git pull
-    bash-it update    
+    cd ~/.oh-my-zsh && git pull
+    cd ~/.fzf && git pull
+    nvim -E -c PackUpdate -c q
+    ~/.tmux/plugins/tpm/bin/install_plugins all
+    ~/.tmux/plugins/tpm/bin/update_plugins all
+    rcdn && ln -sf ~/.dotfiles/rcrc ~/.rcrc && rcup
     brew update && brew upgrade
-    $(brew --prefix)/bin/gem update
 
 Install:
 
     brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
-    brew install abduco vim neovim python2 python3 ruby fzf highlight the_silver_searcher ack ripgrep tavianator/tap/bfs fasd
+    brew install vim neovim python2 python3 ruby highlight the_silver_searcher ack ripgrep
     pip2 install --user --upgrade neovim
     pip3 install --user --upgrade neovim neovim-remote
     $(brew --prefix)/bin/gem install neovim coderay rouge

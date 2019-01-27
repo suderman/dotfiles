@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+# 2019 Jon Suderman
+# https://github.com/suderman/dotfiles
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -29,11 +31,22 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 export PATH="./bin:~/bin:~/.dotfiles/bin:$PATH"
 
+# Path on separate lines
+path() {
+  echo $PATH | tr ':' '\n'
+}
+
 # Use Neovim as "preferred editor"
 export EDITOR=nvim
 export VISUAL=nvim
 alias vim=nvim
 alias vi=nvim
+
+# Refresh rcm symlinks
+alias rcm="rcdn && ln -sf ~/.dotfiles/rcrc ~/.rcrc && rcup"
+
+# python
+alias server="python -m SimpleHTTPServer"
 
 # True if command or file does exist
 has() {
@@ -66,6 +79,16 @@ source() {
   if [ -f "$1" ]; then
     builtin source "$1" && return 0;
   fi
+}
+
+dotfiles-update() {
+  cd ~/.dotfiles && git pull
+  cd ~/.oh-my-zsh && git pull
+  cd ~/.fzf && git pull
+  nvim -E -c PackUpdate -c q
+  ~/.tmux/plugins/tpm/bin/install_plugins all
+  ~/.tmux/plugins/tpm/bin/update_plugins all
+  rcdn && ln -sf ~/.dotfiles/rcrc ~/.rcrc && rcup
 }
 
 # Local env

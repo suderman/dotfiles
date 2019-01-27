@@ -18,6 +18,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Colorscheme
 call minpac#add('morhetz/gruvbox')
+call minpac#add('arcticicestudio/nord-vim')
 
 " Status line
 call minpac#add('itchyny/lightline.vim')
