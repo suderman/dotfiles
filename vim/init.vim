@@ -50,7 +50,6 @@ set modelines=10
 " Colors
 try 
   colorscheme gruvbox
-  colorscheme nord
   set background=dark
   catch
 endtry
