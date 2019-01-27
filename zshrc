@@ -89,6 +89,7 @@ dotfiles-update() {
   ~/.tmux/plugins/tpm/bin/install_plugins all
   ~/.tmux/plugins/tpm/bin/update_plugins all
   rcdn && ln -sf ~/.dotfiles/rcrc ~/.rcrc && rcup
+  brew update && brew upgrade
 }
 
 # Local env

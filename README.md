@@ -43,6 +43,10 @@ Install rcm and symlink all the dotfiles:
 Essential Tools
 -----------------
 
+Install mosh:
+
+    sudo apt-get install mosh
+
 Install tmux:
 
     brew install tmux
@@ -88,6 +92,14 @@ Install a few grepping tools:
 Install my own for managing ssh configuration:
 
     curl suderman.github.io/sshconfig/install | sh
+
+Install Dropbox for Debian:
+
+    cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+    ~/.dropbox-dist/dropboxd
+    wget https://linux.dropbox.com/packages/dropbox.py
+    chown a+x dropbox.py
+    sudo mv dropbox.py /usr/local/bin/dropbox
 
 Keep this configuration updated:
 
