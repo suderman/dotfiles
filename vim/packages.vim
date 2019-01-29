@@ -27,14 +27,6 @@ call minpac#add('itchyny/lightline.vim')
 " Quickly switch between buffers
 call minpac#add('jlanzarotta/bufexplorer')
 
-" Nerd Tree file management
-call minpac#add('scrooloose/nerdtree')
-call minpac#add('taiansu/nerdtree-ag')
-call minpac#add('Xuyuanp/nerdtree-git-plugin')
-
-" Fuzzy Finder
-call minpac#add('junegunn/fzf.vim')
-
 " Vim/Tmux integration
 call minpac#add('christoomey/vim-tmux-navigator')
 call minpac#add('roxma/vim-tmux-clipboard')
@@ -45,6 +37,14 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-rhubarb')
 call minpac#add('gregsexton/gitv')
 call minpac#add('airblade/vim-gitgutter')
+
+" Nerd Tree file management
+call minpac#add('scrooloose/nerdtree')
+call minpac#add('taiansu/nerdtree-ag')
+call minpac#add('Xuyuanp/nerdtree-git-plugin')
+
+" Fuzzy Finder
+call minpac#add('junegunn/fzf.vim')
 
 " Tim Pope's good stuff
 call minpac#add('tpope/vim-sensible')

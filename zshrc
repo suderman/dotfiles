@@ -82,7 +82,12 @@ source() {
   fi
 }
 
-dotfiles-update() {
+update-dotfiles() {
+  cd ~/.dotfiles && git pull
+  rcdn && ln -sf ~/.dotfiles/rcrc ~/.rcrc && rcup
+}
+
+update-everything() {
   cd ~/.dotfiles && git pull
   cd ~/.oh-my-zsh && git pull
   cd ~/.fzf && git pull
