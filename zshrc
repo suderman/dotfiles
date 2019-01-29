@@ -17,6 +17,9 @@ DISABLE_AUTO_UPDATE="true"
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
+# Stop changing the window title
+DISABLE_AUTO_TITLE="true"
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
