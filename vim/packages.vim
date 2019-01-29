@@ -19,6 +19,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " Colorscheme
 call minpac#add('morhetz/gruvbox')
 call minpac#add('arcticicestudio/nord-vim')
+call minpac#add('flazz/vim-colorschemes')
 
 " Status line
 call minpac#add('itchyny/lightline.vim')
@@ -26,8 +27,13 @@ call minpac#add('itchyny/lightline.vim')
 " Quickly switch between buffers
 call minpac#add('jlanzarotta/bufexplorer')
 
-" File/folder drawer on the side
+" Nerd Tree file management
 call minpac#add('scrooloose/nerdtree')
+call minpac#add('taiansu/nerdtree-ag')
+call minpac#add('Xuyuanp/nerdtree-git-plugin')
+
+" Fuzzy Finder
+call minpac#add('junegunn/fzf.vim')
 
 " Vim/Tmux integration
 call minpac#add('christoomey/vim-tmux-navigator')
@@ -58,9 +64,6 @@ call minpac#add('Raimondi/delimitMate')
 
 " Command line mode mappings
 call minpac#add('vim-utils/vim-husk')
-
-" Fuzzy Finder
-call minpac#add('junegunn/fzf.vim')
 
 " Find and Replace
 call minpac#add('brooth/far.vim')

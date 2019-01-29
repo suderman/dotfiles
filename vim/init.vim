@@ -1,5 +1,4 @@
-" Comma is the leader character
-let mapleader = ","
+" let mapleader = ","
 
 " Basic stuff
 set encoding=utf-8                     " always use the good encoding
@@ -232,7 +231,9 @@ let g:Gitv_DoNotMapCtrlKey = 1
 
 " NERDTree toggles with ,d
 map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
+map <Leader>] :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 map <Leader>dd :NERDTreeFind<CR>
+map <Leader>]] :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
