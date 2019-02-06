@@ -31,10 +31,13 @@ source $ZSH/oh-my-zsh.sh
 
 # Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="~/.linuxbrew/bin:~/.linuxbrew/sbin:$PATH"
+export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="./bin:~/bin:~/.dotfiles/bin:$PATH"
+export PATH="./bin:$HOME/bin:$HOME/.dotfiles/bin:$PATH"
+
+# Remove duplicates
+export PATH=$(echo $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
 
 # Path on separate lines
 path() {
