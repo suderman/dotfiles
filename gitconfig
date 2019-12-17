@@ -37,5 +37,5 @@
 [include]
   path = ~/.gitconfig.local
 [user]
-	name = Jonathan Suderman
-	email = jonathan@suderman.org
+	name = Jon Suderman
+	email = jon@suderman.net
