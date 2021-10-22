@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+  echo "Usage: git clone-pull repository directory"
+  exit 1
+fi
+
+repository=$1
+directory=$2
+
+# Check if the directory exists
+if [ -d $directory ]; then
+
+  # Now check if it's a git repo
+  if [ -d $directory/.git ]; then
+
+    # It is? Great, let update it!
+    echo "Updating $repository"
+    pushd $directory > /dev/null && git pull && popd > /dev/null
+
+  # It's not? Rename it so we can install this one
+  else
+    echo "Backing up existing $directory to make room for the new one!"
+    mv $directory $directory.backup
+  fi
+fi
+
+# Make sure the directory doesn't exist
+if [ ! -d $directory ]; then
+
+  # Install repo
+  echo "Installing $repository"
+  git clone $repository $directory
+
+fi
+
