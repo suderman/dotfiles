@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory
-config="$HOME/.local/config" # XDG_CONFIG_HOME
+config="$HOME/.config" # XDG_CONFIG_HOME
 share="$HOME/.local/share"   # XDG_DATA_HOME
-cache="$HOME/.local/cache"   # XDG_CACHE_HOME
+cache="$HOME/.cache"   # XDG_CACHE_HOME
 
 # Shell helper functions
 source $config/zsh/helpers.sh
