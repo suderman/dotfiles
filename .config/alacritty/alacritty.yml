@@ -112,48 +112,51 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: monospace
-    # family: 'JetBrainsMono Nerd Font'
-    family: 'JetBrainsMonoMedium Nerd Font'
+    family: 'JetBrainsMono Nerd Font'
+    # family: 'JetBrainsMonoMedium Nerd Font'
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    # style: Regular
 
-  # Bold font face
-  #bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
+  # # Bold font face
+  # bold:
+  #   # Font family
+  #   #
+  #   # If the bold family is not specified, it will fall back to the
+  #   # value specified for the normal font.
+  #   #family: monospace
+  #   family: 'JetBrainsMonoBold Nerd Font'
+  #
+  #   # The `style` can be specified to pick a specific face.
+  #   # style: Bold
 
-    # The `style` can be specified to pick a specific face.
-    #style: Bold
-
-  # Italic font face
-  #italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Italic
-
-  # Bold italic font face
-  #bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+  # # Italic font face
+  # italic:
+  #   # Font family
+  #   #
+  #   # If the italic family is not specified, it will fall back to the
+  #   # value specified for the normal font.
+  #   #family: monospace
+  #   family: 'JetBrainsMonoItalic Nerd Font'
+  #
+  #   # The `style` can be specified to pick a specific face.
+  #   # style: Italic
+  #
+  # # Bold italic font face
+  # bold_italic:
+  #   # Font family
+  #   #
+  #   # If the bold italic family is not specified, it will fall back to the
+  #   # value specified for the normal font.
+  #   #family: monospace
+  #   family: 'JetBrainsMonoBoldItalic Nerd Font'
+  #
+  #   # The `style` can be specified to pick a specific face.
+  #   # style: Bold Italic
 
   # Point size
   #size: 18.0
-  size: 11.0
+  size: 9.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -422,8 +425,8 @@ font:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /bin/zsh
+# shell:
+#   program: /bin/zsh
 #  args:
 #    - --login
 
@@ -722,7 +725,9 @@ shell:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings: 
+  - { key: C,         mods: Super,                     action: Copy            }
+  - { key: V,         mods: Super,                     action: Paste            }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -738,6 +743,8 @@ shell:
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
   #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
+  - { key: O,                           mode: Vi|~Search, action: ToggleViMode            }
+  - { key: O,                           mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
   #- { key: Y,      mods: Control,       mode: Vi|~Search, action: ScrollLineUp            }
   #- { key: E,      mods: Control,       mode: Vi|~Search, action: ScrollLineDown          }

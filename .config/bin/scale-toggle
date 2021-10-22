@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+old_scale="$(swaymsg -t get_outputs | jq '.[].scale')"
+
+[ "$old_scale" = "1" ] && new_scale=2
+[ "$old_scale" = "2" ] && new_scale=1
+
+swaymsg output eDP-1 scale $new_scale

@@ -8,6 +8,7 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $alt Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -26,6 +27,7 @@ set $menu dmenu_path | bemenu | xargs swaymsg exec --
 
 set {
   $mod Mod4
+  $alt Mod1
   $lock sleep.sh
   #$term wezterm
   $term alacritty
@@ -59,10 +61,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output eDP-1 scale 2 
+output eDP-1 scale 2
 
 #xwayland disable
-#output eDP-1 scale 1 
+#output eDP-1 scale 1
 ### Idle configuration
 # Example configuration:
 #
@@ -123,7 +125,7 @@ exec_always {
   #gsettings set $gnome-interface monospace-font-name 'Hack Nerd Font 16'
   #gsettings set $gnome-interface text-scaling-factor 1.0
   #gsettings set $gnome-sound theme-name 'deepin'
-  
+
   gsettings reset $gnome-interface cursor-theme
   gsettings reset $gnome-interface cursor-size
   gsettings reset $gnome-interface document-font-name
@@ -174,10 +176,12 @@ for_window {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    # bindsym $mod+Shift+c reload
+    bindsym $mod+Alt+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Alt+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -202,6 +206,7 @@ for_window {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
 #
 # Workspaces:
 #
@@ -227,6 +232,17 @@ for_window {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
+
+    bindsym $mod+Alt+1 move container to workspace number 1, workspace number 1
+    bindsym $mod+Alt+2 move container to workspace number 2, worksapce number 2
+    bindsym $mod+Alt+3 move container to workspace number 3, worksapce number 3
+    bindsym $mod+Alt+4 move container to workspace number 4, worksapce number 4
+    bindsym $mod+Alt+5 move container to workspace number 5, worksapce number 5
+    bindsym $mod+Alt+6 move container to workspace number 6, worksapce number 6
+    bindsym $mod+Alt+7 move container to workspace number 7, worksapce number 7
+    bindsym $mod+Alt+8 move container to workspace number 8, worksapce number 8
+    bindsym $mod+Alt+9 move container to workspace number 9, worksapce number 9
+    bindsym $mod+Alt+0 move container to workspace number 10, workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -235,8 +251,10 @@ for_window {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
+    bindsym $mod+i splith
+    bindsym $mod+u splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -247,10 +265,12 @@ for_window {
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    # bindsym $mod+Shift+space floating toggle
+    bindsym $mod+b floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    # bindsym $mod+space focus mode_toggle
+    bindsym $mod+Alt+b focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -291,7 +311,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Comma exec ~/.bin/yad-keybindings
+bindsym $mod+Comma exec ~/.config/bin/yad-keybindings
 for_window [app_id="yad"] floating enable
 
 bindsym $mod+Shift+Comma exec ~/.bin/wlsunset-toggle
@@ -300,35 +320,83 @@ bindsym $mod+tab workspace next_on_output
 bindsym $mod+Shift+tab workspace prev_on_output
 
 gaps outer 0
-gaps inner 0 
+gaps inner 0
 
 seat seat0 xcursor_theme default 48
 
-default_border pixel 8 
+default_border pixel 3
+
+
+# bindsym XF86MonBrightnessDown exec brightnessctl set -10%
+# bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+
+# exec_always rm -f /tmp/wob && mkfifo /tmp/wob && tail -f /tmp/wob
+exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+# bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec bemenu-run
+
+bindsym XF86AudioMedia exec ~/.config/bin/scale-toggle
+
+
+bindsym XF86AudioRaiseVolume exec ~/.config/bin/volume-up
+bindsym XF86AudioLowerVolume exec ~/.config/bin/volume-down
+bindsym XF86AudioMute exec ~/.config/bin/volume-mute
+bindsym XF86MonBrightnessUp exec exec ~/.config/bin/brightness-up
+bindsym XF86MonBrightnessDown exec exec ~/.config/bin/brightness-down
+
+
+# bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+# bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
 
 
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
+# # Read `man 5 sway-bar` for more information about this section.
+# bar {
+#     position top
+#     # font monospace 20
+#     # font 'JetBrains Mono Regular Nerd Font Complete Mono' 14
+#     font 'JetBrainsMono Nerd Font Mono' 12
+#     height 0
+#
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+#
+#     colors {
+#         statusline #ffffff
+#         #background #323232
+#         background #000000
+#         inactive_workspace #32323200 #32323200 #5c5c5c
+#     }
+# }
+
 bar {
     position top
-    # font monospace 20
-    # font 'JetBrains Mono Regular Nerd Font Complete Mono' 14
-    font 'JetBrainsMono Nerd Font Mono' 12
-    height 0
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    # Keep in mind that the current directory of this config file is $HOME
+    status_command while ~/.config/sway/status.sh; do sleep 1; done
 
     colors {
+        # Text color of status bar
         statusline #ffffff
-        #background #323232
-        background #000000
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        # Background of status bar
+        background #323232
     }
+    font pango:DejaVu Sans Mono 10
+    font 'JetBrainsMono Nerd Font Mono' 9
 }
+
+
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
