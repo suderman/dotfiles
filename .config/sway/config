@@ -22,7 +22,6 @@ set $term alacritty
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 #set $menu kickoff | xargs swaymsg exec --
 #set $menu kickoff | swaymsg exec --
-set $menu dmenu_path | bemenu | xargs swaymsg exec --
 
 
 set {
@@ -36,8 +35,8 @@ set {
   $other_term_id tilix
   $editor nvim
 #  $editor alacritty -e emacs -nw
-  $browser firefox
-  $other_browser vieb.sh
+  $browser brave --enable-features=UseOzonePlatform --ozone-platform=wayland
+  $other_browser firefox
   $gnome-sound org.gnome.desktop.sound
   $gnome-interface org.gnome.desktop.interface
   $ide pycharm
@@ -104,7 +103,7 @@ input type:touchpad {
   dwt enabled
   events disabled_on_external_mouse
   middle_emulation enabled
-  pointer_accel 0.5
+  pointer_accel 0.9
   scroll_method two_finger
   tap enabled
   natural_scroll enabled
@@ -113,6 +112,12 @@ input type:touchpad {
 input type:pointer {
   natural_scroll enabled
 }
+
+input type:keyboard {
+  xkb_options caps:ctrl_modifier,ctrl:swap_lwin_lctl
+  # xkb_options ctrl:swap_rwin_rctl
+}
+
 
 exec_always {
   #gsettings set $gnome-interface cursor-theme 'capitaine-cursors'
@@ -142,7 +147,7 @@ exec_always {
 
 for_window {
   [shell="xwayland"] title_format "%title [XWayland]"
-  #[app_id="firefox"] inhibit_idle fullscreen
+  #[app_id="firefox"] in--enable-features=UseOzonePlatform --ozone-platform=waylandhibit_idle fullscreen
   [app_id="mpv"] inhibit_idle fullscreen
   [app_id="Vivaldi-stable"] inhibit_idle fullscreen
   [app_id="ulauncher"] floating enable, border none
@@ -150,10 +155,14 @@ for_window {
   [window_role="bubble"] floating enable
   [window_role="dialog"] floating enable
   [window_type="dialog"] floating enable
+  # [app_id="1Password"] floating enable
+  [class="Spotify"] floating enable
   # terminal
   [app_id=$term_id] move to scratchpad, scratchpad show, $t_pos
   [app_id=$other_term_id] move to scratchpad, scratchpad show, t_pos
 }
+
+
 
 ### Key bindings
 #
@@ -161,12 +170,23 @@ for_window {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    
+    bindsym $mod+Backslash exec $browser
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    # bindsym $mod+d exec $menu
+    # bindsym $mod+g exec sirula
+
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+# set $menu dmenu_path | bemenu | xargs swaymsg exec --
+set $menu exec $term --class=launcher -e sway-launcher-desktop
+bindsym $mod+a exec $menu
+bindsym $mod+Space exec $menu
+bindsym $mod+Alt+a exec kickoff
+bindsym $mod+Shift+Space exec kickoff
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -177,7 +197,8 @@ for_window {
 
     # Reload the configuration file
     # bindsym $mod+Shift+c reload
-    bindsym $mod+Alt+c reload
+    # bindsym $mod+Alt+c reload
+    bindsym $mod+Ctrl+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
     # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -197,10 +218,14 @@ for_window {
     bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    # bindsym $mod+Shift+$left move left
+    # bindsym $mod+Shift+$down move down
+    # bindsym $mod+Shift+$up move up
+    # bindsym $mod+Shift+$right move right
+    bindsym $mod+Alt+$left move left
+    bindsym $mod+Alt+$down move down
+    bindsym $mod+Alt+$up move up
+    bindsym $mod+Alt+$right move right
     # Ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
@@ -233,6 +258,11 @@ for_window {
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
 
+    bindsym $mod+Shift+$right resize shrink width 10px
+    bindsym $mod+Shift+$up resize grow height 10px
+    bindsym $mod+Shift+$down resize shrink height 10px
+    bindsym $mod+Shift+$left resize grow width 10px
+    
     bindsym $mod+Alt+1 move container to workspace number 1, workspace number 1
     bindsym $mod+Alt+2 move container to workspace number 2, worksapce number 2
     bindsym $mod+Alt+3 move container to workspace number 3, worksapce number 3
@@ -255,25 +285,25 @@ for_window {
     # bindsym $mod+v splitv
     bindsym $mod+i splith
     bindsym $mod+u splitv
+    bindsym $mod+y layout toggle split
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+t layout tabbed
+    bindsym $mod+Shift+t layout stacking
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+z fullscreen
 
     # Toggle the current focus between tiling and floating mode
     # bindsym $mod+Shift+space floating toggle
-    bindsym $mod+b floating toggle
+    bindsym $mod+o floating toggle
 
     # Swap focus between the tiling area and the floating area
     # bindsym $mod+space focus mode_toggle
-    bindsym $mod+Alt+b focus mode_toggle
+    bindsym $mod+Shift+o focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym $mod+p focus parent
 #
 # Scratchpad:
 #
@@ -294,16 +324,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $right resize shrink width 10px
+    bindsym $up resize grow height 10px
+    bindsym $down resize shrink height 10px
+    bindsym $left resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Right resize shrink width 10px
+    bindsym Up resize grow height 10px
+    bindsym Down resize shrink height 10px
+    bindsym Left resize grow width 10px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -318,9 +348,10 @@ bindsym $mod+Shift+Comma exec ~/.bin/wlsunset-toggle
 
 bindsym $mod+tab workspace next_on_output
 bindsym $mod+Shift+tab workspace prev_on_output
+bindsym $mod+grave workspace prev_on_output
 
 gaps outer 0
-gaps inner 0
+gaps inner 5
 
 seat seat0 xcursor_theme default 48
 
@@ -381,25 +412,33 @@ bindsym XF86MonBrightnessDown exec exec ~/.config/bin/brightness-down
 #     }
 # }
 
-bar {
-    position top
-    # Keep in mind that the current directory of this config file is $HOME
-    status_command while ~/.config/sway/status.sh; do sleep 1; done
 
-    colors {
-        # Text color of status bar
-        statusline #ffffff
-        # Background of status bar
-        background #323232
-    }
-    font pango:DejaVu Sans Mono 10
-    font 'JetBrainsMono Nerd Font Mono' 9
+
+bar {
+    swaybar_command waybar
 }
 
+# bar {
+#     position top
+#     # Keep in mind that the current directory of this config file is $HOME
+#     status_command while ~/.config/sway/status.sh; do sleep 1; done
+# 
+#     colors {
+#         # Text color of status bar
+#         statusline #ffffff
+#         # Background of status bar
+#         background #323232
+#     }
+#     font pango:DejaVu Sans Mono 10
+#     font 'JetBrainsMono Nerd Font Mono' 9
+# }
 
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec 1password --enable-features=UseOzonePlatform --ozone-platform=wayland --force-device-scale-factor=1.8
+
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec /usr/libexec/gnome-settings-daemon
+#exec waybar
 
 include /etc/sway/config.d/*
