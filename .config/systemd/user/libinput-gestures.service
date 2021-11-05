@@ -1,0 +1,11 @@
+[Unit]
+Description=libinput-gestures
+Documentation=https://github.com/bulletmark/libinput-gestures
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/libinput-gestures
+
+[Install]
+WantedBy=sway-session.target

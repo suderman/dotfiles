@@ -106,6 +106,8 @@ alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_USE_XINPUT2=1
 
+export GDK_DPI_SCALE=1.25
+
 export QT_QPA_PLATFORM=wayland-egl
 export QT_WAYLAND_FORCE_DPI=physical
 # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1

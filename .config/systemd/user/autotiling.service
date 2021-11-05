@@ -1,0 +1,11 @@
+[Unit]
+Description=Autotiling
+Documentation=https://github.com/nwg-piotr/autotiling
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/autotiling
+
+[Install]
+WantedBy=sway-session.target

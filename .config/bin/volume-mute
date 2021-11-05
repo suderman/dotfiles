@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# Toggle mute
-pactl set-sink-mute @DEFAULT_SINK@ toggle

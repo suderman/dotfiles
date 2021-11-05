@@ -1,0 +1,99 @@
+# Colors
+set {
+  $cyan			    #689d6a
+  $green			  #98971a
+  $orange			  #d65d0e
+  $pink			    #FF5370
+  $purple			  #b16286
+  $red			    #bf6374
+  $yellow			  #d79921
+  $dark         #323732
+}
+
+set {
+  $nofocus     	$dark
+  $focus       	$yellow
+  $split       	$orange
+  $titletxt    	$dark
+}
+
+client.focused          $focus   $focus   $titletxt $split    $focus
+client.focused_inactive $nofocus $nofocus $titletxt $nofocus  $nofocus
+client.unfocused        $nofocus $nofocus $titletxt $nofocus  $nofocus
+client.urgent           $nofocus $nofocus $titletxt $nofocus  $nofocus
+client.placeholder      #000000  #0c0c0c  #ffffff   #000000   #333845
+client.background       #ffffff
+
+gaps inner 10
+gaps outer 10
+
+# Default font
+font pango:SourceCodePro Medium 20
+
+# Title format for windows
+for_window [shell="xdg_shell"] title_format "%title (%app_id)"
+for_window [shell="x_wayland"] title_format "%class - %title"
+for_window [title="."] title_format "%title"
+
+default_border pixel 4
+# titlebar_border_thickness 0
+# titlebar_padding 3 3
+# title_align center
+
+seat seat0 xcursor_theme default 68
+
+
+# Wallpaper
+output * bg $wallpapers/arch-gray.jpg fill
+
+# Resolution & scale swaymsg -t get_outputs
+# example: output HDMI-A-1 resolution 1920x1080 position 1920,0
+output eDP-1 scale 1
+#xwayland disable
+
+exec_always {
+
+  gsettings reset org.gnome.desktop.sound theme-name
+  gsettings reset org.gnome.desktop.interface {
+    cursor-theme
+    cursor-size
+    document-font-name
+    font-name
+    gtk-theme
+    gtk-color-theme
+    icon-theme
+    monospace-font-name
+    text-scaling-factor
+  }
+
+  gsettings set org.gnome.desktop.interface {
+    cursor-size         68
+    gtk-theme           Materia-compact
+    text-scaling-factor 1.0
+    document-font-name  'Noto Sans Regular 14'
+    font-name           'Noto Sans Regular 14'
+    monospace-font-name 'JetBrainsMono Nerd Font 14'
+  }
+
+}
+
+bar swaybar_command waybar
+
+# Behaviour
+focus_follows_mouse     	no
+focus_wrapping          	no
+popup_during_fullscreen 	leave_fullscreen
+floating_modifier         $Super normal
+# mouse_warping          	  output
+
+### Idle configuration
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.

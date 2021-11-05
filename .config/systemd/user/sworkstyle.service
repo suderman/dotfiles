@@ -1,0 +1,11 @@
+[Unit]
+Description=Swayest Workstyle
+Documentation=https://github.com/Lyr-7D1h/swayest_workstyle
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sworkstyle
+
+[Install]
+WantedBy=sway-session.target

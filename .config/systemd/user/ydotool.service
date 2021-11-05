@@ -1,0 +1,11 @@
+[Unit]
+Description=Generic command-line automation tool (no X!)
+Documentation=https://github.com/ReimuNotMoe/ydotool/
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ydotoold
+
+[Install]
+WantedBy=sway-session.target
