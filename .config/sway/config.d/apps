@@ -78,3 +78,6 @@ for_window [class="Lxappearance"] floating enable, resize set width 60 ppt heigh
 # Inhibit idle
 for_window [app_id="firedragon"] inhibit_idle fullscreen
 for_window [app_id="Chromium"] inhibit_idle fullscreen
+
+# Configure Firefox
+exec_always ~/.config/firefox/install-profile.sh

@@ -68,7 +68,7 @@ exec_always {
 
   gsettings set org.gnome.desktop.interface {
     cursor-size         68
-    gtk-theme           Materia-compact
+    gtk-theme           Materia-dark
     text-scaling-factor 1.0
     document-font-name  'Noto Sans Regular 14'
     font-name           'Noto Sans Regular 14'
