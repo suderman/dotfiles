@@ -8,47 +8,65 @@ set {
   $red			    #bf6374
   $yellow			  #d79921
   $dark         #323732
+  $dark         #333333
+  $black        #000000
+  $white        #ffffff
+  $color1       #0c0c0c
+  $color2       #333845
+  $unfocus      #ffffff40
+  $focus        #ffffff90
+  $clear        #ffffff00
 }
 
-set {
-  $nofocus     	$dark
-  $focus       	$yellow
-  $split       	$orange
-  $titletxt    	$dark
-}
+# class                   border    background  text        indicator child-border
+client.focused            $dark    $dark        $focus      $dark     $dark
+client.focused_inactive   $dark    $dark        $focus      $dark     $dark
+client.unfocused          $dark    $dark        $unfocus    $dark     $dark
+client.urgent             $dark    $dark        $focus      $dark     $dark
+client.placeholder        $dark    $color1      $white      $dark     $dark
+client.background         $white
 
-client.focused          $focus   $focus   $titletxt $split    $focus
-client.focused_inactive $nofocus $nofocus $titletxt $nofocus  $nofocus
-client.unfocused        $nofocus $nofocus $titletxt $nofocus  $nofocus
-client.urgent           $nofocus $nofocus $titletxt $nofocus  $nofocus
-client.placeholder      #000000  #0c0c0c  #ffffff   #000000   #333845
-client.background       #ffffff
+# gaps inner 20
+# gaps outer 10
+gaps inner 0
+gaps outer 0
+# smart_gaps on
 
-gaps inner 10
-gaps outer 10
+
 
 # Default font
-font pango:SourceCodePro Medium 20
+font pango:SourceCodePro Medium 10
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
 for_window [shell="x_wayland"] title_format "%class - %title"
 for_window [title="."] title_format "%title"
 
+# default_border pixel 0
 default_border pixel 4
+# default_border normal 6
+# default_border normal 0
+# default_floating_border normal 6
 # titlebar_border_thickness 0
-# titlebar_padding 3 3
+# titlebar_padding 2 2
 # title_align center
 
-seat seat0 xcursor_theme default 68
+# hide_edge_borders smart_no_gaps
+hide_edge_borders both
+# smart_borders smart
+seat seat0 xcursor_theme default 70
 
 
 # Wallpaper
+# output * bg $wallpapers/arch-black.jpg fill
 output * bg $wallpapers/arch-gray.jpg fill
+# output * bg $wallpapers/orange.jpg fill
+# output * bg $wallpapers/leaves.jpg fill
 
 # Resolution & scale swaymsg -t get_outputs
 # example: output HDMI-A-1 resolution 1920x1080 position 1920,0
-output eDP-1 scale 1
+# output eDP-1 scale 1.5
+output eDP-1 scale 1.5
 #xwayland disable
 
 exec_always {
@@ -67,12 +85,17 @@ exec_always {
   }
 
   gsettings set org.gnome.desktop.interface {
-    cursor-size         68
-    gtk-theme           Materia-dark
+    # gtk-theme           Materia-dark
+    gtk-theme           Nordic
+    icon-theme          Zafiro
+    document-font-name  'Noto Sans Regular 10'
+    font-name           'Noto Sans Regular 10'
+    # document-font-name  'Open Sans Regular 10'
+    # font-name           'Open Sans Regular 10'
+    monospace-font-name 'JetBrainsMono Nerd Font 10'
+    # text-scaling-factor 1.2
     text-scaling-factor 1.0
-    document-font-name  'Noto Sans Regular 14'
-    font-name           'Noto Sans Regular 14'
-    monospace-font-name 'JetBrainsMono Nerd Font 14'
+    cursor-size         68
   }
 
 }
@@ -80,11 +103,22 @@ exec_always {
 bar swaybar_command waybar
 
 # Behaviour
-focus_follows_mouse     	no
+# focus_follows_mouse     	no
+focus_follows_mouse     	yes
 focus_wrapping          	no
 popup_during_fullscreen 	leave_fullscreen
-floating_modifier         $Super normal
 # mouse_warping          	  output
+# mouse_warping          	  container
+
+# bindsym m exec flashfocus
+bindcode --release $Super_L exec nc_flash_window
+bindcode --release $Super_R exec nc_flash_window
+# exec_always flashfocus
+# bindsym $Super+n exec flash_window
+
+# bindcode $mod+25 input type:keyboard repeat_delay 999999, workspace back_and_forth
+# bindsym --release $mod+w workspace back_and_forth, input type:keyboard repeat delay 500
+
 
 ### Idle configuration
 # Example configuration:

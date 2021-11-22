@@ -41,9 +41,9 @@ def to_empty(current=None, strict=False, right=True, move=False, wrap=True, min_
             return
 
     if move:
-        s = 'swaymsg move container to workspace {0}; workspace {0}'.format(new_ix)
+        s = 'swaymsg move container to workspace number {0}; workspace number {0}'.format(new_ix)
     else:
-        s = 'swaymsg workspace ' + str(new_ix)
+        s = 'swaymsg workspace number ' + str(new_ix)
     print(s)
     run(s.split())
 

@@ -3,7 +3,8 @@ set {
 
   $term exec alacritty
   $editor exec nvim
-  $browser exec firefox-developer-edition
+  # $browser exec firefox-developer-edition
+  $browser exec chromium
   $menu exec $term --class=launcher -e sway-launcher-desktop
 
 }
@@ -19,22 +20,23 @@ for_window {
   [window_role="pop-up"] floating enable
   [window_role="bubble"] floating enable
   [window_role="dialog"] floating enable
-  [window_type="dialog"] floating enable
+  [title="Picture in picture"] floating enable, sticky enable
   # [app_id="1Password"] floating enable
-  [class="Spotify"] floating enable
+  # [class="Spotify"] floating enable
   # terminal
   # [app_id=$term_id] move to scratchpad, scratchpad show, $t_pos
   # [app_id=$other_term_id] move to scratchpad, scratchpad show, t_pos
 
-
+  [app_id="Plexamp"] floating enable, sticky enable
 }
+
 
 assign [class="1Password"] workspace number 1
 assign [class="Slack"] workspace number 2
 assign [app_id="appimagekit_3a48058ef277d45ae2228089429c0259-Telegram_Desktop"] workspace number 2
 assign [class="discord"] workspace number 2
 assign [app_id="brave-browser"] workspace number 4
-assign [app_id="plexamp"] workspace number 5
+# assign [app_id="plexamp"] workspace number 5
 assign [app_id="tv.plex.plexmediaplayer"] workspace number 6
 
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10

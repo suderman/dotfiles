@@ -52,6 +52,9 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 
+" Toml
+Plug 'cespare/vim-toml', { 'branch': 'main' }
+
 " Auto-close brackets, quotes, etc
 Plug 'Raimondi/delimitMate'
 

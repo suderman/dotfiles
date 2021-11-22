@@ -23,7 +23,8 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+background_opacity: 0.97
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -45,9 +46,12 @@
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+
+  padding:
+   # x: 10
+   # y: 10
+   x: 0
+   y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -157,8 +161,8 @@ font:
   # Point size
   #size: 18.0
   # size: 9.0
-  size: 18.0
-  # size: 12.0
+  # size: 16.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -365,7 +369,7 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+# background_opacity: `1.0`
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -373,7 +377,7 @@ font:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
-  #save_to_clipboard: false
+  save_to_clipboard: true
 
 #cursor:
   # Cursor style
