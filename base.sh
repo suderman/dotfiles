@@ -146,7 +146,7 @@ echo root:$ROOTPASS | chpasswd
 
 # Packages
 pacman -Syy
-pacman -S grub efibootmgr network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font grub-btrfs docker tailscale
+pacman -S grub efibootmgr network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font grub-btrfs docker tailscale interception-caps2esc
 
 # Enable Grub's OS prober
 echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
@@ -164,6 +164,12 @@ echo '{' >> /etc/docker/daemon.json
 echo '  "storage-driver": "btrfs"' >> /etc/docker/daemon.json
 echo '}' >> /etc/docker/daemon.json
 
+# Configure Interception caps2esc
+mkdir -p /etc/interception/udevmon.d
+echo '- JOB: intercept -g $DEVNODE | caps2esc -m 1 | uinput -d $DEVNODE' >> /etc/interception/udevmon.d/caps2esc.yaml
+echo '  DEVICE:' >> /etc/interception/udevmon.d/caps2esc.yaml
+echo '    EVENTS:' >> /etc/interception/udevmon.d/caps2esc.yaml
+echo '      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]' >> /etc/interception/udevmon.d/caps2esc.yaml
 
 # System Services
 systemctl enable NetworkManager
@@ -179,6 +185,7 @@ systemctl enable firewalld
 systemctl enable acpid
 systemctl enable docker
 systemctl enable tailscaled
+systemctl enable udevmon
 
 # User
 useradd -m $USERNAME
