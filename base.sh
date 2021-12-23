@@ -64,7 +64,7 @@ export ROOTPASS=password
 #   cd /mnt
 #   btrfs subvolume create @
 #   btrfs subvolume create @home
-#   unmount /mnt
+#   umount /mnt
 #
 #
 #   # ------------------------------------------
@@ -82,24 +82,24 @@ export ROOTPASS=password
 #   mkdir /mnt/home
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/nvme0n1p3 /mnt/home
 #
-#   # Verify partitions and subvolumes
-#   lslbk
-#   btrfs subvolume list /mnt
-#
 #
 #   # ------------------------------------------
 #   # Create fstab from mounts:
 #   # ------------------------------------------
 #
-#   # Change relatime to noatime for non-boot volume
+#   # Verify partitions and subvolumes
+#   lslbk
+#   btrfs subvolume list /mnt
+#
+#   # Generate fstab
 #   genfstab -U /mnt >> /mnt/etc/fstab
 #
 #
 #   # ------------------------------------------
-#   # Install base pacakges:
+#   # Install base packages:
 #   # ------------------------------------------
 #
-#   # Install packages to new volume
+#   # Install base packages to new volume
 #   pacstrap /mnt base base-devel linux linux-firmware git vim intel-ucode
 #   
 #
@@ -121,22 +121,30 @@ ln -sf /usr/share/zoneinfo/Canada/Mountain /etc/localtime
 hwclock --systohc
 
 # Locale
-sed -i '177s/.//' /etc/locale.gen
-locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
 
 # Hostname (change for each device)
 echo "$HOSTNAME" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
+
+# Root password
 echo root:$ROOTPASS | chpasswd
 
 # Packages
 pacman -Syy
-pacman -S grub efibootmgr network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font grub-btrfs
+pacman -S grub efibootmgr network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font grub-btrfs docker
 
-# Grub
+# Enable Grub's OS prober
+echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
+
+# Add deep suspend to kernel parameters
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=".*"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet mem_sleep_default=deep"/' /etc/default/grub
+
+# Install and config Grub
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -161,6 +169,4 @@ echo "$USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$USERNAME
 
 
 printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
-
-vim /etc/mkinitcpio.conf
 
