@@ -64,6 +64,8 @@ export ROOTPASS=password
 #   cd /mnt
 #   btrfs subvolume create @
 #   btrfs subvolume create @home
+#   btrfs subvolume create @log
+#   btrfs subvolume create @docker
 #   umount /mnt
 #
 #
@@ -82,13 +84,21 @@ export ROOTPASS=password
 #   mkdir /mnt/home
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/nvme0n1p3 /mnt/home
 #
+#   # Mount log subvolume
+#   mkdir /mnt/log
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@log /dev/nvme0n1p3 /mnt/var/log
+#
+#   Mount docker subvolume
+#   mkdir -p /mnt/var/lib/docker
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@docker /dev/nvme0n1p3 /mnt/var/lib/docker
+#
 #
 #   # ------------------------------------------
 #   # Create fstab from mounts:
 #   # ------------------------------------------
 #
 #   # Verify partitions and subvolumes
-#   lslbk
+#   lsblk
 #   btrfs subvolume list /mnt
 #
 #   # Generate fstab
@@ -148,6 +158,13 @@ sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=".*"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
+# Configure Docker
+mkdir -p /etc/docker
+echo '{' >> /etc/docker/daemon.json
+echo '  "storage-driver": "btrfs"' >> /etc/docker/daemon.json
+echo '}' >> /etc/docker/daemon.json
+
+
 # System Services
 systemctl enable NetworkManager
 systemctl enable bluetooth
@@ -160,11 +177,13 @@ systemctl enable fstrim.timer
 systemctl enable libvirtd
 systemctl enable firewalld
 systemctl enable acpid
+systemctl enable docker
 
 # User
 useradd -m $USERNAME
 echo $USERNAME:$USERPASS | chpasswd
 usermod -aG libvirt $USERNAME
+usermod -aG docker $USERNAME
 echo "$USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$USERNAME
 
 
