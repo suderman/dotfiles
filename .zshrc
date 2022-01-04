@@ -103,10 +103,10 @@ export VISUAL=/usr/bin/nvim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export EDITOR="vim"
-
-alias vi="nvim"
-alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias vi=$VISUAL
+alias vim=$VISUAL
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias gitd='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 export DOTBARE_DIR="$HOME/.dotfiles"
 _dotbare_completion_cmd
