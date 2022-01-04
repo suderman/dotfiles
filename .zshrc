@@ -3,7 +3,7 @@
 export PATH=$HOME/.config/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/suderman/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf)
+plugins=(git fzf dotbare)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,15 +100,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export EDITOR="vim"
+
 alias vi="nvim"
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# export MOZ_ENABLE_WAYLAND=1
-# export MOZ_USE_XINPUT2=1
-#
-# # export GDK_DPI_SCALE=1.25
-# export GDK_DPI_SCALE=1.25
-#
-# export QT_QPA_PLATFORM=wayland-egl
-# export QT_WAYLAND_FORCE_DPI=physical
-# # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export DOTBARE_DIR="$HOME/.dotfiles"
+_dotbare_completion_cmd
+bindkey -s '^g' "dotbare fedit"^j
