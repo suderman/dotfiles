@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # tools
-yay -S fzf tree bat delta
+yay -S fzf tree bat ueberzug mpv sxiv inkscape libreoffice ffmpeg lf delta GraphicsMagick Ghostscript
 
 # dotfiles
-git clone --bare https://github.com/suderman/dotfiles.git ~/.dotfiles
-git --git-dir=$HOME/.dotfiles config --local status.showUntrackedFiles no
-git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout dotfiles
+git clone --bare https://github.com/suderman/dotfiles.git ~/.cfg
+git --git-dir=$HOME/.cfg config --local status.showUntrackedFiles no
+git --git-dir=$HOME/.cfg --work-tree=$HOME checkout dotfiles
 
 # persist git credentials
 git config --global credential.helper store
@@ -23,3 +23,5 @@ nvim -c PlugInstall
 # tmux plugins
 mkdir -p ~/.local/share/tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
+
+# curl -fL https://github.com/slavistan/lfbundle/raw/master/lfbundle-cleaner > /usr/local/lib/lfbundle-cleaner

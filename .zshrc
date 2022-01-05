@@ -105,9 +105,9 @@ export VISUAL=/usr/bin/nvim
 
 alias vi=$VISUAL
 alias vim=$VISUAL
-alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias gitd='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
+alias gitd='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
 
-export DOTBARE_DIR="$HOME/.dotfiles"
+#export DOTBARE_DIR="$HOME/.cfg"
 _dotbare_completion_cmd
 bindkey -s '^g' "dotbare fedit"^j
