@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # tools
-yay -S fzf tree bat ueberzug mpv sxiv inkscape libreoffice ffmpeg lf delta GraphicsMagick Ghostscript
+sudo pacman -S fzf tree bat ueberzug mpv sxiv inkscape libreoffice-fresh ffmpeg graphicsmagick ghostscript
+paru -S lf delta
 
 # dotfiles
 git clone --bare https://github.com/suderman/dotfiles.git ~/.cfg
