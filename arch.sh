@@ -216,5 +216,18 @@ usermod -aG docker $USERNAME
 echo "$USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$USERNAME
 chsh -s /usr/bin/zsh $USERNAME
 
-# ...done!
-printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
+
+# Done
+printf "\e[1;32mDone! Reboot and login as user.\e[0m"
+
+
+#   # ------------------------------------------
+#   # Final steps onced logged in as user:
+#   # ------------------------------------------
+#
+#   # Command line goodies
+#   sudo pacman -S --needed neovim mosh zsh tmux fzf ncdu ranger micro htop jq
+#   paru -S --needed foot
+#
+#   # Gnome settings
+#   gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" 
