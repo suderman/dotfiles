@@ -225,9 +225,14 @@ printf "\e[1;32mDone! Reboot and login as user.\e[0m"
 #   # Final steps onced logged in as user:
 #   # ------------------------------------------
 #
-#   # Command line goodies
-#   sudo pacman -S --needed neovim mosh zsh tmux fzf ncdu ranger micro htop jq
+#   # Goodies
+#   sudo pacman -S --needed neovim neomutt mosh zsh tmux fzf ncdu ranger micro htop jq lazydocker firefox
 #   paru -S --needed foot
+#
+#   # https://github.com/harshadgavali/searchprovider-for-browser-tabs/
+#   xdg-open https://addons.mozilla.org/firefox/downloads/file/3887875/tab_search_provider_for_gnome-1.0.1-fx.xpi
+#   gnome-extensions install https://extensions.gnome.org/extension-data/browser-tabscom.github.harshadgavali.v4.shell-extension.zip
+#   paru -S --needed tabsearchproviderconnector
 #
 #   # Gnome settings
 #   gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" 
