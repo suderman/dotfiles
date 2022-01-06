@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Update these before running script
 export HOSTNAME=arch
 export USERNAME=suderman
 export USERPASS=password
@@ -215,6 +216,10 @@ usermod -aG libvirt $USERNAME
 usermod -aG docker $USERNAME
 echo "$USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$USERNAME
 chsh -s /usr/bin/zsh $USERNAME
+
+# Override system's gnome-terminal with script in user's .local/bin directory
+ln -sf /home/$USERNAME/.local/bin/gnome-terminal /usr/local/bin/gnome-terminal
+chown -R $USERNAME:$USERNAME /usr/local/bin
 
 
 # Done
