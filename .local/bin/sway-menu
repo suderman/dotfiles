@@ -1,0 +1,319 @@
+#! /usr/bin/env -S python -B
+
+# Copyright (C) 2021 Bob Hepple <bob dot hepple at gmail dot com>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or (at
+# your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+# http://bhepple.freeshell.org
+
+import sys, os, json, re, gi, subprocess, argparse
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
+# globals, cos I'm old and lazy:
+my_globals = { }
+my_globals['focused'] = 0
+my_globals['dirName'], my_globals['progName'] = os.path.split(sys.argv[0])
+my_globals['debug'] = False
+my_globals['notify'] = True
+my_globals['lock'] = False
+
+def system(cmd):
+    "from https://docs.python.org/3/library/subprocess.html#replacing-os-system"
+    if my_globals['debug']:
+        print(f"system: command='{cmd}'", file=sys.stderr)
+    try:
+        retval = subprocess.call(cmd, shell = True)
+        if retval < 0:
+            print("Child was terminated by signal", -retval, file=sys.stderr)
+    except OSError as e:
+        print("Execution failed:", e, file=sys.stderr)
+
+    if my_globals['debug']:
+        print(f"returning {retval}", file=sys.stderr)
+    return retval
+
+def backtick(command):
+    """
+    Equivalent of Bourne shell's backtick
+    See http://www.python.org/doc/2.5.1/lib/node534.html
+    """
+    from subprocess import Popen, PIPE
+    if my_globals['debug']:
+        print("backtick: command='%s'\n" % command)
+    value = Popen(["bash", "-c", command], stdout=PIPE).communicate()[0].rstrip().decode("utf-8")
+    if my_globals['debug']:
+        print("returning '%s'\n" % value)
+    return value
+
+def check_for(pattern, line, annotation):
+    if re.search(pattern, line, re.IGNORECASE):
+        print(annotation)
+
+def print_annotated_config():
+    with open(my_globals['config_file'], "r") as fp:
+        while True:
+            line = fp.readline()
+            if not line:
+                break
+            check_for("bindsym .* exec \\$term",                 line,"    #### _Run Terminal")
+            check_for("bindsym .* kill$",                        line,"    #### _Window Kill")
+            check_for("bindsym .* exec \\$menu",                 line,"    #### _Run Program Launcher")
+            check_for("bindsym .* reload$",                      line,"    #### _Mode Reload sway")
+            check_for("bindsym .* exec swaynag .*exit shortcut", line,"    #### _Mode Exit sway")
+            check_for("bindsym .* focus left",                   line,"    #### _Window Focus left")
+            check_for("bindsym .* focus right",                  line,"    #### _Window Focus right")
+            check_for("bindsym .* focus up",                     line,"    #### _Window Focus up")
+            check_for("bindsym .* focus down",                   line,"    #### _Window Focus down")
+            check_for("bindsym .* move left$",                   line,"    #### _Window Move window left")
+            check_for("bindsym .* move right$",                  line,"    #### _Window Move window right")
+            check_for("bindsym .* move up$",                     line,"    #### _Window Move window up")
+            check_for("bindsym .* move down$",                   line,"    #### _Window Move window down")
+            check_for("bindsym .*[0-9] workspace number 1",      line,"    #### W_orkspace Jump to w/s 1")
+            check_for("bindsym .*[0-9] workspace number 2",      line,"    #### W_orkspace Jump to w/s 2")
+            check_for("bindsym .*[0-9] workspace number 3",      line,"    #### W_orkspace Jump to w/s 3")
+            check_for("bindsym .*[0-9] workspace number 4",      line,"    #### W_orkspace Jump to w/s 4")
+            check_for("bindsym .* to workspace number 1",        line,"    #### _Window Move to w/s 1")
+            check_for("bindsym .* to workspace number 2",        line,"    #### _Window Move to w/s 2")
+            check_for("bindsym .* to workspace number 3",        line,"    #### _Window Move to w/s 3")
+            check_for("bindsym .* to workspace number 4",        line,"    #### _Window Move to w/s 4")
+            check_for("bindsym .* splith$",                      line,"    #### _Window Horizontal split")
+            check_for("bindsym .* splitv$",                      line,"    #### _Window Vertical split")
+            check_for("bindsym .* layout stacking",              line,"    #### W_orkspace Stacked layout")
+            check_for("bindsym .* layout tabbed",                line,"    #### W_orkspace Tabbed layout")
+            check_for("bindsym .* layout toggle split",          line,"    #### W_orkspace Toggle layout")
+            check_for("bindsym .* fullscreen$",                  line,"    #### _Window Fullscreen")
+            check_for("bindsym .* floating toggle",              line,"    #### W_orkspace Toggle focus with floating")
+            check_for("bindsym .* focus mode_toggle",            line,"    #### W_orkspace Swap focus with floating")
+            check_for("bindsym .* focus parent",                 line,"    #### _Window Focus parent")
+            check_for("bindsym .* move scratchpad",              line,"    #### _Window Move to scratchpad")
+            check_for("bindsym .* scratchpad show",              line,"    #### W_orkspace Show next scratchpad")
+            check_for("bindsym .* mode \"resize\"",              line,"#### _Mode Resize Mode (Esc to exit)")
+
+            sys.stdout.write(line)
+
+def on_quit(thing):
+    Gtk.main_quit()
+
+def on_key(win, eventkey):
+    if eventkey.keyval == gi.repository.Gdk.KEY_Escape or \
+       eventkey.keyval == gi.repository.Gdk.KEY_q or \
+       eventkey.keyval == gi.repository.Gdk.KEY_Q:
+        on_quit(win)
+    return False # to allow further processing of the keystroke
+
+def on_lock(button):
+    my_globals['lock'] = button.get_active()
+
+def on_command(thing, command):
+    if my_globals['debug']:
+        print("on_command:", command)
+    system("swaymsg -q '[con_id="+my_globals['focused']+"] focus'")
+    # do the deed:
+    system("swaymsg -q '"+command['command']+"'")
+    if my_globals['notify'] and command['shortcut']:
+        system("notify-send --expire-time 5000 '"+command['name']+" is "+command['shortcut']+"'")
+    if not my_globals['lock']:
+        on_quit(thing)
+
+# FIXME: there must be a more pythonesque way to do this!
+def get_category(conf, name):
+    for cat in conf:
+        if cat["category-name"] == name:
+            return cat
+    cat={ }
+    cat["category-name"] = name
+    cat["bindings"] = [ ]
+    conf.append(cat)
+    return cat
+
+token_pattern = re.compile(r"^(\S+)\s+(.*)$")
+def get_token(line):
+    line = line.strip()
+    m = token_pattern.match(line)
+    if m:
+        t1, t2 = m.group(1), m.group(2)
+    else:
+        t1 = t2 = ""
+    return t1, t2
+
+# parsing the sway config file:
+def read_bindsym():
+    bindsym_dummy = "#bindsym-dummy"
+
+    conf=[ ]
+    with open(my_globals['config_file'], "r") as fp:
+        while True:
+            line = fp.readline()
+            if not line:
+                break
+            if my_globals['debug']:
+                sys.stderr.write(line)
+            orig_line = line.strip()
+            token, line = get_token(line)
+            if token == "####":
+                cat, desc = get_token(line)
+                if cat == "" or desc == "":
+                    print(f"{my_globals['progName']}: can't recognise '{orig_line}'", file=sys.stderr)
+                    sys.exit(1)
+                category = get_category(conf, cat)
+                # look for next bindsym or #bindsym-dummy line:
+                while True:
+                    line = fp.readline()
+                    if not line:
+                        sys.stderr.write(f"{my_globals['progName']}: Unexpected EOF - missing 'bindsym' for '{orig_line}'\n")
+                        sys.exit(1)
+                    if my_globals['debug']:
+                        sys.stderr.write(line)
+                    token, line = get_token(line)
+                    if token in ( "bindsym", "bindcode", bindsym_dummy):
+                        break
+                if token == bindsym_dummy:
+                    shortcut = ""
+                    command = line
+                else:
+                    # skip any --release or --locked options:
+                    shortcut = "--"
+                    while shortcut[0:2] == "--":
+                        shortcut, line = get_token(line)
+                    command = line
+                item = { }
+                item["name"] = desc
+                item["shortcut"] = shortcut
+                item["command"] = command
+                if my_globals['debug']:
+                    sys.stderr.write(str(item))
+                category["bindings"].append(item)
+    return conf
+
+# Here be main()!!
+if __name__ == '__main__':
+    my_globals['config_file'] = os.getenv("HOME")+"/.config/sway/config"
+
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                     description="Display a sway menu using GTK.",
+                                     epilog="""
+
+This program uses comments to annotate 'bindsym' lines in the sway
+config file to drive a GTK menu of commands eg
+    
+#### _Run Terminal
+bindsym $mod+Return exec $term
+
+The '#### ' prefix is required.
+    
+_Run is the category ie the top level menu. It can be anything you
+like such as _Run, _Window, W_orkspace, _Output and _Mode categories.
+    
+The underscore indicates that the following character is to be the menu
+mnemonic character - in this case, 'R'
+    
+Anything after the category is the description which will appear in the
+menu together with the shortcut.
+
+If you want menu items without corresponding keyboard shortcuts, use eg:
+#### _Output Move to output left
+#bindsym-dummy move container to output right;  focus output right
+                                     
+If your config file is similar to the standard sway-1.6 one in
+/etc/sway/config, then this program can annotate it for you eg:
+
+sway-menu -a
+
+... the results may not be perfect, so check the output carefully!!
+    
+""")
+    parser.add_argument("-d", "--debug", help="increase output", action="store_true")
+    parser.add_argument("-c", "--config-file", help="sway config file", action="store", default=my_globals['config_file'])
+    parser.add_argument("-n", "--no-notify", help="don't notify", action="store_true", dest="no_notify")
+    parser.add_argument("-l", "--lock", help="don't close after execution", action="store_true")
+    parser.add_argument("-a", "--annotate-config", help="output an annotated config file to stdout", action="store_true")
+    args = parser.parse_args()
+
+    my_globals['notify'] = not args.no_notify
+    my_globals['config_file'] = args.config_file
+    my_globals['debug'] = args.debug
+    my_globals['lock'] = args.lock
+
+    if args.annotate_config:
+        print_annotated_config()
+        sys.exit(0)
+
+    # before we popup our own window, let's find out which one was focused:
+    my_globals['focused_info'] = json.loads(backtick("swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true)'"))
+    my_globals['focused'] = str(my_globals['focused_info']['id'])
+
+    # now make sure we are a floater (somehow the sticky doesn't work unless it's separated):
+    system(f"""swaymsg -q 'for_window [app_id="{my_globals['progName']}"] floating enable'""")
+    system(f"""swaymsg -q 'for_window [app_id="{my_globals['progName']}"] sticky enable'""")
+
+    config = read_bindsym()
+
+    # Create the GUI:
+    menubar = Gtk.MenuBar()
+
+    for category in config:
+        category_menu = Gtk.Menu()
+        category_item = Gtk.MenuItem.new_with_mnemonic(label=category['category-name'])
+        category_item.set_use_underline(True)
+        category_item.set_submenu(category_menu)
+        menubar.append(category_item)
+
+        for binding in category['bindings']:
+            if binding['command']:
+                name = binding['name']
+                if binding['shortcut']:
+                    name = name+" ["+binding['shortcut']+"]"
+                menu_item = Gtk.MenuItem(label=name)
+                menu_item.connect("activate", on_command, binding)
+                menu_item.set_tooltip_text(binding['command'])
+                category_menu.append(menu_item)
+        category_menu.append(Gtk.SeparatorMenuItem())
+
+    exit_button = Gtk.Button(label='Cancel')
+    exit_button.connect("clicked", on_quit)
+
+    lock_button = Gtk.ToggleButton(label='Lock')
+    if my_globals['lock']:
+        lock_button.set_active(True)
+    lock_button.connect("toggled", on_lock)
+    lock_button.set_tooltip_text("Don't quit after executing")
+    text = Gtk.Label()
+    text.set_markup('<span foreground="blue" size="x-large"><i>Sway Menu</i></span>')
+
+    l = my_globals['focused_info']["app_id"]
+    if not l:
+        l = my_globals['focused_info']["window_properties"]["class"]
+    focused_label = Gtk.Label(label = f"Window = '{l}'")
+
+    hbox = Gtk.HBox()
+    hbox.pack_start(menubar, expand = False, fill = True, padding = 0)
+    hbox.pack_start(exit_button, expand = False, fill = True, padding = 0)
+    hbox.pack_start(lock_button, expand = False, fill = True, padding = 0)
+    vbox = Gtk.VBox()
+    vbox.pack_start(hbox, expand = False, fill = True, padding = 0)
+    vbox.pack_start(text, expand = False, fill = True, padding = 0)
+    vbox.pack_start(focused_label, expand = False, fill = True, padding = 0)
+
+    window = Gtk.Window(title="Sway Menu")
+    window.add(vbox)
+    window.connect("key-press-event", on_key)
+    window.connect("destroy", Gtk.main_quit)
+    window.show_all()
+
+    Gtk.main()
+
+# Local variables:
+# mode: python
+# End:
