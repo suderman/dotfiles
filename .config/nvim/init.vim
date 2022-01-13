@@ -8,6 +8,8 @@ Plug 'junegunn/vim-easy-align'
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
+" Smooth scrolling
+Plug 'karb94/neoscroll.nvim'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -23,7 +25,8 @@ Plug 'jlanzarotta/bufexplorer'
 " Vim/Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'roxma/vim-tmux-clipboard'
-Plug 'jabirali/vim-tmux-yank'
+" Plug 'jabirali/vim-tmux-yank'
+Plug 'ojroques/vim-oscyank'
 
 " Git
 Plug 'tpope/vim-git'
@@ -71,9 +74,6 @@ Plug 'rking/ag.vim'
 " Grep
 Plug 'mhinz/vim-grepper'
 
-" Undo tool
-Plug 'sjl/gundo.vim'
-
 " Easier cursor movement
 Plug 'justinmk/vim-sneak'
 Plug 'bkad/CamelCaseMotion'
@@ -90,6 +90,8 @@ Plug 'tsaleh/vim-align'
 
 " Syntax errors
 Plug 'vim-syntastic/syntastic'
+
+Plug 'mbbill/undotree'
 
 " Syntax colors
 Plug 'othree/html5.vim'
@@ -169,26 +171,11 @@ try
   catch
 endtry
 
-" " Directories for session, undo, backup, swp files
-" let g:vim_pid = $HOME.'/.vim/session/process-'.getpid()
-" let g:vim_sid = $HOME.'/.vim/session/session'.substitute(expand("%:p:h"),'/','-','g')
-" silent! call mkdir(g:vim_pid, 'p', 0701)
-" silent! call mkdir(g:vim_sid, 'p', 0700)
-"
-" " Track undo and open files
-" if has('persistent_undo')
-"   set undofile
-"   let &undodir=g:vim_sid
-" endif
-" let &backupdir=g:vim_pid
-" let &directory=g:vim_pid
-
-" <leader>u will show undo history graph
-nnoremap <leader>u :GundoToggle<CR>
-let g:gundo_right = 1
-
 " Remember last location in file
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+lua require('neoscroll').setup({ easing_function = "quadratic" })
+
 
 " Visual shifting (builtin-repeat)
 vmap < <gv
@@ -220,18 +207,6 @@ noremap Q gqip
 " :Man pages in Vim
 runtime! ftplugin/man.vim
 
-" Disable tmux navigator when zooming the Vim pane
-" let g:tmux_navigator_disable_when_zoomed = 1
-
-" " Create our own mappings
-" let g:tmux_navigator_no_mappings = 1
-"
-" nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-" nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-" nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-" nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-" nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
-
 if has('nvim')
   tnoremap <silent> <M-h> <C-\><C-n> :TmuxNavigateLeft<cr>
   tnoremap <silent> <M-j> <C-\><C-n> :TmuxNavigateDown<cr>
@@ -239,12 +214,6 @@ if has('nvim')
   tnoremap <silent> <M-l> <C-\><C-n> :TmuxNavigateRight<cr>
   tnoremap <silent> <M-\> <C-\><C-n> :TmuxNavigatePrevious<cr>
 endif
-
-" " Smart way to move between windows. Ctrl-[h,j,k,l]
-" nnoremap <c-j> <c-w>j
-" nnoremap <c-k> <c-w>k
-" nnoremap <c-h> <c-w>h
-" nnoremap <c-l> <c-w>l
 
 " If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
 vnoremap <c-j> <c-w>+
@@ -355,21 +324,11 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 
-" set clipboard+=unnamedplus
-" " Function to yank to OSC-52.
-" function! TmuxYank()
-"   let buffer=system('base64 -w0', @0)
-"   let buffer=substitute(buffer, "\n$", "", "")
-"   let buffer='\e]52;c;'.buffer.'\x07'
-"   silent exe "!echo -ne ".shellescape(buffer)." > ".system("tmux display -p '#{pane_tty}'")
-" endfunction
-"
-" " Autoforward yank events.
-" set clipboard+=unnamedplus
-" augroup TmuxYankAuto
-"   autocmd!
-"   autocmd TextYankPost * if v:event.operator ==# 'y' | call TmuxYank() | endif
-" augroup END
+" https://github.com/ojroques/vim-oscyank
+let g:oscyank_max_length = 100000
+let g:oscyank_silent = v:true
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
+
 
 " Local config
 if filereadable("/usr/local/share/nvim/local.vim")
