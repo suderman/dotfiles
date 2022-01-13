@@ -22,7 +22,8 @@ Plug 'jlanzarotta/bufexplorer'
 
 " Vim/Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'roxma/vim-tmux-clipboard'
+" Plug 'roxma/vim-tmux-clipboard'
+Plug 'jabirali/vim-tmux-yank'
 
 " Git
 Plug 'tpope/vim-git'
@@ -107,7 +108,7 @@ Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mxw/vim-jsx'
 if has('Python')
-  call minpac#add('valloric/MatchTagAlways'
+  call minpac#add('valloric/MatchTagAlways')
 endif
 
 " Initialize plugin system
@@ -220,16 +221,16 @@ noremap Q gqip
 runtime! ftplugin/man.vim
 
 " Disable tmux navigator when zooming the Vim pane
-let g:tmux_navigator_disable_when_zoomed = 1
+" let g:tmux_navigator_disable_when_zoomed = 1
 
-" Create our own mappings
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+" " Create our own mappings
+" let g:tmux_navigator_no_mappings = 1
+"
+" nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+" nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+" nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 
 if has('nvim')
   tnoremap <silent> <M-h> <C-\><C-n> :TmuxNavigateLeft<cr>
@@ -239,11 +240,11 @@ if has('nvim')
   tnoremap <silent> <M-\> <C-\><C-n> :TmuxNavigatePrevious<cr>
 endif
 
-" Smart way to move between windows. Ctrl-[h,j,k,l]
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+" " Smart way to move between windows. Ctrl-[h,j,k,l]
+" nnoremap <c-j> <c-w>j
+" nnoremap <c-k> <c-w>k
+" nnoremap <c-h> <c-w>h
+" nnoremap <c-l> <c-w>l
 
 " If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
 vnoremap <c-j> <c-w>+
@@ -284,7 +285,7 @@ noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 set rtp+=/work/.local/share/fzf
 nnoremap <C-t> <ESC>:Files<CR>
 " nnoremap <M-k> <ESC>:Buffers<CR>
-nnoremap <M-t> <ESC>:Lines<CR>
+nnoremap <C-M-t> <ESC>:Lines<CR>
 
 " Find and Replace
 nnoremap <M-f> <ESC>:Farp<CR>
@@ -353,6 +354,22 @@ let NERDTreeIgnore=['\.rbc$', '\~$', '\.xmark\.']
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
+
+" set clipboard+=unnamedplus
+" " Function to yank to OSC-52.
+" function! TmuxYank()
+"   let buffer=system('base64 -w0', @0)
+"   let buffer=substitute(buffer, "\n$", "", "")
+"   let buffer='\e]52;c;'.buffer.'\x07'
+"   silent exe "!echo -ne ".shellescape(buffer)." > ".system("tmux display -p '#{pane_tty}'")
+" endfunction
+"
+" " Autoforward yank events.
+" set clipboard+=unnamedplus
+" augroup TmuxYankAuto
+"   autocmd!
+"   autocmd TextYankPost * if v:event.operator ==# 'y' | call TmuxYank() | endif
+" augroup END
 
 " Local config
 if filereadable("/usr/local/share/nvim/local.vim")
