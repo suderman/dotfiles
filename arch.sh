@@ -86,7 +86,7 @@ export ROOTPASS=password
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/nvme0n1p3 /mnt/home
 #
 #   # Mount log subvolume
-#   mkdir /mnt/log
+#   mkdir -p /mnt/var/log
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@log /dev/nvme0n1p3 /mnt/var/log
 #
 #   Mount docker subvolume
