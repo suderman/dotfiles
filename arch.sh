@@ -225,18 +225,14 @@ pacman -S tailscale
 systemctl enable tailscaled
 
 
-# Install ydotool
-paru -S --needed ydotool
-
-
 # User
 useradd -m $USERNAME
 echo $USERNAME:$USERPASS | chpasswd
 usermod -aG libvirt $USERNAME
 usermod -aG docker $USERNAME
-usermod -aG input $USERNAME # ydotool 
 echo "$USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$USERNAME
 chsh -s /usr/bin/zsh $USERNAME
+
 
 # Override system's gnome-terminal with script in user's .local/bin directory
 ln -sf /home/$USERNAME/.local/bin/gnome-terminal /usr/local/bin/gnome-terminal
@@ -264,6 +260,8 @@ printf "\e[1;32mDone! Reboot and login as user.\e[0m"
 #   gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" 
 #   gsettings get org.gnome.desktop.peripherals.touchpad disable-while-typing
 #
-#   # User systemd
-#   systemctl --user enable ydotool
+#   # Install ydotool
+#   paru -S --needed ydotool
+#   sudo usermod -aG input $USERNAME
+#   systemctl --user enable --now ydotoold
 
