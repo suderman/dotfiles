@@ -4,7 +4,7 @@ return {
   font = wezterm.font("JetBrains Mono"),
   -- font = wezterm.font("Noto Color Emoji"),
   -- font = wezterm.font("PowerlineExtraSymbols"), =>
-  color_scheme = "Batman",
+  -- color_scheme = "Batman",
 
   enable_wayland = true,
 
