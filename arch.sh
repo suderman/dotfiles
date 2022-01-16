@@ -189,6 +189,13 @@ systemctl enable firewalld
 systemctl enable acpid
 
 
+# Install paru
+cd /tmp
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+
+
 # Install & configure Docker for bfrfs
 pacman -S docker
 mkdir -p /etc/docker
@@ -218,11 +225,8 @@ pacman -S tailscale
 systemctl enable tailscaled
 
 
-# Install paru
-cd /tmp
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
+# Install ydotool
+paru -S --needed ydotool
 
 
 # User
@@ -230,6 +234,7 @@ useradd -m $USERNAME
 echo $USERNAME:$USERPASS | chpasswd
 usermod -aG libvirt $USERNAME
 usermod -aG docker $USERNAME
+usermod -aG input $USERNAME # ydotool 
 echo "$USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$USERNAME
 chsh -s /usr/bin/zsh $USERNAME
 
@@ -258,3 +263,7 @@ printf "\e[1;32mDone! Reboot and login as user.\e[0m"
 #   # Gnome settings
 #   gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" 
 #   gsettings get org.gnome.desktop.peripherals.touchpad disable-while-typing
+#
+#   # User systemd
+#   systemctl --user enable ydotool
+
