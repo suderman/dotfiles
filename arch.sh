@@ -6,9 +6,9 @@ export USERNAME=suderman
 export USERPASS=password
 export ROOTPASS=password
 
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #   # Connect to WiFi:
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #
 #   # Get network device name
 #   ip -c a
@@ -21,9 +21,9 @@ export ROOTPASS=password
 #   pacman -Sy
 #
 #
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #   # Preconfigure:
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #
 #   # Ensure booted with EFI mode
 #   ls /sys/firmware/efi/efivars
@@ -33,22 +33,36 @@ export ROOTPASS=password
 #   timedatectl status
 #
 #
-#   # ------------------------------------------
-#   # Partition disks:
-#   # ------------------------------------------
+#   # ---------------------------------------------
+#   # Partition & format data disk (if applicable):
+#   # ---------------------------------------------
 #
 #   # List devices
-#   lsblk
+#   lsblk -f
+#
+#   # Create partitions
+#   cgdisk /dev/sda
+#   #- data: NEW, default, default, 8300
+#
+#   # Create btrfs subvolumes
+#   mount /dev/sda1 /mnt
+#   cd /mnt
+#   btrfs subvolume create @
+#   btrfs subvolume create @data
+#   cd / && umount /mnt
+#
+#   # ---------------------------------------------
+#   # Partition & format root disk:
+#   # ---------------------------------------------
+#
+#   # List devices
+#   lsblk -f
 #
 #   # Create partitions
 #   cgdisk /dev/nvme0n1
 #   #- boot: NEW, default, 512M, ef00
 #   #- swap: NEW, default, 32G, 8200
 #   #- root: NEW, default, default, 8300
-#
-#   # ------------------------------------------
-#   # Format partitions:
-#   # ------------------------------------------
 #
 #   # Format boot partition
 #   mkfs.fat -F32 /dev/nvme0n1p1
@@ -67,12 +81,11 @@ export ROOTPASS=password
 #   btrfs subvolume create @home
 #   btrfs subvolume create @log
 #   btrfs subvolume create @docker
-#   umount /mnt
+#   cd / && umount /mnt
 #
-#
-#   # ------------------------------------------
-#   # Mount volumes:
-#   # ------------------------------------------
+#   # ---------------------------------------------
+#   # Mount root volumes:
+#   # ---------------------------------------------
 #
 #   # Mount root subvolume
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/nvme0n1p3 /mnt
@@ -89,34 +102,37 @@ export ROOTPASS=password
 #   mkdir -p /mnt/var/log
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@log /dev/nvme0n1p3 /mnt/var/log
 #
-#   Mount docker subvolume
+#   # Mount docker subvolume
 #   mkdir -p /mnt/var/lib/docker
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@docker /dev/nvme0n1p3 /mnt/var/lib/docker
 #
+#   # Mount data subvolume (if applicable):
+#   mkdir /mnt/data
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@data /dev/sda1 /mnt/data
 #
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #   # Create fstab from mounts:
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #
 #   # Verify partitions and subvolumes
-#   lsblk
+#   lsblk -f
 #   btrfs subvolume list /mnt
 #
 #   # Generate fstab
 #   genfstab -U /mnt >> /mnt/etc/fstab
 #
 #
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #   # Install base packages:
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #
 #   # Install base packages to new volume
 #   pacstrap /mnt base base-devel linux linux-firmware git vim intel-ucode
 #   
 #
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #   # Enter system and run install script:
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #
 #   # Enter installation
 #   arch-chroot /mnt
@@ -147,7 +163,7 @@ echo root:$ROOTPASS | chpasswd
 
 # Packages
 pacman -Syy
-pacman -S acpi acpi_call acpid alsa-utils avahi bash-completion bluez bluez-utils bridge-utils cups dialog dnsmasq dnsutils dosfstools edk2-ovmf efibootmgr firewalld flatpak grub grub-btrfs gvfs gvfs-smb hplip inetutils ipset iptables-nft linux-headers man-db mtools network-manager-applet nfs-utils nss-mdns ntfs-3g openbsd-netcat openssh os-prober pipewire pipewire-alsa pipewire-jack pipewire-pulse qemu qemu-arch-extra reflector rsync sof-firmware tlp vde2 virt-manager wpa_supplicant xdg-user-dirs xdg-utils zsh
+pacman -S acpi acpi_call acpid alsa-utils arch-install-scripts avahi bash-completion bluez bluez-utils bridge-utils cups dialog dnsmasq dnsutils dosfstools edk2-ovmf efibootmgr firewalld flatpak grub grub-btrfs gvfs gvfs-smb hplip inetutils ipset iptables-nft linux-headers man-db mtools network-manager-applet nfs-utils nss-mdns ntfs-3g openbsd-netcat openssh os-prober pipewire pipewire-alsa pipewire-jack pipewire-pulse qemu qemu-arch-extra reflector rsync sof-firmware tlp vde2 virt-manager wpa_supplicant xdg-user-dirs xdg-utils zsh
 
 # Enable Grub's OS prober
 echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub
@@ -226,9 +242,9 @@ chown -R $USERNAME:$USERNAME /usr/local/bin
 printf "\e[1;32mDone! Reboot and login as user.\e[0m"
 
 
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #   # Final steps onced logged in as user:
-#   # ------------------------------------------
+#   # ---------------------------------------------
 #
 #   # Goodies
 #   sudo pacman -S --needed neovim neomutt mosh zsh tmux fzf ncdu ranger micro htop jq lazydocker firefox
