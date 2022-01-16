@@ -10,6 +10,11 @@ return {
 
   window_decorations = "RESIZE",
 
+  -- initial_rows = 24,
+  initial_rows = 36,
+  -- initial_cols = 80,
+  initial_cols = 160,
+
   use_fancy_tab_bar = false,
 
   window_padding = {

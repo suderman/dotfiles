@@ -40,6 +40,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'taiansu/nerdtree-ag'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+
 " Fuzzy Finder
 Plug 'junegunn/fzf.vim'
 
@@ -112,6 +115,9 @@ Plug 'mxw/vim-jsx'
 if has('Python')
   call minpac#add('valloric/MatchTagAlways')
 endif
+
+
+
 
 " Initialize plugin system
 call plug#end()
@@ -206,14 +212,6 @@ noremap Q gqip
 
 " :Man pages in Vim
 runtime! ftplugin/man.vim
-
-if has('nvim')
-  tnoremap <silent> <M-h> <C-\><C-n> :TmuxNavigateLeft<cr>
-  tnoremap <silent> <M-j> <C-\><C-n> :TmuxNavigateDown<cr>
-  tnoremap <silent> <M-k> <C-\><C-n> :TmuxNavigateUp<cr>
-  tnoremap <silent> <M-l> <C-\><C-n> :TmuxNavigateRight<cr>
-  tnoremap <silent> <M-\> <C-\><C-n> :TmuxNavigatePrevious<cr>
-endif
 
 " If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
 vnoremap <c-j> <c-w>+
@@ -325,7 +323,7 @@ let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 
 " https://github.com/ojroques/vim-oscyank
-let g:oscyank_max_length = 100000
+let g:oscyank_max_length = 1000000
 let g:oscyank_silent = v:true
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
