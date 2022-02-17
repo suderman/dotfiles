@@ -1,0 +1,2 @@
+#!/bin/sh
+ydotool key KEY_LEFTCTRL+KEY_INSERT
