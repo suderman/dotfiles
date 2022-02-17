@@ -26,10 +26,10 @@ client.urgent             $dark    $dark        $focus      $dark     $dark
 client.placeholder        $dark    $color1      $white      $dark     $dark
 client.background         $white
 
-# gaps inner 20
-# gaps outer 10
-gaps inner 0
-gaps outer 0
+gaps inner 20
+gaps outer 10
+# gaps inner 0
+# gaps outer 0
 # smart_gaps on
 
 
@@ -39,11 +39,14 @@ font pango:SourceCodePro Medium 10
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
-for_window [shell="x_wayland"] title_format "%class - %title"
+for_window [shell="x_wayland"] title_format "wayland: %class - %title"
 for_window [title="."] title_format "%title"
 
 # default_border pixel 0
-default_border pixel 4
+#
+default_border normal 4
+# default_border pixel 4
+#
 # default_border normal 6
 # default_border normal 0
 # default_floating_border normal 6
@@ -66,8 +69,11 @@ output * bg $wallpapers/arch-gray.jpg fill
 # Resolution & scale swaymsg -t get_outputs
 # example: output HDMI-A-1 resolution 1920x1080 position 1920,0
 # output eDP-1 scale 1.5
-output eDP-1 scale 1.5
+output eDP-1 scale 1.3
 #xwayland disable
+
+xwayland scale 2
+exec xrdb -merge ~/.Xresources
 
 exec_always {
 
@@ -84,19 +90,19 @@ exec_always {
     text-scaling-factor
   }
 
-  gsettings set org.gnome.desktop.interface {
-    # gtk-theme           Materia-dark
-    gtk-theme           Nordic
-    icon-theme          Zafiro
-    document-font-name  'Noto Sans Regular 10'
-    font-name           'Noto Sans Regular 10'
-    # document-font-name  'Open Sans Regular 10'
-    # font-name           'Open Sans Regular 10'
-    monospace-font-name 'JetBrainsMono Nerd Font 10'
-    # text-scaling-factor 1.2
-    text-scaling-factor 1.0
-    cursor-size         68
-  }
+  # gsettings set org.gnome.desktop.interface {
+  #   # gtk-theme           Materia-dark
+  #   gtk-theme           Nordic
+  #   icon-theme          Zafiro
+  #   document-font-name  'Noto Sans Regular 10'
+  #   font-name           'Noto Sans Regular 10'
+  #   # document-font-name  'Open Sans Regular 10'
+  #   # font-name           'Open Sans Regular 10'
+  #   monospace-font-name 'JetBrainsMono Nerd Font 10'
+  #   # text-scaling-factor 1.2
+  #   text-scaling-factor 1.0
+  #   cursor-size         68
+  # }
 
 }
 

@@ -1,10 +1,13 @@
 # Apps
 set {
 
-  $term exec alacritty
+  # $term exec alacritty
+  # $term exec wezterm
+  $term exec foot
   $editor exec nvim
   # $browser exec firefox-developer-edition
-  $browser exec chromium
+  # $browser exec chromium
+  $browser exec firefox
   $menu exec $term --class=launcher -e sway-launcher-desktop
 
 }
