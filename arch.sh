@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Update these before running script
-export HOSTNAME=arch
-export USERNAME=suderman
-export USERPASS=password
-export ROOTPASS=password
-
 #   # ---------------------------------------------
 #   # Connect to WiFi:
 #   # ---------------------------------------------
@@ -15,7 +9,7 @@ export ROOTPASS=password
 #
 #   # Connect to network
 #   iwctl
-#   [iwd] station wlan0 connect suderman
+#   [iwd] station wlan0 connect MyWirelessNetwork
 #
 #   # Test connection by refreshing packages
 #   pacman -Sy
@@ -153,13 +147,14 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 
 # Hostname (change for each device)
+export HOSTNAME=arch
 echo "$HOSTNAME" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
 
 # Root password
-echo root:$ROOTPASS | chpasswd
+echo root:password | chpasswd
 
 # Packages
 pacman -Syy
@@ -226,17 +221,17 @@ systemctl enable tailscaled
 
 
 # User
-useradd -m $USERNAME
-echo $USERNAME:$USERPASS | chpasswd
-usermod -aG libvirt $USERNAME
-usermod -aG docker $USERNAME
-echo "$USERNAME ALL=(ALL) ALL" >> /etc/sudoers.d/$USERNAME
-chsh -s /usr/bin/zsh $USERNAME
+useradd -m me
+echo me:password | chpasswd
+usermod -aG libvirt me
+usermod -aG docker me
+echo "me ALL=(ALL) ALL" >> /etc/sudoers.d/me
+chsh -s /usr/bin/zsh me
 
 
 # Override system's gnome-terminal with script in user's .local/bin directory
-ln -sf /home/$USERNAME/.local/bin/gnome-terminal /usr/local/bin/gnome-terminal
-chown -R $USERNAME:$USERNAME /usr/local/bin
+ln -sf /home/me/.local/bin/gnome-terminal /usr/local/bin/gnome-terminal
+chown -R me:me /usr/local/bin
 
 
 # Done
@@ -262,6 +257,6 @@ printf "\e[1;32mDone! Reboot and login as user.\e[0m"
 #
 #   # Install ydotool
 #   paru -S --needed ydotool
-#   sudo usermod -aG input $USERNAME
+#   sudo usermod -aG input me
 #   systemctl --user enable --now ydotoold
 
