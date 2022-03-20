@@ -43,6 +43,7 @@
 #   cd /mnt
 #   btrfs subvolume create @
 #   btrfs subvolume create @data
+#   btrfs subvolume create @volumes
 #   cd / && umount /mnt
 #
 #   # ---------------------------------------------
@@ -103,6 +104,10 @@
 #   # Mount data subvolume (if applicable):
 #   mkdir /mnt/data
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@data /dev/sda1 /mnt/data
+#
+#   # Mount data volumes subvolume (if applicable):
+#   mkdir /mnt/var/lib/docker/volumes
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@volumes /dev/sda1 /mnt/var/lib/docker/volumes
 #
 #   # ---------------------------------------------
 #   # Create fstab from mounts:
