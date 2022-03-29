@@ -64,7 +64,7 @@
 #   mkfs.btrfs -L raid /dev/sdb1
 #
 #   # Create btrfs subvolumes
-#   mount /dev/sda1 /mnt
+#   mount /dev/sdb1 /mnt
 #   cd /mnt
 #   btrfs subvolume create @
 #   btrfs subvolume create @archives
