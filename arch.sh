@@ -38,12 +38,44 @@
 #   cgdisk /dev/sda
 #   #- data: NEW, default, default, 8300
 #
+#   # Format data partition
+#   mkfs.btrfs -L data /dev/sda1
+#
 #   # Create btrfs subvolumes
 #   mount /dev/sda1 /mnt
 #   cd /mnt
 #   btrfs subvolume create @
 #   btrfs subvolume create @data
 #   btrfs subvolume create @volumes
+#   cd / && umount /mnt
+#
+#   # ---------------------------------------------
+#   # Partition & format raid disk (if applicable):
+#   # ---------------------------------------------
+#
+#   # List devices
+#   lsblk -f
+#
+#   # Create partitions
+#   cgdisk /dev/sdb
+#   #- raid: NEW, default, default, 8300
+#
+#   # Format data partition
+#   mkfs.btrfs -L raid /dev/sdb1
+#
+#   # Create btrfs subvolumes
+#   mount /dev/sda1 /mnt
+#   cd /mnt
+#   btrfs subvolume create @
+#   btrfs subvolume create @archives
+#   btrfs subvolume create @audiobooks
+#   btrfs subvolume create @books
+#   btrfs subvolume create @games
+#   btrfs subvolume create @movies
+#   btrfs subvolume create @music
+#   btrfs subvolume create @photos
+#   btrfs subvolume create @series
+#   btrfs subvolume create @videos
 #   cd / && umount /mnt
 #
 #   # ---------------------------------------------
@@ -79,7 +111,7 @@
 #   cd / && umount /mnt
 #
 #   # ---------------------------------------------
-#   # Mount root volumes:
+#   # Mount volumes:
 #   # ---------------------------------------------
 #
 #   # Mount root subvolume
@@ -108,6 +140,43 @@
 #   # Mount data volumes subvolume (if applicable):
 #   mkdir /mnt/var/lib/docker/volumes
 #   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@volumes /dev/sda1 /mnt/var/lib/docker/volumes
+#
+#   # Mount archives subvolume (if applicable):
+#   mkdir /mnt/data/archives
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@archives /dev/sdb1 /mnt/data/archives
+#
+#   # Mount audiobooks subvolume (if applicable):
+#   mkdir /mnt/data/audiobooks
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@audiobooks /dev/sdb1 /mnt/data/audiobooks
+#
+#   # Mount books subvolume (if applicable):
+#   mkdir /mnt/data/books
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@books /dev/sdb1 /mnt/data/books
+#
+#   # Mount games subvolume (if applicable):
+#   mkdir /mnt/data/games
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@games /dev/sdb1 /mnt/data/games
+#
+#   # Mount movies subvolume (if applicable):
+#   mkdir /mnt/data/movies
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@movies /dev/sdb1 /mnt/data/movies
+#
+#   # Mount music subvolume (if applicable):
+#   mkdir /mnt/data/music
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@music /dev/sdb1 /mnt/data/music
+#
+#   # Mount photos subvolume (if applicable):
+#   mkdir /mnt/data/photos
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@photos /dev/sdb1 /mnt/data/photos
+#
+#   # Mount series subvolume (if applicable):
+#   mkdir /mnt/data/series
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@series /dev/sdb1 /mnt/data/series
+#
+#   # Mount videos subvolume (if applicable):
+#   mkdir /mnt/data/videos
+#   mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@videos /dev/sdb1 /mnt/data/videos
+#
 #
 #   # ---------------------------------------------
 #   # Create fstab from mounts:
