@@ -112,6 +112,7 @@ Plug 'vim-scripts/openvpn'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mxw/vim-jsx'
+Plug 'LnL7/vim-nix'
 if has('Python')
   call minpac#add('valloric/MatchTagAlways')
 endif

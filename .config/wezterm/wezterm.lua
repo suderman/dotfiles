@@ -165,13 +165,13 @@ return {
 
   keys = {
 
-    -- {key="c", mods="SUPER", action='CopyTo="Clipboard"'},
-    -- {key="v", mods="SUPER", action='PasteFrom="Clipboard"'},
+    -- {key="c", mods="SUPER", action=wezterm.action{CopyTo="Clipboard"}},
+    -- {key="v", mods="SUPER", action=wezterm.action{PasteFrom="Clipboard"}},
     -- {key="]", mods="SUPER", action='ActivateTabRelative=1"'},
     -- {key="[", mods="SUPER", action='ActivateTabRelative=-1"'},
 
-    -- {key="c", mods="CTRL", action=wezterm.action{CopyTo="Clipboard"}},
-    {key="v", mods="CTRL", action=wezterm.action{PasteFrom="Clipboard"}},
+    {key="c", mods="ALT", action=wezterm.action{CopyTo="Clipboard"}},
+    {key="v", mods="ALT", action=wezterm.action{PasteFrom="Clipboard"}},
 
     -- {key="c", mods="SUPER", action=wezterm.action{CopyTo="Clipboard"}},
     -- {key="v", mods="SUPER", action=wezterm.action{PasteFrom="Clipboard"}},
