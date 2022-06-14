@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# https://bugzilla.redhat.com/show_bug.cgi?id=1873592
+# It seems the keyring is still locked by the time the remote-desktop-daemon is started and hence the VNC server is unable to read the password.
+#
+# When I opened Seahorse, it was saying it's still locked. My GNOME is set up to log in automatically, if that makes a difference.
+# 
+# I'm killing the currently running gnome-keyring-daemon, creating a new daemon as unlocked and then starting it. Then I restart the remote-desktop-daemon and voilà! Remote desktop password is accepted!!!
+# Commands (executed as the user, not root):
+#
+# killall gnome-keyring-daemon
+# echo -n "keyringpasswordNOTVNCPASSWORD" | gnome-keyring-daemon -l -d
+# gnome-keyring-daemon -s
+# systemctl --user restart gnome-remote-desktop
+
+read -sp 'Password: ' password
+killall gnome-keyring-daemon
+echo -n $password | gnome-keyring-daemon -l -d
+gnome-keyring-daemon -s
+systemctl --user restart gnome-remote-desktop
