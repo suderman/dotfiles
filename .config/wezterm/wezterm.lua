@@ -7,7 +7,6 @@ return {
   -- color_scheme = "Batman",
 
   enable_wayland = true,
-
   warn_about_missing_glyphs = false,
 
 
@@ -20,7 +19,8 @@ return {
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = false,
   tab_bar_at_bottom = false,
-  tab_max_width = 32,
+  -- tab_max_width = 32,
+  tab_max_width = 64,
 
   -- colors = {
   --   tab_bar = {
@@ -170,14 +170,20 @@ return {
     -- {key="]", mods="SUPER", action='ActivateTabRelative=1"'},
     -- {key="[", mods="SUPER", action='ActivateTabRelative=-1"'},
 
-    {key="c", mods="ALT", action=wezterm.action{CopyTo="Clipboard"}},
-    {key="v", mods="ALT", action=wezterm.action{PasteFrom="Clipboard"}},
+    {key="Insert", mods="CTRL", action=wezterm.action{CopyTo="ClipboardAndPrimarySelection"}},
+    {key="Insert", mods="SHIFT", action=wezterm.action{PasteFrom="Clipboard"}},
+
+    -- {key="c", mods="ALT", action=wezterm.action{CopyTo="Clipboard"}},
+    -- {key="v", mods="ALT", action=wezterm.action{PasteFrom="Clipboard"}},
 
     -- {key="c", mods="SUPER", action=wezterm.action{CopyTo="Clipboard"}},
     -- {key="v", mods="SUPER", action=wezterm.action{PasteFrom="Clipboard"}},
 
     {key="[", mods="SUPER", action=wezterm.action{ActivateTabRelative=-1}},
     {key="]", mods="SUPER", action=wezterm.action{ActivateTabRelative=1}},
+    
+    -- {key="arrowup", mods="SUPER", action=wezterm.action{ActivateTabRelative=-1}},
+    -- {key="arrowdown", mods="SUPER", action=wezterm.action{ActivateTabRelative=1}},
 
     -- Turn off the default CMD-m Hide action
     {key="m", mods="SUPER", action="DisableDefaultAssignment"}

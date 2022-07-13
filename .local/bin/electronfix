@@ -1,21 +1,35 @@
 #!/bin/bash
 # run with sudo to update desktop launchers for wayland
 
-desktops=$(cat << END
+wayland=$(cat << END
   /usr/share/applications/1password.desktop
-  /usr/share/applications/discord.desktop
   /usr/share/applications/io.element.Element.desktop
-  /usr/share/applications/obsidian.desktop
   /usr/share/applications/plexamp.desktop
+  /usr/share/applications/obsidian.desktop
   /usr/share/applications/spotify.desktop
   /opt/standardnotes-bin/standard-notes.desktop
 END
 )
 
-for desktop in $desktops; do
+xwayland=$(cat << END
+  /opt/discord/discord.desktop
+END
+)
+
+# Force these electron apps to running with wayland
+for desktop in $wayland; do
   if [ -e $desktop ]; then
     if [ -z "$(grep ozone-platform=wayland $desktop)" ]; then
       echo "$(awk '/^Exec=/{$0=$0 " --enable-features=UseOzonePlatform --ozone-platform=wayland"}1' $desktop)" > $desktop
+    fi
+  fi
+done
+
+# Force a scale factor of 1.25 for these electron apps running with xwayland
+for desktop in $xwayland; do
+  if [ -e $desktop ]; then
+    if [ -z "$(grep force-device-scale-factor $desktop)" ]; then
+      echo "$(awk '/^Exec=/{$0=$0 " --force-device-scale-factor=1.25"}1' $desktop)" > $desktop
     fi
   fi
 done

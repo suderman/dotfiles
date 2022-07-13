@@ -7,7 +7,7 @@ StartLimitBurst=5
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/ydotoold
+ExecStart=/usr/local/bin/ydotoold
 Restart=on-failure
 RestartSec=5s
 

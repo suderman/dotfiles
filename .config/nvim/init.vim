@@ -117,6 +117,7 @@ if has('Python')
   call minpac#add('valloric/MatchTagAlways')
 endif
 
+Plug 'jceb/vim-orgmode'
 
 
 
