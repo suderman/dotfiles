@@ -26,7 +26,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'roxma/vim-tmux-clipboard'
 " Plug 'jabirali/vim-tmux-yank'
-Plug 'ojroques/vim-oscyank'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 " Git
 Plug 'tpope/vim-git'
@@ -215,6 +215,26 @@ noremap Q gqip
 " :Man pages in Vim
 runtime! ftplugin/man.vim
 
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" Create our own mappings
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+
+if has('nvim')
+  tnoremap <silent> <M-h> <C-\><C-n> :TmuxNavigateLeft<cr>
+  tnoremap <silent> <M-j> <C-\><C-n> :TmuxNavigateDown<cr>
+  tnoremap <silent> <M-k> <C-\><C-n> :TmuxNavigateUp<cr>
+  tnoremap <silent> <M-l> <C-\><C-n> :TmuxNavigateRight<cr>
+  tnoremap <silent> <M-\> <C-\><C-n> :TmuxNavigatePrevious<cr>
+endif
+
 " If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
 vnoremap <c-j> <c-w>+
 vnoremap <c-k> <c-w>-
@@ -327,6 +347,7 @@ let NERDTreeShowHidden=1
 " https://github.com/ojroques/vim-oscyank
 let g:oscyank_max_length = 1000000
 let g:oscyank_silent = v:true
+let g:oscyank_term = 'default'
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
 
