@@ -22,26 +22,36 @@
         nimbus = nixpkgs.lib.nixosSystem {
           inherit system;
           # system = "x86_64-linux";
-          modules = [ ./configuration.nix ];
+          modules = [ ./hosts/nimbus/configuration.nix ];
         };
         cog = nixpkgs.lib.nixosSystem {
           inherit system;
           # system = "x86_64-linux";
-          modules = [ ./configuration.nix ];
+          modules = [ ./hosts/nimbus/configuration.nix ];
         };
         lux = nixpkgs.lib.nixosSystem {
           inherit system;
           # system = "x86_64-linux";
-          modules = [ ./configuration.nix ];
+          modules = [ ./hosts/nimbus/configuration.nix ];
         };
       };
 
 
-      homeManagerConfigurations = {
+      homeConfigurations = {
         me = home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs;
-          username = "me";
-          homeDirectory = "/home/me";
+          inherit pkgs;
+
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [
+            ./hosts/nimbus/home.nix
+          ];
+
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+
+          # username = "me";
+          # homeDirectory = "/home/me";
           # stateVersion = "22.09";
           # configuartion = {
           #   imports = [
