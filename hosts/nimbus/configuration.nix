@@ -3,9 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 #{ config, pkgs, ... }:
-{ config, pkgs, lib, options, specialArgs, modulesPath }:
+# { config, pkgs, lib, options, specialArgs, modulesPath, ... }:
+{ inputs, pkgs, lib, ... }:
 
-{
+let 
+  inherit (inputs.home-manager.nixosModules) home-manager;
+
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -13,21 +17,35 @@
       # ./keyd.nix
       ../../modules/vim.nix
       # import (builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz") 
+
+      # inputs.home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
+      home-manager {              # Home-Manager module that is used.
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        # home-manager.extraSpecialArgs = { inherit user doom-emacs; };  # Pass flake variable
+        # home-manager.users.me = { imports = (import ./home.nix) };
+        home-manager.users.me = import ./home.nix;
+      }
     ];
 
-  options = {};
-  config = {
-
-  nixpkgs.config.allowUnfree = true; 
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
+  # nixpkgs.config.allowUnfree = true; 
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+  #     inherit pkgs;
+  #   };
+  # };
 
 
   # nix.package = pkgs.nixFlakes;
-  nix.extraOptions = "experimental-features = nix-command flakes";
+  nix = {
+    extraOptions = "experimental-features = nix-command flakes";
+    settings = {
+      # Enable flakes and new 'nix' command
+      experimental-features = "nix-command flakes";
+      # Deduplicate and optimize nix store
+      auto-optimise-store = true;
+    };
+  };
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -113,6 +131,8 @@
      git
      zsh
      fish
+     nano
+     micro
      # keyd
      # unstable.keyd
    ];
@@ -156,6 +176,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  };
 }
 
