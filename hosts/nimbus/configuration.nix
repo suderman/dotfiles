@@ -24,7 +24,7 @@ in {
         home-manager.useUserPackages = true;
         # home-manager.extraSpecialArgs = { inherit user doom-emacs; };  # Pass flake variable
         # home-manager.users.me = { imports = (import ./home.nix) };
-        home-manager.users.me = import ./home.nix;
+        home-manager.users.me = import ../../home.nix;
       }
     ];
 

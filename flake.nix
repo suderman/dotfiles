@@ -35,6 +35,12 @@
         modules = [ ./hosts/${hostname}/configuration.nix ];
       };
 
+      mkHome = system: home-manager.lib.homeManagerConfiguration {
+        pkgs = mkPkgs nixpkgs system;
+        # specialArgs = { inherit inputs; };
+        modules = [ ./home.nix ];
+      };
+
       lib = nixpkgs.lib;
     in 
     {
@@ -46,16 +52,17 @@
       };
 
       homeConfigurations = {
-        me = home-manager.lib.homeManagerConfiguration {
-          # inherit pkgs;
-          # pkgs = pkgs.x86_64-linux;
-          pkgs = mkPkgs nixpkgs "x86_64-linux";
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [
-            ./hosts/nimbus/home.nix
-          ];
-        };
+        me = mkHome "x86_64-linux";
+        # me = home-manager.lib.homeManagerConfiguration {
+        #   # inherit pkgs;
+        #   # pkgs = pkgs.x86_64-linux;
+        #   pkgs = mkPkgs nixpkgs "x86_64-linux";
+        #   # Specify your home configuration modules here, for example,
+        #   # the path to your home.nix.
+        #   modules = [
+        #     ./home.nix
+        #   ];
+        # };
       };
 
     };

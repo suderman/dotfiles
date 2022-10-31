@@ -17,7 +17,12 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ bat nnn lf ];
+  home.packages = with pkgs; [ 
+    bat 
+    nnn 
+    lf 
+    fzf 
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
